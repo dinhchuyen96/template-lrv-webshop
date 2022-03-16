@@ -40,17 +40,20 @@
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 offset-lg-2 offset-xl-3">
                                     <div class="login-form">
-                                        <form action="#">
+                                        <form action="" method="post">
+                                            @csrf
                                             <div class="form-group row align-items-center mb-4">
                                                 <label for="email" class="col-12 col-sm-12 col-md-4 col-form-label">Email address</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
-                                                    <input type="text" class="form-control" id="email" placeholder="Email" required>
+                                                    <input type="text" name="email" class="form-control" id="email" placeholder="Email" required>
+                                                    @error('email') {{$message}} @enderror                                                    
                                                 </div>
                                             </div>
                                             <div class="form-group row align-items-center mb-4">
                                                 <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
-                                                    <input type="password" class="form-control" id="c-password" placeholder="Password" required>
+                                                    @error('password') {{$message}} @enderror
+                                                    <input type="password" name="password" class="form-control" id="c-password" placeholder="Password" required>
                                                     <button class="pass-show-btn" type="button">Show</button>
                                                 </div>
                                             </div>

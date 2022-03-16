@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function dashboard(){
-        return view('admin.dashboard');
+        User::create([
+            'name' => 'Admin Manerger',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt(123456)
+        ]);
+        
     }
     /**
      * Display a listing of the resource.

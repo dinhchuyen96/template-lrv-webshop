@@ -5,9 +5,7 @@
         public function home(){
             return view('site\home');
         }
-        public function login(){
-            return view('site\login');
-        }
+        
         public function register(){
             return view('site\register');
         }

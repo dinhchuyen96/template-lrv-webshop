@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,8 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
-Route::get('/login', [HomeController::class, 'login'])->name('login');
+Route::get('/admin/login', [LoginController::class, 'login'])->name('login');
+Route::post('/admin/login', [LoginController::class, 'post_login'])->name('login');
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::get('/contactus', [HomeController::class, 'contactus'])->name('contactus');
 Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
@@ -24,7 +26,7 @@ Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
 Route::get('/wishlist', [HomeController::class, 'wishlist'])->name('wishlist');
 Route::get('/myaccount', [HomeController::class, 'myaccount'])->name('myaccount');
 Route::get('/compare', [HomeController::class, 'compare'])->name('compare');
-route::group(['prefix' => 'admin'], function(){
+route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/', [AdminController::class, 'index'])->name('admin.category.index');
     Route::resources([
