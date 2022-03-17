@@ -41,14 +41,14 @@
         
         <div class="radio">
             <label>
-                <input type="radio" name="statusp" value="0" checked>
+                <input type="radio" name="status" value="0" checked>
                 Tạm Ẩn
             </label>
         </div>
          
         <div class="radio">
             <label>
-                <input type="radio" name="statusp" value="1"">
+                <input type="radio" name="status" value="1"">
                 Hiển thị
             </label>
         </div>
