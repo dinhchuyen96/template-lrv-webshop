@@ -17,7 +17,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        
+        $data = Product::search()->paginate(5);
+
+        return view('admin.product.index',compact('data'));
     }
 
     /**
