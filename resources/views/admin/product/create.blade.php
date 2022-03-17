@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title','Thêm mới danh mục')
 @section('main')
-<form action="{{route('product.store')}}" method="POST" role="form"  enctype="multipart/form">
+<form action="{{route('product.store')}}" method="POST" role="form"  enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label for="">Danh mục sản phẩm</label>

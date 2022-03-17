@@ -301,19 +301,14 @@
                                                         <li><a href="product-details-external.html">Product Details External</a></li>
                                                         <li><a href="product-details-group.html">Product Details Group</a></li>
                                                         <li><a href="tab-style-one.html">tab style one</a></li>
-                                                        <li><a href="product-details-gallery-left.html">product details gallery left</a></li>
-                                                        <li><a href="product-details-gallery-right.html">product details gallery right</a></li>
-                                                        <li><a href="sticky-left-sidebar.html">sticky left sidebar</a></li>
-                                                        <li><a href="sticky-right-sidebar.html">sticky right sidebar</a></li>
-                                                        <li><a href="product-details-slider-box.html">product details slider box</a></li>
-                                                        <li><a href="product-details-slider-box.html">product details slider box</a></li>
+                                                        
                                                     </ul>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="static"><a href="#">Pages<span class="lnr lnr-chevron-down"></span></a>
                                             <ul class="mega-menu mega-full">
-                                                <li class="mega-title"><a href="#">Column one</a>
+                                                <li class="mega-title"><a href="{{route('home')}}">Column one</a>
                                                     <ul>
                                                         <li><a href="shop-grid-left-sidebar.html">Shop grid left sidebar</a></li>
                                                         <li><a href="shop-grid-right-sidebar.html">Shop grid right sightbar</a></li>
