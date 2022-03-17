@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductCreateRequest;
+use Str;
 
 class ProductController extends Controller
 {
@@ -42,11 +43,20 @@ class ProductController extends Controller
         $data = $req->all('name','price','sale_price','category_id','status');
         // upload ảnh
         $file_name = $req->upload->getClientOriginalName();
-        $check_upload = $req->upload->move(public_path('uploads/'),$file_name);
+        $partInfo = pathinfo($file_name);
+        $ext = $partInfo['extension'];
+        $base_name = $partInfo['filename']; 
+        $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
+
+        $check_upload = $req->upload->move(public_path('uploads/'), $file_name);
         if($check_upload){
-            $data['image'] = $file_name;
+            $data['image'] = $final_name;
         };
-        dd($data);
+        if(Product::create($data)){
+            return redirect('product.index')->with('yes','thêm mới thành công');
+        }else{
+            return redirect('product.index')->with('yes','thêm mới thành công');
+        }
         
     }
 
