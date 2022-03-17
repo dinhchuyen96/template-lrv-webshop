@@ -50,7 +50,7 @@ class ProductController extends Controller
         $base_name = $partInfo['filename']; 
         $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
 
-        $check_upload = $req->upload->move(public_path('uploads/'), $file_name);
+        $check_upload = $req->upload->move(public_path('uploads/'), $final_name);
         if($check_upload){
             $data['image'] = $final_name;
         };

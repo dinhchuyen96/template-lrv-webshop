@@ -17,8 +17,7 @@
         <tr>
             <th>STT</th>
             <th>Tên sản phẩm</th>
-            <th>Giá</th>
-            <th>Giá sale</th>
+            <th>Giá/Giá sale</th>
             <th>Ảnh</th>
             <th>Trạng thái</th>
             <th>Ngày tạo</th>
@@ -30,9 +29,8 @@
         <tr>
             <td>{{$key +1}}</td>
             <td>{{$model->name}}</td>
-            <td>{{$model->price}}</td>
-            <td>{{$model->sale_price}}</td>
-            <td><img src="{{ url('template-lrv-webshop/app/public/uploads')}}/{{$model->image}}" alt=""></td>
+            <td>{{$model->price}}/{{$model->sale_price}}</td>
+            <td><img src="{{url('uploads')}}/{{$model->image}}" alt="" style="width: 100px; height: 100px"></td>
             <td>
                 @if($model->status ==0 )
                 <label class="badge badge-danger">Tạm ẩn</label>
