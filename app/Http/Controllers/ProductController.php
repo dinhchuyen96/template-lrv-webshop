@@ -104,6 +104,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        // dd($category);
+        return redirect()->route('product.index')->with('yes','Xóa thành công');;
     }
 }
