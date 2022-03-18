@@ -17,6 +17,7 @@
         <tr>
             <th>STT</th>
             <th>Tên sản phẩm</th>
+            <th>Tên danh mục</th>
             <th>Giá/Giá sale</th>
             <th>Ảnh</th>
             <th>Trạng thái</th>
@@ -29,7 +30,8 @@
         <tr>
             <td>{{$key +1}}</td>
             <td>{{$model->name}}</td>
-            <td>{{$model->price}}/{{$model->sale_price}}</td>
+            <td>{{$model->cat->name}}</td>
+            <td>{{number_format($model->price)}}/{{$model->sale_price}}</td>
             <td><img src="{{url('uploads')}}/{{$model->image}}" alt="" style="width: 100px; height: 100px"></td>
             <td>
                 @if($model->status ==0 )

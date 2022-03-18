@@ -19,4 +19,8 @@ class Product extends Model
         }
         return $query;
     }
+    public function cat()
+    {
+        return $this->hasOne(Category::class,'id','category_id');
+    }
 }
