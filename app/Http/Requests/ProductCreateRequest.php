@@ -28,7 +28,7 @@ class ProductCreateRequest extends FormRequest
             'price' => 'required|numeric',
             'category_id' => 'required|numeric',
             'sale_price' => 'lt:price',
-            // 'upload' => 'mimes: jpg, jpeg, gif, png'
+            'upload' => 'required|image|mimes:jpg,png,jpeg,gif,svg'
         ];
     }
     public function messages()
@@ -37,6 +37,7 @@ class ProductCreateRequest extends FormRequest
             'name.required' => 'Tên sản phẩm không được để trống',
             'name.unique' => 'Tên sản phẩm đã được sử dụng',
             'price.numeric' => 'Giá sản phẩm phải là số',
+            'upload.required' => 'Anh sản phẩm không được để trống',
             'price.required' => 'Giá sản phẩm không được để trống',
             'sale_price.required' => 'Giá khuyễn mãi không được để trống',
             'sale_price.numeric' => 'Giá khuyễn mãi phải là số',

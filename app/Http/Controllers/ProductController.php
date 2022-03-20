@@ -17,9 +17,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data2 = Product::search()->paginate(10);
-
-        return view('admin.product.index',compact('data2'));
+        $pros = Category::orderBy('name','DESC')->get();
+        $data2 = Product::orderBy('id','DESC')->search()->paginate(10);
+        return view('admin.product.index',compact('data2','pros'));
     }
 
     /**
@@ -45,19 +45,24 @@ class ProductController extends Controller
         $data2 = $req->all('name','price','sale_price','category_id','status');
         // upload ảnh
         $file_name = $req->upload->getClientOriginalName();
+
         $partInfo = pathinfo($file_name);
         $ext = $partInfo['extension'];
+
         $base_name = $partInfo['filename']; 
+
         $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
 
         $check_upload = $req->upload->move(public_path('uploads/'), $final_name);
+
         if($check_upload){
             $data2['image'] = $final_name;
         };
+
         if(Product::create($data2)){
-            return redirect('product.index')->with('yes','thêm mới thành công');
+            return redirect()->route('product.index')->with('yes','thêm mới thành công');
         }else{
-            return redirect('product.index')->with('yes','thêm mới thất bại');
+            return redirect()->route('product.index')->with('yes','thêm mới thất bại');
         }
         
     }
@@ -82,7 +87,6 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-       // dd($product);
         $pros = Category::orderBy('name', 'ASC')->get();
         return view('admin.product.edit', compact('pros','product'));
     }
@@ -109,7 +113,6 @@ class ProductController extends Controller
             }
         }
         $product->update($data2);
-        //dd($data);
         return redirect()->route('product.index')->with('yes','Cập nhật thành công');
     }
 

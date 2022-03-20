@@ -18,22 +18,22 @@
     </div>
     <div class="form-group">
         <label for="">Tên sản phẩm</label>
-        <input type="text" class="form-control" name="name" placeholder="Input field">
+        <input type="text" class="form-control" value="{{old('name')}}" name="name" placeholder="Input field">
         @error('name') {{$message}} @enderror
     </div>
     <div class="form-group">
         <label for="">Giá</label>
-        <input type="text" class="form-control" name="price" placeholder="Input field">
+        <input type="text" value="{{old('price')}}" class="form-control" name="price" placeholder="Input field">
         @error('price') {{$message}} @enderror
     </div>
     <div class="form-group">
         <label for="">Giá khuyễn mãi</label>
-        <input type="text" class="form-control" name="sale_price" placeholder="Input field">
+        <input type="text" class="form-control" value="{{old('sale_price')}}" name="sale_price" placeholder="Input field">
         @error('sale_price') {{$message}} @enderror
     </div>
     <div class="form-group">
         <label for="">Ảnh</label>
-        <input type="file" class="form-control" name="upload" placeholder="Input field">
+        <input type="file"  class="form-control" name="upload" placeholder="Input field">
         @error('upload') {{$message}} @enderror
     </div>
     <div class="form-group">

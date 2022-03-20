@@ -13,14 +13,20 @@ class Product extends Model
     public function scopeSearch($query)
     {
         $search_value = request()->search;
+        $cat_id = request()->cat_id;
 
         if($search_value){
             $query = $query->where('name','LIKE','%'.$search_value.'%');
         }
+
+        if($cat_id){
+            $query = $query->where('category_id', $cat_id);
+        }
         return $query;
     }
+
     public function cat()
     {
-        return $this->hasOne(Category::class,'id','category_id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }

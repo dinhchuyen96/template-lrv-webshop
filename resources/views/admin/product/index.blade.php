@@ -4,6 +4,16 @@
 <form class="form-inline ml-3" method="get">
     <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" style="width:350px" placeholder="Search" name="search">
+    </div>
+    <div class="input-group input-group-sm">
+        <div class="form-group">
+          <label for="">Chọn danh mục</label>
+          <select class="form-control" name="cat_id" id="">
+            @foreach($pros as $cat)
+            <option value="{{$cat->id}}">{{$cat->name}}</option>
+            @endforeach
+          </select>
+        </div>
         <div class="input-group-append">
             <button class="btn btn-navbar" type="submit">
                 <i class="fas fa-search"></i>
