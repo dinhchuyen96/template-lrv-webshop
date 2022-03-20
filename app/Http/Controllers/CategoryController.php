@@ -80,7 +80,7 @@ class CategoryController extends Controller
     public function update(CategoryEditRequest $request, Category $category)
     {
         $category->update($request->only('name', 'status'));
-        return redirect()->route('category.index')->with('yes','Cập nhật thành công');;
+        return redirect()->route('category.index')->with('yes','Cập nhật thành công');
         
     }
 

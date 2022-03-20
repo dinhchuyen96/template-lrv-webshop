@@ -26,7 +26,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($data as $key => $model)
+        @foreach($data2 as $key => $model)
         <tr>
             <td>{{$key +1}}</td>
             <td>{{$model->name}}</td>
@@ -54,5 +54,5 @@
     </tbody>
 </table>
 <hr>
-{{$data->links()}}
+{{$data2->links()}}
 @stop();
