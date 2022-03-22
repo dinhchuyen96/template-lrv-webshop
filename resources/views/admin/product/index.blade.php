@@ -5,10 +5,10 @@
     <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" style="width:350px" placeholder="Search" name="search">
     </div>
-    <div class="input-group input-group-sm">
-        <div class="form-group">
-          <label for="">Chọn danh mục</label>
+    <div class="input-group input-group-sm ml-2">
+        <div class="form-group">          
           <select class="form-control" name="cat_id" id="">
+            <option>Chọn danh mục</option>
             @foreach($pros as $cat)
             <option value="{{$cat->id}}">{{$cat->name}}</option>
             @endforeach

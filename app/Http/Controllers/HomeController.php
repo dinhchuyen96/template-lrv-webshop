@@ -1,9 +1,14 @@
 <?php
     namespace App\Http\Controllers;
-    
+    use App\Models\Category;
+    use App\Models\Product;
     class HomeController extends Controller{
         public function home(){
-            return view('site\home');
+            $category = Category::paginate(2);
+            $product_sale = Product::product_sale(8);
+            $product_new = Product::product_new(4);
+            // dd($product_sale);
+            return view('site\home',compact('product_sale','product_new'));
         }
         
         public function register(){
