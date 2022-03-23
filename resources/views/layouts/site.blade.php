@@ -278,10 +278,7 @@
                                         <li><a href="#">SHOP<span class="lnr lnr-chevron-down"></span></a>
                                             <ul class="dropdown">
                                                 @foreach($cats as $cat)
-                                                <li>
-                                                    <a href="#">{{$cat->name}}<span class="lnr lnr-chevron-right"></span></a>
-                                                    
-                                                </li>
+                                                    <li><a href="{{route('home.category',$cat->id)}}">{{$cat->name}}<span class="lnr lnr-chevron-right"></span></a></li>
                                                 @endforeach
                                             </ul>
                                         </li>
@@ -316,7 +313,7 @@
                                                         <li><a href="login.html">login</a></li>
                                                         <li><a href="register.html">register</a></li>
                                                         <li><a href="/myaccount">my account</a></li>
-                                                        <li><a href="/contactus">contact us</a></li>
+                                                        <li><a href="{{route('contactus')}}">contact us</a></li>
                                                     </ul>
                                                 </li>
                                             </ul>

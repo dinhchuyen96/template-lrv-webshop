@@ -32,5 +32,9 @@
         public function compare(){
             return view('site\compare');
         }
+        public function category(Category $category){
+            $products = $category->products()->paginate(4);
+            return view('site\category',compact('category','products'));
+        }
     };
 ?>
