@@ -30,11 +30,11 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
     public function scopeProduct_sale($query, $limit = 4){
-        $query = $query->where('price','>',0)->limit($limit)->get();
+        $query = $query->where('sale_price','>',0)->limit($limit)->get();
         return $query;
     }
     public function scopeProduct_new($query, $limit = 4){
-        $query = $query->orderBy('id','DESC')->limit($limit)->get();
+        $query = $query->orderBy('id','DESC')->where('status','>',0)->limit($limit)->get();
         return $query;
     }
 }

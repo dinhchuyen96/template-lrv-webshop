@@ -105,7 +105,7 @@
     <div class="product-wrapper fix pb-70">
         <div class="container-fluid">
             <div class="section-title product-spacing hm-11">
-                <h3><span>our</span> product</h3>
+                <h3><span>New</span> product</h3>
                 <div class="boxx-tab">
                     <ul class="nav my-tab">
                         <li>
@@ -124,7 +124,7 @@
                 <div class="tab-pane fade show active" id="one">
                     <div class="product-gallary-wrapper">
                         <div class="product-gallary-active owl-carousel owl-arrow-style product-spacing">
-                            @foreach($product_sale as $ps)
+                            @foreach($product_new as $ps)
                             <div class="product-item">
                                 <div class="product-thumb">
                                     <a href="product-details.html">
@@ -133,11 +133,7 @@
                                     </a>
                                     <div class="box-label">
                                         <div class="label-product label_new">
-                                            @if($ps->sale_price == 0)
                                             <span>new</span>
-                                            @else
-                                            <span>sale {{$ps->sale_price}}$</span>
-                                            @endif
                                         </div>
                                     </div>
                                     <div class="action-links">
@@ -170,6 +166,73 @@
                         </div>
                     </div>
                 </div>
+                <div class="section-title product-spacing hm-11">
+                    <h3><span>Our</span> product</h3>
+                    {{-- <div class="boxx-tab">
+                        <ul class="nav my-tab">
+                            <li>
+                                <a class="active" data-toggle="tab" href="#one">Camera, Photo & Video</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#two">Audio & Home Theater</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#three">Cellphones & Accessories</a>
+                            </li>
+                        </ul>
+                    </div> --}}
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="one">
+                        <div class="product-gallary-wrapper">
+                            <div class="product-gallary-active owl-carousel owl-arrow-style product-spacing">
+                                @foreach($product_sale as $psn)
+                                <div class="product-item">
+                                    <div class="product-thumb">
+                                        <a href="product-details.html">
+                                            <img src="{{url('uploads')}}/{{$psn->image}}" class="pri-img" style="width:100%; height: 200px" alt="">
+                                            <img src="{{url('uploads')}}/{{$psn->image}}" class="sec-img" alt="">
+                                        </a>
+                                        <div class="box-label">
+                                            <div class="label-product label_new">
+                                                @if($psn->sale_price == 0)
+                                                <span>new</span>
+                                                @else
+                                                <span>sale {{$psn->sale_price}}$</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="action-links">
+                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                            <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
+                                            <a href="#" title="Quick view" data-target="#quickk_view" data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-caption">
+                                        <div class="manufacture-product">
+                                            <p><a href="shop-grid-left-sidebar.html">{{$psn->cat->name}}</a></p>
+                                        </div>
+                                        <div class="product-name">
+                                            <h4><a href="product-details.html">{{$psn->name}}</a></h4>
+                                        </div>
+                                        <div class="ratings">
+                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                            <span><i class="lnr lnr-star"></i></span>
+                                        </div>
+                                        <div class="price-box">
+                                            <span class="regular-price">{{$psn->price}}$</span>
+                                        </div>
+                                        <button class="btn-cart" type="button">add to cart</button>
+                                    </div>
+                                </div><!-- </div> end single item -->
+                                @endforeach
+                               
+                            </div>
+                        </div>
+                    </div>
                 <div class="tab-pane fade" id="two">
                     <div class="product-gallary-wrapper">
                         <div class="product-gallary-active owl-carousel owl-arrow-style product-spacing">
@@ -718,6 +781,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
     <!-- product wrapper area start -->
 

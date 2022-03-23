@@ -22,7 +22,7 @@ class LoginController extends Controller
         $data = $req->only('email','password');
         $check_login = Auth::attempt($data);
         if($check_login){
-            return redirect()->route('home')->with('yes','WellCome Back');
+            return redirect()->route('category.index')->with('yes','WellCome Back');
         }else{
             return redirect()->back()->with('no','Mật khẩu không hợp lệ');
         };
