@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,16 @@ Route::get('/admin/login', [LoginController::class, 'login'])->name('login');
 Route::post('/admin/login', [LoginController::class, 'post_login'])->name('login');
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::get('/contactus', [HomeController::class, 'contactus'])->name('contactus');
-Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
+
+Route::group(['prefix'=>'cart'], function(){
+    Route::get('/',[CartController::class, 'view'])->name('home.cart');
+    Route::get('/clear/{product}',[CartController::class, 'clear'])->name('home.cart-clear');
+    Route::get('/add/{product}',[CartController::class, 'add'])->name('home.cart-add');
+    Route::get('/remove/{product}',[CartController::class, 'remove'])->name('home.cart-remove');
+    Route::get('/update/{product}/{quantity}',[CartController::class, 'update'])->name('home.cart-update');
+    
+});
+
 Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
 Route::get('/danh-muc/{category}', [HomeController::class, 'category'])->name('home.category');
 Route::get('//{product}-{slug?}', [HomeController::class, 'product'])->name('home.product');

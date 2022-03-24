@@ -126,7 +126,7 @@
                                     <a class="ha-toggle" href="/wishlist"><span class="lnr lnr-heart"></span><span class="count">1</span>wishlist</a>
                                 </li>
                                 <li class="my-cart">
-                                    <a class="ha-toggle" href="#"><span class="lnr lnr-cart"></span><span class="count">2</span>my cart</a>
+                                    <a class="ha-toggle" href="{{route('home.cart')}}"><span class="lnr lnr-cart"></span><span class="count">2</span>my cart</a>
                                     <ul class="mini-cart-drop-down ha-dropdown">
                                         <li class="mb-30">
                                             <div class="cart-img">

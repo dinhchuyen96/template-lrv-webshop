@@ -14,9 +14,7 @@
         public function register(){
             return view('site\register');
         }
-        public function cart(){
-            return view('site\cart');
-        }
+       
         public function checkout(){
             return view('site\checkout');
         }
