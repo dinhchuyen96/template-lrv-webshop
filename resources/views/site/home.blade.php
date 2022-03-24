@@ -189,7 +189,7 @@
                                 @foreach($product_sale as $psn)
                                 <div class="product-item">
                                     <div class="product-thumb">
-                                        <a href="{{route('home.product',$ps->id)}}">
+                                        <a href="{{route('home.product',['product'=>'$psn->id','slug'=>'abc'])}}">
                                             <img src="{{url('uploads')}}/{{$psn->image}}" class="pri-img" style="width:100%; height: 200px" alt="">
                                             <img src="{{url('uploads')}}/{{$psn->image}}" class="sec-img" alt="">
                                         </a>
@@ -210,7 +210,7 @@
                                     </div>
                                     <div class="product-caption">
                                         <div class="manufacture-product">
-                                            <p><a href="shop-grid-left-sidebar.html">{{$psn->cat->name}}</a></p>
+                                            <p><a href="">{{$psn->cat->name}}</a></p>
                                         </div>
                                         <div class="product-name">
                                             <h4><a href="product-details.html">{{$psn->name}}</a></h4>
