@@ -36,5 +36,9 @@
             $products = $category->products()->paginate(4);
             return view('site\category',compact('category','products'));
         }
+        public function product(Product $product){
+            // dd($product);
+            return view('site\product',compact('product'));
+        }
     };
 ?>

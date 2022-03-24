@@ -147,7 +147,7 @@
                                         <p><a href="shop-grid-left-sidebar.html">{{$ps->cat->name}}</a></p>
                                     </div>
                                     <div class="product-name">
-                                        <h4><a href="product-details.html">{{$ps->name}}</a></h4>
+                                        <h4><a href="{{route('home.product',$ps->id)}}">{{$ps->name}}</a></h4>
                                     </div>
                                     <div class="ratings">
                                         <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -189,7 +189,7 @@
                                 @foreach($product_sale as $psn)
                                 <div class="product-item">
                                     <div class="product-thumb">
-                                        <a href="product-details.html">
+                                        <a href="{{route('home.product',$ps->id)}}">
                                             <img src="{{url('uploads')}}/{{$psn->image}}" class="pri-img" style="width:100%; height: 200px" alt="">
                                             <img src="{{url('uploads')}}/{{$psn->image}}" class="sec-img" alt="">
                                         </a>

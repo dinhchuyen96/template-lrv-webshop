@@ -123,7 +123,7 @@
                          <div class="col-lg-3 col-md-4 col-sm-6" >
                              <div class="product-item mb-30" id="quickk_view-product-{{$product->id}}">
                                  <div class="product-thumb">
-                                     <a href="product-details.html">
+                                     <a href="{{route('home.product',$ps->id)}}">
                                          <img src="{{url('uploads')}}/{{$product->image}}" class="pri-img" alt="">
                                          <img src="assets/img/product/product-2.jpg" class="sec-img" alt="">
                                      </a>
@@ -143,7 +143,7 @@
                                          <p><a href="shop-grid-left-sidebar.html">{{$category->name}}</a></p>
                                      </div>
                                      <div class="product-name">
-                                         <h4><a href="product-details.html">{{$product->name}}</a></h4>
+                                         <h4><a href="{{route('home.product',$ps->id)}}">{{$product->name}}</a></h4>
                                      </div>
                                      <div class="ratings">
                                          <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -160,7 +160,7 @@
                              </div> <!-- end single grid item -->
                              <div class="sinrato-list-item mb-30">
                                  <div class="sinrato-thumb">
-                                     <a href="product-details.html">
+                                     <a href="{{route('home.product',$ps->id)}}">
                                          <img src="{{url('uploads')}}/{{$product->image}}" class="pri-img" alt="">
                                          <img src="assets/img/product/product-9.jpg" class="sec-img" alt="">
                                      </a>
@@ -175,7 +175,7 @@
                                          <span><a href="#">Canon</a></span>
                                      </div>
                                      <div class="sinrato-product-name">
-                                         <h4><a href="product-details.html">Beats EP Wired Headphone-Black</a></h4>
+                                         <h4><a href="{{route('home.product',$ps->id)}}">Beats EP Wired Headphone-Black</a></h4>
                                      </div>
                                      <div class="sinrato-ratings mb-15">
                                          <span><i class="fa fa-star"></i></span>
