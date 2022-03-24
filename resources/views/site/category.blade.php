@@ -143,7 +143,7 @@
                                          <p><a href="shop-grid-left-sidebar.html">{{$category->name}}</a></p>
                                      </div>
                                      <div class="product-name">
-                                         <h4><a href="{{route('home.product',['product'=>$product->id,'slug'=>Str::slug($product->name)])}} ">{{$product->name}}</a></h4>
+                                         <h4><a href="{{route('home.product',['product'=>$product->id,'slug'=>Str::slug($product->name)])}}">{{$product->name}}</a></h4>
                                      </div>
                                      <div class="ratings">
                                          <span class="yellow"><i class="lnr lnr-star"></i></span>
