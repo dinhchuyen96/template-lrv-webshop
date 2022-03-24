@@ -42,7 +42,7 @@ class ProductController extends Controller
      */
     public function store(ProductCreateRequest $req)
     {
-        $data2 = $req->all('name','price','sale_price','category_id','status');
+        $data2 = $req->all('name','description','price','sale_price','category_id','status');
         // upload ảnh
         $file_name = $req->upload->getClientOriginalName();
 

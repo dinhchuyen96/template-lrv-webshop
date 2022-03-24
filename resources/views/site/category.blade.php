@@ -120,8 +120,8 @@
                      </div>
                      <div class="shop-product-wrap grid column_3 row">
                          @foreach($products as $product)
-                         <div class="col-lg-3 col-md-4 col-sm-6">
-                             <div class="product-item mb-30">
+                         <div class="col-lg-3 col-md-4 col-sm-6" >
+                             <div class="product-item mb-30" id="quickk_view-product-{{$product->id}}">
                                  <div class="product-thumb">
                                      <a href="product-details.html">
                                          <img src="{{url('uploads')}}/{{$product->image}}" class="pri-img" alt="">
@@ -135,7 +135,7 @@
                                      <div class="action-links">
                                          <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
                                          <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                         <a href="#" title="Quick view" data-target="#quickk_view" data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                         <a href="#" title="Quick view" data-target="#quickk_view-product-{{$product->id}}" data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                      </div>
                                  </div>
                                  <div class="product-caption">
@@ -197,12 +197,13 @@
                                      <div class="action-links sinrat-list-icon">
                                          <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
                                          <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                         <a href="#" title="Quick view" data-target="#quickk_view" data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                         <a href="#" title="Quick view" data-target="#quickk_view-product-{{$product->id}}" data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                      </div>
                                  </div>
                              </div> <!-- end single list item -->
                          </div>
-                         @endforeach                         
+                         @endforeach   
+                                            
                      </div>
                      
                      <div class="pagination-area style-2 pt-35 pb-20">
@@ -218,6 +219,140 @@
     </div>
 </div>
 <!-- shop page main wrapper end -->
-
+@foreach($products as $product)
+<!-- Quick view modal start -->
+  <div class="modal fade" >
+      <div class="container">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="row">
+                          <div class="col-lg-5">
+                              <div class="product-large-slider mb-20">
+                                  <div class="pro-large-img">
+                                      <img src="{{url('uploads')}}/{{$product->image}}" alt=""/>
+                                  </div>
+                                  <div class="pro-large-img">
+                                      <img src="{{url('uploads')}}/{{$product->image}}" alt=""/>
+                                  </div>
+                                  <div class="pro-large-img">
+                                      <img src="{{url('uploads')}}/{{$product->image}}" alt=""/>
+                                  </div>
+                                  <div class="pro-large-img">
+                                      <img src="{{url('uploads')}}/{{$product->image}}" alt=""/>
+                                  </div>
+                                  <div class="pro-large-img">
+                                      <img src="{{url('uploads')}}/{{$product->image}}" alt=""/>
+                                  </div>
+                                  <div class="pro-large-img">
+                                      <img src="{{url('uploads')}}/{{$product->image}}" alt=""/>
+                                  </div>
+                              </div>
+                              <div class="pro-nav">
+                                  <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" /></div>
+                                  <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" /></div>
+                                  <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" /></div>
+                                  <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" /></div>
+                                  <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" /></div>
+                                  <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" /></div>
+                              </div>
+                          </div>
+                          <div class="col-lg-7">
+                              <div class="product-details-inner">
+                                  <div class="product-details-contentt">
+                                      <div class="pro-details-name mb-10">
+                                          <h3>{{$product->name}}</h3>
+                                      </div>
+                                      <div class="pro-details-review mb-20">
+                                          <ul>
+                                              <li>
+                                                  <span><i class="fa fa-star"></i></span>
+                                                  <span><i class="fa fa-star"></i></span>
+                                                  <span><i class="fa fa-star"></i></span>
+                                                  <span><i class="fa fa-star"></i></span>
+                                                  <span><i class="fa fa-star"></i></span>
+                                              </li>
+                                              <li><a href="#">1 Reviews</a></li>
+                                          </ul>
+                                      </div>
+                                      <div class="price-box mb-15">
+                                          <span class="regular-price"><span class="special-price">£50.00</span></span>
+                                          <span class="old-price"><del>${{$product->price}}</del></span>
+                                      </div>
+                                      <div class="product-detail-sort-des pb-20">
+                                          <p>{{$product->description}}</p>
+                                      </div>
+                                      <div class="pro-details-list pt-20">
+                                          <ul>
+                                              <li><span>Availability :</span>In Stock</li>
+                                          </ul>
+                                      </div>
+                                      <div class="product-availabily-option mt-15 mb-15">
+                                          <h3>Available Options</h3>
+                                          <div class="color-optionn">
+                                              <h4><sup>*</sup>color</h4>
+                                              <ul>
+                                                  <li>
+                                                      <a class="c-black" href="#" title="Black"></a>
+                                                  </li>
+                                                  <li>
+                                                      <a class="c-blue" href="#" title="Blue"></a>
+                                                  </li>
+                                                  <li>
+                                                      <a class="c-brown" href="#" title="Brown"></a>
+                                                  </li>
+                                                  <li>
+                                                      <a class="c-gray" href="#" title="Gray"></a>
+                                                  </li>
+                                                  <li>
+                                                      <a class="c-red" href="#" title="Red"></a>
+                                                  </li>
+                                              </ul> 
+                                          </div>
+                                      </div>
+                                      <div class="pro-quantity-box mb-30">
+                                          <div class="qty-boxx">
+                                              <label>qty :</label>
+                                              <input type="text" placeholder="0">
+                                              <button class="btn-cart lg-btn">add to cart</button>
+                                          </div>
+                                      </div>
+                                      <div class="pro-social-sharing">
+                                          <label>share :</label>
+                                          <ul>
+                                              <li class="list-inline-item">
+                                                  <a href="#" class="bg-facebook" title="Facebook">
+                                                      <i class="fa fa-facebook"></i>
+                                                      <span>like 0</span>
+                                                  </a>
+                                              </li>
+                                              <li class="list-inline-item">
+                                                  <a href="#" class="bg-twitter" title="Twitter">
+                                                      <i class="fa fa-twitter"></i>
+                                                      <span>tweet</span>
+                                                  </a>
+                                              </li>
+                                              <li class="list-inline-item">
+                                                  <a href="#" class="bg-google" title="Google Plus">
+                                                      <i class="fa fa-google-plus"></i>
+                                                      <span>google +</span>
+                                                  </a>
+                                              </li>
+                                          </ul>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+<!-- Quick view modal end -->
+@endforeach     
 
 @stop()

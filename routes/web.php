@@ -24,6 +24,7 @@ Route::get('/contactus', [HomeController::class, 'contactus'])->name('contactus'
 Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
 Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
 Route::get('/danh-muc/{category}', [HomeController::class, 'category'])->name('home.category');
+Route::get('/san-pham/{product}', [HomeController::class, 'product'])->name('home.product');
 Route::get('/wishlist', [HomeController::class, 'wishlist'])->name('wishlist');
 Route::get('/myaccount', [HomeController::class, 'myaccount'])->name('myaccount');
 Route::get('/compare', [HomeController::class, 'compare'])->name('compare');

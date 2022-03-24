@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
         view()->composer('*',function($view){
-            $cats = Category::orderBy('name','ASC')->get();
+            $cats = Category::orderBy('name','ASC')->where('status','>',0)->get();
             $view->with(compact('cats'));
         });
     }

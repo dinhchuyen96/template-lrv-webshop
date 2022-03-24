@@ -22,6 +22,11 @@
         @error('name') {{$message}} @enderror
     </div>
     <div class="form-group">
+        <label for="">Mô tả sản phẩm</label>
+        <input type="text" class="form-control" value="{{old('description')}}" name="description" placeholder="Input field">
+        @error('description') {{$message}} @enderror
+    </div>
+    <div class="form-group">
         <label for="">Giá</label>
         <input type="text" value="{{old('price')}}" class="form-control" name="price" placeholder="Input field">
         @error('price') {{$message}} @enderror
