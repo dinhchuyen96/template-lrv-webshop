@@ -79,6 +79,9 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
+                                            <div class="text-center">
+                                                <a href="{{route('home.cart-clear')}}" class="btn btn-danger"onclick="return confirm('Are you sure?')">Xóa sạch</a>
+                                            </div>
                                         </div>
                             
 
@@ -184,14 +187,15 @@
                                                     <tbody>
                                                         <tr>
                                                             <td><strong>Sub-Total:</strong></td>
-                                                            <td>$860.00</td>
+                                                            <td>{{$totalPrice}}$</td>
                                                         </tr>
                                                         <tr>
                                                             <td><strong>Total:</strong></td>
-                                                            <td><span class="color-primary">$860.00</span></td>
+                                                            <td><span class="color-primary">{{$totalPrice}}$</span></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                                
                                             </div>
                                         </div>
                                     </div>

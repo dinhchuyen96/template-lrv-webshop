@@ -25,7 +25,7 @@ Route::get('/contactus', [HomeController::class, 'contactus'])->name('contactus'
 
 Route::group(['prefix'=>'cart'], function(){
     Route::get('/',[CartController::class, 'view'])->name('home.cart');
-    Route::get('/clear/{product}',[CartController::class, 'clear'])->name('home.cart-clear');
+    Route::get('/clear',[CartController::class, 'clear'])->name('home.cart-clear');
     Route::get('/add/{product}',[CartController::class, 'add'])->name('home.cart-add');
     Route::get('/remove/{product}',[CartController::class, 'remove'])->name('home.cart-remove');
     Route::get('/update/{product}',[CartController::class, 'update'])->name('home.cart-update');

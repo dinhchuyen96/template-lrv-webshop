@@ -126,35 +126,37 @@
                                     <a class="ha-toggle" href="/wishlist"><span class="lnr lnr-heart"></span><span class="count">1</span>wishlist</a>
                                 </li>
                                 <li class="my-cart">
-                                    <a class="ha-toggle" href="{{route('home.cart')}}"><span class="lnr lnr-cart"></span><span class="count">2</span>my cart</a>
+                                    <a class="ha-toggle" ><span class="lnr lnr-cart"></span><span class="count">{{$totalQuantity}}</span>my cart</a>
                                     <ul class="mini-cart-drop-down ha-dropdown">
+                                        @foreach($carts as $carts)
                                         <li class="mb-30">
                                             <div class="cart-img">
-                                                <a href="product-details.html"><img alt="" src="{{url('home')}}/assets/img/cart/cart-1.jpg"></a>
+                                                <a href="product-details.html"><img alt="" src="{{url('uploads')}}/{{$carts->image}}"></a>
                                             </div>
                                             <div class="cart-info">
-                                                <h4><a href="product-details.html">Koss Porta Pro On Ear  Headphones </a></h4>
-                                                <span> <span>1 x </span>£165.00</span>
+                                                <h4><a href="{{route('home.product',['product'=>$carts->id,'slug'=>Str::slug($carts->name)])}}">{{$carts->name}}</a></h4>
+                                                <span> <span>{{$carts->quantity}}</span>x </span>${{$carts->price}}</span>
                                             </div>
                                             <div class="del-icon">
-                                                <i class="fa fa-times-circle"></i>
+                                                <a href="{{route('home.cart-remove',$carts->id)}}"><i class="fa fa-times-circle"></i></a>
                                             </div>
                                         </li>
+                                        @endforeach
                                         <li>
                                             <div class="subtotal-text">Sub-total: </div>
-                                            <div class="subtotal-price">£48.94</div>
+                                            <div class="subtotal-price">${{$subPrice}}</div>
                                         </li>
                                         <li>
                                             <div class="subtotal-text">Eco Tax (-2.00): </div>
-                                            <div class="subtotal-price">£1.51</div>
+                                            <div class="subtotal-price">${{$tax}}</div>
                                         </li>
                                         <li>
-                                            <div class="subtotal-text">Vat (20%): </div>
-                                            <div class="subtotal-price">£9.79</div>
+                                            <div class="subtotal-text">Vat (10%): </div>
+                                            <div class="subtotal-price">${{$vat}}</div>
                                         </li>
                                         <li>
                                             <div class="subtotal-text">Total: </div>
-                                            <div class="subtotal-price"><span>£60.24</span></div>
+                                            <div class="subtotal-price"><span>${{$totalPrice}}</span></div>
                                         </li>
                                         <li class="mt-30">
                                             <a class="cart-button" href="/cart">view cart</a>

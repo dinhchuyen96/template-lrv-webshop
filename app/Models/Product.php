@@ -37,4 +37,7 @@ class Product extends Model
         $query = $query->orderBy('id','DESC')->where('status','>',0)->limit($limit)->get();
         return $query;
     }
+    public function Count_cart(){
+        
+    }
 }
