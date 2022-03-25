@@ -68,7 +68,7 @@
                                                                     </div>
                                                                     <span class="input-group-btn">
                                                                         <button type="submit" class="btn btn-primary" id="cart-update"><i class="fa fa-refresh"></i></button>
-                                                                        <a href="{{route('home.cart-remove',$product->id)}}" onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger pull-right"><i class="fa fa-times-circle"></i></a>
+                                                                        <a href="{{route('home.cart-remove',$product->id)}}" onclick="return confirm('Are you sure?')" type="submit" style="height: 40px" class="btn btn-danger pull-right"><i class="fa fa-times-circle"></i></a>
                                                                     </span>
                                                                 </div>
                                                             </form>
