@@ -34,7 +34,7 @@
                                     <div class="section-title">
                                         <h3>Shopping Cart</h3>
                                     </div>
-                                    <form action="#">
+                                    
                                         <div class="table-responsive">
                                             <table class="table table-bordered">
                                                 <thead>
@@ -48,83 +48,39 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach($carts as $product)
                                                     <tr>
                                                         <td>
-                                                            <a href="product-details.html"><img src="{{url('home')}}/assets/img/product/pro-layout-img5.jpg" alt="Cart Product Image" title="Compete Track Tote" class="img-thumbnail"></a>
+                                                            <a href="{{route('home.product',['product'=>$product->id,'slug'=>Str::slug($product->name)])}}"><img src="{{url('uploads')}}/{{$product->image}}" alt="Cart Product Image" title="Compete Track Tote" class="img-thumbnail"></a>
                                                         </td>
                                                         <td>
-                                                            <a href="product-details.html">Compete Track Tote</a>
+                                                            <a href="{{route('home.product',['product'=>$product->id,'slug'=>Str::slug($product->name)])}}">{{$product->name}}</a>
                                                             <span>Delivery Date: 2019-09-22</span>
                                                             <span>Color: Brown</span>
                                                             <span>Reward Points: 300</span>
                                                         </td>
                                                         <td>3</td>
                                                         <td>
-                                                            <div class="input-group btn-block">
-                                                                <div class="product-qty mr-3">
-                                                                    <input type="text" value="0">
+                                                            <form action="{{route('home.cart-update',$product->id)}}" method="get" id="cart-update">
+                                                                <div class="input-group btn-block">
+                                                                    <div class="product-qty mr-3">
+                                                                        <input type="number" name="quantity" value="{{$product->quantity}}">
+                                                                    </div>
+                                                                    <span class="input-group-btn">
+                                                                        <button type="submit" class="btn btn-primary" id="cart-update"><i class="fa fa-refresh"></i></button>
+                                                                        <a href="{{route('home.cart-remove',$product->id)}}" onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger pull-right"><i class="fa fa-times-circle"></i></a>
+                                                                    </span>
                                                                 </div>
-                                                                <span class="input-group-btn">
-                                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-refresh"></i></button>
-                                                                    <button type="button" class="btn btn-danger pull-right"><i class="fa fa-times-circle"></i></button>
-                                                                </span>
-                                                            </div>
+                                                            </form>
                                                         </td>
-                                                        <td>$200.00</td>
-                                                        <td>$200.00</td>
+                                                        <td>${{$product->price}}</td>
+                                                        <td>${{$product->quantity*$product->price}}</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <a href="product-details.html"><img src="{{url('home')}}/assets/img/product/pro-layout-img4.jpg" alt="Cart Product Image" title="Rival Field Messenger 6" class="img-thumbnail"></a>
-                                                        </td>
-                                                        <td>
-                                                            <a href="product-details.html">Rival Field Messenger 6</a>
-                                                            <span>Color: Dark Blue</span>
-                                                        </td>
-                                                        <td>10</td>
-                                                        <td>
-                                                            <div class="input-group btn-block">
-                                                                <div class="product-qty mr-3">
-                                                                    <input type="text" value="0">
-                                                                </div>
-                                                                <span class="input-group-btn">
-                                                                    <button type="submit" data-toggle="tooltip" data-direction="top" class="btn btn-primary" data-original-title="Update"><i class="fa fa-refresh"></i></button>
-                                                                    <button type="button" data-toggle="tooltip" data-direction="top" class="btn btn-danger pull-right" data-original-title="Remove"><i class="fa fa-times-circle"></i></button>
-                                                                </span>
-                                                            </div>
-                                                        </td>
-                                                        <td>$480.00</td>
-                                                        <td>$480.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <a href="product-details.html"><img src="{{url('home')}}/assets/img/product/pro-layout-img3.jpg" alt="Cart Product Image" title="Fusion Backpack" class="img-thumbnail"></a>
-                                                        </td>
-                                                        <td>
-                                                            <a href="product-details.html">Fusion Backpack</a>
-                                                            <span>Select: White</span>
-                                                            <span>Color: Brown</span>
-                                                            <span>Reward Points: 200</span>
-                                                        </td>
-                                                        <td>2</td>
-                                                        <td>
-                                                            <div class="input-group btn-block">
-                                                                <div class="product-qty mr-3">
-                                                                    <input type="text" value="0">
-                                                                </div>
-                                                                <span class="input-group-btn">
-                                                                    <button type="submit" data-toggle="tooltip" data-direction="top" class="btn btn-primary" data-original-title="Update"><i class="fa fa-refresh"></i></button>
-                                                                    <button type="button" data-toggle="tooltip" data-direction="top" class="btn btn-danger pull-right" data-original-title="Remove"><i class="fa fa-times-circle"></i></button>
-                                                                </span>
-                                                            </div>
-                                                        </td>
-                                                        <td>$180.00</td>
-                                                        <td>$180.00</td>
-                                                    </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
-                                    </form>
+                            
 
                                     <div class="cart-accordion-wrapper mt-full mt-40">
                                         <h3>What would you like to do next?</h3>

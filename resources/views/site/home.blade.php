@@ -159,7 +159,7 @@
                                     <div class="price-box">
                                         <span class="regular-price">{{$ps->price}}$</span>
                                     </div>
-                                    <button class="btn-cart" type="button">add to cart</button>
+                                    <a class="btn-cart" href="{{route('home.cart-add',$ps->id)}}" >add to cart</a>
                                 </div>
                             </div><!-- </div> end single item -->
                             @endforeach
