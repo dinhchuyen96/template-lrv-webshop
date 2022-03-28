@@ -119,7 +119,7 @@
                                             <div class="form-group row">
                                                 <label for="birth" class="col-12 col-sm-12 col-md-4 col-form-label">Birthdate (Optional)</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="date" class="form-control" value="{{old('birth_day')}}" name="birth_day" id="birth" placeholder="MM / DD / YYYY" required="">
+                                                    <input type="date" class="form-control" max="2002-01-01" name="birth_day" id="birth" placeholder="MM / DD / YYYY" required="">
                                                     @error('birth_day'){{$message}} @enderror
                                                 </div>
                                             </div>

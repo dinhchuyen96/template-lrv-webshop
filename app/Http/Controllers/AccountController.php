@@ -21,7 +21,6 @@ class AccountController extends Controller
     public function post_register(AccountRequest $req){
         $data= $req->all();
         $data['password'] = bcrypt($req->password);
-        $data['birth_day'] = date('Y-m-d H:i:s');
         Account::create($data);
         return redirect()->route('home.login')->with('ok','đăng ký thành công');
        
