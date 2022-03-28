@@ -39,8 +39,9 @@
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
                                     <div class="registration-form login-form">
-                                        <form action="#">
-                                            <div class="login-info mb-20">
+                                        <form role="form" action="{{route('home.register')}}" method="POST">
+                                            @csrf
+                                            <div class="login-info mb-20">  
                                                 <p>Already have an account? <a href="login.html">Log in instead!</a></p>
                                             </div>
                                             <div class="form-group row align-items-center">
@@ -49,14 +50,15 @@
                                                     <div class="form-row">
                                                         <div class="col-6 col-sm-3">
                                                             <div class="custom-radio">
-                                                                <input class="form-check-input" type="radio" name="gender" id="male">
+                                                                <input type="hidden" name="id" value="">
+                                                                <input class="form-check-input" value="anh" type="radio" name="sex" id="male">
                                                                 <span class="checkmark"></span>
                                                                 <label class="form-check-label" for="male">Mr.</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-6 col-sm-3">
                                                             <div class="custom-radio">
-                                                                <input class="form-check-input" type="radio" name="gender" id="female">
+                                                                <input class="form-check-input" value="chị" type="radio" name="sex" id="female">
                                                                 <span class="checkmark"></span>
                                                                 <label class="form-check-label" for="female">Mrs.</label>
                                                             </div>
@@ -67,45 +69,58 @@
                                             <div class="form-group row">
                                                 <label for="f-name" class="col-12 col-sm-12 col-md-4 col-form-label">First Name</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="text" class="form-control" id="f-name" required="">
+                                                    <input type="text" class="form-control" value="{{old('first_name')}}" name="first_name" id="f-name">
+                                                    @error('first_name'){{$message}} @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="l-name" class="col-12 col-sm-12 col-md-4 col-form-label">Last Name</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="text" class="form-control" id="l-name" required="">
+                                                    <input type="text" class="form-control" value="{{old('last_name')}}" name="last_name" id="l-name" required="">
+                                                    @error('last_name'){{$message}} @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="email" class="col-12 col-sm-12 col-md-4 col-form-label">Email Address</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="text" class="form-control" id="email" required="">
+                                                    <input type="text" class="form-control" value="{{old('email')}}" name="email" id="email" required="">
+                                                    @error('email'){{$message}} @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputpassword" class="col-12 col-sm-12 col-md-4 col-form-label">Current Password</label>
+                                                <label for="f-name" class="col-12 col-sm-12 col-md-4 col-form-label">Phone</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="password" class="form-control" id="inputpassword" required="">
+                                                    <input type="text" class="form-control" value="{{old('phone')}}" name="phone" id="f-name" required="">
+                                                    @error('phone'){{$message}} @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputpassword" class="col-12 col-sm-12 col-md-4 col-form-label">Address</label>
+                                                <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                                                    <input type="text" class="form-control" value="{{old('address')}}" name="address" id="address" required="">
+                                                    @error('address'){{$message}} @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="newpassword" class="col-12 col-sm-12 col-md-4 col-form-label">New Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="password" class="form-control" id="newpassword" required="">
+                                                    <input type="password" name="password" class="form-control" id="newpassword" required="">
                                                     <button class="pass-show-btn" type="button">Show</button>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">Confirm Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="password" class="form-control" id="c-password" required="">
+                                                    <input type="password" name="conf_password"class="form-control" id="c-password" >
+                                                    @error('conf_password'){{$message}} @enderror
                                                     <button class="pass-show-btn" type="button">Show</button>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="birth" class="col-12 col-sm-12 col-md-4 col-form-label">Birthdate (Optional)</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="text" class="form-control" id="birth" placeholder="MM / DD / YYYY" required="">
+                                                    <input type="date" class="form-control" value="{{old('birth_day')}}" name="birth_day" id="birth" placeholder="MM / DD / YYYY" required="">
+                                                    @error('birth_day'){{$message}} @enderror
                                                 </div>
                                             </div>
                                             <div class="form-check row p-0 mt-5">

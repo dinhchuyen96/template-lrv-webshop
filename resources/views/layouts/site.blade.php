@@ -54,8 +54,9 @@
                                 <li class="settings">
                                     <a class="ha-toggle" href="#">My Account<span class="lnr lnr-chevron-down"></span></a>
                                     <ul class="box-dropdown ha-dropdown">
-                                        <li><a href="/register">Register</a></li>
-                                        <li><a href="/login">Login</a></li>
+                                        <li><a href="{{route('home.register')}}">Register</a></li>
+                                        <li><a href="{{route('home.login')}}">Login</a></li>
+                                        <li><a href="{{route('home.logout')}}">Logout</a></li>
                                     </ul>
                                 </li>
                                 <li class="settings">

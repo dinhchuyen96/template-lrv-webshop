@@ -11,10 +11,6 @@
             return view('site\home',compact('product_sale','product_new'));
         }
         
-        public function register(){
-            return view('site\register');
-        }
-       
         public function checkout(){
             return view('site\checkout');
         }
