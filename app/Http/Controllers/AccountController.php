@@ -18,7 +18,7 @@ class AccountController extends Controller
         return view('site.register');
         
     }
-    public function post_register(Request $req){
+    public function post_register(AccountRequest $req){
         $data= $req->all();
         $data['password'] = bcrypt($req->password);
         $data['birth_day'] = date('Y-m-d H:i:s');

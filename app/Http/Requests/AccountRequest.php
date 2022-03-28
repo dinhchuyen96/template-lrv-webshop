@@ -26,14 +26,14 @@ class AccountRequest extends FormRequest
         return [
             'first_name' => 'required',
             'last_name' => 'required',
-            'sex' => 'required',
+            // 'sex' => 'required',
             'email' => 'required|unique:accounts',
             'phone' => 'required|unique:accounts',
             'password' => 'required',
             'conf_password' => 'required|same:password',
             'address'=>'required',
             'birth_day' => 'required',
-            'status' => 'required',
+            // 'status' => 'required',
         ];
     }
     public function messages(){
