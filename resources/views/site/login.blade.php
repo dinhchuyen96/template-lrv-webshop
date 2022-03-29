@@ -22,7 +22,19 @@
         </div>
     </div>
     <!-- breadcrumb area end -->
-
+    <div class="card-body">
+        @if(session()->has('ok'))
+        <div class="text-center alert alert-success" style="color: green" role="alert">
+            <h2>{{session()->get('ok')}}</h2>
+        </div>
+        @endif
+        @if(session()->has('no'))
+        <div class="alert alert-danger" role="alert">
+            <strong>{{session()->get('no')}}</strong>
+        </div>
+        @endif
+        @yield('main')
+    </div>
     <!-- Start of Login Wrapper -->
     <div class="login-wrapper pb-70">
         <div class="container-fluid">

@@ -15,7 +15,12 @@ class AccountMiddleware
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    {
+    {   
+        if(auth()->guard('account')->check()){
+            return $next($request);
+        }else{
+            return redirect()->route('home.login')->with('ok','Mời bạn đăng nhập');
+        }
         return $next($request);
     }
 }

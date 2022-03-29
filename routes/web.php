@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\OrderHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,8 @@ Route::group(['prefix'=>'account'], function(){
     Route::get('/changer-password',[AccountController::class, 'changer-password'])->name('home.changer-password');
     
 });
-Route::group(['prefix'=>'order','middleware' => 'auth'], function(){
+Route::group(['prefix'=>'order','middleware' => 'acc'], function(){
+    Route::get('/',[OrderHomeController::class, 'order'])->name('home.order');
     Route::get('/checkout',[OrderHomeController::class, 'checkout'])->name('home.order_checkout');
     Route::post('/history',[OrderHomeController::class, 'istory'])->name('home.order_history');
     Route::get('/detail/{order}',[OrderHomeController::class, 'detail'])->name('home.order_detail');    
