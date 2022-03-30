@@ -10,10 +10,6 @@
             // dd($product_sale);
             return view('site\home',compact('product_sale','product_new'));
         }
-        
-        public function checkout(){
-            return view('site\checkout');
-        }
         public function contactus(){
             return view('site\contactus');
         }

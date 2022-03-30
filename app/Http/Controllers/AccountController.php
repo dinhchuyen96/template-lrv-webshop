@@ -17,7 +17,7 @@ class AccountController extends Controller
        if(Auth::guard('account')->attempt($data)){
            return redirect()->route('home')->with('ok','nhập nhâp thành công');
        }else{
-        return redirect()->route('home.login')->with('ok','Mời bạn đăng nhập lại');
+        return redirect()->route('home.login')->with('no','Mời bạn đăng nhập lại');
        }
     }
     public function register(){
@@ -28,10 +28,11 @@ class AccountController extends Controller
         $data= $req->all();
         $data['password'] = bcrypt($req->password);
         Account::create($data);
-        return redirect()->route('home.login')->with('ok','đăng ký thành công');
+        return redirect()->route('home.login')->with('ok','Đăng ký thành công');
        
     }
     public function logout(){
-        
+        Auth::guard('account')->logout();
+        return redirect()->route('home')->with('ok','Đăng xuất thành công');
     }
 }

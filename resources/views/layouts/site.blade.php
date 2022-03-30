@@ -54,9 +54,12 @@
                                 <li class="settings">
                                     <a class="ha-toggle" href="#">My Account<span class="lnr lnr-chevron-down"></span></a>
                                     <ul class="box-dropdown ha-dropdown">
+                                        @if(auth()->guard('account')->check())
+                                        <li><a href="{{route('home.logout')}}">Logout</a></li>
+                                        @else
                                         <li><a href="{{route('home.register')}}">Register</a></li>
                                         <li><a href="{{route('home.login')}}">Login</a></li>
-                                        <li><a href="{{route('home.logout')}}">Logout</a></li>
+                                        @endif
                                     </ul>
                                 </li>
                                 <li class="settings">
@@ -117,6 +120,7 @@
                             </form>
                         </div>
                     </div>
+                    @if(auth()->guard('account')->check())
                     <div class="col-lg-4 col-md-8 col-12 col-sm-8 order-lg-last">
                         <div class="mini-cart-option">
                             <ul>
@@ -163,13 +167,14 @@
                                             <a class="cart-button" href="/cart">view cart</a>
                                         </li>
                                         <li>
-                                            <a class="cart-button" href="/checkout">checkout</a>
+                                            <a class="cart-button" href="{{route('home.order_checkout')}}">checkout</a>
                                         </li>
                                     </ul>
                                 </li>
                             </ul>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

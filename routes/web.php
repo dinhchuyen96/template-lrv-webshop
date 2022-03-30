@@ -46,10 +46,10 @@ Route::group(['prefix'=>'account'], function(){
 Route::group(['prefix'=>'order','middleware' => 'acc'], function(){
     Route::get('/',[OrderHomeController::class, 'order'])->name('home.order');
     Route::get('/checkout',[OrderHomeController::class, 'checkout'])->name('home.order_checkout');
-    Route::post('/history',[OrderHomeController::class, 'istory'])->name('home.order_history');
+    Route::post('/checkout',[OrderHomeController::class, 'post_checkout'])->name('home.order_checkout');
+    Route::get('/history',[OrderHomeController::class, 'istory'])->name('home.order_history');
     Route::get('/detail/{order}',[OrderHomeController::class, 'detail'])->name('home.order_detail');    
 });
-Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
 Route::get('/danh-muc/{category}', [HomeController::class, 'category'])->name('home.category');
 Route::get('//{product}-{slug?}', [HomeController::class, 'product'])->name('home.product');
 Route::get('/wishlist', [HomeController::class, 'wishlist'])->name('wishlist');

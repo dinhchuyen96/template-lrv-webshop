@@ -29,8 +29,8 @@
         </div>
         @endif
         @if(session()->has('no'))
-        <div class="alert alert-danger" role="alert">
-            <strong>{{session()->get('no')}}</strong>
+        <div class="alert text-center alert-danger" role="alert">
+            <h2>{{session()->get('no')}}</h2>
         </div>
         @endif
         @yield('main')
@@ -74,7 +74,7 @@
                                                 <button type="submit" class="btn btn-secondary mb-4 mt-4">Sign In</button>
                                             </div>
                                             <div class="text-center pt-20 top-bordered">
-                                                <p>No account? <a href="register.html">Create one here</a>.</p>
+                                                <p>No account? <a href="{{route('home.register')}}">Create one here</a>.</p>
                                             </div>
                                         </form>
                                     </div>
