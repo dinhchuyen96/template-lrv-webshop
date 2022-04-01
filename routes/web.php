@@ -24,6 +24,7 @@ Route::get('/admin/login', [LoginController::class, 'login'])->name('login');
 Route::post('/admin/login', [LoginController::class, 'post_login'])->name('login');
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::get('/contactus', [HomeController::class, 'contactus'])->name('contactus');
+Route::get('/wishlist', [HomeController::class, 'wishlist'])->name('wishlist');
 
 Route::group(['prefix'=>'cart'], function(){
     Route::get('/',[CartController::class, 'view'])->name('home.cart');
@@ -47,12 +48,10 @@ Route::group(['prefix'=>'order','middleware' => 'acc'], function(){
     Route::get('/',[OrderHomeController::class, 'order'])->name('home.order');
     Route::get('/checkout',[OrderHomeController::class, 'checkout'])->name('home.order_checkout');
     Route::post('/checkout',[OrderHomeController::class, 'post_checkout'])->name('home.order_checkout');
-    Route::get('/history',[OrderHomeController::class, 'istory'])->name('home.order_history');
     Route::get('/detail/{order}',[OrderHomeController::class, 'detail'])->name('home.order_detail');    
 });
 Route::get('/danh-muc/{category}', [HomeController::class, 'category'])->name('home.category');
 Route::get('//{product}-{slug?}', [HomeController::class, 'product'])->name('home.product');
-Route::get('/wishlist', [HomeController::class, 'wishlist'])->name('wishlist');
 Route::get('/myaccount', [HomeController::class, 'myaccount'])->name('myaccount');
 Route::get('/compare', [HomeController::class, 'compare'])->name('compare');
 

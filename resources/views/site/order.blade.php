@@ -34,47 +34,33 @@
                                     <div class="section-title">
                                         <h3>Shopping Cart</h3>
                                     </div>
-                                    @if($carts)
+                                    @if($orders->count())
                                         <div class="table-responsive">
                                             <table class="table table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <td>Image</td>
-                                                        <td>Product Name</td>
-                                                        <td>Model</td>
+                                                        <td>Serial</td>
+                                                        <td>purchase date</td>
+                                                        <td>Status</td>
                                                         <td>Quantity</td>
                                                         <td>Unit Price</td>
-                                                        <td>Total</td>
+                                                        <td></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($carts as $product)
+                                                    @foreach($orders as $order)
                                                     <tr>
+                                                        <td>1</td>
                                                         <td>
-                                                            <a href="{{route('home.product',['product'=>$product->id,'slug'=>Str::slug($product->name)])}}"><img src="{{url('uploads')}}/{{$product->image}}" alt="Cart Product Image" title="Compete Track Tote" class="img-thumbnail"></a>
-                                                        </td>
-                                                        <td>
-                                                            <a href="{{route('home.product',['product'=>$product->id,'slug'=>Str::slug($product->name)])}}">{{$product->name}}</a>
-                                                            <span>Delivery Date: 2019-09-22</span>
-                                                            <span>Color: Brown</span>
-                                                            <span>Reward Points: 300</span>
+                                                            <a href="{{route('home.product',['product'=>$order->id,'slug'=>Str::slug($order->name)])}}">{{$order->name}}</a>
+                                                            <span>{{$order->created_at->format('d-m-Y')}}</span>
                                                         </td>
                                                         <td>3</td>
                                                         <td>
-                                                            <form action="{{route('home.cart-update',$product->id)}}" method="get" id="cart-update">
-                                                                <div class="input-group btn-block">
-                                                                    <div class="product-qty mr-3">
-                                                                        <input type="number" name="quantity" value="{{$product->quantity}}">
-                                                                    </div>
-                                                                    <span class="input-group-btn">
-                                                                        <button type="submit" class="btn btn-primary" id="cart-update"><i class="fa fa-refresh"></i></button>
-                                                                        <a href="{{route('home.cart-remove',$product->id)}}" onclick="return confirm('Are you sure?')" type="submit" style="height: 40px" class="btn btn-danger pull-right"><i class="fa fa-times-circle"></i></a>
-                                                                    </span>
-                                                                </div>
-                                                            </form>
+                                                            
                                                         </td>
-                                                        <td>${{$product->price}}</td>
-                                                        <td>${{$product->quantity*$product->price}}</td>
+                                                        <td>${{$order->price}}</td>
+                                                        <td><a href="{{route('home.order_detail',$order->id)}}" type="button" class="btn btn-info">Detail</a></td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -203,7 +189,7 @@
                                         </div>
                                     </div>
                                     @else
-                                    <h2 class="text-center alert alert-success">Giỏ hàng rỗng, vui lòng đặt hàng</h2>
+                                    <h2 class="text-center alert alert-success">Bạn chưa đặt hàng lần nào</h2>
                                     <div class="cart-button-wrapper d-flex justify-content-between mt-4">
                                         <a href="{{route('home')}}" class="btn btn-secondary">Continue Shopping</a>
                                         {{-- <a href="{{route('home.order_checkout')}}" class="btn btn-secondary dark align-self-end">Checkout</a> --}}

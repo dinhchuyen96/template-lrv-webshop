@@ -137,7 +137,9 @@
                                                     <label for="email_address">Order note</label>
                                                     <input name="order_note" value="" type="text" class="form-control"
                                                         id="email_address">
+                                                    <input name="total_price" type="hidden" value="{{$totalPrice}}" class="">
                                                 </div>
+                                                
                                             </div>
                                             
                                             <div class="form-row">
@@ -145,6 +147,9 @@
                                                     <button style="width: 50%;" type="submit" class="center btn btn-primary" >Order</button>
                                                 </div>
                                             </div>
+                                        
+                                            {{-- <input type="hidden" name="quantity" value="{{$carts->quantity}}" /> --}}
+                                            
                                         </form>
                                     </div> <!-- end of checkout-form -->
                                 </div>
@@ -184,7 +189,7 @@
                                                         <tr class="order-total">
                                                             <th>Total</th>
                                                             <td class="text-center">
-                                                                <strong>${{ $totalPrice }}</strong></td>
+                                                                <strong>${{$totalPrice}}</strong></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

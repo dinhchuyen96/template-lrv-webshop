@@ -11,10 +11,10 @@
             return view('site\home',compact('product_sale','product_new'));
         }
         public function contactus(){
-            return view('site\contactus');
+            return view('site.contactus');
         }
         public function wishlist(){
-            return view('site\wishlist');
+            return view('site.wishlist');
         }
         public function myaccount(){
             return view('site\myaccount');

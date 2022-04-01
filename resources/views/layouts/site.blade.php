@@ -55,6 +55,7 @@
                                     <a class="ha-toggle" href="#">My Account<span class="lnr lnr-chevron-down"></span></a>
                                     <ul class="box-dropdown ha-dropdown">
                                         @if(auth()->guard('account')->check())
+                                        <li><a href="{{route('home.order')}}">My-Order</a></li>
                                         <li><a href="{{route('home.logout')}}">Logout</a></li>
                                         @else
                                         <li><a href="{{route('home.register')}}">Register</a></li>
@@ -128,10 +129,10 @@
                                     <a class="ha-toggle" href="/compare"><span class="lnr lnr-sync"></span>Product compare</a>
                                 </li>
                                 <li class="wishlist">
-                                    <a class="ha-toggle" href="/wishlist"><span class="lnr lnr-heart"></span><span class="count">1</span>wishlist</a>
+                                    <a class="ha-toggle" href="{{route('wishlist')}}"><span class="lnr lnr-heart"></span><span class="count"> ccc1</span>wishlist</a>
                                 </li>
                                 <li class="my-cart">
-                                    <a class="ha-toggle" ><span class="lnr lnr-cart"></span><span class="count">{{$totalQuantity}}</span>my cart</a>
+                                    <a class="ha-toggle" ><span class="lnr lnr-cart"></span><span class="count">{{$totalQuantity}}</span>My cart</a>
                                     <ul class="mini-cart-drop-down ha-dropdown">
                                         @foreach($carts as $carts)
                                         <li class="mb-30">
@@ -304,7 +305,7 @@
                                                     <ul>
                                                         <li><a href="/checkout">Check Out</a></li>
                                                         <li><a href="/cart">Cart</a></li>
-                                                        <li><a href="/wishlist">Wishlist</a></li>
+                                                        <li><a href="{{route('wishlist')}}">Wishlist</a></li>
                                                         <li><a href="/compare">Compare</a></li>
                                                     </ul>
                                                 </li>

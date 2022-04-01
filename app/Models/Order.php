@@ -18,7 +18,6 @@ class Order extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'id',
         'account_id',
         'first_name',
         'last_name',
@@ -26,9 +25,24 @@ class Order extends Authenticatable
         'email',
         'phone',
         'address',
+        'quantity',
         'shipping_method',
         'payment_method',
+        'order_note',
+        'total_price'
     ];
+    public function account()
+    {
+        return $this->hasOne(Account::class,'id','account_id');
+    }
+    public function products()
+    {
+        return $this -> belongsToMany(Product::class, 'order_details');
+    }
+    public function details()
+    {
+        return $this -> hasMany(OrderDetail::class, 'order_id','id');
+    }
 }
     
     

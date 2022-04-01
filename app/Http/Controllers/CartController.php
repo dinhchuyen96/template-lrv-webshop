@@ -32,7 +32,7 @@ class CartController extends Controller
         // session(['cart'=> null]);
         // dd($carts);        
           session(['cart'=> $carts]);
-          return redirect()->route('home.cart')->with('ok', 'thêm sản phẩm vào giỏ hàng thành công');
+          return redirect()->route('home')->with('ok', 'thêm sản phẩm vào giỏ hàng thành công');
     }
     public function remove(Product $product){
         $carts = session('cart') ? session('cart'):[];
