@@ -82,6 +82,15 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="{{route('order.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-search"></i>
+              <p>
+                Đơn hàng
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

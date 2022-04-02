@@ -16,7 +16,7 @@ class OrderHomeController extends Controller
     public function post_checkout(Request $req){
         $carts = session('cart') ? session('cart'):[];
         if($carts){
-            $data = $req->all('first_name','last_name','email','phone','address','shipping_method','payment_method','order_note','total_price');
+            $data = $req->all('first_name','last_name','email','phone','address','shipping_method','payment_method','status','order_note','total_price');
             $data['account_id'] = Auth::guard('account')->user()->id;
             // dd($data);
 

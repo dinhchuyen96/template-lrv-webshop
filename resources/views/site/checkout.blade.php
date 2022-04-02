@@ -148,7 +148,7 @@
                                                 </div>
                                             </div>
                                         
-                                            {{-- <input type="hidden" name="quantity" value="{{$carts->quantity}}" /> --}}
+                                            <input type="hidden" name="status" value="0" />
                                             
                                         </form>
                                     </div> <!-- end of checkout-form -->

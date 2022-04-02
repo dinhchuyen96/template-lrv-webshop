@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function dashboard(){
-        // User::create([
-        //     'name' => 'Admin Manerger',
-        //     'email' => 'admin@gmail.com',
-        //     'password' => bcrypt(123456)
-        // ]);
+        User::create([
+            'name' => 'Admin Manerger',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt(123456)
+        ]);
         
     }
     /**

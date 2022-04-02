@@ -29,7 +29,8 @@ class Order extends Authenticatable
         'shipping_method',
         'payment_method',
         'order_note',
-        'total_price'
+        'total_price',
+        'status'
     ];
     public function account()
     {

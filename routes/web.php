@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OrderHomeController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,7 +50,7 @@ Route::group(['prefix'=>'order','middleware' => 'acc'], function(){
     Route::get('/checkout',[OrderHomeController::class, 'checkout'])->name('home.order_checkout');
     Route::post('/checkout',[OrderHomeController::class, 'post_checkout'])->name('home.order_checkout');
     Route::get('/detail/{order}',[OrderHomeController::class, 'detail'])->name('home.order_detail');    
-});
+});     
 Route::get('/danh-muc/{category}', [HomeController::class, 'category'])->name('home.category');
 Route::get('//{product}-{slug?}', [HomeController::class, 'product'])->name('home.product');
 Route::get('/myaccount', [HomeController::class, 'myaccount'])->name('myaccount');
@@ -62,5 +63,10 @@ route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
         'category' => CategoryController::class,
         'product' => ProductController::class
     ]);
+    Route::group(['prefix'=>'order'], function(){
+        Route::get('/',[OrderController::class, 'index'])->name('order.index');
+        Route::get('/detail/{order}',[OrderController::class, 'detail'])->name('order.detail');    
+        Route::post('/status/{order}',[OrderController::class, 'status'])->name('order_status');    
+    });
 });
 
