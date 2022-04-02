@@ -29,7 +29,7 @@
         <tbody>
             @foreach($orders as $order)
             <tr>
-                <td>1</td>
+                <td>{{$i-=1}}</td>
                 <td>
                     <a href="{{route('home.product',['product'=>$order->id,'slug'=>Str::slug($order->name)])}}">{{$order->name}}</a>
                     <span>{{$order->created_at->format('d-m-Y')}}</span>
@@ -54,9 +54,6 @@
             @endforeach
         </tbody>
     </table>
-    <div class="text-center">
-        <a href="{{route('home.cart-clear')}}" class="btn btn-danger"onclick="return confirm('Are you sure?')">Xóa sạch</a>
-    </div>
 </div>
 <hr>
 {{$orders->links()}}

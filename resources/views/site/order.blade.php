@@ -50,7 +50,7 @@
                                                 <tbody>
                                                     @foreach($orders as $order)
                                                     <tr>
-                                                        <td>1</td>
+                                                        <td>{{$i-=1}}</td>
                                                         <td>
                                                             <a href="{{route('home.product',['product'=>$order->id,'slug'=>Str::slug($order->name)])}}">{{$order->name}}</a>
                                                             <span>{{$order->created_at->format('d-m-Y')}}</span>
