@@ -60,6 +60,14 @@ class Order extends Authenticatable
         }
         return $total;
     }
+    public function scopeSearch($query)
+    {
+        $search_value = request()->search;
+        if($search_value){
+            $query = $query->where('phone','LIKE','%'.$search_value.'%');            
+        }
+        return $query;
+    }
 }
     
     

@@ -8,7 +8,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-         $orders = Order::orderBy('id', 'DESC')->paginate(15);
+         $orders = Order::orderBy('id', 'DESC')->search()->paginate(15);
          $i = count($orders)+1;
          return view('admin.order.index',compact('orders','i'));
     }

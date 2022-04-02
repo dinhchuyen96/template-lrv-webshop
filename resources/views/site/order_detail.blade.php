@@ -4,17 +4,17 @@
     <div class="container">
         <hr class="mt-5">
         <h3 class="mt-5">Thông tin chi tiết đơn hàng</h3>
-        @if ($order->status == 0)
-            <span class="text-primary">Chờ duyệt</span>
-        @elseif($order->status == 1)
-            <span class="text-info">Đã xác nhận</span>
-        @elseif($order->status == 2)
-            <span class="text-success">Đang giao hàng</span>
-        @elseif($order->status == 3)
-            <span class="text-success">Đã giao thành công</span>
-        @elseif($order->status == 4)
-            <span class="text-success">Hoàn đơn</span>
-        @endif
+            @if ($order->status == 0)
+                <span class="btn btn-primary">Chờ xác nhận</span>
+            @elseif($order->status == 1)
+                <span class="btn btn-info">Đã xác nhận</span>
+            @elseif($order->status == 2)
+                <span class="btn btn-warning">Đang giao hàng</span>
+            @elseif($order->status == 3)
+                <span class="btn btn-success">Đã giao thành công</span>
+            @elseif($order->status == 4)
+                <span class="btn btn-danger">Hoàn đơn</span>
+            @endif
         <div class="row mt-5">
             <div class="col-md-6">
                 <h3>Thông tin người mua</h3>
@@ -83,8 +83,8 @@
                 @foreach ($order->details as $detail)
                     <tr>
                         <td>1</td>
-                        <td><img src="{{ url('uploads') }}/{{ $detail->product->image }}" width="60px"></td>
-                        <td>{{ $detail->product->name }}</td>
+                        <td><a href="{{route('home.product',['product'=>$detail->product->id,'slug'=>Str::slug($detail->product->name)])}}"><img src="{{ url('uploads') }}/{{ $detail->product->image }}" width="60px"></a></td>
+                        <td><a href="{{route('home.product',['product'=>$detail->product->id,'slug'=>Str::slug($detail->product->name)])}}">{{ $detail->product->name}}</a></td>
                         <td>{{ $detail->quantity }}</td>
                         <td>{{ $detail->price }}</td>
                         <td>{{ $detail->quantity * $detail->price }}</td>
