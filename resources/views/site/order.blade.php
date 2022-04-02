@@ -43,7 +43,7 @@
                                                         <td>purchase date</td>
                                                         <td>Status</td>
                                                         <td>Quantity</td>
-                                                        <td>Unit Price</td>
+                                                        <td>Total Pay</td>
                                                         <td></td>
                                                     </tr>
                                                 </thead>
@@ -55,11 +55,19 @@
                                                             <a href="{{route('home.product',['product'=>$order->id,'slug'=>Str::slug($order->name)])}}">{{$order->name}}</a>
                                                             <span>{{$order->created_at->format('d-m-Y')}}</span>
                                                         </td>
-                                                        <td>3</td>
-                                                        <td>
-                                                            
-                                                        </td>
-                                                        <td>${{$order->price}}</td>
+                                                        <td>@if ($order->status == 0)
+                                                            <span class="text-primary">Chờ duyệt</span>
+                                                        @elseif($order->status == 1)
+                                                            <span class="text-info">Đã xác nhận</span>
+                                                        @elseif($order->status == 2)
+                                                            <span class="text-success">Đang giao hàng</span>
+                                                        @elseif($order->status == 3)
+                                                            <span class="text-success">Đã giao thành công</span>
+                                                        @elseif($order->status == 4)
+                                                            <span class="text-success">Hoàn đơn</span>
+                                                        @endif</td>
+                                                        <td> {{$order->totalQuantity()}}</td>
+                                                        <td>${{$order->totalAmount()}}</td>
                                                         <td><a href="{{route('home.order_detail',$order->id)}}" type="button" class="btn btn-info">Detail</a></td>
                                                     </tr>
                                                     @endforeach
@@ -71,7 +79,7 @@
                                         </div>
                                         <div class="cart-button-wrapper d-flex justify-content-between mt-4">
                                             <a href="{{route('home')}}" class="btn btn-secondary">Continue Shopping</a>
-                                            <a href="{{route('home.order_checkout')}}" class="btn btn-secondary dark align-self-end">Checkout</a>
+                                            {{-- <a href="{{route('home.order_checkout')}}" class="btn btn-secondary dark align-self-end">Checkout</a> --}}
                                         </div>
                                    
                                     <div class="cart-accordion-wrapper mt-full mt-40">

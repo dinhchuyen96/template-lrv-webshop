@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function dashboard(){
-        User::create([
-            'name' => 'Admin Manerger',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt(123456)
-        ]);
+        // User::create([
+        //     'name' => 'Admin Manerger',
+        //     'email' => 'admin@gmail.com',
+        //     'password' => bcrypt(123456)
+        // ]);
         
     }
     /**
@@ -91,4 +91,21 @@ class AdminController extends Controller
     {
         //
     }
+    public function logout1(){
+        Auth::guard('account')->logout();
+        return redirect()->route('home')->with('ok','Đăng xuất thành công');
+    }
+    // public function logout( Request $request )
+    // {
+    //     if(Auth::guard('admin')->check()) // this means that the admin was logged in.
+    //         {
+    //             Auth::guard('admin')->logout();
+    //             return redirect()->route('admin.login');
+    //         }
+
+    //         $this->guard()->logout();
+    //         $request->session()->invalidate();
+
+    //         return $this->loggedOut($request) ?: redirect('/');
+    // }
 }

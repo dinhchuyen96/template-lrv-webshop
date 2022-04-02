@@ -44,6 +44,22 @@ class Order extends Authenticatable
     {
         return $this -> hasMany(OrderDetail::class, 'order_id','id');
     }
+    public function totalQuantity()
+    {
+        $total = 0;
+        foreach ($this->details as $dt){
+            $total += $dt->quantity;
+        }
+        return $total;
+    }
+    public function totalAmount()
+    {
+        $total = 0;
+        foreach ($this->details as $dt){
+            $total += $dt->quantity * $dt->price;
+        }
+        return $total;
+    }
 }
     
     

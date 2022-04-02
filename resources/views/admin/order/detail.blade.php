@@ -13,19 +13,24 @@
                         <option>Trạng thái</option>
                         <option value="0" {{$order->status == 0 ? 'selected' : ''}}>Chờ Duyệt</option>
                         <option value="1" {{$order->status == 1 ? 'selected' : ''}}>Đã phê duyệt</option>
-                        <option value="2" {{$order->status == 2 ? 'selected' : ''}}>Đã thanh toán</option>
-                        <option value="3" {{$order->status == 3 ? 'selected' : ''}}>Đã giao hàng</option>
+                        <option value="2" {{$order->status == 2 ? 'selected' : ''}}>Đang giao hàng</option>
+                        <option value="3" {{$order->status == 3 ? 'selected' : ''}}>Đã giao thành công</option>
+                        <option value="4" {{$order->status == 4 ? 'selected' : ''}}>Hoàn đơn</option>
                     </select>
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </div>
         </form>
         @if ($order->status == 0)
-            <span class="text-primary">Đang chờ duyệt</span>
+            <span class="text-primary">Chờ duyệt</span>
         @elseif($order->status == 1)
-            <span class="text-info">Đang vận chuyển</span>
+            <span class="text-info">Đã phê duyệt</span>
         @elseif($order->status == 2)
-            <span class="text-success">Đang giao thành công</span>
+            <span class="text-success">Đang giao hàng</span>
+        @elseif($order->status == 3)
+            <span class="text-success">Đã giao thành công</span>
+        @elseif($order->status == 4)
+            <span class="text-success">Hoàn đơn</span>
         @endif
         <div class="row mt-5">
             <div class="col-md-6">

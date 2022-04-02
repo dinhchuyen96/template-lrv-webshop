@@ -18,7 +18,9 @@
             <tr>
                 <td>Serial</td>
                 <td>purchase date</td>
+                <td>Name</td>
                 <td>Status</td>
+                <td>Phone</td>
                 <td>Quantity</td>
                 <td>Unit Price</td>
                 <td></td>
@@ -32,11 +34,21 @@
                     <a href="{{route('home.product',['product'=>$order->id,'slug'=>Str::slug($order->name)])}}">{{$order->name}}</a>
                     <span>{{$order->created_at->format('d-m-Y')}}</span>
                 </td>
-                <td>3</td>
-                <td>
-                    
-                </td>
-                <td>${{$order->price}}</td>
+                <td>{{$order->account->first_name}} {{$order->account->last_name}}</td>
+                <td>@if ($order->status == 0)
+                    <span class="text-primary">Chờ duyệt</span>
+                @elseif($order->status == 1)
+                    <span class="text-info">Đã phê duyệt</span>
+                @elseif($order->status == 2)
+                    <span class="text-success">Đang giao hàng</span>
+                    @elseif($order->status == 3)
+                    <span class="text-success">Đã giao thành công</span>
+                    @elseif($order->status == 4)
+                    <span class="text-success">Hoàn đơn</span>
+                @endif</td>
+                <td>{{$order->account->phone}}</td>
+                <td>{{$order->totalQuantity()}}</td>
+                <td>${{$order->totalAmount()}}</td>
                 <td><a href="{{route('order.detail',$order->id)}}" type="button" class="btn btn-info">Detail</a></td>
             </tr>
             @endforeach

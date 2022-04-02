@@ -39,7 +39,7 @@ class OrderHomeController extends Controller
     public function order(){
         $acc_id = Auth::guard('account')->user()->id;
         $orders = Order::where('account_id', $acc_id)->orderBy('id','DESC')->get();
-        //  dd($orders);
+        dd($orders);
         return view('site.order',compact('orders'));
     }
     public function detail(Order $order){

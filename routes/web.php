@@ -21,8 +21,6 @@ use App\Http\Controllers\OrderController;
 */
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
-Route::get('/admin/login', [LoginController::class, 'login'])->name('login');
-Route::post('/admin/login', [LoginController::class, 'post_login'])->name('login');
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::get('/contactus', [HomeController::class, 'contactus'])->name('contactus');
 Route::get('/wishlist', [HomeController::class, 'wishlist'])->name('wishlist');
@@ -56,8 +54,15 @@ Route::get('//{product}-{slug?}', [HomeController::class, 'product'])->name('hom
 Route::get('/myaccount', [HomeController::class, 'myaccount'])->name('myaccount');
 Route::get('/compare', [HomeController::class, 'compare'])->name('compare');
 
-route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
+
+
+// ADMIN Route
+
+Route::get('/admin/login', [LoginController::class, 'login'])->name('login');
+Route::post('/admin/login', [LoginController::class, 'post_login'])->name('login');
+Route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/admin/logout', [AdminController::class, 'logout'])->name('logout');
     Route::get('/', [AdminController::class, 'index'])->name('admin.category.index');
     Route::resources([
         'category' => CategoryController::class,
