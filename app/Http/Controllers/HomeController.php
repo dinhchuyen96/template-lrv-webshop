@@ -13,9 +13,6 @@
         public function contactus(){
             return view('site.contactus');
         }
-        public function wishlist(){
-            return view('site.wishlist');
-        }
         public function myaccount(){
             return view('site\myaccount');
         }

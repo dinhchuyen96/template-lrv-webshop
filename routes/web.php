@@ -8,6 +8,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OrderHomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,16 +24,23 @@ use App\Http\Controllers\OrderController;
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::get('/contactus', [HomeController::class, 'contactus'])->name('contactus');
-Route::get('/wishlist', [HomeController::class, 'wishlist'])->name('wishlist');
 
+
+Route::group(['prefix'=>'wishlist'], function(){
+    Route::get('/',[WishlistController::class, 'view'])->name('home.wishlist');
+    Route::get('/add/{product}', [WishlistController::class, 'add'])->name('home.add-wishlist');  
+    Route::get('/remove/{product}',[WishlistController::class, 'remove'])->name('home.remove-wishlist');  
+});
+                                    // Cart Route
 Route::group(['prefix'=>'cart'], function(){
     Route::get('/',[CartController::class, 'view'])->name('home.cart');
     Route::get('/clear',[CartController::class, 'clear'])->name('home.cart-clear');
     Route::get('/add/{product}',[CartController::class, 'add'])->name('home.cart-add');
     Route::get('/remove/{product}',[CartController::class, 'remove'])->name('home.cart-remove');
     Route::get('/update/{product}',[CartController::class, 'update'])->name('home.cart-update');
-    
 });
+
+                                // ACCOUNT Route
 Route::group(['prefix'=>'account'], function(){
     Route::get('/login',[AccountController::class, 'login'])->name('home.login');
     Route::post('/login',[AccountController::class, 'post_login'])->name('home.post_login');
@@ -41,14 +49,17 @@ Route::group(['prefix'=>'account'], function(){
     Route::get('/register',[AccountController::class, 'register'])->name('home.register');
     Route::post('/register',[AccountController::class, 'post_register'])->name('home.register');
     Route::get('/changer-password',[AccountController::class, 'changer-password'])->name('home.changer-password');
-    
-});
+});                    
+
+                            // Order route
 Route::group(['prefix'=>'order','middleware' => 'acc'], function(){
     Route::get('/',[OrderHomeController::class, 'order'])->name('home.order');
     Route::get('/checkout',[OrderHomeController::class, 'checkout'])->name('home.order_checkout');
     Route::post('/checkout',[OrderHomeController::class, 'post_checkout'])->name('home.order_checkout');
-    Route::get('/detail/{order}',[OrderHomeController::class, 'detail'])->name('home.order_detail');    
+    Route::get('/detail/{order}',[OrderHomeController::class, 'detail'])->name('home.order_detail');  
 });     
+
+                                    //Categoru & Product Route
 Route::get('/danh-muc/{category}', [HomeController::class, 'category'])->name('home.category');
 Route::get('//{product}-{slug?}', [HomeController::class, 'product'])->name('home.product');
 Route::get('/myaccount', [HomeController::class, 'myaccount'])->name('myaccount');
@@ -56,7 +67,7 @@ Route::get('/compare', [HomeController::class, 'compare'])->name('compare');
 
 
 
-// ADMIN Route
+                                    // ADMIN Route
 
 Route::get('/admin/login', [LoginController::class, 'login'])->name('login');
 Route::post('/admin/login', [LoginController::class, 'post_login'])->name('login');

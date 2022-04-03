@@ -1,8 +1,6 @@
 @extends('layouts.site')
-@section('title','checkout')
+@section('title', 'checkout')
 @section('main')
-    <!-- header area end -->
-
     <!-- breadcrumb area start -->
     <div class="breadcrumb-area">
         <div class="container-fluid">
@@ -48,70 +46,35 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach($wishlists as $wishlist)
                                                     <tr>
                                                         <td>
-                                                            <a href="product-details.html"><img src="{{url('home')}/assets/img/product/pro-layout-img6.jpg" alt="Wishlist Product Image" title="Compete Track Tote"></a>
-                                                        </td>
-                                                        <td>
-                                                            <a href="product-details.html">Compete Track Tote</a>
-                                                        </td>
-                                                        <td>3</td>
-                                                        <td>In Stock</td>
-                                                        <td>
-                                                            <div class="price"><small><del>$430.00</del></small> <strong>$100.00</strong></div>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i></button>
-                                                            <a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                                                        </td>
+                                                            <a href="product-details.html"><img src="{{url('uploads')}}/{{$wishlist->image}}" alt="Wishlist Product Image" width="80" title="Compete Track Tote"></a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="product-details.html">{{$wishlist->name}}</a>
+                                                            </td>
+                                                            <td>3</td>
+                                                            <td>In Stock</td>
+                                                            <td>
+                                                                <div class="price"><small><del>${{$wishlist->price}}</del></small> <strong>$1{{$wishlist->sale_price}}</strong></div>
+                                                            </td>
+                                                            <td>
+                                                                <a href="{{route('home.cart-add',$wishlist->id)}}" type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i></a>
+                                                                <a href="{{route('home.remove-wishlist',$wishlist->id)}}" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                                                            </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <a href="product-details.html"><img src="{{url('home')}/assets/img/product/pro-layout-img5.jpg" alt="Wishlist Product Image" title="Rival Field Messenger 6"></a>
-                                                        </td>
-                                                        <td>
-                                                            <a href="product-details.html">Rival Field Messenger 6</a>
-                                                        </td>
-                                                        <td>3</td>
-                                                        <td>In Stock</td>
-                                                        <td>
-                                                            <div class="price"><small><del>$440.00</del></small> <strong>$180.00</strong></div>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i></button>
-                                                            <a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <a href="product-details.html"><img src="{{url('home')}/assets/img/product/pro-layout-img1.jpg" alt="Wishlist Product Image" title="Fusion Backpack"></a>
-                                                        </td>
-                                                        <td>
-                                                            <a href="product-details.html">Fusion Backpack</a>
-                                                        </td>
-                                                        <td>3</td>
-                                                        <td>In Stock</td>
-                                                        <td>
-                                                            <div class="price">$200.00</div>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i></button>
-                                                            <a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </form>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-                        </div> <!-- end of wishlist -->
-                    </main> <!-- end of #primary -->
-                </div>
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div>
-    <!-- End of wishlist Wrapper -->
-
-   <!-- scroll to top -->
+                            </div> <!-- end of wishlist -->
+                        </main> <!-- end of #primary -->
+                    </div>
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div>
   @stop()

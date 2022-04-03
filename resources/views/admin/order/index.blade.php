@@ -48,7 +48,7 @@
                         <span class="btn btn-danger">Hoàn đơn</span>
                     @endif
                 </td>
-                <td>{{$order->account->phone}}</td>
+                <td>0{{$order->account->phone}}</td>
                 <td>{{$order->totalQuantity()}}</td>
                 <td>${{$order->totalAmount()}}</td>
                 <td><a href="{{route('order.detail',$order->id)}}" type="button" class="btn btn-info">Detail</a></td>

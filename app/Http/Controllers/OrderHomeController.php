@@ -42,6 +42,12 @@ class OrderHomeController extends Controller
         $i = count($orders)+1;
         return view('site.order',compact('orders','i'));
     }
+    public function wishlist()
+    {
+        $acc_id = Auth::guard('account')->user()->id;
+        // dd($acc_id);
+        return view('site.wishlist');
+    }
     public function detail(Order $order){
         //  dd($order);
         return view('site.order_detail',compact('order'));
