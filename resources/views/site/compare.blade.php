@@ -46,29 +46,29 @@
                                                 <tbody>
                                                     <tr>
                                                         <td class="product-title">Product</td>
-                                                        <td><a href="product-details.html"><strong>Compete Track Tote</strong></a></td>
-                                                        <td><a href="product-details.html"><strong>Rival Field Messenger 6</strong></a></td>
-                                                        <td><a href="product-details.html"><strong>Fusion Backpack</strong></a></td>
+                                                        @foreach($procompare as $key => $value)
+                                                        <td><a href="product-details.html"><strong>{{$value->name}}</strong></a></td>
+                                                        @endforeach
                                                     </tr>
                                                     <tr>
                                                         <td class="product-title">Image</td>
-                                                        <td> <img src="{{ url('home') }}assets/img/product/pro-layout-img7.jpg" alt="" class="img-thumbnail"> </td>
-                                                        <td> <img src="{{ url('home') }}assets/img/product/pro-layout-img8.jpg" alt="" class="img-thumbnail"> </td>
-                                                        <td> <img src="{{ url('home') }}assets/img/product/pro-layout-img5.jpg" alt="" class="img-thumbnail"> </td>
+                                                        @foreach($procompare as $key => $value)
+                                                        <td> <img src="{{ url('uploads') }}/{{$value->image}}" alt="" width="150" class="img-thumbnail"> </td>
+                                                        @endforeach
                                                     </tr>
                                                     <tr>
                                                         <td class="product-title">Price</td>
-                                                        <td> <del>$420.00</del> <span>$150.00</span></td>
-                                                        <td> <del>$320.00</del> <span>$180.00</span></td>
-                                                        <td> <del>$430.00</del> <span>$100.00</span></td>
+                                                        @foreach($procompare as $key => $value)
+                                                        <td> <del>${{$value->price}}</del> <span>${{$value->sale_price}}</span></td>
+                                                        @endforeach
                                                     </tr>
                                                     <tr>
                                                         <td class="product-title">Model</td>
-                                                        <td>2</td>
-                                                        <td>3</td>
-                                                        <td>4</td>
+                                                        @foreach($procompare as $key => $value)
+                                                        <td>{{$value->category_id}}</td>
+                                                        @endforeach
                                                     </tr>
-                                                    <tr>
+                                                    {{-- <tr>
                                                         <td class="product-title">Brands</td>
                                                         <td><a class="text-color" href="#">Studio Design</a></td>
                                                         <td><a class="text-color" href="#">Graphic Corner</a></td>
@@ -118,14 +118,14 @@
                                                             </div>
                                                             <span>Based on 10 reviews.</span>
                                                         </td>
-                                                    </tr>
+                                                    </tr> --}}
                                                     <tr>
                                                         <td class="product-title">Summary</td>
-                                                        <td class="description">Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend ..</td>
-                                                        <td class="description">Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend ...</td>
-                                                        <td class="description">Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend ..</td>
+                                                        @foreach($procompare as $key => $value)
+                                                            <td class="description">{{$value->description}}</td>
+                                                        @endforeach
                                                     </tr>
-                                                    <tr>
+                                                    {{-- <tr>
                                                         <td class="product-title">Weight</td>
                                                         <td>0.90kg</td>
                                                         <td>1.00kg</td>
@@ -136,21 +136,15 @@
                                                         <td>0.00cm x 0.00cm x 0.00cm</td>
                                                         <td>0.00cm x 0.00cm x 0.00cm</td>
                                                         <td>0.00cm x 0.00cm x 0.00cm</td>
-                                                    </tr>
+                                                    </tr> --}}
                                                     <tr>
                                                         <td class="product-title">Actions</td>
+                                                        @foreach($procompare as $key => $value)
                                                         <td>
-                                                            <a href="/cart" class="btn btn-secondary mb-2 mb-lg-0 mr-xl-2">Add to Cart</a>
-                                                            <a href="#" class="btn btn-secondary">Remove</a>
+                                                            <a href="{{route('home.cart-add',$value->id)}}" class="btn btn-primary mb-2 mb-lg-0 mr-xl-2">Add to Cart</a>
+                                                            <a href="{{route('home.remove-compare',$value->id)}}" class="btn btn-danger">Remove</a>
                                                         </td>
-                                                        <td>
-                                                            <a href="/cart" class="btn btn-secondary mb-2 mb-lg-0 mr-xl-2">Add to Cart</a>
-                                                            <a href="#" class="btn btn-secondary">Remove</a>
-                                                        </td>
-                                                        <td>
-                                                            <a href="/cart" class="btn btn-secondary mb-2 mb-lg-0 mr-xl-2">Add to Cart</a>
-                                                            <a href="#" class="btn btn-secondary">Remove</a>
-                                                        </td>
+                                                        @endforeach
                                                     </tr>
                                                 </tbody>
                                             </table>

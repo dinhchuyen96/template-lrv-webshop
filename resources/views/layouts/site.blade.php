@@ -129,7 +129,7 @@
                                     <a class="ha-toggle" href="/compare"><span class="lnr lnr-sync"></span>Product compare</a>
                                 </li>
                                 <li class="wishlist">
-                                    <a class="ha-toggle" href="{{route('home.wishlist')}}"><span class="lnr lnr-heart"></span><span class="count">1</span>wishlist</a>
+                                    <a class="ha-toggle" href="{{route('home.wishlist')}}"><span class="lnr lnr-heart"></span><span class="count">{{$totalWishlist}}</span>wishlist</a>
                                 </li>
                                 <li class="my-cart">
                                     <a class="ha-toggle" ><span class="lnr lnr-cart"></span><span class="count">{{$totalQuantity}}</span>My cart</a>

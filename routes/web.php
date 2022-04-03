@@ -9,6 +9,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OrderHomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\CompareController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,12 +25,17 @@ use App\Http\Controllers\WishlistController;
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::get('/contactus', [HomeController::class, 'contactus'])->name('contactus');
+Route::get('/compare', [HomeController::class, 'compare'])->name('compare');
 
-
-Route::group(['prefix'=>'wishlist'], function(){
+Route::group(['prefix'=>'wishlist','middleware' => 'acc'], function(){
     Route::get('/',[WishlistController::class, 'view'])->name('home.wishlist');
     Route::get('/add/{product}', [WishlistController::class, 'add'])->name('home.add-wishlist');  
     Route::get('/remove/{product}',[WishlistController::class, 'remove'])->name('home.remove-wishlist');  
+});
+Route::group(['prefix'=>'compare','middleware' => 'acc'], function(){
+    Route::get('/',[CompareController::class, 'view'])->name('home.compare');
+    Route::get('/add/{product}', [CompareController::class, 'add'])->name('home.add-compare');  
+    Route::get('/remove/{product}',[CompareController::class, 'remove'])->name('home.remove-compare');  
 });
                                     // Cart Route
 Route::group(['prefix'=>'cart'], function(){
@@ -63,7 +69,7 @@ Route::group(['prefix'=>'order','middleware' => 'acc'], function(){
 Route::get('/danh-muc/{category}', [HomeController::class, 'category'])->name('home.category');
 Route::get('//{product}-{slug?}', [HomeController::class, 'product'])->name('home.product');
 Route::get('/myaccount', [HomeController::class, 'myaccount'])->name('myaccount');
-Route::get('/compare', [HomeController::class, 'compare'])->name('compare');
+
 
 
 
