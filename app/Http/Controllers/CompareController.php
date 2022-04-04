@@ -9,11 +9,13 @@ class CompareController extends Controller
 {
     public function view(){
         $procompare = session('compare')? session('compare') : [];
+        //  dd($procompare);
+
         return view('site\compare',compact('procompare'));
     }
     public function add(Product $product)
     {
-        // dd($product);
+        //  dd($product);
         $procompare = session('compare')? session('compare') : [];
         $item = [
             'id' => $product->id,

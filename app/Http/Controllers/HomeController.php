@@ -2,12 +2,14 @@
     namespace App\Http\Controllers;
     use App\Models\Category;
     use App\Models\Product;
+    use App\Models\Review;
     class HomeController extends Controller{
         public function home(){
             $category = Category::paginate(2);
             $product_sale = Product::product_sale(8);
             $product_new = Product::product_new(4);
-            // dd($product_sale);
+            //  dd($product_sale->all());
+            
             return view('site\home',compact('product_sale','product_new'));
         }
         public function contactus(){
@@ -24,8 +26,20 @@
             return view('site\category',compact('category','products'));
         }
         public function product(Product $product){
-            // dd($product);
-            return view('site\product',compact('product'));
+            $reviews = Review::where('product_id',$product->id)->get();
+            $number_reviews = count($reviews);
+            $tt = 0;
+            for($i=0;$i < $number_reviews ;$i++ ){
+                $tt +=  $reviews[$i]['rating'];
+            };
+            if($number_reviews != 0){
+                $avg_rating = $tt/$number_reviews;
+            }else{
+                $avg_rating = 0;
+            }
+            
+            // dd($avg_rating);
+            return view('site\product',compact('product','reviews','number_reviews','avg_rating'));
         }
     };
 ?>

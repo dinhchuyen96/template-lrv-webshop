@@ -47,7 +47,7 @@
                                                     <tr>
                                                         <td class="product-title">Product</td>
                                                         @foreach($procompare as $key => $value)
-                                                        <td><a href="product-details.html"><strong>{{$value->name}}</strong></a></td>
+                                                        <td><a href="{{route('home.product',['product'=>$value->id,'slug'=>Str::slug($value->name)])}}"><strong>{{$value->name}}</strong></a></td>
                                                         @endforeach
                                                     </tr>
                                                     <tr>
@@ -64,9 +64,14 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="product-title">Model</td>
+                                                        
                                                         @foreach($procompare as $key => $value)
-                                                        <td>{{$value->category_id}}</td>
+                                                        <td >@foreach($cats as $cat)
+                                                            <a href="{{route('home.category',$cat->id)}}" {{$cat->id == $value->category_id ? '':'hidden'}}>{{ $cat->name}}</a>
+                                                            @endforeach
+                                                        </td>
                                                         @endforeach
+                                                        
                                                     </tr>
                                                     {{-- <tr>
                                                         <td class="product-title">Brands</td>

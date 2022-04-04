@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
             $cats = Category::orderBy('name','ASC')->where('status','>',0)->get();
             $carts = session('cart') ? session('cart'):[];
             $wishlists = session('wishlist')? session('wishlist') : [];
-            $totalWishlist = count($wishlists);
+            $totalWishlist = count($wishlists); // đếm số sản phẩm trong wishlist
             foreach($carts as $key =>$cart){
                 $totalQuantity += $cart->quantity;
                 $subPrice += $cart->price * $cart->quantity;

@@ -138,7 +138,7 @@
                                     </div>
                                     <div class="action-links">
                                         <a href="{{route('home.add-wishlist',$ps->id)}}" title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                        <a href="{{route('home.add-compare',$ps->id)}}"" title="Compare"><i class="lnr lnr-sync"></i></a>
+                                        <a href="{{route('home.add-compare',$ps->id)}}" title="Compare"><i class="lnr lnr-sync"></i></a>
                                         <a href="#" title="Quick view" data-target="#quickk_view" data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                     </div>
                                 </div>

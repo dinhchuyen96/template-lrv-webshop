@@ -91,13 +91,13 @@
                                 <div class="pro-details-review mb-20">
                                     <ul>
                                         <li>
-                                            <span><i class="fa fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
+                                            <span><i  style="color:yellow" {{$avg_rating >='4.5'?'':'hidden'}} class="fa fa-star"></i></>
+                                            <span><i  style="color:yellow" {{$avg_rating >='3.5'?'':'hidden'}}  class="fa fa-star"></i></>
+                                            <span><i  style="color:yellow" {{$avg_rating >='2.5'?'':'hidden'}}  class="fa fa-star"></i></>
+                                            <span><i  style="color:yellow" {{$avg_rating >='1.5'?'':'hidden'}}  class="fa fa-star"></i></>
+                                            <span><i style="color:yellow"  class="fa fa-star"></i></>
                                         </li>
-                                        <li><a href="#">1 Reviews</a></li>
+                                        <li><a href="#">{{$number_reviews}} Reviews</a></li>
                                     </ul>
                                 </div>
                                 <div class="price-box mb-15">
@@ -166,7 +166,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="nav_review" data-toggle="pill" href="#tab_review"
-                                        role="tab" aria-controls="tab_review" aria-selected="false">Reviews (1)</a>
+                                        role="tab" aria-controls="tab_review" aria-selected="false">Reviews ({{$number_reviews}})</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -178,47 +178,46 @@
                                     <div class="product-review">
                                         <div class="customer-review">
                                             <table class="table table-striped table-bordered">
+                                                @foreach ($reviews as $review)
                                                 <tbody>
                                                     <tr>
-                                                        <td><strong>Sinrato Themes</strong></td>
-                                                        <td class="text-right">09/04/2019</td>
+                                                        <td><strong>{{$review->name_reviewer}}</strong></td>
+                                                        <td class="text-right">{{$review->created_at->format('d-m-Y')}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="2">
-                                                            <p>It’s both good and bad. If Nikon had achieved a high-quality
-                                                                wide lens camera with a 1 inch sensor, that would have been
-                                                                a very competitive product. So in that sense, it’s good for
-                                                                us. But actually, from the perspective of driving the 1 inch
-                                                                sensor market, we want to stimulate this market and that
-                                                                means multiple manufacturers.</p>
+                                                            <p>{{$review->review}}</p>
                                                             <div class="product-ratings">
                                                                 <ul class="ratting d-flex mt-2">
-                                                                    <li><i class="fa fa-star"></i></li>
-                                                                    <li><i class="fa fa-star"></i></li>
-                                                                    <li><i class="fa fa-star"></i></li>
-                                                                    <li><i class="fa fa-star"></i></li>
-                                                                    <li><i class="fa fa-star"></i></li>
+                                                                    <li><span style="color:yellow"><i {{$review->rating<='4'?'hidden':''}} class="fa fa-star"></i></span></li>
+                                                                    <li><span style="color:yellow"><i {{$review->rating<='3'?'hidden':''}} class="fa fa-star"></i></span></li>
+                                                                    <li><span style="color:yellow"><i {{$review->rating<='2'?'hidden':''}}  class="fa fa-star"></i></span></li>
+                                                                    <li><span style="color:yellow"><i {{$review->rating<='1'?'hidden':''}}  class="fa fa-star"></i></span></li>
+                                                                    <li><span style="color:yellow"><i class="fa fa-star"></i></span></li>
                                                                 </ul>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                 </tbody>
+                                                @endforeach
                                             </table>
                                         </div> <!-- end of customer-review -->
-                                        <form action="#" class="review-form">
+                                        <form method="POST" action="{{route('home.product.add-review',['product'=>$product->id,'slug'=>Str::slug($product->name)])}}" class="review-form">
+                                            @csrf
                                             <h2>Write a review</h2>
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label class="col-form-label"><span class="text-danger">*</span>
                                                         Your Name</label>
-                                                    <input type="text" class="form-control" required>
+                                                        <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                    <input type="text" name="name_reviewer" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label class="col-form-label"><span class="text-danger">*</span>
                                                         Your Review</label>
-                                                    <textarea class="form-control" required></textarea>
+                                                    <textarea class="form-control" name="review" required></textarea>
                                                     <div class="help-block pt-10"><span
                                                             class="text-danger">Note:</span> HTML is not translated!
                                                     </div>
