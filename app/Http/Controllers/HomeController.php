@@ -26,19 +26,11 @@
             return view('site\category',compact('category','products'));
         }
         public function product(Product $product){
-            $reviews = Review::where('product_id',$product->id)->get();
+            $reviews = Review::reviews($product->id);
             $number_reviews = count($reviews);
-            $tt = 0;
-            for($i=0;$i < $number_reviews ;$i++ ){
-                $tt +=  $reviews[$i]['rating'];
-            };
-            if($number_reviews != 0){
-                $avg_rating = $tt/$number_reviews;
-            }else{
-                $avg_rating = 0;
-            }
-            
+            $avg_rating = Review::avg_rating();
             // dd($avg_rating);
+
             return view('site\product',compact('product','reviews','number_reviews','avg_rating'));
         }
     };

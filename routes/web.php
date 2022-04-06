@@ -7,7 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OrderHomeController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderAdminController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CompareController;
 use App\Http\Controllers\ReviewController;
@@ -95,9 +95,9 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
         'product' => ProductController::class
     ]);
     Route::group(['prefix'=>'order'], function(){
-        Route::get('/',[OrderController::class, 'index'])->name('order.index');
-        Route::get('/detail/{order}',[OrderController::class, 'detail'])->name('order.detail');    
-        Route::post('/status/{order}',[OrderController::class, 'status'])->name('order_status');    
+        Route::get('/',[OrderAdminController::class, 'index'])->name('order.index');
+        Route::get('/detail/{order}',[OrderAdminController::class, 'detail'])->name('order.detail');    
+        Route::post('/status/{order}',[OrderAdminController::class, 'status'])->name('order_status');    
     });
 });
 

@@ -9,7 +9,9 @@ class Product extends Model
 {
     use HasFactory;
     protected $table = 'products';
-    protected $fillable = ['name','description','status','price','sale_price','image','category_id'];
+    protected $fillable = ['id','name','sort_description','description','status','price','sale_price','image','category_id'];
+
+    
     
     public function scopeSearch($query)
     {
@@ -38,6 +40,7 @@ class Product extends Model
         $query = $query->orderBy('id','DESC')->where('status','>',0)->limit($limit)->get();
         return $query;
     }
+    
     public function Count_cart(){
         
     }

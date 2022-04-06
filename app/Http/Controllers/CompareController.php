@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CompareController extends Controller
 {
     public function view(){
         $procompare = session('compare')? session('compare') : [];
-        //  dd($procompare);
 
         return view('site\compare',compact('procompare'));
     }
@@ -24,7 +24,8 @@ class CompareController extends Controller
             'price' => $product->price,
             'description' => $product->description,
             'sale_price' => $product->sale_price,
-            'category_id' => $product->category_id
+            'category_id' => $product->category_id,
+            "cat" => $product->cat
         ];
         $item =(object)$item;
         $procompare[$product->id] = $item;

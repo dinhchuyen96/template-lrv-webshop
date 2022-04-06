@@ -18,22 +18,27 @@
     </div>
     <div class="form-group">
         <label for="">Tên sản phẩm</label>
-        <input type="text" class="form-control" value="{{old('name')}}" name="name" placeholder="Input field">
+        <input type="text" class="form-control" value="{{old('name')}}" name="name" placeholder="Nhập tên của sản phẩm">
         @error('name') {{$message}} @enderror
     </div>
     <div class="form-group">
+        <label for="">Tóm tắt sản phẩm</label>
+        <input type="text" class="form-control" value="{{old('sort_description')}}" name="sort_description" placeholder="Tóm tắt ngắn nội dung sản phẩm">
+        @error('sort_description') {{$message}} @enderror
+    </div>
+    <div class="form-group">
         <label for="">Mô tả sản phẩm</label>
-        <input type="text" class="form-control" value="{{old('description')}}" name="description" placeholder="Input field">
+        <input type="text" class="form-control" value="{{old('description')}}" name="description" placeholder="Mô tả chi tiết sản phẩm">
         @error('description') {{$message}} @enderror
     </div>
     <div class="form-group">
         <label for="">Giá</label>
-        <input type="text" value="{{old('price')}}" class="form-control" name="price" placeholder="Input field">
+        <input type="text" value="{{old('price')}}" class="form-control" name="price" placeholder="Nhập giá sản phẩm">
         @error('price') {{$message}} @enderror
     </div>
     <div class="form-group">
         <label for="">Giá khuyễn mãi</label>
-        <input type="text" class="form-control" value="{{old('sale_price')}}" name="sale_price" placeholder="Input field">
+        <input type="text" class="form-control" value="{{old('sale_price')}}" name="sale_price" placeholder="Nhập giá khuyến mãi nếu có">
         @error('sale_price') {{$message}} @enderror
     </div>
     <div class="form-group">

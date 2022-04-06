@@ -210,7 +210,7 @@
                                                     <label class="col-form-label"><span class="text-danger">*</span>
                                                         Your Name</label>
                                                         <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                    <input type="text" name="name_reviewer" class="form-control" required>
+                                                    <input type="text" value="{{$acc->first_name}} {{$acc->last_name}}" name="name_reviewer" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">

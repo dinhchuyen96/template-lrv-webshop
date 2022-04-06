@@ -1,6 +1,5 @@
-
 @extends('layouts.site')
-@section('title','cart')
+@section('title', 'cart')
 @section('main')
     <!-- header area end -->
 
@@ -46,32 +45,36 @@
                                                 <tbody>
                                                     <tr>
                                                         <td class="product-title">Product</td>
-                                                        @foreach($procompare as $key => $value)
-                                                        <td><a href="{{route('home.product',['product'=>$value->id,'slug'=>Str::slug($value->name)])}}"><strong>{{$value->name}}</strong></a></td>
+                                                        @foreach ($procompare as $key => $value)
+                                                            <td><a
+                                                                    href="{{ route('home.product', ['product' => $value->id, 'slug' => Str::slug($value->name)]) }}"><strong>{{ $value->name }}</strong></a>
+                                                            </td>
                                                         @endforeach
                                                     </tr>
                                                     <tr>
                                                         <td class="product-title">Image</td>
-                                                        @foreach($procompare as $key => $value)
-                                                        <td> <img src="{{ url('uploads') }}/{{$value->image}}" alt="" width="150" class="img-thumbnail"> </td>
+                                                        @foreach ($procompare as $key => $value)
+                                                            <td> <img src="{{ url('uploads') }}/{{ $value->image }}"
+                                                                    alt="" width="150" class="img-thumbnail"> </td>
                                                         @endforeach
                                                     </tr>
                                                     <tr>
                                                         <td class="product-title">Price</td>
-                                                        @foreach($procompare as $key => $value)
-                                                        <td> <del>${{$value->price}}</del> <span>${{$value->sale_price}}</span></td>
+                                                        @foreach ($procompare as $key => $value)
+                                                            <td> <del>${{ $value->price }}</del>
+                                                                <span>${{ $value->sale_price }}</span></td>
                                                         @endforeach
                                                     </tr>
                                                     <tr>
                                                         <td class="product-title">Model</td>
-                                                        
-                                                        @foreach($procompare as $key => $value)
-                                                        <td >@foreach($cats as $cat)
-                                                            <a href="{{route('home.category',$cat->id)}}" {{$cat->id == $value->category_id ? '':'hidden'}}>{{ $cat->name}}</a>
-                                                            @endforeach
-                                                        </td>
+
+                                                        @foreach ($procompare as $value)
+                                                            <td>
+                                                                <a
+                                                                    href="{{ route('home.category', $value->cat->id) }}">{{ $value->cat->name }}</a>
+                                                            </td>
                                                         @endforeach
-                                                        
+
                                                     </tr>
                                                     {{-- <tr>
                                                         <td class="product-title">Brands</td>
@@ -126,8 +129,8 @@
                                                     </tr> --}}
                                                     <tr>
                                                         <td class="product-title">Summary</td>
-                                                        @foreach($procompare as $key => $value)
-                                                            <td class="description">{{$value->description}}</td>
+                                                        @foreach ($procompare as $key => $value)
+                                                            <td class="description">{{ $value->description }}</td>
                                                         @endforeach
                                                     </tr>
                                                     {{-- <tr>
@@ -144,11 +147,14 @@
                                                     </tr> --}}
                                                     <tr>
                                                         <td class="product-title">Actions</td>
-                                                        @foreach($procompare as $key => $value)
-                                                        <td>
-                                                            <a href="{{route('home.cart-add',$value->id)}}" class="btn btn-primary mb-2 mb-lg-0 mr-xl-2">Add to Cart</a>
-                                                            <a href="{{route('home.remove-compare',$value->id)}}" class="btn btn-danger">Remove</a>
-                                                        </td>
+                                                        @foreach ($procompare as $key => $value)
+                                                            <td>
+                                                                <a href="{{ route('home.cart-add', $value->id) }}"
+                                                                    class="btn btn-primary mb-2 mb-lg-0 mr-xl-2">Add to
+                                                                    Cart</a>
+                                                                <a href="{{ route('home.remove-compare', $value->id) }}"
+                                                                    class="btn btn-danger">Remove</a>
+                                                            </td>
                                                         @endforeach
                                                     </tr>
                                                 </tbody>
@@ -165,5 +171,5 @@
     </div>
     <!-- End compare Wrapper -->
 
-   <!-- scroll to top -->
-    @stop()
+    <!-- scroll to top -->
+@stop()
