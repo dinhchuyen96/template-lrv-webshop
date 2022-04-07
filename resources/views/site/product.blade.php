@@ -13,7 +13,7 @@
                         <div class="breadcrumb-wrap">
                             <nav aria-label="breadcrumb">
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Product details external</li>
                                 </ul>
                             </nav>
@@ -211,6 +211,7 @@
                                                         Your Name</label>
                                                         <input type="hidden" name="product_id" value="{{$product->id}}">
                                                     <input type="text" value="{{$acc->first_name}} {{$acc->last_name}}" name="name_reviewer" class="form-control" required>
+                                                    <h5>You have an account? <a href="{{route('home.login')}}">Login!</a></h5>
                                                 </div>
                                             </div>
                                             <div class="form-group row">

@@ -30,6 +30,15 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         view()->composer('*',function($view){
             $acc = Auth::guard('account')->user(); // lấy thông tin account đang đăng nhập
+            // dd($acc->all());
+            if($acc == null){
+                $acc = [
+                    'first_name' => "Guest",
+                    'last_name' => ""
+                ];
+                $acc =(object)$acc; // tạo đối tượng
+                // dd($acc);
+            }
             $wishlists = session('wishlist')? session('wishlist') : []; // lấy sản phẩm trong sesion wishlist
             $totalWishlist = count($wishlists); // đếm số sản phẩm trong wishlist
 

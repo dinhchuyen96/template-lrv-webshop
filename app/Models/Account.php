@@ -26,8 +26,8 @@ class Account extends Authenticatable
         'phone',
         'password',
         'address',
-        'birth_day'
-        // 'status'
+        'birth_day',
+        'status'
     ];
 }
     

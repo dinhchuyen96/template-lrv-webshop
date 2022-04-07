@@ -11,8 +11,8 @@
                     <div class="breadcrumb-wrap">
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Cart</li>
+                                <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Your-Order</li>
                             </ul>
                         </nav>
                     </div>
@@ -32,7 +32,7 @@
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                                     <div class="section-title">
-                                        <h3>Shopping Cart</h3>
+                                        <h3>History of your order</h3>
                                     </div>
                                     @if($orders->count())
                                         <div class="table-responsive">
