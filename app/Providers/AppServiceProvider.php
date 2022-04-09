@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
             $totalPrice = 0; // tổng tiền = 0
             $vat=0; // thuế vat =0
             $tax = 0; // thuế ECO
-            $cats = Category::orderBy('name','ASC')->where('status','>',0)->get(); // Lấy danh mục hiển thị trong bảng danh mục 
+            $cats = Category::orderBy('name','ASC')->where('status','>',0)->get(); // Lấy danh sách danh mục có trong bảng danh mục 
             $carts = session('cart') ? session('cart'):[];  // lấy giỏ hàng trong session('cart')
             
             foreach($carts as $key =>$cart){ //Duyệt mảng sản phẩm có trong giỏ hàng

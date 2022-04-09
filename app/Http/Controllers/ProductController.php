@@ -18,9 +18,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $pros = Category::orderBy('name','DESC')->get();
-        $data2 = Product::orderBy('id','DESC')->search()->paginate(10);
-        return view('admin.product.index',compact('data2','pros'));
+        $pro_cats = Category::orderBy('name','DESC')->get();
+        $data_product = Product::orderBy('id','DESC')->search()->paginate(10);
+        return view('admin.product.index',compact('data_product','pro_cats'));
     }
 
     /**
@@ -30,8 +30,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $pros =Category::orderBy('name','ASC')->get();
-        return view('admin.product.create', compact('pros'));
+        $pro_cats =Category::orderBy('name','ASC')->get();
+        return view('admin.product.create', compact('pro_cats'));
         
     }
 
@@ -43,7 +43,7 @@ class ProductController extends Controller
      */
     public function store(ProductCreateRequest $req)
     {
-        $data2 = $req->all('name','description','price','sale_price','category_id','status');
+        $data_product = $req->all('name','description','price','sale_price','category_id','status',);
         // upload ảnh
         $file_name = $req->upload->getClientOriginalName();
 
@@ -57,10 +57,10 @@ class ProductController extends Controller
         $check_upload = $req->upload->move(public_path('uploads/'), $final_name);
 
         if($check_upload){
-            $data2['image'] = $final_name;
+            $data_product['image'] = $final_name;
         };
 
-        if(Product::create($data2)){
+        if(Product::create($data_product)){
             return redirect()->route('product.index')->with('yes','thêm mới thành công');
         }else{
             return redirect()->route('product.index')->with('yes','thêm mới thất bại');
@@ -88,7 +88,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $pros = Category::orderBy('name', 'ASC')->get();
+        $pros = Product::orderBy('name', 'ASC')->get();
         return view('admin.product.edit', compact('pros','product'));
     }
 
@@ -101,7 +101,7 @@ class ProductController extends Controller
      */
     public function update(Request $req, Product $product)
     {
-        $data2 = $req->all('name','price','sale_price','category_id','status');
+        $data_product = $req->all('name','price','sale_price','category_id','status','description','sort_description','title_slide','take_slide');
         if($req->has('upload')){
             $file_name = $req->upload->getClientOriginalName();
             $partInfo = pathinfo($file_name);
@@ -110,10 +110,10 @@ class ProductController extends Controller
             $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
             $check_upload = $req->upload->move(public_path('uploads/'), $final_name);
             if($check_upload){
-                $data2['image'] = $final_name;
+                $data_product['image'] = $final_name;
             }
         }
-        $product->update($data2);
+        $product->update($data_product);
         return redirect()->route('product.index')->with('yes','Cập nhật thành công');
     }
 

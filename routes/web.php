@@ -92,7 +92,8 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
     Route::get('/', [AdminController::class, 'index'])->name('admin.category.index');
     Route::resources([
         'category' => CategoryController::class,
-        'product' => ProductController::class
+        'product' => ProductController::class,
+        'banner' => BannerController::class
     ]);
     Route::group(['prefix'=>'order'], function(){
         Route::get('/',[OrderAdminController::class, 'index'])->name('order.index');

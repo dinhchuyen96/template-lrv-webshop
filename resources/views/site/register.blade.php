@@ -76,7 +76,7 @@
                                             <div class="form-group row">
                                                 <label for="l-name" class="col-12 col-sm-12 col-md-4 col-form-label">Last Name</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="text" class="form-control" value="{{old('last_name')}}" name="last_name" id="l-name" required="">
+                                                    <input type="text" class="form-control" maxlength="20" value="{{old('last_name')}}" name="last_name" id="l-name" required="">
                                                     @error('last_name'){{$message}} @enderror
                                                 </div>
                                             </div>
@@ -104,14 +104,14 @@
                                             <div class="form-group row">
                                                 <label for="newpassword" class="col-12 col-sm-12 col-md-4 col-form-label">New Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="password" name="password" class="form-control" id="newpassword" required="">
+                                                    <input type="password" name="password" maxlength="16" class="form-control" id="newpassword" required="">
                                                     <button class="pass-show-btn" type="button">Show</button>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">Confirm Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="password" name="conf_password"class="form-control" id="c-password" >
+                                                    <input type="password" name="conf_password" maxlength="16" class="form-control" id="c-password" >
                                                     @error('conf_password'){{$message}} @enderror
                                                     <button class="pass-show-btn" type="button">Show</button>
                                                 </div>

@@ -9,7 +9,7 @@
         <div class="form-group">          
           <select class="form-control" name="cat_id" id="">
             <option>Chọn danh mục</option>
-            @foreach($pros as $cat)
+            @foreach($pro_cats as $cat)
             <option value="{{$cat->id}}">{{$cat->name}}</option>
             @endforeach
           </select>
@@ -36,12 +36,12 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($data2 as $key => $model)
+        @foreach($data_product as $key => $model)
         <tr>
             <td>{{$key +1}}</td>
-            <td>{{$model->name}}</td>
+            <td width="5px">{{$model->name}}</td>
             <td>{{$model->cat->name}}</td>
-            <td>{{number_format($model->price)}}/{{$model->sale_price}}</td>
+            <td>{{number_format($model->price)}} / {{$model->sale_price}}</td>
             <td><img src="{{url('uploads')}}/{{$model->image}}" alt="" style="width: 100px; height: 100px"></td>
             <td>
                 @if($model->status ==0 )
@@ -50,7 +50,7 @@
                 <label class="badge badge-success">Hiển thị</label>
                 @endif
             </td>
-
+            
             <td>{{$model->created_at ? $model->created_at->format('d/m/Y'): ''}}</td>
             <td>
                 <form action="{{ route('product.destroy', $model->id) }}" method="post">
@@ -64,5 +64,5 @@
     </tbody>
 </table>
 <hr>
-{{$data2->links()}}
+{{$data_product->links()}}
 @stop();

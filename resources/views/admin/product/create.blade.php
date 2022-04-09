@@ -4,22 +4,21 @@
     <form action="{{ route('product.store') }}" method="POST" role="form" enctype="multipart/form-data">
         @csrf
         <div class="row form-group">
-            <div class="col-md-6"><label for="">Danh mục sản phẩm</label>
-                <div class="form-group">
-                    <label for=""></label>
-                    <select class="form-control" name="category_id" id="">
-                        <option>Chọn danh mục</option>
-                        @foreach ($pros as $cat)
-                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                        @endforeach
-                    </select>
-                    @error('category_id')
-                        {{ $message }}
-                    @enderror
-                </div>
+            <div class="col-md-6">
+                <label for="">Danh mục sản phẩm</label>
+                <select class="form-control" name="category_id" id="">
+                    <option>Chọn danh mục</option>
+                    @foreach ($pro_cats as $cat)
+                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                    @endforeach
+                </select>
+                @error('category_id')
+                    {{ $message }}
+                @enderror
             </div>
-            <div class="col-md-6"><label for="">Tên sản phẩm</label>
-                <input type="text" class="form-control" value="{{ old('name') }}" name="name"
+            <div class="col-md-6">
+                <label for="">Tên sản phẩm</label>
+                <input type="text" style="padding" class="form-control" value="{{ old('name') }}" name="name"
                     placeholder="Nhập tên của sản phẩm">
                 @error('name')
                     {{ $message }}
@@ -77,35 +76,14 @@
                 <div class="radio">
                     <label>
                         <input type="radio" name="status" value="1"">
-                        Hiển thị
-                    </label>
-                </div>
-                </div>
-                <div class="  col-md-4">
-                        <label for="">Đặt làm slide</label>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="take_slide" value="0" checked>
-                                Tạm Ẩn
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="take_slide" value="1"">
                             Hiển thị
                         </label>
                     </div>
-                 </div>
-                 <div class="  col-md-4">
-                                <label for="">Nội dung title trong slide</label>
-                                <input size="41.5" type="text" name="title_slide" id=""
-                                    placeholder="Nhập title hiển thị trên slide">
-                        </div>
+                    </div>
+                    
+                     
 
                 </div>
-
-
-
                 <button type="submit" class="btn btn-primary">Lưu lại</button>
     </form>
 @stop();

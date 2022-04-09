@@ -8,8 +8,7 @@
             $category = Category::paginate(2);
             $product_sale = Product::product_sale(8);
             $product_new = Product::product_new(4);
-            //  dd($product_sale->all());
-            
+                        
             return view('site\home',compact('product_sale','product_new'));
         }
         public function contactus(){
