@@ -11,6 +11,9 @@
     <meta name="keywords" content="">
     <!-- Page Title -->
 	<title>@yield('title')</title>
+
+    <link rel="stylesheet" href="{{url('home')}}/assets/css/options.css">
+
 	<!--Fevicon-->
 	<link rel="icon" href="{{url('home')}}/assets/img/icon/favicon.ico" type="image/x-icon" />
 	<!-- Bootstrap css -->
@@ -130,7 +133,7 @@
                         <div class="mini-cart-option">
                             <ul>
                                 <li class="compare">
-                                    <a class="ha-toggle" href="/compare"><span class="lnr lnr-sync"></span>Product compare</a>
+                                    <a class="ha-toggle" href="/compare"><span class="lnr lnr-sync"><span class="count">{{$totalQuantity}}</span></span>Product compare</a>
                                 </li>
                                 <li class="wishlist">
                                     <a class="ha-toggle" href="{{route('home.wishlist')}}"><span class="lnr lnr-heart"></span><span class="count">{{$totalWishlist}}</span>wishlist</a>

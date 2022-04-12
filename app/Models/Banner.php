@@ -14,5 +14,8 @@ class Banner extends Model
     {
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
-    
+    public function scopeBanner($query, $limit = 3){
+        $query = $query->orderBy('id','DESC')->where('status','>',0)->limit($limit)->get();
+        return $query;
+    }
 }

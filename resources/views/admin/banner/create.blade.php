@@ -38,7 +38,8 @@
                         <input type="radio" name="status" value="1"">
                         Hiển thị
                     </label>
-                </div></div>
+                </div>
+            </div>
                 <div class="col-md-6"> 
                     <label for="">Nội dung title trong slide</label><br>
                     <input size="41.5" type="text" name="title" id="" placeholder="Nhập title hiển thị trên slide">

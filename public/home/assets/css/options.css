@@ -1,0 +1,10 @@
+#btn-delete{
+    display: none;
+    width: 50px;
+}
+#review{
+    width: 250px;
+}
+#review:hover #btn-delete{
+    display: inline-block;
+}

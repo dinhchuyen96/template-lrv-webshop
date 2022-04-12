@@ -10,7 +10,6 @@ use App\Http\Controllers\OrderHomeController;
 use App\Http\Controllers\OrderAdminController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CompareController;
-use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,7 +74,9 @@ Route::group(['prefix'=>'order','middleware' => 'acc'], function(){
 Route::get('/danh-muc/{category}', [HomeController::class, 'category'])->name('home.category');
 Route::group(['prefix'=>'//{product}-{slug?}'], function(){
     Route::get('/', [HomeController::class, 'product'])->name('home.product');
-    Route::post('/review', [ReviewController::class, 'add'])->name('home.product.add-review');
+    Route::resources([
+        'review' => ReviewController::class,
+    ]);
 }); 
 Route::get('/myaccount', [HomeController::class, 'myaccount'])->name('myaccount');
 
@@ -92,7 +93,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
     Route::get('/', [AdminController::class, 'index'])->name('admin.category.index');
     Route::resources([
         'category' => CategoryController::class,
-        'product' => ProductController::class,
+        'product' => ProductAdminController::class,
         'banner' => BannerController::class
     ]);
     Route::group(['prefix'=>'order'], function(){

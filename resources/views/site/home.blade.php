@@ -3,22 +3,26 @@
 @section('main')
 
 <div class="slider-area">
+        <!-- slider area start -->
         <div class="hero-slider-active slick-dot-style slider-arrow-style">
-            
-                <div class="single-slider d-flex align-items-center" style="background-image: url({{url('uploads')}}/);">
+                @foreach($banners as $banner)
+                
+                <div class="single-slider d-flex align-items-center" style="background-image: url({{url('uploads')}}/banner/{{$banner->image_slide}});">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-6 col-sm-8">
                                 <div class="slider-text">
-                                    <h1></h1>
-                                    <p></p>
-                                    <a class="btn-1 home-btn" href="">shop now</a>
+                                    <h1><a href=""><a href="{{route('home.product',['product'=>$banner->product_id,'slug'=>Str::slug($banner->pro->name)])}}" >{{$banner->title}}</a></h1>
+                                    <p>
+                                        {{$banner->name}}-<a href="{{route('home.product',['product'=>$banner->product_id,'slug'=>Str::slug($banner->pro->name)])}}">{{$banner->pro->name}}</a>
+                                    </p>
+                                    <a class="btn-1 home-btn" href="{{route('home.cart-add',$banner->product_id)}}">shop now</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            
+                @endforeach
         </div>
     </div>
     

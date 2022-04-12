@@ -13,7 +13,7 @@
                         <div class="breadcrumb-wrap">
                             <nav aria-label="breadcrumb">
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Product details external</li>
                                 </ul>
                             </nav>
@@ -91,13 +91,13 @@
                                 <div class="pro-details-review mb-20">
                                     <ul>
                                         <li>
-                                            <span><i  style="color:yellow" {{$avg_rating >='4.5'?'':'hidden'}} class="fa fa-star"></i></>
+                                            {{-- <span><i  style="color:yellow" {{$avg_rating >='4.5'?'':'hidden'}} class="fa fa-star"></i></>
                                             <span><i  style="color:yellow" {{$avg_rating >='3.5'?'':'hidden'}}  class="fa fa-star"></i></>
                                             <span><i  style="color:yellow" {{$avg_rating >='2.5'?'':'hidden'}}  class="fa fa-star"></i></>
-                                            <span><i  style="color:yellow" {{$avg_rating >='1.5'?'':'hidden'}}  class="fa fa-star"></i></>
-                                            <span><i style="color:yellow"  class="fa fa-star"></i></>
+                                            <span><i  style="color:yellow" {{$avg_rating >='1.5'?'':'hidden'}}  class="fa fa-star"></i></> --}}
+                                            <span><i style="color:yellow" class="fa fa-star"></i></>
                                         </li>
-                                        <li><a href="#">{{$number_reviews}} Reviews</a></li>
+                                        <li><a href="#">{{ $number_reviews }} Reviews</a></li>
                                     </ul>
                                 </div>
                                 <div class="price-box mb-15">
@@ -166,7 +166,8 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="nav_review" data-toggle="pill" href="#tab_review"
-                                        role="tab" aria-controls="tab_review" aria-selected="false">Reviews ({{$number_reviews}})</a>
+                                        role="tab" aria-controls="tab_review" aria-selected="false">Reviews
+                                        ({{ $number_reviews }})</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -177,48 +178,80 @@
                                 <div class="tab-pane fade" id="tab_review" role="tabpanel" aria-labelledby="nav_review">
                                     <div class="product-review">
                                         <div class="customer-review">
-                                            <table class="table table-striped table-bordered">
-                                                @foreach ($reviews as $review)
-                                                <tbody>
-                                                    <tr>
-                                                        <td><strong>{{$review->name_reviewer}}</strong></td>
-                                                        <td class="text-right">{{$review->created_at->format('d-m-Y')}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="2">
-                                                            <p>{{$review->review}}</p>
-                                                            <div class="product-ratings">
-                                                                <ul class="ratting d-flex mt-2">
-                                                                    <li><span style="color:yellow"><i {{$review->rating<='4'?'hidden':''}} class="fa fa-star"></i></span></li>
-                                                                    <li><span style="color:yellow"><i {{$review->rating<='3'?'hidden':''}} class="fa fa-star"></i></span></li>
-                                                                    <li><span style="color:yellow"><i {{$review->rating<='2'?'hidden':''}}  class="fa fa-star"></i></span></li>
-                                                                    <li><span style="color:yellow"><i {{$review->rating<='1'?'hidden':''}}  class="fa fa-star"></i></span></li>
-                                                                    <li><span style="color:yellow"><i class="fa fa-star"></i></span></li>
-                                                                </ul>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                                @endforeach
-                                            </table>
+                                            
+                                                <table class="table table-striped table-bordered">
+                                                    @foreach ($reviews as $reviews)
+                                                    <form method="POST" action="{{route('review.destroy', ['product' => $product->id, 'slug' => Str::slug($product->name), 'review'=>$reviews->id]) }}">
+                                                        @csrf @method('DELETE')
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><strong>{{ $reviews->name_reviewer }} </strong></td>
+                                                                <td class="text-right">
+                                                                    {{ $reviews->created_at->format('d-m-Y') }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <p id="review">{{ $reviews->content_review }}-
+                                                                        @if ($reviews->account_id == $acc->id)
+                                                                            <button id="btn-delete" onclick="return confirm('are you sure?')" class="btn">
+                                                                                <i style="color:rgb(240, 29, 29)" class="fa fa-window-close" aria-hidden="true"></i>
+                                                                            </button>
+                                                                        @endif
+                                                                    </p>
+                                                                    <div class="product-ratings">
+                                                                        <ul class="ratting d-flex mt-2">
+                                                                            <li><span style="color:yellow"><i
+                                                                                        {{ $reviews->rating <= '4' ? 'hidden' : '' }}
+                                                                                        class="fa fa-star"></i></span>
+                                                                            </li>
+                                                                            <li><span style="color:yellow"><i
+                                                                                        {{ $reviews->rating <= '3' ? 'hidden' : '' }}
+                                                                                        class="fa fa-star"></i></span>
+                                                                            </li>
+                                                                            <li><span style="color:yellow"><i
+                                                                                        {{ $reviews->rating <= '2' ? 'hidden' : '' }}
+                                                                                        class="fa fa-star"></i></span>
+                                                                            </li>
+                                                                            <li><span style="color:yellow"><i
+                                                                                        {{ $reviews->rating <= '1' ? 'hidden' : '' }}
+                                                                                        class="fa fa-star"></i></span>
+                                                                            </li>
+                                                                            <li><span style="color:yellow"><i
+                                                                                        class="fa fa-star"></i></span>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </form>
+                                                    @endforeach
+                                                </table>
                                         </div> <!-- end of customer-review -->
-                                        <form method="POST" action="{{route('home.product.add-review',['product'=>$product->id,'slug'=>Str::slug($product->name)])}}" class="review-form">
+                                        <form method="POST"
+                                            action="{{ route('review.store', ['product' => $product->id, 'slug' => Str::slug($product->name)]) }}"
+                                            class="review-form">
                                             @csrf
                                             <h2>Write a review</h2>
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label class="col-form-label"><span class="text-danger">*</span>
                                                         Your Name</label>
-                                                        <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                    <input type="text" value="{{$acc->first_name}} {{$acc->last_name}}" name="name_reviewer" class="form-control" required>
-                                                    <h5>You have an account? <a href="{{route('home.login')}}">Login!</a></h5>
+                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                    <input type="hidden" name="account_id" value="{{ $acc->id }}">
+                                                    <input type="text"
+                                                        value="{{ $acc->first_name }} {{ $acc->last_name }}"
+                                                        name="name_reviewer" class="form-control" required>
+                                                    @if($acc->first_name == 'Guest')
+                                                        <h5>You have an account? <a href="{{ route('home.login') }}">Login!</a></h5>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label class="col-form-label"><span class="text-danger">*</span>
                                                         Your Review</label>
-                                                    <textarea class="form-control" name="review" required></textarea>
+                                                    <textarea class="form-control" name="content_review" required></textarea>
                                                     <div class="help-block pt-10"><span
                                                             class="text-danger">Note:</span> HTML is not translated!
                                                     </div>

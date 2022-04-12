@@ -52,7 +52,7 @@
                                                             <a href="product-details.html"><img src="{{url('uploads')}}/{{$wishlist->image}}" alt="Wishlist Product Image" width="80" title="Compete Track Tote"></a>
                                                             </td>
                                                             <td>
-                                                                <a href="product-details.html">{{$wishlist->name}}</a>
+                                                                <a href="{{route('home.product',['product'=>$wishlist->id,'slug'=>Str::slug($wishlist->name)])}}">{{$wishlist->name}}</a>
                                                             </td>
                                                             <td>3</td>
                                                             <td>In Stock</td>
@@ -60,6 +60,7 @@
                                                                 <div class="price"><small><del>${{$wishlist->price}}</del></small> <strong>$1{{$wishlist->sale_price}}</strong></div>
                                                             </td>
                                                             <td>
+                                                        
                                                                 <a href="{{route('home.cart-add',$wishlist->id)}}" type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i></a>
                                                                 <a href="{{route('home.remove-wishlist',$wishlist->id)}}" class="btn btn-danger"><i class="fa fa-times"></i></a>
                                                             </td>

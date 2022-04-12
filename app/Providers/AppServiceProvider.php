@@ -30,9 +30,10 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         view()->composer('*',function($view){
             $acc = Auth::guard('account')->user(); // lấy thông tin account đang đăng nhập
-            // dd($acc->all());
+            // dd($acc->id);
             if($acc == null){
                 $acc = [
+                    'id' => 0,
                     'first_name' => "Guest",
                     'last_name' => ""
                 ];
@@ -44,7 +45,6 @@ class AppServiceProvider extends ServiceProvider
 
 
             $totalQuantity = 0; // tổng số lượng order bằng 0
-            $totalWishlist = 0; // tổng số lượng sản phẩm yêu thích = 0
             $subPrice = 0; // Giá trước khi thanh toán = 0
             $totalPrice = 0; // tổng tiền = 0
             $vat=0; // thuế vat =0

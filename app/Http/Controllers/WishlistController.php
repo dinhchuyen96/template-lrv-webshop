@@ -8,12 +8,13 @@ class WishlistController extends Controller
 {
     public function view(){
         $wishlists = session('wishlist')? session('wishlist') : [];
+        // dd($wishlists);
         return view('site\wishlist',compact('wishlists'));
     }
     public function add(Product $product)
     {
-        // dd($product);
         $wishlists = session('wishlist')? session('wishlist') : [];
+        // dd($wishlists);
         $item = [
             'id' => $product->id,
             'name' => $product->name,
@@ -24,11 +25,8 @@ class WishlistController extends Controller
         ];
         $item =(object)$item;
         $wishlists[$product->id] = $item;
-
         session(['wishlist'=> $wishlists]);
-        // session(['wishlist'=> null]);
-        //  dd($wishlists);
-        // return view('site.wishlist');
+        
         return redirect()->route('home')->with('ok', 'thêm sản phẩm vào wishlist thành công');
     }
     public function remove(Product $product){

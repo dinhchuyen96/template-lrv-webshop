@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ProductCreateRequest;
 use Str;
 
-class ProductController extends Controller
+class ProductAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -116,6 +116,12 @@ class ProductController extends Controller
         $product->update($data_product);
         return redirect()->route('product.index')->with('yes','Cập nhật thành công');
     }
+    // public function update_rating(Request $req, Product $product)
+    // {
+    //     $data_rating = $req->only('rating');
+    //     $product->update($data_rating);
+    //     return redirect()->back();
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -126,7 +132,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        // dd($category);
-        return redirect()->route('product.index')->with('yes','Xóa thành công');;
+        // dd($product);
+        return redirect()->route('product.index')->with('yes','Xóa thành công');
     }
 }
