@@ -42,7 +42,8 @@ class AppServiceProvider extends ServiceProvider
             }
             $wishlists = session('wishlist')? session('wishlist') : []; // lấy sản phẩm trong sesion wishlist
             $totalWishlist = count($wishlists); // đếm số sản phẩm trong wishlist
-
+            $procompare = session('compare')? session('compare') : [];
+            $totalCompare= count($procompare);
 
             $totalQuantity = 0; // tổng số lượng order bằng 0
             $subPrice = 0; // Giá trước khi thanh toán = 0
@@ -62,7 +63,7 @@ class AppServiceProvider extends ServiceProvider
 
             
 
-            $view->with(compact('cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','totalWishlist','acc'));
+            $view->with(compact('cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','totalWishlist','acc','totalCompare'));
         });
     }
 }

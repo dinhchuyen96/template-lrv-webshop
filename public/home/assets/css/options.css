@@ -8,3 +8,6 @@
 #review:hover #btn-delete{
     display: inline-block;
 }
+.ml-1-compare{
+    margin-left: -1rem;
+}

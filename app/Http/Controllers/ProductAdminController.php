@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductCreateRequest;
+use App\Http\Requests\ProductEditRequest;
 use Str;
 
 class ProductAdminController extends Controller
@@ -99,7 +100,7 @@ class ProductAdminController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, Product $product)
+    public function update(ProductEditRequest $req,Product $product)
     {
         $data_product = $req->all('name','price','sale_price','category_id','status','description','sort_description','title_slide','take_slide');
         if($req->has('upload')){

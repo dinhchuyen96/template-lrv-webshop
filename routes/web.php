@@ -43,7 +43,7 @@ Route::group(['prefix'=>'compare','middleware' => 'acc'], function(){
     Route::get('/remove/{product}',[CompareController::class, 'remove'])->name('home.remove-compare');  
 });
                                     // Cart Route
-Route::group(['prefix'=>'cart'], function(){
+Route::group(['prefix'=>'cart','middleware' => 'acc'], function(){
     Route::get('/',[CartController::class, 'view'])->name('home.cart');
     Route::get('/clear',[CartController::class, 'clear'])->name('home.cart-clear');
     Route::get('/add/{product}',[CartController::class, 'add'])->name('home.cart-add');

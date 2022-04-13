@@ -19,18 +19,16 @@
         public function myaccount(){
             return view('site\myaccount');
         }
-        public function compare(){
-            return view('site\compare');
-        }
         public function category(Category $category){
-            $products = $category->products()->paginate(4);
+            $products = $category->products_byCat()->paginate(4);
             return view('site\category',compact('category','products'));
         }
-        public function product(Product $product){
+        public function product(Product $product,Category $category){
             $reviews = Review::reviews($product->id); //take Product_id to scopereviews in Model Review
             $number_reviews = count($reviews);
-            
-            return view('site\product',compact('product','reviews','number_reviews'));
+            $products_byCat = $category->products_byCat()->paginate(4);
+            dd($products_byCat);
+            return view('site\product',compact('products_byCat','product','reviews','number_reviews'));
         }
     };
 ?>

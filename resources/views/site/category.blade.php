@@ -140,7 +140,7 @@
                                  </div>
                                  <div class="product-caption">
                                      <div class="manufacture-product">
-                                         <p><a href="shop-grid-left-sidebar.html">{{$category->name}}</a></p>
+                                         <p><a href="{{route('home.category',$category->id)}}">{{$category->name}}</a></p>
                                      </div>
                                      <div class="product-name">
                                          <h4><a href="{{route('home.product',['product'=>$product->id,'slug'=>Str::slug($product->name)])}}">{{$product->name}}</a></h4>

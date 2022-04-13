@@ -34,10 +34,7 @@
     <script src="{{url('home')}}/assets/js/vendor/modernizr-3.5.0.min.js"></script>
 </head>
 <body>
-	<!--[if lte IE 9]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-    <![endif]-->
-
+    
     <!-- header area start -->
     <header class="header-pos">
         <div class="header-top black-bg">
@@ -100,7 +97,7 @@
                     </div>
                     <div class="col-lg-6 col-md-12 col-12 order-sm-last">
                         <div class="header-middle-inner">
-                            <form action="https://template.hasthemes.com/sinrato/sinrato/method">
+                            {{-- <form action="https://template.hasthemes.com/sinrato/sinrato/method">
                                 <div class="top-cat hm1">
                                     <div class="search-form">
                                          <select>
@@ -125,7 +122,7 @@
                                 </div>
                                 <input type="text" class="top-cat-field" placeholder="Search entire store here">
                                 <input type="button" class="top-search-btn" value="Search">
-                            </form>
+                            </form> --}}
                         </div>
                     </div>
                     @if(auth()->guard('account')->check())
@@ -133,7 +130,7 @@
                         <div class="mini-cart-option">
                             <ul>
                                 <li class="compare">
-                                    <a class="ha-toggle" href="/compare"><span class="lnr lnr-sync"><span class="count">{{$totalQuantity}}</span></span>Product compare</a>
+                                    <a class="ha-toggle" href="/compare"><span class="lnr lnr-sync"><span class="count ml-1-compare">{{$totalCompare}}</span></span>Product compare</a>
                                 </li>
                                 <li class="wishlist">
                                     <a class="ha-toggle" href="{{route('home.wishlist')}}"><span class="lnr lnr-heart"></span><span class="count">{{$totalWishlist}}</span>wishlist</a>
@@ -511,7 +508,19 @@
         <!-- footer bottom area end -->
     </footer>
     <!-- footer area end -->
-
+    @if(session()->has('ok'))
+    
+	<div class="modal fade" id="overlay">
+        <div class="modal-dialog">
+          <div class="modal-content" >
+            <div class="modal-header" style="background-color: rgb(255, 255, 255)">
+              {{-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> --}}
+              <h3 class="modal-title" style="color: green">{{session()->get('ok')}}</h3>
+            </div>
+          </div>
+        </div>
+    </div>
+    @endif
 
 	<!-- all js include here -->
     <script src="{{url('home')}}/assets/js/vendor/jquery-1.12.4.min.js"></script>

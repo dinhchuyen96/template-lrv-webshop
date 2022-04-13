@@ -1,5 +1,13 @@
 (function ($) {
 	"use strict";
+		//Modal homepage 
+		$('#overlay').modal('show');
+
+		setTimeout(function() {
+			$('#overlay').modal('hide');
+		}, 3000);
+
+
 
 		var $window = $(window);
 		$window.on('scroll', function() {    

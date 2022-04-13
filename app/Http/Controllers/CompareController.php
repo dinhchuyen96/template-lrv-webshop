@@ -10,7 +10,6 @@ class CompareController extends Controller
 {
     public function view(){
         $procompare = session('compare')? session('compare') : [];
-
         return view('site\compare',compact('procompare'));
     }
     public function add(Product $product)
@@ -32,7 +31,7 @@ class CompareController extends Controller
         session(['compare'=> $procompare]);
         // session(['compare'=> null]);
         //  dd($procompare);
-        return redirect()->route('home')->with('ok', 'thêm sản phẩm vào compare thành công');
+        return redirect()->route('home')->with('ok', 'Thêm sản phẩm vào compare thành công');
     }
     public function remove(Product $product){
         $procompare = session('compare')? session('compare') : [];
@@ -40,7 +39,7 @@ class CompareController extends Controller
             unset($procompare[$product->id]); 
             session(['compare'=> $procompare]);
         }
-        return redirect()->route('home.compare')->with('ok', 'xóa sản phẩm khỏi compare thành công');
+        return redirect()->route('home.compare')->with('ok', 'Xóa sản phẩm khỏi compare thành công');
         if($procompare == null){
             return redirect()->route('home');
         }
