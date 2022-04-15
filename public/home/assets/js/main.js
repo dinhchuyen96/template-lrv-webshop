@@ -8,7 +8,7 @@
 
 		setTimeout(function() {
 			$('#overlay').modal('hide');
-		}, 4000);
+		}, 2000);
 
 		// 
 		setTimeout(function() {

@@ -108,7 +108,7 @@
                                 <div class="top-cat hm1">
                                     <div class="search-form">
                                         <select class="form-control" name="cat_id" id="">
-                                            <option>Select</option>
+                                            <option value="">Select</option>
                                             @foreach($cats as $cat)
                                                 <option value="{{$cat->id}}">{{$cat->name}}</option>
                                             @endforeach
@@ -134,7 +134,7 @@
                                         @foreach ($products_search as $key => $value)
                                                 <div class="product-item mb-30">
                                                     <div class="product-thumb">
-                                                        <a href="product-details.html">
+                                                        <a href="{{ route('home.product', ['product' => $value->id, 'slug' => Str::slug($value->name)]) }}">
                                                             <img src="{{url('uploads')}}/{{$value->image}}" width="250px" class="pri-img" alt="">
                                                             <img src="{{url('uploads')}}/{{$value->image}}" width="250px" class="sec-img" alt="">
                                                         </a>
@@ -155,10 +155,10 @@
                                                     </div>
                                                     <div class="product-caption">
                                                         <div class="manufacture-product">
-                                                            <p><a href="shop-grid-left-sidebar.html">{{$value->cat->name}}</a></p>
+                                                            <p><a href="{{ route('home.category', $value->category_id) }}">{{$value->cat->name}}</a></p>
                                                         </div>
                                                         <div class="product-name">
-                                                            <h4><a href="product-details.html">{{$value->name}}</a></h4>
+                                                            <h4><a href="{{ route('home.product', ['product' => $value->id, 'slug' => Str::slug($value->name)]) }}">{{$value->name}}</a></h4>
                                                         </div>
                                                         <div class="ratings">
                                                             <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -171,7 +171,7 @@
                                                             <span class="regular-price"><span class="special-price">{{$value->sale_price}}</span></span>
                                                             <span class="old-price"><del>${{$value->price}}</del></span>
                                                         </div>
-                                                        <button class="btn-cart" type="button">add to cart</button>
+                                                        <a href="{{route('home.cart-add',$value->id)}}" class="btn-cart btn " type="button">add to cart</a>
                                                     </div>
                                                 </div>
                                                 @endforeach
