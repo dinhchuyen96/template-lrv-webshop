@@ -10,7 +10,7 @@
           <select class="form-control" name="cat_id" id="">
             <option>Chọn danh mục</option>
             @foreach($pro_cats as $cat)
-            <option value="{{$cat->id}}">{{$cat->name}}</option>
+                <option value="{{$cat->id}}">{{$cat->name}}</option>
             @endforeach
           </select>
         </div>

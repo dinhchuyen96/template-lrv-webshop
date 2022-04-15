@@ -1,13 +1,19 @@
 (function ($) {
 	"use strict";
+	$(window).on('load', function() {
+        $('#exampleModalLong').modal('show');
+    });
 		//Modal homepage 
 		$('#overlay').modal('show');
 
 		setTimeout(function() {
 			$('#overlay').modal('hide');
-		}, 3000);
+		}, 4000);
 
-
+		// 
+		setTimeout(function() {
+			$('#mydiv').fadeOut('fast');
+		}, 1000); // <-- time in milliseconds
 
 		var $window = $(window);
 		$window.on('scroll', function() {    
@@ -19,6 +25,18 @@
 			}
 		});
 
+		// Scroll Back
+		$(document).ready(function () {
+
+			if (localStorage.getItem("my_app_name_here-quote-scroll") != null) {
+				$(window).scrollTop(localStorage.getItem("my_app_name_here-quote-scroll"));
+			}
+		
+			$(window).on("scroll", function() {
+				localStorage.setItem("my_app_name_here-quote-scroll", $(window).scrollTop());
+			});
+		
+		  });
 		$('#mobile-menu').each(function() {
 			var $this = $(this);
 			var $screenWidth = $this.attr('data-screen') ? parseInt($this.attr('data-screen'), 10) : 991;

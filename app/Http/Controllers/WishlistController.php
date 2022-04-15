@@ -27,7 +27,7 @@ class WishlistController extends Controller
         $wishlists[$product->id] = $item;
         session(['wishlist'=> $wishlists]);
         
-        return redirect()->route('home')->with('ok', 'thêm sản phẩm vào wishlist thành công');
+        return redirect()->route('home')->with('ok', 'Thêm sản phẩm vào wishlist thành công');
     }
     public function remove(Product $product){
         $wishlists = session('wishlist')? session('wishlist') : [];
@@ -35,9 +35,11 @@ class WishlistController extends Controller
             unset($wishlists[$product->id]); 
             session(['wishlist'=> $wishlists]);
         }
-        return redirect()->route('home.wishlist')->with('ok', 'xóa sản phẩm khỏi wishlist thành công');
+        if($wishlists != null){
+             return redirect()->route('home.wishlist')->with('ok', 'Xóa sản phẩm khỏi wishlist thành công');
+        }       
         if($wishlists == null){
-            return redirect()->route('home');
+            return redirect()->route('home')->with('ok', 'Wishlist rỗng, mời bạn chọn lại');;
         }
     }
 }

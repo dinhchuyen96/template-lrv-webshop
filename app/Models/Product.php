@@ -26,6 +26,7 @@ class Product extends Model
             $query = $query->where('category_id', $cat_id);
         }
         return $query;
+        // dd($query);
     }
 
     public function cat()

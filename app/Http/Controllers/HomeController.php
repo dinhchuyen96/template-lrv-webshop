@@ -4,13 +4,15 @@
     use App\Models\Product;
     use App\Models\Review;
     use App\Models\Banner;
+    use Illuminate\Http\Request;
     class HomeController extends Controller{
-        public function home(){
+        public function home(Request $request){
             $category = Category::paginate(2);
             $product_sale = Product::product_sale(8);
             $product_new = Product::product_new(4);
             $banners = Banner::banner(3);
-                        
+            
+            // dd($products_search->all());
             return view('site\home',compact('product_sale','product_new','banners'));
         }
         public function contactus(){
@@ -27,7 +29,7 @@
             $reviews = Review::reviews($product->id); //take Product_id to scopereviews in Model Review
             $number_reviews = count($reviews);
             $products_byCat = $category->products_byCat()->paginate(4);
-            dd($products_byCat);
+            // dd($products_byCat);
             return view('site\product',compact('products_byCat','product','reviews','number_reviews'));
         }
     };

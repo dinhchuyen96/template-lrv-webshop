@@ -1,40 +1,40 @@
-
 <!doctype html>
 <html class="no-js" lang="en">
 
 <!-- Mirrored from template.hasthemes.com/sinrato/sinrato/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 22 Feb 2022 12:51:39 GMT -->
+
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="keywords" content="">
     <!-- Page Title -->
-	<title>@yield('title')</title>
+    <title>@yield('title')</title>
 
-    <link rel="stylesheet" href="{{url('home')}}/assets/css/options.css">
+    <link rel="stylesheet" href="{{ url('home') }}/assets/css/options.css">
 
-	<!--Fevicon-->
-	<link rel="icon" href="{{url('home')}}/assets/img/icon/favicon.ico" type="image/x-icon" />
-	<!-- Bootstrap css -->
-    <link rel="stylesheet" href="{{url('home')}}/assets/css/bootstrap.min.css">
+    <!--Fevicon-->
+    <link rel="icon" href="{{ url('home') }}/assets/img/icon/favicon.ico" type="image/x-icon" />
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="{{ url('home') }}/assets/css/bootstrap.min.css">
     <!-- linear-icon -->
-    <link rel="stylesheet" href="{{url('home')}}/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{url('home')}}/assets/css/linear-icon.css">
+    <link rel="stylesheet" href="{{ url('home') }}/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url('home') }}/assets/css/linear-icon.css">
     <!-- all css plugins css -->
-    <link rel="stylesheet" href="{{url('home')}}/assets/css/plugins.css">
+    <link rel="stylesheet" href="{{ url('home') }}/assets/css/plugins.css">
     <!-- default style -->
-    <link rel="stylesheet" href="{{url('home')}}/assets/css/default.css">
+    <link rel="stylesheet" href="{{ url('home') }}/assets/css/default.css">
     <!-- Main Style css -->
-    <link rel="stylesheet" href="{{url('home')}}/assets/css/style.css">
+    <link rel="stylesheet" href="{{ url('home') }}/assets/css/style.css">
     <!-- responsive css -->
-    <link rel="stylesheet" href="{{url('home')}}/assets/css/responsive.css">
+    <link rel="stylesheet" href="{{ url('home') }}/assets/css/responsive.css">
 
     <!-- Modernizer JS -->
-    <script src="{{url('home')}}/assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="{{ url('home') }}/assets/js/vendor/modernizr-3.5.0.min.js"></script>
 </head>
+
 <body>
-    
     <!-- header area start -->
     <header class="header-pos">
         <div class="header-top black-bg">
@@ -52,30 +52,36 @@
                         <div class="box box-right">
                             <ul>
                                 <li class="settings">
-                                    @if(auth()->guard('account')->check())
-                                    <a class="ha-toggle" style="color:#fedc19" href="#">Hello {{$acc->last_name}}<span class="lnr lnr-chevron-down"></span></a>
+                                    @if (auth()->guard('account')->check())
+                                        <a class="ha-toggle" style="color:#fedc19" href="#">Hello
+                                            {{ $acc->last_name }}<span class="lnr lnr-chevron-down"></span></a>
                                     @else
-                                    <a class="ha-toggle" href="#">My Account<span class="lnr lnr-chevron-down"></span></a>
+                                        <a class="ha-toggle" href="#">My Account<span
+                                                class="lnr lnr-chevron-down"></span></a>
                                     @endif
                                     <ul class="box-dropdown ha-dropdown">
-                                        @if(auth()->guard('account')->check())
-                                        <li><a href="{{route('home.order')}}">My-Order</a></li>
-                                        <li><a href="{{route('home.logout')}}">Logout</a></li>
+                                        @if (auth()->guard('account')->check())
+                                            <li><a href="{{ route('home.order') }}">My-Order</a></li>
+                                            <li><a href="{{ route('home.logout') }}">Logout</a></li>
                                         @else
-                                        <li><a href="{{route('home.login')}}">Login</a></li>
-                                        <li><a href="{{route('home.register')}}">Register</a></li>                                        
+                                            <li><a href="{{ route('home.login') }}">Login</a></li>
+                                            <li><a href="{{ route('home.register') }}">Register</a></li>
                                         @endif
                                     </ul>
                                 </li>
                                 <li class="settings">
-                                    <a class="ha-toggle" href="#">Language<span class="lnr lnr-chevron-down"></span></a>
+                                    <a class="ha-toggle" href="#">Language<span
+                                            class="lnr lnr-chevron-down"></span></a>
                                     <ul class="box-dropdown ha-dropdown">
-                                        <li><a href="login.html"><img src="{{url('home')}}/assets/img/icon/en.png" alt=""> English</a></li>
-                                        <li><a href="login.html"><img src="{{url('home')}}/assets/img/icon/ge.png" alt=""> Germany</a></li>
+                                        <li><a href="login.html"><img src="{{ url('home') }}/assets/img/icon/en.png"
+                                                    alt=""> English</a></li>
+                                        <li><a href="login.html"><img src="{{ url('home') }}/assets/img/icon/ge.png"
+                                                    alt=""> Germany</a></li>
                                     </ul>
                                 </li>
                                 <li class="currency">
-                                    <a class="ha-toggle" href="#">Currency<span class="lnr lnr-chevron-down"></span></a>
+                                    <a class="ha-toggle" href="#">Currency<span
+                                            class="lnr lnr-chevron-down"></span></a>
                                     <ul class="box-dropdown ha-dropdown">
                                         <li><a href="login.html">€ Euro</a></li>
                                         <li><a href="login.html">$ US Doller</a></li>
@@ -92,93 +98,155 @@
                 <div class="row align-items-center">
                     <div class="col-lg-2 col-md-4 col-sm-4 col-12">
                         <div class="logo">
-                            <a href="index.html"><img src="{{url('home')}}/assets/img/logo/logo-sinrato.png" alt="brand-logo"></a>
+                            <a href="index.html"><img src="{{ url('home') }}/assets/img/logo/logo-sinrato.png"
+                                    alt="brand-logo"></a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12 order-sm-last">
                         <div class="header-middle-inner">
-                            {{-- <form action="https://template.hasthemes.com/sinrato/sinrato/method">
+                            <form method="get">
                                 <div class="top-cat hm1">
                                     <div class="search-form">
-                                         <select>
-                                            <optgroup label="Electronics">
-                                                <option value="volvo">Laptop</option>
-                                                <option value="saab">watch</option>
-                                                <option value="saab">air cooler</option>
-                                                <option value="saab">audio</option>
-                                                <option value="saab">speakers</option>
-                                                <option value="saab">amplifires</option>
-                                            </optgroup>
-                                            <optgroup label="Fashion">
-                                                <option value="mercedes">Womens tops</option>
-                                                <option value="audi">Jeans</option>
-                                                <option value="audi">Shirt</option>
-                                                <option value="audi">Pant</option>
-                                                <option value="audi">Watch</option>
-                                                <option value="audi">Handbag</option>
-                                            </optgroup>
-                                        </select> 
+                                        <select class="form-control" name="cat_id" id="">
+                                            <option>Select</option>
+                                            @foreach($cats as $cat)
+                                                <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
-                                <input type="text" class="top-cat-field" placeholder="Search entire store here">
-                                <input type="button" class="top-search-btn" value="Search">
-                            </form> --}}
+                                <input type="text" type="search" name="search" class="top-cat-field"
+                                    placeholder="Search entire store here">
+                                <input type="submit" class="top-search-btn" value="Search">
+                            </form>
+                            @if($products_search != null)
+                            <!-- Modal -->
+                              <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog" style="max-width: 850px" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h2 class="modal-title" id="exampleModalLongTitle">Related Product</h2>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body row d-flex justify-content-center">
+                                        @foreach ($products_search as $key => $value)
+                                                <div class="product-item mb-30">
+                                                    <div class="product-thumb">
+                                                        <a href="product-details.html">
+                                                            <img src="{{url('uploads')}}/{{$value->image}}" width="250px" class="pri-img" alt="">
+                                                            <img src="{{url('uploads')}}/{{$value->image}}" width="250px" class="sec-img" alt="">
+                                                        </a>
+                                                        <div class="box-label">
+                                                            <div class="label-product label_new">
+                                                                <span>new</span>
+                                                            </div>
+                                                            <div class="label-product label_sale">
+                                                                <span>-20%</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="action-links">
+                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                            <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
+                                                            <a href="#" title="Quick view" data-target="#quickk_view" data-toggle="modal"><i
+                                                                    class="lnr lnr-magnifier"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-caption">
+                                                        <div class="manufacture-product">
+                                                            <p><a href="shop-grid-left-sidebar.html">{{$value->cat->name}}</a></p>
+                                                        </div>
+                                                        <div class="product-name">
+                                                            <h4><a href="product-details.html">{{$value->name}}</a></h4>
+                                                        </div>
+                                                        <div class="ratings">
+                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                            <span><i class="lnr lnr-star"></i></span>
+                                                        </div>
+                                                        <div class="price-box">
+                                                            <span class="regular-price"><span class="special-price">{{$value->sale_price}}</span></span>
+                                                            <span class="old-price"><del>${{$value->price}}</del></span>
+                                                        </div>
+                                                        <button class="btn-cart" type="button">add to cart</button>
+                                                    </div>
+                                                </div>
+                                                @endforeach
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            @endif
                         </div>
                     </div>
-                    @if(auth()->guard('account')->check())
-                    <div class="col-lg-4 col-md-8 col-12 col-sm-8 order-lg-last">
-                        <div class="mini-cart-option">
-                            <ul>
-                                <li class="compare">
-                                    <a class="ha-toggle" href="/compare"><span class="lnr lnr-sync"><span class="count ml-1-compare">{{$totalCompare}}</span></span>Product compare</a>
-                                </li>
-                                <li class="wishlist">
-                                    <a class="ha-toggle" href="{{route('home.wishlist')}}"><span class="lnr lnr-heart"></span><span class="count">{{$totalWishlist}}</span>wishlist</a>
-                                </li>
-                                <li class="my-cart">
-                                    <a class="ha-toggle" ><span class="lnr lnr-cart"></span><span class="count">{{$totalQuantity}}</span>My cart</a>
-                                    <ul class="mini-cart-drop-down ha-dropdown">
-                                        @foreach($carts as $carts)
-                                        <li class="mb-30">
-                                            <div class="cart-img">
-                                                <a href="product-details.html"><img alt="" src="{{url('uploads')}}/{{$carts->image}}"></a>
-                                            </div>
-                                            <div class="cart-info">
-                                                <h4><a href="{{route('home.product',['product'=>$carts->id,'slug'=>Str::slug($carts->name)])}}">{{$carts->name}}</a></h4>
-                                                <span> <span>{{$carts->quantity}}</span>x </span>${{$carts->price}}</span>
-                                            </div>
-                                            <div class="del-icon">
-                                                <a href="{{route('home.cart-remove',$carts->id)}}"><i class="fa fa-times-circle"></i></a>
-                                            </div>
-                                        </li>
-                                        @endforeach
-                                        <li>
-                                            <div class="subtotal-text">Sub-total: </div>
-                                            <div class="subtotal-price">${{$subPrice}}</div>
-                                        </li>
-                                        <li>
-                                            <div class="subtotal-text">Eco Tax (-2.00): </div>
-                                            <div class="subtotal-price">${{$tax}}</div>
-                                        </li>
-                                        <li>
-                                            <div class="subtotal-text">Vat (10%): </div>
-                                            <div class="subtotal-price">${{$vat}}</div>
-                                        </li>
-                                        <li>
-                                            <div class="subtotal-text">Total: </div>
-                                            <div class="subtotal-price"><span>${{$totalPrice}}</span></div>
-                                        </li>
-                                        <li class="mt-30">
-                                            <a class="cart-button" href="/cart">view cart</a>
-                                        </li>
-                                        <li>
-                                            <a class="cart-button" href="{{route('home.order_checkout')}}">checkout</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                    @if (auth()->guard('account')->check())
+                        <div class="col-lg-4 col-md-8 col-12 col-sm-8 order-lg-last">
+                            <div class="mini-cart-option">
+                                <ul>
+                                    <li class="compare">
+                                        <a class="ha-toggle" href="/compare"><span class="lnr lnr-sync"><span
+                                                    class="count ml-1-compare">{{ $totalCompare }}</span></span>Product
+                                            compare</a>
+                                    </li>
+                                    <li class="wishlist">
+                                        <a class="ha-toggle" href="{{ route('home.wishlist') }}"><span
+                                                class="lnr lnr-heart"></span><span
+                                                class="count">{{ $totalWishlist }}</span>wishlist</a>
+                                    </li>
+                                    <li class="my-cart">
+                                        <a class="ha-toggle"><span class="lnr lnr-cart"></span><span
+                                                class="count">{{ $totalQuantity }}</span>My cart</a>
+                                        <ul class="mini-cart-drop-down ha-dropdown">
+                                            @foreach ($carts as $carts)
+                                                <li class="mb-30">
+                                                    <div class="cart-img">
+                                                        <a href="product-details.html"><img alt=""
+                                                                src="{{ url('uploads') }}/{{ $carts->image }}"></a>
+                                                    </div>
+                                                    <div class="cart-info">
+                                                        <h4><a
+                                                                href="{{ route('home.product', ['product' => $carts->id, 'slug' => Str::slug($carts->name)]) }}">{{ $carts->name }}</a>
+                                                        </h4>
+                                                        <span> <span>{{ $carts->quantity }}</span>x
+                                                        </span>${{ $carts->price }}</span>
+                                                    </div>
+                                                    <div class="del-icon">
+                                                        <a href="{{ route('home.cart-remove', $carts->id) }}"><i
+                                                                class="fa fa-times-circle"></i></a>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                            <li>
+                                                <div class="subtotal-text">Sub-total: </div>
+                                                <div class="subtotal-price">${{ $subPrice }}</div>
+                                            </li>
+                                            <li>
+                                                <div class="subtotal-text">Eco Tax (-2.00): </div>
+                                                <div class="subtotal-price">${{ $tax }}</div>
+                                            </li>
+                                            <li>
+                                                <div class="subtotal-text">Vat (10%): </div>
+                                                <div class="subtotal-price">${{ $vat }}</div>
+                                            </li>
+                                            <li>
+                                                <div class="subtotal-text">Total: </div>
+                                                <div class="subtotal-price"><span>${{ $totalPrice }}</span></div>
+                                            </li>
+                                            <li class="mt-30">
+                                                <a class="cart-button" href="/cart">view cart</a>
+                                            </li>
+                                            <li>
+                                                <a class="cart-button"
+                                                    href="{{ route('home.order_checkout') }}">checkout</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
                     @endif
                 </div>
             </div>
@@ -200,40 +268,55 @@
                                 </div>
                                 <nav class="categorie-menus ha-dropdown">
                                     <ul id="menu2">
-                                        <li><a href="shop-grid-left-sidebar.html">Audio & Home Theater <span class="lnr lnr-chevron-right"></span></a>
+                                        <li><a href="shop-grid-left-sidebar.html">Audio & Home Theater <span
+                                                    class="lnr lnr-chevron-right"></span></a>
                                             <ul class="cat-submenu">
-                                                <li><a href="shop-grid-left-sidebar.html">Home Audio <span class="lnr lnr-chevron-right"></span></a>
+                                                <li><a href="shop-grid-left-sidebar.html">Home Audio <span
+                                                            class="lnr lnr-chevron-right"></span></a>
                                                     <ul class="cat-submenu">
-                                                        <li><a href="shop-grid-left-sidebar.html">CD Players & Turntables</a></li>
-                                                        <li><a href="shop-grid-left-sidebar.html">Home Theater Systems</a></li>
-                                                        <li><a href="shop-grid-left-sidebar.html">Receivers & Amplifiers</a></li>
+                                                        <li><a href="shop-grid-left-sidebar.html">CD Players &
+                                                                Turntables</a></li>
+                                                        <li><a href="shop-grid-left-sidebar.html">Home Theater
+                                                                Systems</a></li>
+                                                        <li><a href="shop-grid-left-sidebar.html">Receivers &
+                                                                Amplifiers</a></li>
                                                         <li><a href="shop-grid-left-sidebar.html">Speakers</a></li>
-                                                        <li><a href="shop-grid-left-sidebar.html">Wireless  Audio</a></li>
+                                                        <li><a href="shop-grid-left-sidebar.html">Wireless Audio</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li><a href="shop-grid-left-sidebar.html">Blu-ray Disc Players</a></li>
-                                                <li><a href="shop-grid-left-sidebar.html">Curved TVs<span class="lnr lnr-chevron-right"></span></a>
+                                                <li><a href="shop-grid-left-sidebar.html">Curved TVs<span
+                                                            class="lnr lnr-chevron-right"></span></a>
                                                     <ul class="cat-submenu">
-                                                        <li><a href="shop-grid-left-sidebar.html">CD Players & Turntables</a></li>
-                                                        <li><a href="shop-grid-left-sidebar.html">Home Theater Systems</a></li>
-                                                        <li><a href="shop-grid-left-sidebar.html">Receivers & Amplifiers</a></li>
+                                                        <li><a href="shop-grid-left-sidebar.html">CD Players &
+                                                                Turntables</a></li>
+                                                        <li><a href="shop-grid-left-sidebar.html">Home Theater
+                                                                Systems</a></li>
+                                                        <li><a href="shop-grid-left-sidebar.html">Receivers &
+                                                                Amplifiers</a></li>
                                                         <li><a href="shop-grid-left-sidebar.html">Speakers</a></li>
-                                                        <li><a href="shop-grid-left-sidebar.html">Wireless  Audio</a></li>
+                                                        <li><a href="shop-grid-left-sidebar.html">Wireless Audio</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="shop-grid-left-sidebar.html">Streaming Media Players</a></li>
+                                                <li><a href="shop-grid-left-sidebar.html">Streaming Media Players</a>
+                                                </li>
                                                 <li><a href="shop-grid-left-sidebar.html">OLED TVs</a></li>
                                                 <li><a href="shop-grid-left-sidebar.html">LED & LCD TVs</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="shop-grid-left-sidebar.html">Video & Home Theater<span class="lnr lnr-chevron-right"></span></a>
+                                        <li><a href="shop-grid-left-sidebar.html">Video & Home Theater<span
+                                                    class="lnr lnr-chevron-right"></span></a>
                                             <ul class="cat-submenu category-mega">
                                                 <li class="cat-mega-title"><a href="#">Security Cameras</a>
                                                     <ul>
                                                         <li><a href="shop-grid-left-sidebar.html">DSLR Cameras</a></li>
                                                         <li><a href="shop-grid-left-sidebar.html">Lense Camera</a></li>
-                                                        <li><a href="shop-grid-left-sidebar.html">Digital Cameras</a></li>
-                                                        <li><a href="shop-grid-left-sidebar.html">Mirrorless Cameras</a></li>
+                                                        <li><a href="shop-grid-left-sidebar.html">Digital Cameras</a>
+                                                        </li>
+                                                        <li><a href="shop-grid-left-sidebar.html">Mirrorless Cameras</a>
+                                                        </li>
                                                         <li><a href="shop-grid-left-sidebar.html">Point</a></li>
                                                     </ul>
                                                 </li>
@@ -241,8 +324,10 @@
                                                     <ul>
                                                         <li><a href="shop-grid-left-sidebar.html">DSLR Cameras</a></li>
                                                         <li><a href="shop-grid-left-sidebar.html">Lense Camera</a></li>
-                                                        <li><a href="shop-grid-left-sidebar.html">Digital Cameras</a></li>
-                                                        <li><a href="shop-grid-left-sidebar.html">Mirrorless Cameras</a></li>
+                                                        <li><a href="shop-grid-left-sidebar.html">Digital Cameras</a>
+                                                        </li>
+                                                        <li><a href="shop-grid-left-sidebar.html">Mirrorless Cameras</a>
+                                                        </li>
                                                         <li><a href="shop-grid-left-sidebar.html">Point</a></li>
                                                     </ul>
                                                 </li>
@@ -250,20 +335,25 @@
                                                     <ul>
                                                         <li><a href="shop-grid-left-sidebar.html">DSLR Cameras</a></li>
                                                         <li><a href="shop-grid-left-sidebar.html">Lense Camera</a></li>
-                                                        <li><a href="shop-grid-left-sidebar.html">Digital Cameras</a></li>
-                                                        <li><a href="shop-grid-left-sidebar.html">Mirrorless Cameras</a></li>
+                                                        <li><a href="shop-grid-left-sidebar.html">Digital Cameras</a>
+                                                        </li>
+                                                        <li><a href="shop-grid-left-sidebar.html">Mirrorless Cameras</a>
+                                                        </li>
                                                         <li><a href="shop-grid-left-sidebar.html">Point</a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="shop-grid-left-sidebar.html">Cellphones & Accessories<span class="lnr lnr-chevron-right"></span></a>
+                                        <li><a href="shop-grid-left-sidebar.html">Cellphones & Accessories<span
+                                                    class="lnr lnr-chevron-right"></span></a>
                                             <ul class="cat-submenu">
-                                                <li><a href="shop-grid-left-sidebar.html">CD Players & Turntables</a></li>
+                                                <li><a href="shop-grid-left-sidebar.html">CD Players & Turntables</a>
+                                                </li>
                                                 <li><a href="shop-grid-left-sidebar.html">Home Theater Systems</a></li>
-                                                <li><a href="shop-grid-left-sidebar.html">Receivers & Amplifiers</a></li>
+                                                <li><a href="shop-grid-left-sidebar.html">Receivers & Amplifiers</a>
+                                                </li>
                                                 <li><a href="shop-grid-left-sidebar.html">Speakers</a></li>
-                                                <li><a href="shop-grid-left-sidebar.html">Wireless  Audio</a></li>
+                                                <li><a href="shop-grid-left-sidebar.html">Wireless Audio</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="shop-grid-left-sidebar.html">Top Item</a></li>
@@ -272,15 +362,17 @@
                                         <li><a href="shop-grid-left-sidebar.html">Headphones & Accessories</a></li>
                                         <li><a href="shop-grid-left-sidebar.html">Quadcopters & Accessories</a></li>
                                         <li><a href="shop-grid-left-sidebar.html">Network Devices</a></li>
-                                        <li class="category-item-parent hidden"><a href="shop-grid-left-sidebar.html">Smart Watches</a></li>
-                                        <li class="category-item-parent"><a class="more-btn" href="#">More Categories</a></li>
+                                        <li class="category-item-parent hidden"><a
+                                                href="shop-grid-left-sidebar.html">Smart Watches</a></li>
+                                        <li class="category-item-parent"><a class="more-btn" href="#">More
+                                                Categories</a></li>
                                     </ul>
                                 </nav>
                             </div>
                             <div class="main-menu">
                                 <nav id="mobile-menu">
                                     <ul>
-                                        <li><a href="{{route('home')}}">HOME</a>
+                                        <li><a href="{{ route('home') }}">HOME</a>
                                             {{-- <ul class="dropdown">
                                                 <li><a href="/">Home Version 1</a></li>
                                                 <li><a href="index-2.html">Home Version 2</a></li>
@@ -290,35 +382,45 @@
                                         </li>
                                         <li><a href="#">SHOP<span class="lnr lnr-chevron-down"></span></a>
                                             <ul class="dropdown">
-                                                @foreach($cats as $cat)
-                                                    <li><a href="{{route('home.category',$cat->id)}}">{{$cat->name}}<span class="lnr lnr-chevron-right"></span></a></li>
+                                                @foreach ($cats as $cat)
+                                                    <li><a href="{{ route('home.category', $cat->id) }}">{{ $cat->name }}<span
+                                                                class="lnr lnr-chevron-right"></span></a></li>
                                                 @endforeach
                                             </ul>
                                         </li>
-                                        <li class="static"><a href="#">Pages<span class="lnr lnr-chevron-down"></span></a>
+                                        <li class="static"><a href="#">Pages<span
+                                                    class="lnr lnr-chevron-down"></span></a>
                                             <ul class="mega-menu mega-full">
-                                                <li class="mega-title"><a href="{{route('home')}}">Column one</a>
+                                                <li class="mega-title"><a href="{{ route('home') }}">Column
+                                                        one</a>
                                                     <ul>
-                                                        <li><a href="shop-grid-left-sidebar.html">Shop grid left sidebar</a></li>
-                                                        <li><a href="shop-grid-right-sidebar.html">Shop grid right sightbar</a></li>
-                                                        <li><a href="shop-grid-full-width-4-column.html">Shop grid full width</a></li>
-                                                        <li><a href="shop-list-full-width.html">Shop list full width</a></li>
+                                                        <li><a href="shop-grid-left-sidebar.html">Shop grid left
+                                                                sidebar</a></li>
+                                                        <li><a href="shop-grid-right-sidebar.html">Shop grid right
+                                                                sightbar</a></li>
+                                                        <li><a href="shop-grid-full-width-4-column.html">Shop grid full
+                                                                width</a></li>
+                                                        <li><a href="shop-list-full-width.html">Shop list full width</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li class="mega-title"><a href="#">Column two</a>
                                                     <ul>
                                                         <li><a href="/checkout">Check Out</a></li>
                                                         <li><a href="/cart">Cart</a></li>
-                                                        <li><a href="{{route('home.wishlist')}}">Wishlist</a></li>
+                                                        <li><a href="{{ route('home.wishlist') }}">Wishlist</a></li>
                                                         <li><a href="/compare">Compare</a></li>
                                                     </ul>
                                                 </li>
                                                 <li class="mega-title"><a href="#">Column Three</a>
                                                     <ul>
                                                         <li><a href="product-details.html">Product Details</a></li>
-                                                        <li><a href="product-details-variable.html">Product Details Variable</a></li>
-                                                        <li><a href="product-details-external.html">Product Details External</a></li>
-                                                        <li><a href="product-details-group.html">Product Details Group</a></li>
+                                                        <li><a href="product-details-variable.html">Product Details
+                                                                Variable</a></li>
+                                                        <li><a href="product-details-external.html">Product Details
+                                                                External</a></li>
+                                                        <li><a href="product-details-group.html">Product Details
+                                                                Group</a></li>
                                                     </ul>
                                                 </li>
                                                 <li class="mega-title"><a href="#">Column Four</a>
@@ -326,7 +428,7 @@
                                                         <li><a href="login.html">login</a></li>
                                                         <li><a href="register.html">register</a></li>
                                                         <li><a href="/myaccount">my account</a></li>
-                                                        <li><a href="{{route('contactus')}}">contact us</a></li>
+                                                        <li><a href="{{ route('contactus') }}">contact us</a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -335,8 +437,10 @@
                                             <ul class="dropdown">
                                                 <li><a href="blog-left-sidebar-3.html">Blog Left Sidebar 3 col</a></li>
                                                 <li><a href="blog-left-sidebar-4.html">Blog left Sidebar 4 col</a></li>
-                                                <li><a href="blog-right-sidebar-3.html">Blog Right Sidebar 3 col</a></li>
-                                                <li><a href="blog-right-sidebar-4.html">Blog Right Sidebar 4 col</a></li>
+                                                <li><a href="blog-right-sidebar-3.html">Blog Right Sidebar 3 col</a>
+                                                </li>
+                                                <li><a href="blog-right-sidebar-4.html">Blog Right Sidebar 4 col</a>
+                                                </li>
                                                 <li><a href="blog-full-3-column.html">Blog full width 3 col</a></li>
                                                 <li><a href="blog-full-4-column.html">Blog full width 4 col</a></li>
                                                 <li><a href="blog-full-5-column.html">Blog full width 5 col</a></li>
@@ -344,7 +448,8 @@
                                                 <li><a href="blog-details-audio.html">Blog Details audio</a></li>
                                                 <li><a href="blog-details-gallery.html">Blog Details gallery</a></li>
                                                 <li><a href="blog-details-video.html">Blog Details video</a></li>
-                                                <li><a href="blog-details-right-sidebar.html">Blog Details right sidebar</a></li>
+                                                <li><a href="blog-details-right-sidebar.html">Blog Details right
+                                                        sidebar</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="/contactus">CONTACT US</a></li>
@@ -356,7 +461,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 d-block d-lg-none"><div class="mobile-menu"></div></div>
+                    <div class="col-12 d-block d-lg-none">
+                        <div class="mobile-menu"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -372,7 +479,7 @@
         <i class="fa fa-angle-up"></i>
     </div> <!-- /End Scroll to Top -->
 
-    <!-- footer area start -->  
+    <!-- footer area start -->
     <footer>
         <!-- news-letter area start -->
         <div class="newsletter-group">
@@ -387,8 +494,10 @@
                                 </div>
                                 <div class="newsletter-box">
                                     <form id="mc-form">
-                                        <input type="email" id="mc-email" autocomplete="off" class="email-box" placeholder="enter your email">
-                                        <button class="newsletter-btn" type="submit" id="mc-submit">subscribe !</button>
+                                        <input type="email" id="mc-email" autocomplete="off" class="email-box"
+                                            placeholder="enter your email">
+                                        <button class="newsletter-btn" type="submit" id="mc-submit">subscribe
+                                            !</button>
                                     </form>
                                 </div>
                             </div>
@@ -419,15 +528,16 @@
                             <div class="widget-title">
                                 <div class="footer-logo mb-30">
                                     <a href="index.html">
-                                         <img src="{{url('home')}}/assets/img/logo/logo-sinrato.png" alt="">
+                                        <img src="{{ url('home') }}/assets/img/logo/logo-sinrato.png" alt="">
                                     </a>
                                 </div>
                             </div>
                             <div class="widget-body">
-                                <p>We are a team of designers and developers that create high quality Magento, Prestashop, Opencart.</p>
+                                <p>We are a team of designers and developers that create high quality Magento,
+                                    Prestashop, Opencart.</p>
                                 <div class="payment-method">
                                     <h4>payment</h4>
-                                    <img src="{{url('home')}}/assets/img/payment/payment.png" alt="">
+                                    <img src="{{ url('home') }}/assets/img/payment/payment.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -476,8 +586,10 @@
                             <div class="widget-body">
                                 <div class="twitter-article">
                                     <div class="twitter-text">
-                                        Check out "Alice - Multipurpose Responsive #Magento #Theme" on #Envato by <a href="#">@sinratos</a> #Themeforest <a href="#">https://t.co/DNdhAwzm88</a>
-                                        <span class="tweet-time"><i class="fa fa-twitter"></i><a href="#">30 sep</a></span>
+                                        Check out "Alice - Multipurpose Responsive #Magento #Theme" on #Envato by <a
+                                            href="#">@sinratos</a> #Themeforest <a href="#">https://t.co/DNdhAwzm88</a>
+                                        <span class="tweet-time"><i class="fa fa-twitter"></i><a href="#">30
+                                                sep</a></span>
                                     </div>
                                 </div>
                             </div>
@@ -494,7 +606,8 @@
                     <div class="col-12">
                         <div class="footer-bottom-content">
                             <div class="footer-copyright">
-                                <p>&copy; 2021 <b>Sinrato</b> Made with <i class="fa fa-heart text-danger"></i> by <a href="https://hasthemes.com/"><b>HasThemes</b></a></p>
+                                <p>&copy; 2021 <b>Sinrato</b> Made with <i class="fa fa-heart text-danger"></i> by <a
+                                        href="https://hasthemes.com/"><b>HasThemes</b></a></p>
                             </div>
                             <div class="footer-custom-link">
                                 <a href="#">Brands</a>
@@ -508,28 +621,32 @@
         <!-- footer bottom area end -->
     </footer>
     <!-- footer area end -->
-    @if(session()->has('ok'))
-    
-	<div class="modal fade" id="overlay">
-        <div class="modal-dialog">
-          <div class="modal-content" >
-            <div class="modal-header" style="background-color: rgb(255, 255, 255)">
-              {{-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> --}}
-              <h3 class="modal-title" style="color: green">{{session()->get('ok')}}</h3>
+    @if (session()->has('ok'))
+        <div class="modal fade" id="overlay">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: rgb(255, 255, 255)">
+                        {{-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> --}}
+                        <h3 class="modal-title" style="color: green">{{ session()->get('ok') }}</h3>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-    </div>
     @endif
 
-	<!-- all js include here -->
-    <script src="{{url('home')}}/assets/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="{{url('home')}}/assets/js/popper.min.js"></script>
-    <script src="{{url('home')}}/assets/js/bootstrap.min.js"></script>
-    <script src="{{url('home')}}/assets/js/plugins.js"></script>
-    <script src="{{url('home')}}/assets/js/ajax-mail.js"></script>
-    <script src="{{url('home')}}/assets/js/main.js"></script>
+    <!-- all js include here -->
+    <script src="{{ url('home') }}/assets/js/vendor/jquery-1.12.4.min.js">
+        < /> <
+        script src = "{{ url('home') }}/assets/js/popper.min.js" >
+    </script>
+    <script src="{{ url('home') }}/assets/js/bootstrap.min.js"></script>
+    <script src="{{ url('home') }}/assets/js/plugins.js"></script>
+    <script src="{{ url('home') }}/assets/js/ajax-mail.js"></script>
+    <script src="{{ url('home') }}/assets/js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    // <div id="mydiv">myDiv</div>
 </body>
 
 <!-- Mirrored from template.hasthemes.com/sinrato/sinrato/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 22 Feb 2022 12:52:23 GMT -->
+
 </html>

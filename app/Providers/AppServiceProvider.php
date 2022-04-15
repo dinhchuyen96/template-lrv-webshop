@@ -61,9 +61,18 @@ class AppServiceProvider extends ServiceProvider
                 $totalPrice = $subPrice + $vat + $tax; // tính tổng tiền của checkout
             }
 
+            $products_search = null;
+            $search_value = request()->search;
+            // $messages = "ahihnnnnnnnnnnni";
+            if($search_value){
+                $products_search = Product::orderBy('name','ASC')->search()->get();
+            }else{
+                $products_search = null;
+            };
+
             
 
-            $view->with(compact('cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','totalWishlist','acc','totalCompare'));
+            $view->with(compact('products_search','cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','totalWishlist','acc','totalCompare'));
         });
     }
 }

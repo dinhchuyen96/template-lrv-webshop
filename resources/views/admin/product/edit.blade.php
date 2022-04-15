@@ -8,7 +8,7 @@
                 <label for="">Danh mục sản phẩm</label>
                 <select class="form-control" value="{{ $product->category_id }}" name="category_id" id="">
                     <option>Chọn danh mục</option>
-                    @foreach ($pros as $cat)
+                    @foreach ($cats as $cat)
                         <option value="{{ $cat->id }}" {{ $cat->id == $product->category_id ? 'selected' : '' }}>
                             {{ $cat->name }}</option>
                     @endforeach

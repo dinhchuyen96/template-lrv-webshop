@@ -89,6 +89,7 @@ class ProductAdminController extends Controller
      */
     public function edit(Product $product)
     {
+        $cats = Category::orderBy('id','DESC')->get();
         $pros = Product::orderBy('name', 'ASC')->get();
         return view('admin.product.edit', compact('pros','product'));
     }

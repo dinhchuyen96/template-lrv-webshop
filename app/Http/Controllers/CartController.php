@@ -40,10 +40,12 @@ class CartController extends Controller
             unset($carts[$product->id]); 
             session(['cart'=> $carts]);
         }
+        if($carts != null){
+            return redirect()->route('home.cart')->with('ok', 'Xóa sản phẩm khỏi giỏ hàng thành công');
+        }        
         if($carts == null){
             return redirect()->route('home')->with('ok', 'Giỏ hàng rỗng, mời bạn đặt hàng');;
         }
-        return redirect()->route('home.cart')->with('ok', 'Xóa sản phẩm khỏi giỏ hàng thành công');
     }
     public function update(Product $product, $quantity=1){
         $carts = session('cart') ? session('cart'):[];

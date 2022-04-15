@@ -46,7 +46,7 @@
                 <!-- Default box -->
                 <div class="card">
 
-                    <div class="card-body">
+                    <div  id="mydiv" class="card-body">
                         @if(session()->has('yes'))
                         <div class="alert alert-success" role="alert">
                             <strong>{{session()->get('yes')}}</strong>
@@ -93,6 +93,7 @@
     <script src="{{ url('admin-template')}}/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ url('admin-template')}}/dist/js/demo.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
 
 </html>

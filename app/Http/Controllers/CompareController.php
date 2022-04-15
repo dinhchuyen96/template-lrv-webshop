@@ -38,10 +38,14 @@ class CompareController extends Controller
         if(isset($procompare[$product->id])){
             unset($procompare[$product->id]); 
             session(['compare'=> $procompare]);
-        }
-        return redirect()->route('home.compare')->with('ok', 'Xóa sản phẩm khỏi compare thành công');
-        if($procompare == null){
-            return redirect()->route('home');
+            if($procompare != null){
+                return redirect()->route('home.compare')->with('ok', 'Xóa sản phẩm khỏi compare thành công');
+            }
+            if($procompare == null){
+                return redirect()->route('home')->with('ok', 'Compare rỗng, mời bạn chọn lại');
+            
+                return redirect()->route('home');
+            }
         }
     }
 }
