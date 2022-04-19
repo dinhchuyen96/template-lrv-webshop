@@ -15,7 +15,7 @@ class AccountController extends Controller
     public function post_login(Request $req){
        $data = $req->only('email','password');
        if(Auth::guard('account')->attempt($data)){
-           return redirect()->route('home')->with('ok','Đăng nhập thành công');
+           return redirect()->with('ok','Đăng nhập thành công');
        }else{
         return redirect()->route('home.login')->with('no','Mời bạn đăng nhập lại');
        }

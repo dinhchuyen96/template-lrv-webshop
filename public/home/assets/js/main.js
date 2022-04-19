@@ -6,14 +6,12 @@
 		//Modal homepage 
 		$('#overlay').modal('show');
 
-		setTimeout(function() {
+		setTimeout(function() { // tu an thong bao ngoai home
 			$('#overlay').modal('hide');
-		}, 2000);
+		}, 1800);
 
 		// 
-		setTimeout(function() {
-			$('#mydiv').fadeOut('fast');
-		}, 1000); // <-- time in milliseconds
+		
 
 		var $window = $(window);
 		$window.on('scroll', function() {    
@@ -24,10 +22,17 @@
 				$(".sticker").addClass("sticky");
 			}
 		});
+		
+
+
+
 
 		// Scroll Back
 		$(document).ready(function () {
-
+			setTimeout2(function() {
+				$("#alert_cat").fadeOut('fast')
+			}, 5000)
+			
 			if (localStorage.getItem("my_app_name_here-quote-scroll") != null) {
 				$(window).scrollTop(localStorage.getItem("my_app_name_here-quote-scroll"));
 			}

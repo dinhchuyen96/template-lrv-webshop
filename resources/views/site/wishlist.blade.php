@@ -56,8 +56,12 @@
                                                             </td>
                                                             <td>3</td>
                                                             <td>In Stock</td>
-                                                            <td>
-                                                                <div class="price"><small><del>${{$wishlist->price}}</del></small> <strong>$1{{$wishlist->sale_price}}</strong></div>
+                                                            <td>@if($wishlist->sale_price > 0)
+                                                                <span class="regular-price"><span class="special-price">${{$wishlist->sale_price}}</span></span>
+                                                                    <span class="old-price"><del>{{ $wishlist->price }}$</del></span>
+                                                                @else
+                                                                    <span class="regular-price"><span class="special-price">${{$wishlist->price}}</span></span>
+                                                                @endif
                                                             </td>
                                                             <td>
                                                         

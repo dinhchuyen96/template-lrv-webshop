@@ -1,5 +1,5 @@
 @extends('layouts.site')
-@section('title','cart')
+@section('title','Laptop - Mobile Phone')
 @section('main')
 <div class="main-wrapper pt-35">
     <div class="container-fluid">
@@ -18,7 +18,11 @@
                               <div class="filter-attribute-container">
                                   <ul>
                                     @foreach($cats as $cat)
-                                      <li><a class="" href="{{route('home.category',$cat->id)}}">{{$cat->name}}</a></li>
+                                        @if($cat->children->isNotEmpty())
+                                             @foreach($cat->children as $ccat)
+                                                     <li><a @if($ccat->id == $category->id) class="active" @endif class="" href="{{route('home.category',$ccat->id)}}">{{$ccat->name}}</a></li>
+                                             @endforeach
+                                        @endif
                                     @endforeach
                                   </ul>
                               </div>
@@ -121,7 +125,7 @@
                      <div class="shop-product-wrap grid column_3 row">
                          @foreach($products as $product)
                          <div class="col-lg-3 col-md-4 col-sm-6" >
-                             <div class="product-item mb-30" id="quickk_view-product-{{$product->id}}">
+                             <div class="product-item mb-30" >
                                  <div class="product-thumb">
                                      <a href="{{route('home.product',['product'=>$product->id,'slug'=>$product->name])}}">
                                          <img src="{{url('uploads')}}/{{$product->image}}" class="pri-img" alt="">
@@ -133,8 +137,8 @@
                                          </div>
                                      </div>
                                      <div class="action-links">
-                                         <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                         <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
+                                        <a href="{{route('home.add-wishlist',$product->id)}}" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                        <a href="{{route('home.add-compare',$product->id)}}" title="Compare"><i class="lnr lnr-sync"></i></a>
                                          <a href="#" title="Quick view" data-target="#quickk_view-product-{{$product->id}}" data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                      </div>
                                  </div>
@@ -155,7 +159,7 @@
                                      <div class="price-box">
                                          <span class="regular-price">{{$product->price}}$</span>
                                      </div>
-                                     <button class="btn-cart" type="button">add to cart</button>
+                                     <a href="{{route('home.cart-add',$product->id)}}" class="btn btn-cart lg-btn">Add to cart</a>
                                  </div>
                              </div> <!-- end single grid item -->
                              <div class="sinrato-list-item mb-30">
@@ -175,7 +179,7 @@
                                          <span><a href="#">Canon</a></span>
                                      </div>
                                      <div class="sinrato-product-name">
-                                         <h4><a href="{{route('home.product',$product->id)}}">Beats EP Wired Headphone-Black</a></h4>
+                                         <h4><a href="{{route('home.product',$product->id)}}">{{$product->name}}</a></h4>
                                      </div>
                                      <div class="sinrato-ratings mb-15">
                                          <span><i class="fa fa-star"></i></span>
@@ -185,18 +189,22 @@
                                          <span><i class="fa fa-star"></i></span>
                                      </div>
                                      <div class="sinrato-product-des">
-                                         <p>Canon's press material for the EOS 5D states that it 'defines (a) new D-SLR category', while we're not typically too concerned with marketing talk this particular statement is clearly pretty accurate...</p>
+                                         <p>{{ $product->sort_description }}</p>
                                      </div>
                                  </div>
                                  <div class="sinrato-box-action">
                                      <div class="price-box">
-                                         <span class="regular-price"><span class="special-price">£50.00</span></span>
-                                         <span class="old-price"><del>£60.00</del></span>
+                                         @if($product->sale_price > 0)
+                                         <span class="regular-price"><span class="special-price">${{$product->sale_price}}</span></span>
+                                         <span class="old-price"><del>${{$product->price}}</del></span>
+                                         @else
+                                         <span class="regular-price"><span class="special-price">${{$product->price}}</span></span>
+                                         @endif
                                      </div>
-                                     <button class="btn-cart" type="button">add to cart</button>
+                                     <a href="{{route('home.cart-add',$product->id)}}" class="btn btn-cart lg-btn">Add to cart</a>
                                      <div class="action-links sinrat-list-icon">
-                                         <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                         <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
+                                        <a href="{{route('home.add-wishlist',$product->id)}}" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                        <a href="{{route('home.add-compare',$product->id)}}" title="Compare"><i class="lnr lnr-sync"></i></a>
                                          <a href="#" title="Quick view" data-target="#quickk_view-product-{{$product->id}}" data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                      </div>
                                  </div>
@@ -221,7 +229,7 @@
 <!-- shop page main wrapper end -->
 @foreach($products as $product)
 <!-- Quick view modal start -->
-  <div class="modal fade" >
+  <div class="modal fade" id="quickk_view-product-{{$product->id}}" >
       <div class="container">
           <div class="modal-dialog modal-lg modal-dialog-centered">
               <div class="modal-content">
@@ -264,7 +272,7 @@
                               <div class="product-details-inner">
                                   <div class="product-details-contentt">
                                       <div class="pro-details-name mb-10">
-                                          <h3>{{$product->name}}</h3>
+                                          <h3><a  href="{{route('home.product',['product'=>$product->id,'slug'=>$product->name])}}">{{$product->name}}</a></h3>
                                       </div>
                                       <div class="pro-details-review mb-20">
                                           <ul>
@@ -279,11 +287,15 @@
                                           </ul>
                                       </div>
                                       <div class="price-box mb-15">
-                                          <span class="regular-price"><span class="special-price">£50.00</span></span>
-                                          <span class="old-price"><del>${{$product->price}}</del></span>
+                                        @if($product->sale_price > 0)
+                                        <span class="regular-price"><span class="special-price">${{$product->sale_price}}</span></span>
+                                            <span class="old-price"><del>{{ $product->price }}$</del></span>
+                                        @else
+                                            <span class="regular-price"><span class="special-price">${{$product->price}}</span></span>
+                                        @endif
                                       </div>
                                       <div class="product-detail-sort-des pb-20">
-                                          <p>{{$product->description}}</p>
+                                          <p>{{$product->sort_description}}</p>
                                       </div>
                                       <div class="pro-details-list pt-20">
                                           <ul>
@@ -317,7 +329,7 @@
                                           <div class="qty-boxx">
                                               <label>qty :</label>
                                               <input type="text" placeholder="0">
-                                              <button class="btn-cart lg-btn">add to cart</button>
+                                              <a href="{{route('home.cart-add',$product->id)}}" class="btn btn-cart lg-btn">Add to cart</a>
                                           </div>
                                       </div>
                                       <div class="pro-social-sharing">

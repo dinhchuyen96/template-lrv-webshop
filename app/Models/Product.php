@@ -43,7 +43,5 @@ class Product extends Model
         return $query;
     }
     
-    public function Count_cart(){
-        
-    }
+    
 }

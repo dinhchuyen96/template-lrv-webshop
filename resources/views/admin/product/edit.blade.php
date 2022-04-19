@@ -6,13 +6,13 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label for="">Danh mục sản phẩm</label>
-                <select class="form-control" value="{{ $product->category_id }}" name="category_id" id="">
+                <select class="form-control" name="category_id" id="">
                     <option>Chọn danh mục</option>
-                    @foreach ($cats as $cat)
-                        <option value="{{ $cat->id }}" {{ $cat->id == $product->category_id ? 'selected' : '' }}>
-                            {{ $cat->name }}</option>
-                    @endforeach
+                    <?php showCategories($pro_cats); ?>
                 </select>
+                @error('category_id')
+                    {{ $message }}
+                @enderror
                 @error('category_id')
                     {{ $message }}
                 @enderror
@@ -37,7 +37,7 @@
             </div>
             <div class="col-md-6">
                 <label for="">Giá khuyễn mãi</label>
-                <input type="text" class="form-control" value="{{ $product->sale_price }}" name="sale_price"
+                <input type="text" class="form-control" value="{{$product->sale_price}}" name="sale_price"
                     placeholder="Input field">
                 @error('sale_price')
                     {{ $message }}
@@ -89,3 +89,19 @@
             <button type="submit" class="btn btn-primary">Lưu lại</button>
     </form>
 @stop();
+<?php function showCategories($categories, $parent_id = 0, $char = '')
+ {
+     foreach ($categories as $key => $item)
+     {
+         // Nếu là chuyên mục con thì hiển thị
+         if ($item->parent_id == $parent_id)
+         {
+             // Xử lý hiển thị chuyên mục
+              echo '<option value="'.$item->id.'">'.$char.$item->name.'</option>';
+             // Xóa chuyên mục đã lặp
+             unset($categories[$key]);
+             // Tiếp tục đệ quy để tìm chuyên mục con của chuyên mục đang lặp
+             showCategories($categories, $item->id, $char.'---');
+         }
+     }
+ } ?>

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Thêm mới danh mục')
+@section('title', 'Thêm mới sản phẩm')
 @section('main')
     <form action="{{ route('product.store') }}" method="POST" role="form" enctype="multipart/form-data">
         @csrf
@@ -8,9 +8,7 @@
                 <label for="">Danh mục sản phẩm</label>
                 <select class="form-control" name="category_id" id="">
                     <option>Chọn danh mục</option>
-                    @foreach ($pro_cats as $cat)
-                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                    @endforeach
+                    <?php showCategories($pro_cats); ?>
                 </select>
                 @error('category_id')
                     {{ $message }}
@@ -69,13 +67,13 @@
                 <label for="">Trạng thái</label>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="status" value="0" checked>
+                        <input type="radio" name="status" value="0" >
                         Tạm Ẩn
                     </label>
                 </div>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="status" value="1"">
+                        <input type="radio" name="status" value="1" checked>
                             Hiển thị
                         </label>
                     </div>
@@ -87,3 +85,19 @@
                 <button type="submit" class="btn btn-primary">Lưu lại</button>
     </form>
 @stop();
+<?php function showCategories($categories, $parent_id = 0, $char = '')
+ {
+     foreach ($categories as $key => $item)
+     {
+         // Nếu là chuyên mục con thì hiển thị
+         if ($item->parent_id == $parent_id)
+         {
+             // Xử lý hiển thị chuyên mục
+              echo '<option value="'.$item->id.'">'.$char.$item->name.'</option>';
+             // Xóa chuyên mục đã lặp
+             unset($categories[$key]);
+             // Tiếp tục đệ quy để tìm chuyên mục con của chuyên mục đang lặp
+             showCategories($categories, $item->id, $char.'---');
+         }
+     }
+ } ?>

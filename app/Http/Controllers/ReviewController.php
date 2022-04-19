@@ -61,7 +61,7 @@ class ReviewController extends Controller
      */
     public function edit(Review $review)
     {
-        //
+        
     }
 
     /**
@@ -71,9 +71,10 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Review $review)
+    public function update(Product $product, $slug, Review $review)
     {
-        //
+        $review->update($review->only('content_review'));
+        return redirect()->back();
     }
 
     /**

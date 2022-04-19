@@ -163,7 +163,7 @@
                 </div>
                 <div class="section-title product-spacing hm-11">
                     <h3><span>Our</span> product</h3>
-                    {{-- <div class="boxx-tab">
+                    <div class="boxx-tab">
                         <ul class="nav my-tab">
                             <li>
                                 <a class="active" data-toggle="tab" href="#one">Camera, Photo & Video</a>
@@ -175,7 +175,7 @@
                                 <a data-toggle="tab" href="#three">Cellphones & Accessories</a>
                             </li>
                         </ul>
-                    </div> --}}
+                    </div>
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="one">
@@ -3719,7 +3719,7 @@
                                 <div class="product-details-inner">
                                     <div class="product-details-contentt">
                                         <div class="pro-details-name mb-10">
-                                            <h3>{{$psn->name}}</h3>
+                                            <h3><a href="{{route('home.product',['product'=>$psn->id,'slug'=>Str::slug($psn->name)])}}">{{$psn->name}}</a></h3>
                                         </div>
                                         <div class="pro-details-review mb-20">
                                             <ul>
@@ -3734,8 +3734,14 @@
                                             </ul>
                                         </div>
                                         <div class="price-box mb-15">
+                                                {{-- <span class="regular-price"><span class="special-price">${{$psn->sale_price}}</span></span>
+                                                <span class="old-price"><del>${{$psn->price}}</del></span> --}}
+                                            @if($psn->sale_price > 0)
                                             <span class="regular-price"><span class="special-price">${{$psn->sale_price}}</span></span>
-                                            <span class="old-price"><del>${{$psn->price}}</del></span>
+                                                <span class="old-price"><del>{{ $psn->price }}$</del></span>
+                                            @else
+                                                <span class="regular-price"><span class="special-price">${{$psn->price}}</span></span>
+                                            @endif
                                         </div>
                                         <div class="product-detail-sort-des pb-20">
                                             <p>{{$psn->sort_description}}</p>
@@ -3868,8 +3874,12 @@
                                             </ul>
                                         </div>
                                         <div class="price-box mb-15">
+                                            @if($psl->sale_price > 0)
                                             <span class="regular-price"><span class="special-price">${{$psl->sale_price}}</span></span>
-                                            <span class="old-price"><del>${{$psl->price}}</del></span>
+                                                <span class="old-price"><del>{{ $psl->price }}$</del></span>
+                                            @else
+                                                <span class="regular-price"><span class="special-price">${{$psl->price}}</span></span>
+                                            @endif
                                         </div>
                                         <div class="product-detail-sort-des pb-20">
                                             <p>{{$psl->sort_description}}</p>

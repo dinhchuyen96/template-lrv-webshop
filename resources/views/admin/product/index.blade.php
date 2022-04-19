@@ -1,35 +1,36 @@
 @extends('layouts.admin')
-@section('title','Danh sách danh mục')
+@section('title','Danh sách sản phẩm')
 @section('main')
 <form class="form-inline ml-3" method="get">
     <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" style="width:350px" placeholder="Search" name="search">
+        <input class="form-control form-control-navbar" type="search" style="margin-left: -1rem;width:300px; height: 34px" placeholder="Tìm kiếm sản phẩm" name="search">
     </div>
     <div class="input-group input-group-sm ml-2">
         <div class="form-group">          
-          <select class="form-control" name="cat_id" id="">
-            <option>Chọn danh mục</option>
+          <select class="form-control" style="height: 34px;width: 121px;margin-left: -10px;" name="cat_id" id="">
+            <option value=>Danh mục</option>
             @foreach($pro_cats as $cat)
                 <option value="{{$cat->id}}">{{$cat->name}}</option>
             @endforeach
           </select>
         </div>
         <div class="input-group-append">
-            <button class="btn btn-navbar" type="submit">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
+            <button class="btn btn-warning" style="height: 33px; width:163px;margin-top: 2px;" type="submit">
+                <p>Search</p>
+            </button>           
+        </div> 
+        <a class="btn btn-primary" style="margin-left: 16.5rem" href="{{ route('product.create')}}">Thêm mới</a>
     </div>
 </form>
 <hr>
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>STT</th>
-            <th>Tên sản phẩm</th>
-            <th>Tên danh mục</th>
-            <th>Giá/Giá sale</th>
-            <th>Ảnh</th>
+            <th style="width:10px">#</th>
+            <th style="width:200px">Tên sản phẩm</th>
+            <th style="width:50px">Danh mục</th>
+            <th>Giá / Sale</th>
+            <th class="text-center">Ảnh</th>
             <th>Trạng thái</th>
             <th>Ngày tạo</th>
             <th></th>
@@ -42,12 +43,12 @@
             <td width="5px">{{$model->name}}</td>
             <td>{{$model->cat->name}}</td>
             <td>{{number_format($model->price)}} / {{$model->sale_price}}</td>
-            <td><img src="{{url('uploads')}}/{{$model->image}}" alt="" style="width: 100px; height: 100px"></td>
+            <td><img src="{{url('uploads')}}/{{$model->image}}" alt="" style="width: 150px; height: 100px"></td>
             <td>
                 @if($model->status ==0 )
-                <label class="badge badge-danger">Tạm ẩn</label>
+                <label class="badge badge-danger"><h5>Tạm ẩn</h5></label>
                 @else
-                <label class="badge badge-success">Hiển thị</label>
+                <label class="badge badge-success"><h5>Hiển thị</h5></label>
                 @endif
             </td>
             

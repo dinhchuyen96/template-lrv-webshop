@@ -44,7 +44,7 @@ class ProductAdminController extends Controller
      */
     public function store(ProductCreateRequest $req)
     {
-        $data_product = $req->all('name','description','price','sale_price','category_id','status',);
+        $data_product = $req->all('name','sort_description','description','price','sale_price','category_id','status',);
         // upload ảnh
         $file_name = $req->upload->getClientOriginalName();
 
@@ -89,9 +89,9 @@ class ProductAdminController extends Controller
      */
     public function edit(Product $product)
     {
-        $cats = Category::orderBy('id','DESC')->get();
+        $pro_cats =Category::orderBy('name','ASC')->get();
         $pros = Product::orderBy('name', 'ASC')->get();
-        return view('admin.product.edit', compact('pros','product'));
+        return view('admin.product.edit', compact('pro_cats','product'));
     }
 
     /**

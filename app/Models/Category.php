@@ -8,18 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','status'];
+    protected $fillable = ['name','status','parent_id',];
     
+    public function scopeActive($query){
+        $query->where('status', 1);
+    }
     public function scopeSearch($query)
     {
         $search_value = request()->search;
-
+        
         if($search_value){
             $query = $query->where('name','LIKE','%'.$search_value.'%');
         }
         return $query;
+        
     }
     public function products_byCat(){
         return $this->hasMany(product::class, 'category_id','id');
+    }
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id', 'id');
     }
 }

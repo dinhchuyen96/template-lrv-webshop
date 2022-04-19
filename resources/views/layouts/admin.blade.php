@@ -14,6 +14,24 @@
     <link rel="stylesheet" href="{{ url('admin-template')}}/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('admin-template')}}/dist/css/adminlte.min.css">
+    <link rel="icon" href="{{ url('home')}}/assets/img/icon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="{{ url('home')}}/assets/css/options.css">
+	<!-- Bootstrap css -->
+    {{-- <link rel="stylesheet" href="{{ url('home')}}/assets/css/bootstrap.min.css">
+    <!-- linear-icon -->
+    <link rel="stylesheet" href="{{ url('home')}}/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url('home')}}/assets/css/linear-icon.css">
+    <!-- all css plugins css -->
+    <link rel="stylesheet" href="{{ url('home')}}/assets/css/plugins.css">
+    <!-- default style -->
+    <link rel="stylesheet" href="{{ url('home')}}/assets/css/default.css">
+    <!-- Main Style css -->
+    <link rel="stylesheet" href="{{ url('home')}}/assets/css/style.css">
+    <!-- responsive css -->
+     --}}
+
+    <!-- Modernizer JS -->
+    <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -32,12 +50,28 @@
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <h1>@yield('title')</h1>
                         </div>
+                        @if(session()->has('yes'))
+                            <div id="alert_cat" style="position:absolute; right: 5rem" class="col-sm-6 alert alert-success text-center" role="alert">
+                                <strong>{{session()->get('yes')}}</strong>
+                            </div>
+                        @endif
+                        @if(session()->has('no'))
+                            <div class="col-sm-8 alert alert-danger text-center" role="alert">
+                                <strong>{{session()->get('no')}}</strong>
+                            </div>
+                        @endif
+                        
 
                     </div>
                 </div><!-- /.container-fluid -->
+                <script>
+                    setTimeout(function() {
+			             $('#alert_cat').fadeOut('fast');
+		            }, 4000); // <-- time in milliseconds
+                </script>
             </section>
 
             <!-- Main content -->
@@ -47,16 +81,7 @@
                 <div class="card">
 
                     <div  id="mydiv" class="card-body">
-                        @if(session()->has('yes'))
-                        <div class="alert alert-success" role="alert">
-                            <strong>{{session()->get('yes')}}</strong>
-                        </div>
-                        @endif
-                        @if(session()->has('no'))
-                        <div class="alert alert-danger" role="alert">
-                            <strong>{{session()->get('no')}}</strong>
-                        </div>
-                        @endif
+                        
                         @yield('main')
                     </div>
                     <!-- /.card-body -->

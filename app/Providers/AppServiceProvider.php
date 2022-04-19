@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Review;
+use App\Models\Big_category;
 use Auth;
 
 class AppServiceProvider extends ServiceProvider
@@ -42,6 +43,7 @@ class AppServiceProvider extends ServiceProvider
             }
             $wishlists = session('wishlist')? session('wishlist') : []; // lấy sản phẩm trong sesion wishlist
             $totalWishlist = count($wishlists); // đếm số sản phẩm trong wishlist
+            
             $procompare = session('compare')? session('compare') : [];
             $totalCompare= count($procompare);
 
@@ -50,9 +52,13 @@ class AppServiceProvider extends ServiceProvider
             $totalPrice = 0; // tổng tiền = 0
             $vat=0; // thuế vat =0
             $tax = 0; // thuế ECO
-            $cats = Category::orderBy('name','ASC')->where('status','>',0)->get(); // Lấy danh sách danh mục có trong bảng danh mục 
+            // load with de chong n+1
+            #relate https://viblo.asia/p/tim-hieu-ve-eager-loading-trong-laravel-XL6lA8YJZek
+            $cats = Category::with(['children' => function ($q) {
+                $q->active(); //scope
+            }])->orderBy('name','ASC')->active()->where('parent_id', 0)->get(); // Lấy danh sách danh mục có trong bảng danh mục 
             $carts = session('cart') ? session('cart'):[];  // lấy giỏ hàng trong session('cart')
-            
+    
             foreach($carts as $key =>$cart){ //Duyệt mảng sản phẩm có trong giỏ hàng
                 $totalQuantity += $cart->quantity;  // Tính tổng số lượng sản phẩm có trong giỏ hàng
                 $subPrice += $cart->price * $cart->quantity; // tính tiền chưa thuế / phí
@@ -63,14 +69,20 @@ class AppServiceProvider extends ServiceProvider
 
             $products_search = null;
             $search_value = request()->search;
+            $cat_id = request()->cat_id;
             // $messages = "ahihnnnnnnnnnnni";
             if($search_value){
                 $products_search = Product::orderBy('name','ASC')->search()->get();
             }else{
-                $products_search = null;
+                // $products_search = null;
+                if($cat_id){
+                    $products_search = Product::orderBy('name','ASC')->search()->get();
+                }
             };
 
             
+            
+           
 
             $view->with(compact('products_search','cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','totalWishlist','acc','totalCompare'));
         });

@@ -1,6 +1,11 @@
 #btn-delete{
     display: none;
-    width: 50px;
+    border: 1px;
+    width: 0px;
+    height: 0px;
+    position: absolute!important;
+    padding: 0; 
+    
 }
 #review{
     width: 250px;
@@ -11,3 +16,8 @@
 .ml-1-compare{
     margin-left: -1rem;
 }
+
+.table-bordered thead th, tr{
+    text-align: center;
+}
+

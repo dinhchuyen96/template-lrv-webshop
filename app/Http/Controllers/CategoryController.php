@@ -18,8 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = Category::search()->paginate(5);
-
+        $data = Category::orderBy('name','ASC')->search()->paginate(50);
+        // dd($data);
         return view('admin.category.index',compact('data'));
         
     }
@@ -31,7 +31,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        $category = Category::orderBy('id', 'desc')->get();
+        // dd($category);
+        return view('admin.category.create', compact('category'));
     }
 
     /**
@@ -43,7 +45,7 @@ class CategoryController extends Controller
     public function store(CategoryCreateRequest $request)
     {
         // dd($request->only('name','status') );
-        category::create($request->only('name','status'));
+        category::create($request->only('name','status','parent_id'));
         return redirect()->route('category.index')->with('yes','Thêm mới thành công');
     }
 
@@ -66,8 +68,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        // dd($category);
-        return view('admin.category.edit', compact('category'));
+        $categories = Category::orderBy('id', 'desc')->get();
+        
+        return view('admin.category.edit', compact('category','categories'));
     }
 
     /**
@@ -79,7 +82,7 @@ class CategoryController extends Controller
      */
     public function update(CategoryEditRequest $request, Category $category)
     {
-        $category->update($request->only('name', 'status'));
+        $category->update($request->only('name', 'status','parent_id'));
         return redirect()->route('category.index')->with('yes','Cập nhật thành công');
         
     }

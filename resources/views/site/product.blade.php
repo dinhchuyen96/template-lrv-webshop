@@ -1,5 +1,5 @@
 @extends('layouts.site')
-@section('title', 'cart')
+@section('title', 'Product detail')
 @section('main')
 
 
@@ -91,19 +91,23 @@
                                 <div class="pro-details-review mb-20">
                                     <ul>
                                         <li>
-                                            {{-- <span><i  style="color:yellow" {{$avg_rating >='4.5'?'':'hidden'}} class="fa fa-star"></i></>
+                                            <span><i  style="color:yellow" {{$avg_rating >='4.5'?'':'hidden'}} class="fa fa-star"></i></>
                                             <span><i  style="color:yellow" {{$avg_rating >='3.5'?'':'hidden'}}  class="fa fa-star"></i></>
                                             <span><i  style="color:yellow" {{$avg_rating >='2.5'?'':'hidden'}}  class="fa fa-star"></i></>
-                                            <span><i  style="color:yellow" {{$avg_rating >='1.5'?'':'hidden'}}  class="fa fa-star"></i></> --}}
+                                            <span><i  style="color:yellow" {{$avg_rating >='1.5'?'':'hidden'}}  class="fa fa-star"></i></>
                                             <span><i style="color:yellow" class="fa fa-star"></i></>
                                         </li>
                                         <li><a href="#">{{ $number_reviews }} Reviews</a></li>
                                     </ul>
                                 </div>
                                 <div class="price-box mb-15">
-                                    <span class="regular-price"><span
-                                            class="special-price">{{ $product->sale_price }}$</span></span>
-                                    <span class="old-price"><del>{{ $product->price }}$</del></span>
+                                    <span class="regular-price">
+                                        @if($product->sale_price > 0)
+                                            <span class="special-price">{{ $product->sale_price }}$</span></span>
+                                            <span class="old-price"><del>{{ $product->price }}$</del></span>
+                                        @else
+                                            <span class="special-price">{{ $product->price }}$</span></span>
+                                        @endif
                                 </div>
                                 <div class="product-detail-sort-des pb-20">
                                     <p>{{ $product->description }}</p>
@@ -228,7 +232,7 @@
                                                     @endforeach
                                                 </table>
                                         </div> <!-- end of customer-review -->
-                                        <form method="POST"
+                                        <form id="form_get_review" method="POST"
                                             action="{{ route('review.store', ['product' => $product->id, 'slug' => Str::slug($product->name)]) }}"
                                             class="review-form">
                                             @csrf
