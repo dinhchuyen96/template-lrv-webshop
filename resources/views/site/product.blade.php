@@ -5,7 +5,6 @@
 
 
     <body>
-
         <div class="breadcrumb-area mb-30">
             <div class="container-fluid">
                 <div class="row">
@@ -91,13 +90,19 @@
                                 <div class="pro-details-review mb-20">
                                     <ul>
                                         <li>
-                                            <span><i  style="color:yellow" {{$avg_rating >='4.5'?'':'hidden'}} class="fa fa-star"></i></>
-                                            <span><i  style="color:yellow" {{$avg_rating >='3.5'?'':'hidden'}}  class="fa fa-star"></i></>
-                                            <span><i  style="color:yellow" {{$avg_rating >='2.5'?'':'hidden'}}  class="fa fa-star"></i></>
-                                            <span><i  style="color:yellow" {{$avg_rating >='1.5'?'':'hidden'}}  class="fa fa-star"></i></>
-                                            <span><i style="color:yellow" class="fa fa-star"></i></>
+                                            @if($product->review_rt->avg('rating')==0)
+                                                <span><i  style="color:yellow" class="fa fa-star"></i></span>
+                                                <span><i  style="color:yellow" class="fa fa-star"></i></span>
+                                                <span><i  style="color:yellow" class="fa fa-star"></i></span>
+                                                <span><i  style="color:yellow" class="fa fa-star"></i></span>
+                                                <span><i style="color:yellow" class="fa fa-star"></i></span>
+                                            @else
+                                                @for($i=0;$i<$product->review_rt->avg('rating');$i++)
+                                                <span><i style="color:yellow" class="fa fa-star"></i></span>
+                                                @endfor
+                                            @endif
                                         </li>
-                                        <li><a href="#">{{ $number_reviews }} Reviews</a></li>
+                                        <li>{{$reviews->count()}} Review</li>
                                     </ul>
                                 </div>
                                 <div class="price-box mb-15">
@@ -110,7 +115,7 @@
                                         @endif
                                 </div>
                                 <div class="product-detail-sort-des pb-20">
-                                    <p>{{ $product->description }}</p>
+                                    <p>{{ $product->sort_description }}</p>
                                 </div>
                                 <div class="pro-details-list pt-20 mb-20">
                                     <ul>
@@ -171,13 +176,13 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="nav_review" data-toggle="pill" href="#tab_review"
                                         role="tab" aria-controls="tab_review" aria-selected="false">Reviews
-                                        ({{ $number_reviews }})</a>
+                                        ({{ $reviews->count() }})</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="tab_description" role="tabpanel"
                                     aria-labelledby="nav_desctiption">
-                                    <p>{{ $product->description }}</p>
+                                    <p>{{ $product->description}}</p>
                                 </div>
                                 <div class="tab-pane fade" id="tab_review" role="tabpanel" aria-labelledby="nav_review">
                                     <div class="product-review">
@@ -185,7 +190,7 @@
                                             
                                                 <table class="table table-striped table-bordered">
                                                     @foreach ($reviews as $reviews)
-                                                    <form method="POST" action="{{route('review.destroy', ['product' => $product->id, 'slug' => Str::slug($product->name), 'review'=>$reviews->id]) }}">
+                                                    <form method="POST" action="{{route('review.destroy', ['product' => $product->id,'category' =>$product->category_id, 'slug' => Str::slug($product->name), 'review'=>$reviews->id]) }}">
                                                         @csrf @method('DELETE')
                                                         <tbody>
                                                             <tr>
@@ -233,7 +238,7 @@
                                                 </table>
                                         </div> <!-- end of customer-review -->
                                         <form id="form_get_review" method="POST"
-                                            action="{{ route('review.store', ['product' => $product->id, 'slug' => Str::slug($product->name)]) }}"
+                                            action="{{ route('review.store', ['product' => $product->id,'category'=>$product->category_id, 'slug' => Str::slug($product->name)]) }}"
                                             class="review-form">
                                             @csrf
                                             <h2>Write a review</h2>
@@ -292,18 +297,19 @@
         </div>
 
         <!--  Start related-product -->
+       
         <div class="related-product-area mb-40">
             <div class="container-fluid">
                 <div class="section-title">
                     <h3><span>Related</span> product </h3>
                 </div>
                 <div class="flash-sale-active4 owl-carousel owl-arrow-style">
-                    
+                     @foreach ($products_related as $product)
                     <div class="product-item mb-30">
                         <div class="product-thumb">
-                            <a href="product-details.html">
-                                <img src="assets/img/product/product-13.jpg" class="pri-img" alt="">
-                                <img src="assets/img/product/product-12.jpg" class="sec-img" alt="">
+                            <a href="{{route('home.product',['product'=>$product->id,'category'=>$category->id,'slug'=>Str::slug($product->name)])}}">
+                                <img src="{{url('uploads')}}/{{$product->image}}" class="pri-img" alt="">
+                                <img src="{{url('uploads')}}/{{$product->image}}" class="sec-img" alt="">
                             </a>
                             <div class="box-label">
                                 <div class="label-product label_new">
@@ -314,43 +320,56 @@
                                 </div>
                             </div>
                             <div class="action-links">
-                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                <a href="#" title="Quick view" data-target="#quickk_view" data-toggle="modal"><i
+                                <a href="{{route('home.add-wishlist',$product->id)}}" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                <a href="{{route('home.add-compare',$product->id)}}" title="Compare"><i class="lnr lnr-sync"></i></a>
+                                <a href="" title="Quick view" data-target="#quickk_view-{{$product->id}}" data-toggle="modal"><i
                                         class="lnr lnr-magnifier"></i></a>
                             </div>
                         </div>
                         <div class="product-caption">
                             <div class="manufacture-product">
-                                <p><a href="shop-grid-left-sidebar.html">apple</a></p>
+                                <p><a href="shop-grid-left-sidebar.html">{{$product->cat->name}}</a></p>
                             </div>
                             <div class="product-name">
-                                <h4><a href="product-details.html">jony XB10 Portable Speaker</a></h4>
+                                <h4><a href="{{route('home.product',['product'=>$product->id,'category'=>$category->id,'slug'=>Str::slug($product->name)])}}">{{$product->name}}</a></h4>
                             </div>
                             <div class="ratings">
-                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                <span><i class="lnr lnr-star"></i></span>
+                                @if($product->review_rt->avg('rating')==0)
+                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                @else
+                                    @for($i=0;$i<$product->review_rt->avg('rating');$i++)
+                                        <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                    @endfor
+                                @endif
                             </div>
                             <div class="price-box">
-                                <span class="regular-price"><span class="special-price">£65.00</span></span>
-                                <span class="old-price"><del>£90.00</del></span>
+                                @if($product->sale_price > 0)
+                                    <span class="regular-price"><span class="special-price">${{$product->sale_price}}</span></span>
+                                    <span class="old-price"><del>{{ $product->price }}$</del></span>
+                                @else
+                                    <span class="regular-price"><span class="special-price">${{$product->price}}</span></span>
+                                @endif
                             </div>
-                            <button class="btn-cart" type="button">add to cart</button>
+                            <a href="{{route('home.cart-add',$product->id)}}" class="btn-cart" type="button">add to cart</a>
                         </div>
                     </div><!-- </div> end single item -->
+                    @endforeach
                 </div>
             </div>
         </div>
+        
         <!--  end related-product -->
 
 
 
 
         <!-- Quick view modal start -->
-        <div class="modal fade" id="quickk_view">
+        @foreach ($products_related as $product)
+        <div class="modal fade" id="quickk_view-{{$product->id}}">
             <div class="container">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
@@ -362,36 +381,36 @@
                                 <div class="col-lg-5">
                                     <div class="product-large-slider mb-20">
                                         <div class="pro-large-img">
-                                            <img src="assets/img/product/product-4.jpg" alt="" />
+                                            <img src="{{url('uploads')}}/{{$product->image}}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="assets/img/product/product-5.jpg" alt="" />
+                                            <img src="{{url('uploads')}}/{{$product->image}}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="assets/img/product/product-6.jpg" alt="" />
+                                            <img src="{{url('uploads')}}/{{$product->image}}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="assets/img/product/product-7.jpg" alt="" />
+                                            <img src="{{url('uploads')}}/{{$product->image}}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="assets/img/product/product-8.jpg" alt="" />
+                                            <img src="{{url('uploads')}}/{{$product->image}}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="assets/img/product/product-9.jpg" alt="" />
+                                            <img src="{{url('uploads')}}/{{$product->image}}" alt="" />
                                         </div>
                                     </div>
                                     <div class="pro-nav">
-                                        <div class="pro-nav-thumb"><img src="assets/img/product/product-4.jpg" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" />
                                         </div>
-                                        <div class="pro-nav-thumb"><img src="assets/img/product/product-5.jpg" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" />
                                         </div>
-                                        <div class="pro-nav-thumb"><img src="assets/img/product/product-6.jpg" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" />
                                         </div>
-                                        <div class="pro-nav-thumb"><img src="assets/img/product/product-7.jpg" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" />
                                         </div>
-                                        <div class="pro-nav-thumb"><img src="assets/img/product/product-8.jpg" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" />
                                         </div>
-                                        <div class="pro-nav-thumb"><img src="assets/img/product/product-9.jpg" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" />
                                         </div>
                                     </div>
                                 </div>
@@ -399,7 +418,7 @@
                                     <div class="product-details-inner">
                                         <div class="product-details-contentt">
                                             <div class="pro-details-name mb-10">
-                                                <h3>Bose SoundLink Bluetooth Speaker</h3>
+                                                <a href="{{route('home.product',['product'=>$product->id,'category'=>$category->id,'slug'=>Str::slug($product->name)])}}"><h3>{{$product->name}}</h3></a>
                                             </div>
                                             <div class="pro-details-review mb-20">
                                                 <ul>
@@ -410,7 +429,7 @@
                                                         <span><i class="fa fa-star"></i></span>
                                                         <span><i class="fa fa-star"></i></span>
                                                     </li>
-                                                    <li><a href="#">1 Reviews</a></li>
+                                                    <li><a href="#">{{$product->review_rt->count()}} Reviews</a></li>
                                                     <li><a href="#">Write a Review</a></li>
                                                 </ul>
                                             </div>
@@ -420,8 +439,7 @@
                                                 <span class="old-price"><del>£60.00</del></span>
                                             </div>
                                             <div class="product-detail-sort-des pb-20">
-                                                <p>Canon's press material for the EOS 5D states that it 'defines (a) new
-                                                    D-SLR category', while we're not typically too concerned</p>
+                                                <p>{{ $product->sort_description }}</p>
                                             </div>
                                             <div class="pro-details-list pt-20">
                                                 <ul>
@@ -455,7 +473,7 @@
                                                 <div class="qty-boxx">
                                                     <label>qty :</label>
                                                     <input type="text" placeholder="0">
-                                                    <button class="btn-cart lg-btn">add to cart</button>
+                                                    <a href="{{route('home.cart-add',$product->id)}}"class="btn-cart lg-btn">add to cart</a>
                                                 </div>
                                             </div>
                                             <div class="pro-social-sharing">
@@ -490,6 +508,7 @@
                 </div>
             </div>
         </div>
+        @endforeach
         <!-- Quick view modal end -->
 
     @stop()

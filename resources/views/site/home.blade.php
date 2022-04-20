@@ -12,9 +12,9 @@
                         <div class="row">
                             <div class="col-sm-6 col-sm-8">
                                 <div class="slider-text">
-                                    <h1><a href=""><a href="{{route('home.product',['product'=>$banner->product_id,'slug'=>Str::slug($banner->pro->name)])}}" >{{$banner->title}}</a></h1>
+                                    <h1><a href=""><a href="{{route('home.product',['product'=>$banner->id,'category'=>$banner->category_id,'slug'=>Str::slug($banner->name)])}}" >{{$banner->title}}</a></h1>
                                     <p>
-                                        {{$banner->name}}-<a href="{{route('home.product',['product'=>$banner->product_id,'slug'=>Str::slug($banner->pro->name)])}}">{{$banner->pro->name}}</a>
+                                        {{$banner->name}}-<a href="{{route('home.product',['product'=>$banner->product_id,'category'=>$banner->category_id,'slug'=>Str::slug($banner->pro->name)])}}">{{$banner->pro->name}}</a>
                                     </p>
                                     <a class="btn-1 home-btn" href="{{route('home.cart-add',$banner->product_id)}}">shop now</a>
                                 </div>
@@ -122,7 +122,7 @@
                             @foreach($product_new as $psn)
                             <div class="product-item">
                                 <div class="product-thumb">
-                                    <a href="{{route('home.product',['product'=>$psn->id,'slug'=>Str::slug($psn->name)])}}">
+                                    <a href="{{route('home.product',['product'=>$psn->id,'category'=>$psn->category_id,'slug'=>Str::slug($psn->name)])}}">
                                         <img src="{{url('uploads')}}/{{$psn->image}}" class="pri-img" style="width:100%; height: 200px" alt="">
                                         <img src="{{url('uploads')}}/{{$psn->image}}" class="sec-img" alt="">
                                     </a>
@@ -142,17 +142,23 @@
                                         <p><a href="{{route('home.category',$psn->cat->id)}}">{{$psn->cat->name}}</a></p>
                                     </div>
                                     <div class="product-name">
-                                        <h4><a href="{{route('home.product',['product'=>$psn->id,'slug'=>Str::slug($psn->name)])}}">{{$psn->name}}</a></h4>
+                                        <h4><a href="{{route('home.product',['product'=>$psn->id,'category'=>$psn->category_id,'slug'=>Str::slug($psn->name)])}}">{{$psn->name}}</a></h4>
                                     </div>
                                     <div class="ratings">
-                                        <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                        <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                        <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                        <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                        <span><i class="lnr lnr-star"></i></span>
+                                        @if($psn->review_rt->avg('rating')==0)
+                                                <span class="yellow"><i class="lnr lnr-star"></i></span> 
+                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                            @else
+                                            @for($i=0;$i<$psn->review_rt->avg('rating');$i++)
+                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                            @endfor
+                                        @endif
                                     </div>
                                     <div class="price-box">
-                                        <span class="regular-price">{{$psn->price}}$</span>
+                                        <span class="regular-price">{{$psn->price}}$</span></span>
                                     </div>
                                     <a class="btn-cart" href="{{route('home.cart-add',$psn->id)}}" >add to cart</a>
                                 </div>
@@ -184,7 +190,7 @@
                                 @foreach($product_sale as $psl)
                                 <div class="product-item">
                                     <div class="product-thumb">
-                                        <a href="{{route('home.product',['product'=>$psl->id,'slug'=>Str::slug($psl->name)])}}">
+                                        <a href="{{route('home.product',['product'=>$psl->id,'category'=>$psl->category_id,'slug'=>Str::slug($psl->name)])}}">
                                             <img src="{{url('uploads')}}/{{$psl->image}}" class="pri-img" style="width:100%; height: 200px" alt="">
                                             <img src="{{url('uploads')}}/{{$psl->image}}" class="sec-img" alt="">
                                         </a>
@@ -208,14 +214,20 @@
                                             <p><a href="">{{$psl->cat->name}}</a></p>
                                         </div>
                                         <div class="product-name">
-                                            <h4><a href="{{route('home.product',['product'=>$psl->id,'slug'=>Str::slug($psl->name)])}}">{{$psl->name}}</a></h4>
+                                            <h4><a href="{{route('home.product',['product'=>$psl->id,'category'=>$psl->category_id,'slug'=>Str::slug($psl->name)])}}</a></h4>
                                         </div>
                                         <div class="ratings">
-                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                            <span><i class="lnr lnr-star"></i></span>
+                                            @if($psl->review_rt->avg('rating')==0)
+                                                <span class="yellow"><i class="lnr lnr-star"></i></span> 
+                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                            @else
+                                                @for($i=0;$i<$psl->review_rt->avg('rating');$i++)
+                                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                @endfor
+                                            @endif
                                         </div>
                                         <div class="price-box">
                                             <span class="regular-price">{{$psl->price}}$</span>
@@ -3719,18 +3731,24 @@
                                 <div class="product-details-inner">
                                     <div class="product-details-contentt">
                                         <div class="pro-details-name mb-10">
-                                            <h3><a href="{{route('home.product',['product'=>$psn->id,'slug'=>Str::slug($psn->name)])}}">{{$psn->name}}</a></h3>
+                                            <h3><a href="{{route('home.product',['product'=>$psn->id,'category'=>$psn->id,'slug'=>Str::slug($psn->name)])}}">{{$psn->name}}</a></h3>
                                         </div>
                                         <div class="pro-details-review mb-20">
                                             <ul>
-                                                <li>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
+                                                <li> 
+                                                    @if($psn->review_rt->avg('rating')==0)
+                                                        <span><i class="fa fa-star"></i></span>
+                                                        <span><i class="fa fa-star"></i></span>
+                                                        <span><i class="fa fa-star"></i></span>
+                                                        <span><i class="fa fa-star"></i></span>
+                                                        <span><i class="fa fa-star"></i></span>
+                                                    @else
+                                                        @for($i=0;$i<$psn->review_rt->avg('rating');$i++)
+                                                            <span><i class="fa fa-star"></i></span>
+                                                        @endfor
+                                                    @endif
                                                 </li>
-                                                <li><a href="#"> Reviews</a></li>
+                                                <li><a href="#">{{$psn->review_rt->count()}} Reviews</a></li>
                                             </ul>
                                         </div>
                                         <div class="price-box mb-15">
@@ -3864,13 +3882,20 @@
                                         <div class="pro-details-review mb-20">
                                             <ul>
                                                 <li>
+                                                @if($psl->review_rt->avg('rating')==0)
                                                     <span><i class="fa fa-star"></i></span>
                                                     <span><i class="fa fa-star"></i></span>
                                                     <span><i class="fa fa-star"></i></span>
                                                     <span><i class="fa fa-star"></i></span>
                                                     <span><i class="fa fa-star"></i></span>
+                                                @else
+                                                    @for($i=0;$i<$psl->review_rt->avg('rating');$i++)
+                                                        <span><i class="fa fa-star"></i></span>
+                                                    @endfor
+                                                @endif
+                                                
                                                 </li>
-                                                <li><a href="#"> Reviews</a></li>
+                                                <li><a href="#">{{$psn->review_rt->count()}} Reviews</a></li>
                                             </ul>
                                         </div>
                                         <div class="price-box mb-15">

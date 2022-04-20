@@ -15,8 +15,7 @@ class Category extends Model
     }
     public function scopeSearch($query)
     {
-        $search_value = request()->search;
-        
+        $search_value = request()->search;        
         if($search_value){
             $query = $query->where('name','LIKE','%'.$search_value.'%');
         }
@@ -25,6 +24,9 @@ class Category extends Model
     }
     public function products_byCat(){
         return $this->hasMany(product::class, 'category_id','id');
+    }
+    public function products_byPCat(){
+        return $this->hasMany(product::class, 'parent_cat','id');
     }
     public function children()
     {

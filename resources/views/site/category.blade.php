@@ -127,7 +127,7 @@
                          <div class="col-lg-3 col-md-4 col-sm-6" >
                              <div class="product-item mb-30" >
                                  <div class="product-thumb">
-                                     <a href="{{route('home.product',['product'=>$product->id,'slug'=>$product->name])}}">
+                                     <a href="{{route('home.product',['product'=>$product->id,'category'=>$category->id,'slug'=>Str::slug($product->name)])}}">
                                          <img src="{{url('uploads')}}/{{$product->image}}" class="pri-img" alt="">
                                          <img src="assets/img/product/product-2.jpg" class="sec-img" alt="">
                                      </a>
@@ -147,7 +147,7 @@
                                          <p><a href="{{route('home.category',$category->id)}}">{{$category->name}}</a></p>
                                      </div>
                                      <div class="product-name">
-                                         <h4><a href="{{route('home.product',['product'=>$product->id,'slug'=>Str::slug($product->name)])}}">{{$product->name}}</a></h4>
+                                         <h4><a href="{{route('home.product',['product'=>$product->id,'category'=>$category->id,'slug'=>Str::slug($product->name)])}}">{{$product->name}}</a></h4>
                                      </div>
                                      <div class="ratings">
                                          <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -164,7 +164,7 @@
                              </div> <!-- end single grid item -->
                              <div class="sinrato-list-item mb-30">
                                  <div class="sinrato-thumb">
-                                     <a href="{{route('home.product',$product->id)}}">
+                                     <a href="{{route('home.product',['product'=>$product->id,'category'=>$category->id,'slug'=>Str::slug($product->name)])}}">
                                          <img src="{{url('uploads')}}/{{$product->image}}" class="pri-img" alt="">
                                          <img src="assets/img/product/product-9.jpg" class="sec-img" alt="">
                                      </a>
@@ -179,7 +179,95 @@
                                          <span><a href="#">Canon</a></span>
                                      </div>
                                      <div class="sinrato-product-name">
-                                         <h4><a href="{{route('home.product',$product->id)}}">{{$product->name}}</a></h4>
+                                         <h4><a href="{{route('home.product',['product'=>$product->id,'category'=>$category->id,'slug'=>Str::slug($product->name)])}}">{{$product->name}}</a></h4>
+                                     </div>
+                                     <div class="sinrato-ratings mb-15">
+                                         <span><i class="fa fa-star"></i></span>
+                                         <span><i class="fa fa-star"></i></span>
+                                         <span><i class="fa fa-star"></i></span>
+                                         <span><i class="fa fa-star"></i></span>
+                                         <span><i class="fa fa-star"></i></span>
+                                     </div>
+                                     <div class="sinrato-product-des">
+                                         <p>{{ $product->sort_description }}</p>
+                                     </div>
+                                 </div>
+                                 <div class="sinrato-box-action">
+                                     <div class="price-box">
+                                         @if($product->sale_price > 0)
+                                         <span class="regular-price"><span class="special-price">${{$product->sale_price}}</span></span>
+                                         <span class="old-price"><del>${{$product->price}}</del></span>
+                                         @else
+                                         <span class="regular-price"><span class="special-price">${{$product->price}}</span></span>
+                                         @endif
+                                     </div>
+                                     <a href="{{route('home.cart-add',$product->id)}}" class="btn btn-cart lg-btn">Add to cart</a>
+                                     <div class="action-links sinrat-list-icon">
+                                        <a href="{{route('home.add-wishlist',$product->id)}}" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                        <a href="{{route('home.add-compare',$product->id)}}" title="Compare"><i class="lnr lnr-sync"></i></a>
+                                         <a href="#" title="Quick view" data-target="#quickk_view-product-{{$product->id}}" data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                     </div>
+                                 </div>
+                             </div> <!-- end single list item -->
+                         </div>
+                         @endforeach   
+                         @foreach($products1 as $product)
+                         <div class="col-lg-3 col-md-4 col-sm-6" >
+                             <div class="product-item mb-30" >
+                                 <div class="product-thumb">
+                                     <a href="{{route('home.product',['product'=>$product->id,'category'=>$category->id,'slug'=>Str::slug($product->name)])}}">
+                                         <img src="{{url('uploads')}}/{{$product->image}}" class="pri-img" alt="">
+                                         <img src="assets/img/product/product-2.jpg" class="sec-img" alt="">
+                                     </a>
+                                     <div class="box-label">
+                                         <div class="label-product label_new">
+                                             <span>new</span>
+                                         </div>
+                                     </div>
+                                     <div class="action-links">
+                                        <a href="{{route('home.add-wishlist',$product->id)}}" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                        <a href="{{route('home.add-compare',$product->id)}}" title="Compare"><i class="lnr lnr-sync"></i></a>
+                                         <a href="#" title="Quick view" data-target="#quickk_view-product-{{$product->id}}" data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                     </div>
+                                 </div>
+                                 <div class="product-caption">
+                                     <div class="manufacture-product">
+                                         <p><a href="{{route('home.category',$category->id)}}">{{$category->name}}</a></p>
+                                     </div>
+                                     <div class="product-name">
+                                         <h4><a href="{{route('home.product',['product'=>$product->id,'category'=>$category->id,'slug'=>Str::slug($product->name)])}}">{{$product->name}}</a></h4>
+                                     </div>
+                                     <div class="ratings">
+                                         <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                         <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                         <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                         <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                         <span><i class="lnr lnr-star"></i></span>
+                                     </div>
+                                     <div class="price-box">
+                                         <span class="regular-price">{{$product->price}}$</span>
+                                     </div>
+                                     <a href="{{route('home.cart-add',$product->id)}}" class="btn btn-cart lg-btn">Add to cart</a>
+                                 </div>
+                             </div> <!-- end single grid item -->
+                             <div class="sinrato-list-item mb-30">
+                                 <div class="sinrato-thumb">
+                                     <a href="{{route('home.product',['product'=>$product->id,'category'=>$category->id,'slug'=>Str::slug($product->name)])}}">
+                                         <img src="{{url('uploads')}}/{{$product->image}}" class="pri-img" alt="">
+                                         <img src="assets/img/product/product-9.jpg" class="sec-img" alt="">
+                                     </a>
+                                     <div class="box-label">
+                                         <div class="label-product label_sale">
+                                             <span>-10%</span>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="sinrato-list-item-content">
+                                     <div class="manufacture-product">
+                                         <span><a href="#">Canon</a></span>
+                                     </div>
+                                     <div class="sinrato-product-name">
+                                         <h4><a href="{{route('home.product',['product'=>$product->id,'category'=>$category->id,'slug'=>Str::slug($product->name)])}}">{{$product->name}}</a></h4>
                                      </div>
                                      <div class="sinrato-ratings mb-15">
                                          <span><i class="fa fa-star"></i></span>
@@ -227,6 +315,145 @@
     </div>
 </div>
 <!-- shop page main wrapper end -->
+@foreach($products1 as $product)
+<!-- Quick view modal start -->
+  <div class="modal fade" id="quickk_view-product-{{$product->id}}" >
+      <div class="container">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="row">
+                          <div class="col-lg-5">
+                              <div class="product-large-slider mb-20">
+                                  <div class="pro-large-img">
+                                      <img src="{{url('uploads')}}/{{$product->image}}" alt=""/>
+                                  </div>
+                                  <div class="pro-large-img">
+                                      <img src="{{url('uploads')}}/{{$product->image}}" alt=""/>
+                                  </div>
+                                  <div class="pro-large-img">
+                                      <img src="{{url('uploads')}}/{{$product->image}}" alt=""/>
+                                  </div>
+                                  <div class="pro-large-img">
+                                      <img src="{{url('uploads')}}/{{$product->image}}" alt=""/>
+                                  </div>
+                                  <div class="pro-large-img">
+                                      <img src="{{url('uploads')}}/{{$product->image}}" alt=""/>
+                                  </div>
+                                  <div class="pro-large-img">
+                                      <img src="{{url('uploads')}}/{{$product->image}}" alt=""/>
+                                  </div>
+                              </div>
+                              <div class="pro-nav">
+                                  <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" /></div>
+                                  <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" /></div>
+                                  <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" /></div>
+                                  <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" /></div>
+                                  <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" /></div>
+                                  <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" /></div>
+                              </div>
+                          </div>
+                          <div class="col-lg-7">
+                              <div class="product-details-inner">
+                                  <div class="product-details-contentt">
+                                      <div class="pro-details-name mb-10">
+                                          <h3><a  href="{{route('home.product',['product'=>$product->id,'category'=>$category->id,'slug'=>Str::slug($product->name)])}}">{{$product->name}}</a></h3>
+                                      </div>
+                                      <div class="pro-details-review mb-20">
+                                          <ul>
+                                              <li>
+                                                  <span><i class="fa fa-star"></i></span>
+                                                  <span><i class="fa fa-star"></i></span>
+                                                  <span><i class="fa fa-star"></i></span>
+                                                  <span><i class="fa fa-star"></i></span>
+                                                  <span><i class="fa fa-star"></i></span>
+                                              </li>
+                                              <li><a href="#">{{$product->review_rt->count()}} Reviews</a></li>
+                                          </ul>
+                                      </div>
+                                      <div class="price-box mb-15">
+                                        @if($product->sale_price > 0)
+                                        <span class="regular-price"><span class="special-price">${{$product->sale_price}}</span></span>
+                                            <span class="old-price"><del>{{ $product->price }}$</del></span>
+                                        @else
+                                            <span class="regular-price"><span class="special-price">${{$product->price}}</span></span>
+                                        @endif
+                                      </div>
+                                      <div class="product-detail-sort-des pb-20">
+                                          <p>{{$product->sort_description}}</p>
+                                      </div>
+                                      <div class="pro-details-list pt-20">
+                                          <ul>
+                                              <li><span>Availability :</span>In Stock</li>
+                                          </ul>
+                                      </div>
+                                      <div class="product-availabily-option mt-15 mb-15">
+                                          <h3>Available Options</h3>
+                                          <div class="color-optionn">
+                                              <h4><sup>*</sup>color</h4>
+                                              <ul>
+                                                  <li>
+                                                      <a class="c-black" href="#" title="Black"></a>
+                                                  </li>
+                                                  <li>
+                                                      <a class="c-blue" href="#" title="Blue"></a>
+                                                  </li>
+                                                  <li>
+                                                      <a class="c-brown" href="#" title="Brown"></a>
+                                                  </li>
+                                                  <li>
+                                                      <a class="c-gray" href="#" title="Gray"></a>
+                                                  </li>
+                                                  <li>
+                                                      <a class="c-red" href="#" title="Red"></a>
+                                                  </li>
+                                              </ul> 
+                                          </div>
+                                      </div>
+                                      <div class="pro-quantity-box mb-30">
+                                          <div class="qty-boxx">
+                                              <label>qty :</label>
+                                              <input type="text" placeholder="0">
+                                              <a href="{{route('home.cart-add',$product->id)}}" class="btn btn-cart lg-btn">Add to cart</a>
+                                          </div>
+                                      </div>
+                                      <div class="pro-social-sharing">
+                                          <label>share :</label>
+                                          <ul>
+                                              <li class="list-inline-item">
+                                                  <a href="#" class="bg-facebook" title="Facebook">
+                                                      <i class="fa fa-facebook"></i>
+                                                      <span>like 0</span>
+                                                  </a>
+                                              </li>
+                                              <li class="list-inline-item">
+                                                  <a href="#" class="bg-twitter" title="Twitter">
+                                                      <i class="fa fa-twitter"></i>
+                                                      <span>tweet</span>
+                                                  </a>
+                                              </li>
+                                              <li class="list-inline-item">
+                                                  <a href="#" class="bg-google" title="Google Plus">
+                                                      <i class="fa fa-google-plus"></i>
+                                                      <span>google +</span>
+                                                  </a>
+                                              </li>
+                                          </ul>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+<!-- Quick view modal end -->
+@endforeach     
 @foreach($products as $product)
 <!-- Quick view modal start -->
   <div class="modal fade" id="quickk_view-product-{{$product->id}}" >
@@ -272,7 +499,7 @@
                               <div class="product-details-inner">
                                   <div class="product-details-contentt">
                                       <div class="pro-details-name mb-10">
-                                          <h3><a  href="{{route('home.product',['product'=>$product->id,'slug'=>$product->name])}}">{{$product->name}}</a></h3>
+                                          <h3><a  href="{{route('home.product',['product'=>$product->id,'category'=>$category->id,'slug'=>Str::slug($product->name)])}}">{{$product->name}}</a></h3>
                                       </div>
                                       <div class="pro-details-review mb-20">
                                           <ul>
@@ -365,6 +592,6 @@
       </div>
   </div>
 <!-- Quick view modal end -->
-@endforeach     
+@endforeach  
 
 @stop()

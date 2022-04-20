@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = Category::orderBy('name','ASC')->search()->paginate(50);
+        $data = Category::orderBy('name','ASC')->search()->paginate(10);
         // dd($data);
         return view('admin.category.index',compact('data'));
         
