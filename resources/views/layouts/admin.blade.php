@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="{{ url('admin-template')}}/dist/css/adminlte.min.css">
     <link rel="icon" href="{{ url('home')}}/assets/img/icon/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="{{ url('home')}}/assets/css/options.css">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
 	<!-- Bootstrap css -->
     {{-- <link rel="stylesheet" href="{{ url('home')}}/assets/css/bootstrap.min.css">
     <!-- linear-icon -->
@@ -31,7 +34,7 @@
      --}}
 
     <!-- Modernizer JS -->
-    <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    {{-- <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script> --}}
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -111,14 +114,16 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="{{ url('admin-template')}}/plugins/jquery/jquery.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> --}}
+    {{-- <script src="{{ url('admin-template')}}/plugins/jquery/jquery.min.js"></script> --}}
     <!-- Bootstrap 4 -->
     <script src="{{ url('admin-template')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="{{ url('admin-template')}}/dist/js/adminlte.min.js"></script>
+    <script src="{{ url('admin-template')}}/dist/js/adminlte.min.js"></script>  
+    <script src="{{ url('admin-template')}}/dist/js/options.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ url('admin-template')}}/dist/js/demo.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
 </body>
 
 </html>

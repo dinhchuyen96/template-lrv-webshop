@@ -107,8 +107,8 @@
                                 </div>
                                 <div class="price-box mb-15">
                                     <span class="regular-price">
-                                        @if($product->sale_price > 0)
-                                            <span class="special-price">{{ $product->sale_price }}$</span></span>
+                                        @if($product->sale_price < $product->price && $product->sale_price !=0)
+                                            <span class="special-price">{{number_format($product->sale_price,0)}}$</span></span>
                                             <span class="old-price"><del>{{ $product->price }}$</del></span>
                                         @else
                                             <span class="special-price">{{ $product->price }}$</span></span>
@@ -249,7 +249,7 @@
                                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                     <input type="hidden" name="account_id" value="{{ $acc->id }}">
                                                     <input type="text"
-                                                        value="{{ $acc->first_name }} {{ $acc->last_name }}"
+                                                        value="{{ $acc->first_name}} {{ $acc->last_name }}"
                                                         name="name_reviewer" class="form-control" required>
                                                     @if($acc->first_name == 'Guest')
                                                         <h5>You have an account? <a href="{{ route('home.login') }}">Login!</a></h5>
@@ -304,12 +304,14 @@
                     <h3><span>Related</span> product </h3>
                 </div>
                 <div class="flash-sale-active4 owl-carousel owl-arrow-style">
-                     @foreach ($products_related as $product)
+                     @foreach ($products_related as $products)
+                     @if ($products->id != $product->id)
+                     
                     <div class="product-item mb-30">
                         <div class="product-thumb">
-                            <a href="{{route('home.product',['product'=>$product->id,'category'=>$category->id,'slug'=>Str::slug($product->name)])}}">
-                                <img src="{{url('uploads')}}/{{$product->image}}" class="pri-img" alt="">
-                                <img src="{{url('uploads')}}/{{$product->image}}" class="sec-img" alt="">
+                            <a href="{{route('home.product',['product'=>$products->id,'category'=>$category->id,'slug'=>Str::slug($products->name)])}}">
+                                <img src="{{url('uploads')}}/{{$products->image}}" class="pri-img" alt="">
+                                <img src="{{url('uploads')}}/{{$products->image}}" class="sec-img" alt="">
                             </a>
                             <div class="box-label">
                                 <div class="label-product label_new">
@@ -320,43 +322,44 @@
                                 </div>
                             </div>
                             <div class="action-links">
-                                <a href="{{route('home.add-wishlist',$product->id)}}" title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                <a href="{{route('home.add-compare',$product->id)}}" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                <a href="" title="Quick view" data-target="#quickk_view-{{$product->id}}" data-toggle="modal"><i
+                                <a href="{{route('home.add-wishlist',$products->id)}}" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                <a href="{{route('home.add-compare',$products->id)}}" title="Compare"><i class="lnr lnr-sync"></i></a>
+                                <a href="" title="Quick view" data-target="#quickk_view-{{$products->id}}" data-toggle="modal"><i
                                         class="lnr lnr-magnifier"></i></a>
                             </div>
                         </div>
                         <div class="product-caption">
                             <div class="manufacture-product">
-                                <p><a href="shop-grid-left-sidebar.html">{{$product->cat->name}}</a></p>
+                                <p><a href="shop-grid-left-sidebar.html">{{$products->cat->name}}</a></p>
                             </div>
                             <div class="product-name">
-                                <h4><a href="{{route('home.product',['product'=>$product->id,'category'=>$category->id,'slug'=>Str::slug($product->name)])}}">{{$product->name}}</a></h4>
+                                <h4><a href="{{route('home.product',['product'=>$products->id,'category'=>$category->id,'slug'=>Str::slug($products->name)])}}">{{$products->name}}</a></h4>
                             </div>
                             <div class="ratings">
-                                @if($product->review_rt->avg('rating')==0)
+                                @if($products->review_rt->avg('rating')==0)
                                     <span class="yellow"><i class="lnr lnr-star"></i></span>
                                     <span class="yellow"><i class="lnr lnr-star"></i></span>
                                     <span class="yellow"><i class="lnr lnr-star"></i></span>
                                     <span class="yellow"><i class="lnr lnr-star"></i></span>
                                     <span class="yellow"><i class="lnr lnr-star"></i></span>
                                 @else
-                                    @for($i=0;$i<$product->review_rt->avg('rating');$i++)
+                                    @for($i=0;$i<$products->review_rt->avg('rating');$i++)
                                         <span class="yellow"><i class="lnr lnr-star"></i></span>
                                     @endfor
                                 @endif
                             </div>
                             <div class="price-box">
-                                @if($product->sale_price > 0)
-                                    <span class="regular-price"><span class="special-price">${{$product->sale_price}}</span></span>
-                                    <span class="old-price"><del>{{ $product->price }}$</del></span>
-                                @else
-                                    <span class="regular-price"><span class="special-price">${{$product->price}}</span></span>
-                                @endif
+                            @if($products->sale_price < $products->price && $products->sale_price !=0)
+                                <span class="regular-price"><span class="special-price">{{number_format($products->sale_price,0)}}$</span></span>
+                                <span class="old-price"><del>{{ $products->price }}$</del></span>
+                            @else
+                                <span class="regular-price"><span class="special-price">{{ $products->price }}$</span></span>
+                            @endif
                             </div>
-                            <a href="{{route('home.cart-add',$product->id)}}" class="btn-cart" type="button">add to cart</a>
+                            <a href="{{route('home.cart-add',$products->id)}}" class="btn-cart" type="button">add to cart</a>
                         </div>
                     </div><!-- </div> end single item -->
+                    @endif
                     @endforeach
                 </div>
             </div>
@@ -368,8 +371,8 @@
 
 
         <!-- Quick view modal start -->
-        @foreach ($products_related as $product)
-        <div class="modal fade" id="quickk_view-{{$product->id}}">
+        @foreach ($products_related as $product_rl)
+        <div class="modal fade" id="quickk_view-{{$product_rl->id}}">
             <div class="container">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
@@ -381,36 +384,36 @@
                                 <div class="col-lg-5">
                                     <div class="product-large-slider mb-20">
                                         <div class="pro-large-img">
-                                            <img src="{{url('uploads')}}/{{$product->image}}" alt="" />
+                                            <img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{url('uploads')}}/{{$product->image}}" alt="" />
+                                            <img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{url('uploads')}}/{{$product->image}}" alt="" />
+                                            <img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{url('uploads')}}/{{$product->image}}" alt="" />
+                                            <img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{url('uploads')}}/{{$product->image}}" alt="" />
+                                            <img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{url('uploads')}}/{{$product->image}}" alt="" />
+                                            <img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
                                         </div>
                                     </div>
                                     <div class="pro-nav">
-                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
                                         </div>
-                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
                                         </div>
-                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
                                         </div>
-                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
                                         </div>
-                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
                                         </div>
-                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product->image}}" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
                                         </div>
                                     </div>
                                 </div>
@@ -418,7 +421,7 @@
                                     <div class="product-details-inner">
                                         <div class="product-details-contentt">
                                             <div class="pro-details-name mb-10">
-                                                <a href="{{route('home.product',['product'=>$product->id,'category'=>$category->id,'slug'=>Str::slug($product->name)])}}"><h3>{{$product->name}}</h3></a>
+                                                <a href="{{route('home.product',['product'=>$product_rl->id,'category'=>$category->id,'slug'=>Str::slug($product_rl->name)])}}"><h3>{{$product_rl->name}}</h3></a>
                                             </div>
                                             <div class="pro-details-review mb-20">
                                                 <ul>
@@ -429,17 +432,20 @@
                                                         <span><i class="fa fa-star"></i></span>
                                                         <span><i class="fa fa-star"></i></span>
                                                     </li>
-                                                    <li><a href="#">{{$product->review_rt->count()}} Reviews</a></li>
+                                                    <li><a href="#">{{$product_rl->review_rt->count()}} Reviews</a></li>
                                                     <li><a href="#">Write a Review</a></li>
                                                 </ul>
                                             </div>
                                             <div class="price-box mb-15">
-                                                <span class="regular-price"><span
-                                                        class="special-price">£50.00</span></span>
-                                                <span class="old-price"><del>£60.00</del></span>
+                                            @if($product_rl->sale_price < $product_rl->price && $product_rl->sale_price !=0)
+                                                <span class="regular-price"><span class="special-price">${{$product_rl->sale_price}}</span></span>
+                                                <span class="old-price"><del>${{$product_rl->price}}</del></span>
+                                            @else
+                                                <span class="regular-price"><span class="special-price">${{$product_rl->price}}</span></span>
+                                            @endif
                                             </div>
                                             <div class="product-detail-sort-des pb-20">
-                                                <p>{{ $product->sort_description }}</p>
+                                                <p>{{ $product_rl->sort_description }}</p>
                                             </div>
                                             <div class="pro-details-list pt-20">
                                                 <ul>
@@ -473,7 +479,7 @@
                                                 <div class="qty-boxx">
                                                     <label>qty :</label>
                                                     <input type="text" placeholder="0">
-                                                    <a href="{{route('home.cart-add',$product->id)}}"class="btn-cart lg-btn">add to cart</a>
+                                                    <a href="{{route('home.cart-add',$product_rl->id)}}"class="btn-cart lg-btn">add to cart</a>
                                                 </div>
                                             </div>
                                             <div class="pro-social-sharing">

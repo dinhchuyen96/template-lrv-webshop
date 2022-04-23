@@ -22,8 +22,8 @@
         }
         public function category(Category $category){
             $products = $category->products_byCat()->paginate(12);
-            $products1 = $category->products_byPCat()->paginate(12);
-            // dd($category);
+            $products1 = $category->products_byParent_Cat()->paginate(12);
+            // dd($category->id);
             return view('site\category',compact('category','products','products1'));
         }
         public function product(Product $product,Category $category){

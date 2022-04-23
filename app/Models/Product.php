@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $table = 'products';
-    protected $fillable = ['id','name','sort_description','description','status','price','sale_price','image','parent_cat','category_id','avg_rating'];
+    protected $fillable = ['id','name','sort_description','description','status','price','percent_sale','sale_price','image','parent_cat','category_id','avg_rating'];
 
     
     
@@ -37,10 +37,12 @@ class Product extends Model
     {
         return $this->hasMany(Review::class, 'product_id', 'id');
     }
+
     public function scopeProduct_sale($query, $limit = 4){
         $query = $query->where('sale_price','>',0)->where('status','>',0)->limit($limit)->get();
         return $query;
     }
+    
     public function scopeProduct_new($query, $limit = 4){
         $query = $query->orderBy('id','DESC')->where('status','>',0)->limit($limit)->get();
         return $query;

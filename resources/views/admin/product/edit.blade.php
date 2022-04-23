@@ -34,17 +34,25 @@
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <label for="">Giá</label>
-                <input type="text" class="form-control" value="{{ $product->price }}" name="price"
+                <input type="text" class="form-control set_price_product" id="price" value="{{ $product->price }}" name="price"
                     placeholder="Input field">
                 @error('price')
                     {{ $message }}
                 @enderror
             </div>
-            <div class="col-md-6">
+            
+            <div class="col-md-2"><label for="">% Sale</label>
+                <input type="number" value="{{ old('percent_sale') }}" id="percent_sale" class="form-control set_price_product" name="percent_sale"
+                    placeholder="Nhập % giảm giá">
+                @error('price')
+                    {{ $message }}
+                @enderror
+            </div>
+            <div class="col-md-5">
                 <label for="">Giá khuyễn mãi</label>
-                <input type="text" class="form-control" value="{{$product->sale_price}}" name="sale_price"
+                <input type="text" class="form-control" id="sale_price" value="{{$product->sale_price}}" name="sale_price"
                     placeholder="Input field">
                 @error('sale_price')
                     {{ $message }}
@@ -110,19 +118,19 @@
         }
     }
 };
-function showCategories($categories, $parent_id = 0, $char = '')
-{
-    foreach ($categories as $key => $item)
-    {
-        // Nếu là chuyên mục con thì hiển thị
-        if ($item->parent_id == $parent_id)
+function showCategories($categories, $parent_id = 0, $char = ''){
+        foreach ($categories as $key => $item)
         {
-            // Xử lý hiển thị chuyên mục
-            echo '<option value="'.$item->id.'">'.$char.$item->name.'</option>';
-            // Xóa chuyên mục đã lặp
-            unset($categories[$key]);
-            // Tiếp tục đệ quy để tìm chuyên mục con của chuyên mục đang lặp
-            showCategories($categories, $item->id, $char.'---');
+            // Nếu là chuyên mục con thì hiển thị
+            if ($item->parent_id == $parent_id)
+            {
+                // Xử lý hiển thị chuyên mục
+                echo '<option value="'.$item->id.'">'.$char.$item->name.'</option>';
+                // Xóa chuyên mục đã lặp
+                unset($categories[$key]);
+                // Tiếp tục đệ quy để tìm chuyên mục con của chuyên mục đang lặp
+                showCategories($categories, $item->id, $char.'---');
+            }
         }
-    }
-}   ?>
+    }  
+ ?>

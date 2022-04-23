@@ -49,16 +49,26 @@
                 {{ $message }}
             @enderror
         </div>
+        <script>
+            
+        </script>
         <div class="row form-group">
-            <div class="col-md-6"><label for="">Giá</label>
-                <input type="text" value="{{ old('price') }}" class="form-control" name="price"
+            <div class="col-md-5"><label for="">Giá</label>
+                <input type="text" value="{{ old('price') }}" id="price" class="form-control set_price_product" name="price"
                     placeholder="Nhập giá sản phẩm">
                 @error('price')
                     {{ $message }}
                 @enderror
             </div>
-            <div class="col-md-6"> <label for="">Giá khuyễn mãi</label>
-                <input type="text" class="form-control" value="{{ old('sale_price') }}" name="sale_price"
+            <div class="col-md-2"><label for="">% Sale</label>
+                <input type="number" id="percent_sale" value="0|{{ old('percent_sale') }}" class="form-control set_price_product" name="percent_sale"
+                    placeholder="Nhập % giảm giá">
+                @error('price')
+                    {{ $message }}
+                @enderror
+            </div>
+            <div class="col-md-5"> <label for="">Giá khuyễn mãi</label>
+                <input type="text" class="form-control" id="sale_price" value="{{ old('sale_price') }}" name="sale_price"
                     placeholder="Nhập giá khuyến mãi nếu có">
                 @error('sale_price')
                     {{ $message }}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -83,7 +84,7 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product, $lug ,Review $review)
+    public function destroy(Product $product,Category $category, $lug ,Review $review)
     {
         // dd($review);
         $review->delete();
