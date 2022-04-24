@@ -28,10 +28,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
         Paginator::useBootstrap();
         view()->composer('*',function($view){
             $acc = Auth::guard('account')->user(); // lấy thông tin account đang đăng nhập
             // dd($acc->id);
+            
             if($acc == null){
                 $acc = [
                     'id' => 0,
@@ -57,8 +59,9 @@ class AppServiceProvider extends ServiceProvider
             $cats = Category::with(['children' => function ($q) {
                 $q->active(); //scope
             }])->orderBy('name','ASC')->active()->where('parent_id', 0)->get(); // Lấy danh sách danh mục có trong bảng danh mục 
+            
             $carts = session('cart') ? session('cart'):[];  // lấy giỏ hàng trong session('cart')
-    
+            // dd($carts);
             foreach($carts as $key =>$cart){ //Duyệt mảng sản phẩm có trong giỏ hàng
                 $totalQuantity += $cart->quantity;  // Tính tổng số lượng sản phẩm có trong giỏ hàng
                 $subPrice += $cart->price * $cart->quantity; // tính tiền chưa thuế / phí

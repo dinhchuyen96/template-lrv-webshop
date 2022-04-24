@@ -109,8 +109,8 @@
                                     <div class="search-form">
                                         <select class="form-control" name="cat_id" id="">
                                             <option value="">Select</option>
-                                            @foreach($cats as $cat)
-                                                <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                            @foreach ($cats as $cat)
+                                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -119,64 +119,96 @@
                                     placeholder="Search entire store here">
                                 <input type="submit" class="top-search-btn" value="Search">
                             </form>
-                            @if($products_search != null)
+                            @if ($products_search != null)
 
 
-                            <!-- Modal -->
+                                <!-- Modal -->
 
 
-                              <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                <div class="modal-dialog" style="max-width: 850px" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h2 class="modal-title" id="exampleModalLongTitle">Related Product</h2>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body row d-flex justify-content-center">
-                                        @foreach ($products_search as $key => $value)
-                                                <div class="product-item mb-30">
-                                                    <div class="product-thumb">
-                                                        <a href="{{ route('home.product', ['product' => $value->id, 'slug' => Str::slug($value->name)]) }}">
-                                                            <img src="{{url('uploads')}}/{{$value->image}}" width="250px" class="pri-img" alt="">
-                                                            <img src="{{url('uploads')}}/{{$value->image}}" width="250px" class="sec-img" alt="">
-                                                        </a>
-                                                        <div class="box-label">
-                                                            <div class="label-product label_new">
-                                                                <span>new</span>
+                                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog" style="max-width: 850px" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h2 class="modal-title" id="exampleModalLongTitle">Related Product
+                                                </h2>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body row d-flex justify-content-center">
+                                                @foreach ($products_search as $key => $value)
+                                                    <div class="product-item mb-30">
+                                                        <div class="product-thumb">
+                                                            <a
+                                                                href="{{ route('home.product', ['product' => $value->id,'category' => $value->category_id,'slug' => Str::slug($value->name)]) }}">
+                                                                <img src="{{ url('uploads') }}/{{ $value->image }}"
+                                                                    width="250px" class="pri-img" alt="">
+                                                                <img src="{{ url('uploads') }}/{{ $value->image }}"
+                                                                    width="250px" class="sec-img" alt="">
+                                                            </a>
+                                                            <div class="box-label">
+                                                                <div class="label-product label_new">
+                                                                    <span>new</span>
+                                                                </div>
+                                                                <div class="label-product label_sale">
+                                                                    @if ($value->percent_sale > 0)
+                                                                        <span>sale {{ $value->percent_sale }}%</span>
+                                                                    @endif
+                                                                </div>
                                                             </div>
-                                                            <div class="label-product label_sale">
-                                                                <span>-20%</span>
+                                                        </div>
+                                                        <div class="product-caption">
+                                                            <div class="manufacture-product">
+                                                                <p><a
+                                                                        href="{{ route('home.category', $value->category_id) }}">{{ $value->cat->name }}</a>
+                                                                </p>
                                                             </div>
+                                                            <div class="product-name">
+                                                                <h4><a
+                                                                        href="{{ route('home.product', ['product' => $value->id,'category' => $value->category_id,'slug' => Str::slug($value->name)]) }}">{{ $value->name }}</a>
+                                                                </h4>
+                                                            </div>
+                                                            <div class="ratings">
+                                                                @if ($value->review_rt->avg('rating') == 0)
+                                                                    <span class="yellow"><i
+                                                                            class="lnr lnr-star"></i></span>
+                                                                    <span class="yellow"><i
+                                                                            class="lnr lnr-star"></i></span>
+                                                                    <span class="yellow"><i
+                                                                            class="lnr lnr-star"></i></span>
+                                                                    <span class="yellow"><i
+                                                                            class="lnr lnr-star"></i></span>
+                                                                    <span class="yellow"><i
+                                                                            class="lnr lnr-star"></i></span>
+                                                                @else
+                                                                    @for ($i = 0; $i < $value->review_rt->avg('rating'); $i++)
+                                                                        <span class="yellow"><i
+                                                                                class="lnr lnr-star"></i></span>
+                                                                    @endfor
+                                                                @endif
+                                                            </div>
+                                                            <div class="price-box">
+                                                                @if ($value->sale_price < $value->price && $value->sale_price != 0)
+                                                                    <span class="regular-price"><span
+                                                                            class="special-price">{{ number_format($value->sale_price, 0) }}$</span></span>
+                                                                    <span
+                                                                        class="old-price"><del>{{ $value->price }}$</del></span>
+                                                                @else
+                                                                    <span class="regular-price"><span
+                                                                            class="special-price">{{ $value->price }}$</span></span>
+                                                                @endif
+                                                            </div>
+                                                            <a href="{{ route('home.cart-add', $value->id) }}"
+                                                                class="btn-cart btn " type="button">add to cart</a>
                                                         </div>
                                                     </div>
-                                                    <div class="product-caption">
-                                                        <div class="manufacture-product">
-                                                            <p><a href="{{ route('home.category', $value->category_id) }}">{{$value->cat->name}}</a></p>
-                                                        </div>
-                                                        <div class="product-name">
-                                                            <h4><a href="{{ route('home.product', ['product' => $value->id, 'slug' => Str::slug($value->name)]) }}">{{$value->name}}</a></h4>
-                                                        </div>
-                                                        <div class="ratings">
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                        </div>
-                                                        <div class="price-box">
-                                                            <span class="regular-price"><span class="special-price">{{$value->sale_price}}</span></span>
-                                                            <span class="old-price"><del>${{$value->price}}</del></span>
-                                                        </div>
-                                                        <a href="{{route('home.cart-add',$value->id)}}" class="btn-cart btn " type="button">add to cart</a>
-                                                    </div>
-                                                </div>
                                                 @endforeach
+                                            </div>
+                                        </div>
                                     </div>
-                                  </div>
                                 </div>
-                              </div>
                             @endif
                         </div>
                     </div>
@@ -198,6 +230,7 @@
                                         <a class="ha-toggle"><span class="lnr lnr-cart"></span><span
                                                 class="count">{{ $totalQuantity }}</span>My cart</a>
                                         <ul class="mini-cart-drop-down ha-dropdown">
+                                        @if($carts)
                                             @foreach ($carts as $carts)
                                                 <li class="mb-30">
                                                     <div class="cart-img">
@@ -206,7 +239,7 @@
                                                     </div>
                                                     <div class="cart-info">
                                                         <h4><a
-                                                                href="{{ route('home.product', ['product' => $carts->id, 'slug' => Str::slug($carts->name)]) }}">{{ $carts->name }}</a>
+                                                                href="{{ route('home.product', ['product' => $carts->id,'category' =>$carts->category_id,'slug' => Str::slug($carts->name)]) }}">{{ $carts->name }}</a>
                                                         </h4>
                                                         <span> <span>{{ $carts->quantity }}</span>x
                                                         </span>${{ $carts->price }}</span>
@@ -217,6 +250,7 @@
                                                     </div>
                                                 </li>
                                             @endforeach
+                                            @endif
                                             <li>
                                                 <div class="subtotal-text">Sub-total: </div>
                                                 <div class="subtotal-price">${{ $subPrice }}</div>
@@ -241,6 +275,7 @@
                                                     href="{{ route('home.order_checkout') }}">checkout</a>
                                             </li>
                                         </ul>
+                                        
                                     </li>
                                 </ul>
                             </div>
@@ -378,38 +413,42 @@
                                                 @foreach ($cats as $cat)
                                                     <li>
                                                         <a href="{{ route('home.category', $cat->id) }}">{{ $cat->name }}
-                                                            @if($cat->children->isNotEmpty())
+                                                            @if ($cat->children->isNotEmpty())
                                                                 <span class="lnr lnr-chevron-right"></span>
                                                             @endif
                                                         </a>
-                                                        @if($cat->children->isNotEmpty())
-                                                                <ul class="dropdown">
-                                                                     @foreach($cat->children as $ccat)
-                                                                        <li><a href="{{ route('home.category', $ccat->id) }}">{{$ccat->name}}
-                                                                                @if($ccat->children->isNotEmpty())                                                                                    
-                                                                                    
-                                                                                        <span class="lnr lnr-chevron-right"></span>
-                                                                                        
-                                                                                    <ul class="dropdown">
-                                                                                        @foreach($ccat->children as $cccat)
-                                                                                            <li><a href="{{ route('home.category', $cccat->id) }}">{{$cccat->name}}</a></li>
-                                                                                        @endforeach
-                                                                                    </ul>
-                                                                                @endif
-                                                                            </a>
-                                                                        </li>
-                                                                     @endforeach
-                                                                </ul>
+                                                        @if ($cat->children->isNotEmpty())
+                                                            <ul class="dropdown">
+                                                                @foreach ($cat->children as $ccat)
+                                                                    <li><a
+                                                                            href="{{ route('home.category', $ccat->id) }}">{{ $ccat->name }}
+                                                                            @if ($ccat->children->isNotEmpty())
+                                                                                <span
+                                                                                    class="lnr lnr-chevron-right"></span>
+
+                                                                                <ul class="dropdown">
+                                                                                    @foreach ($ccat->children as $cccat)
+                                                                                        <li><a
+                                                                                                href="{{ route('home.category', $cccat->id) }}">{{ $cccat->name }}</a>
+                                                                                        </li>
+                                                                                    @endforeach
+                                                                                </ul>
+                                                                            @endif
+                                                                        </a>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
                                                         @endif
                                                     </li>
                                                 @endforeach
-                                            </ul>   
+                                            </ul>
                                         </li>
-                                        <li class="static"><a href="#">Pages<span class="lnr lnr-chevron-down"></span></a>
-                                            
+                                        <li class="static"><a href="#">Pages<span
+                                                    class="lnr lnr-chevron-down"></span></a>
+
                                         </li>
                                         <li><a href="#">BLOG<span class="lnr lnr-chevron-down"></span></a>
-                                            
+
                                         </li>
                                         <li><a href="/contactus">CONTACT US</a></li>
                                     </ul>

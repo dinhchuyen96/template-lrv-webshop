@@ -19,6 +19,11 @@
                                     <ul>
                                         @foreach ($cats as $cat)
                                             @if ($cat->children->isNotEmpty())
+                                                @if ($cat->id == $category->id)
+                                                    <h3 class="">{{ $cat->name }}</h3>
+                                                    <p>({{ $products1->count() }}-products)</p>
+                                                    <br>
+                                                @endif
                                                 @foreach ($cat->children as $ccat)
                                                     @if (($ccat->parent_id == $category->id) | ($ccat->parent_id == $category->parent_id))
                                                         <li>
@@ -168,16 +173,22 @@
                                                 </h4>
                                             </div>
                                             <div class="ratings">
-                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                <span><i class="lnr lnr-star"></i></span>
+                                                @if ($product_cat->review_rt->avg('rating') == 0)
+                                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                @else
+                                                    @for ($i = 0; $i < $product_cat->review_rt->avg('rating'); $i++)
+                                                        <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                    @endfor
+                                                @endif
                                             </div>
                                             <div class="price-box">
                                                 @if ($product_cat->sale_price < $product_cat->price && $product_cat->sale_price != 0)
                                                     <span class="regular-price"><span
-                                                            class="special-price">${{ $product_cat->sale_price }}</span></span>
+                                                            class="special-price">${{ number_format($product_cat->sale_price, 0) }}</span></span>
                                                     <span
                                                         class="old-price"><del>${{ $product_cat->price }}</del></span>
                                                 @else
@@ -199,15 +210,15 @@
                                             </a>
                                             <div class="box-label">
                                                 <div class="label-product label_sale">
-                                                    <span>
-
-                                                    </span>
+                                                    @if ($product_cat->percent_sale > 0)
+                                                        <span>sale {{ $product_cat->percent_sale }}%</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="sinrato-list-item-content">
                                             <div class="manufacture-product">
-                                                <span><a href="#">Canon</a></span>
+                                                <span><a href="#">{{ $product_cat->cat->name }}</a></span>
                                             </div>
                                             <div class="sinrato-product-name">
                                                 <h4><a
@@ -229,7 +240,7 @@
                                             <div class="price-box">
                                                 @if ($product_cat->sale_price < $product_cat->price && $product_cat->sale_price != 0)
                                                     <span class="regular-price"><span
-                                                            class="special-price">${{ $product_cat->sale_price }}</span></span>
+                                                            class="special-price">${{ number_format($product_cat->sale_price, 0) }}</span></span>
                                                     <span
                                                         class="old-price"><del>${{ $product_cat->price }}</del></span>
                                                 @else
@@ -252,6 +263,9 @@
                                     </div> <!-- end single list item -->
                                 </div>
                             @endforeach
+
+
+                            {{-- Grounp by Parent ID --}}
                             @foreach ($products1 as $products_byParent_Cat)
                                 <div class="col-lg-3 col-md-4 col-sm-6">
                                     <div class="product-item mb-30">
@@ -265,6 +279,11 @@
                                             <div class="box-label">
                                                 <div class="label-product label_new">
                                                     <span>new</span>
+                                                </div>
+                                                <div class="label-product label_sale">
+                                                    @if ($products_byParent_Cat->percent_sale > 0)
+                                                        <span>sale {{ $products_byParent_Cat->percent_sale }}%</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="action-links">
@@ -289,16 +308,22 @@
                                                 </h4>
                                             </div>
                                             <div class="ratings">
-                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                <span><i class="lnr lnr-star"></i></span>
+                                                @if ($products_byParent_Cat->review_rt->avg('rating') == 0)
+                                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                @else
+                                                    @for ($i = 0; $i < $products_byParent_Cat->review_rt->avg('rating'); $i++)
+                                                        <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                    @endfor
+                                                @endif
                                             </div>
                                             <div class="price-box">
                                                 @if ($products_byParent_Cat->sale_price < $products_byParent_Cat->price && $products_byParent_Cat->sale_price != 0)
                                                     <span class="regular-price"><span
-                                                            class="special-price">${{ $products_byParent_Cat->sale_price }}</span></span>
+                                                            class="special-price">${{ number_format($products_byParent_Cat->sale_price, 0) }}</span></span>
                                                     <span
                                                         class="old-price"><del>${{ $products_byParent_Cat->price }}</del></span>
                                                 @else
@@ -320,13 +345,15 @@
                                             </a>
                                             <div class="box-label">
                                                 <div class="label-product label_sale">
-                                                    <span>-10%</span>
+                                                    @if ($products_byParent_Cat->percent_sale > 0)
+                                                        <span>sale {{ $products_byParent_Cat->percent_sale }}%</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="sinrato-list-item-content">
                                             <div class="manufacture-product">
-                                                <span><a href="#">Canon</a></span>
+                                                <span><a href="">{{ $products_byParent_Cat->cat->name }}</a></span>
                                             </div>
                                             <div class="sinrato-product-name">
                                                 <h4><a
@@ -348,7 +375,7 @@
                                             <div class="price-box">
                                                 @if ($products_byParent_Cat->sale_price < $products_byParent_Cat->price && $products_byParent_Cat->sale_price != 0)
                                                     <span class="regular-price"><span
-                                                            class="special-price">${{ $products_byParent_Cat->sale_price }}</span></span>
+                                                            class="special-price">${{ number_format($products_byParent_Cat->sale_price, 0) }}</span></span>
                                                     <span
                                                         class="old-price"><del>${{ $products_byParent_Cat->price }}</del></span>
                                                 @else
@@ -420,18 +447,18 @@
                                         </div>
                                     </div>
                                     <div class="pro-nav">
-                                        <div class="pro-nav-thumb"><img src="{{ url('uploads') }}/{{ $product->image }}"
-                                                alt="" /></div>
-                                        <div class="pro-nav-thumb"><img src="{{ url('uploads') }}/{{ $product->image }}"
-                                                alt="" /></div>
-                                        <div class="pro-nav-thumb"><img src="{{ url('uploads') }}/{{ $product->image }}"
-                                                alt="" /></div>
-                                        <div class="pro-nav-thumb"><img src="{{ url('uploads') }}/{{ $product->image }}"
-                                                alt="" /></div>
-                                        <div class="pro-nav-thumb"><img src="{{ url('uploads') }}/{{ $product->image }}"
-                                                alt="" /></div>
-                                        <div class="pro-nav-thumb"><img src="{{ url('uploads') }}/{{ $product->image }}"
-                                                alt="" /></div>
+                                        <div class="pro-nav-thumb"><img
+                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                        <div class="pro-nav-thumb"><img
+                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                        <div class="pro-nav-thumb"><img
+                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                        <div class="pro-nav-thumb"><img
+                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                        <div class="pro-nav-thumb"><img
+                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                        <div class="pro-nav-thumb"><img
+                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-7">
@@ -445,11 +472,17 @@
                                             <div class="pro-details-review mb-20">
                                                 <ul>
                                                     <li>
-                                                        <span><i class="fa fa-star"></i></span>
-                                                        <span><i class="fa fa-star"></i></span>
-                                                        <span><i class="fa fa-star"></i></span>
-                                                        <span><i class="fa fa-star"></i></span>
-                                                        <span><i class="fa fa-star"></i></span>
+                                                        @if ($product->review_rt->avg('rating') == 0)
+                                                            <span></span><i class="fa fa-star"></i></span>
+                                                            <span></span><i class="fa fa-star"></i></span>
+                                                            <span></span><i class="fa fa-star"></i></span>
+                                                            <span></span><i class="fa fa-star"></i></span>
+                                                            <span></span><i class="fa fa-star"></i></span>
+                                                        @else
+                                                            @for ($i = 0; $i < $product->review_rt->avg('rating'); $i++)
+                                                                <span></span><i class="fa fa-star"></i></span>
+                                                            @endfor
+                                                        @endif
                                                     </li>
                                                     <li><a href="#">{{ $product->review_rt->count() }} Reviews</a></li>
                                                 </ul>
@@ -457,7 +490,7 @@
                                             <div class="price-box mb-15">
                                                 @if ($product->sale_price < $product->price && $product->sale_price != 0)
                                                     <span class="regular-price"><span
-                                                            class="special-price">${{ $product->sale_price }}</span></span>
+                                                            class="special-price">${{ number_format($product->sale_price, 0) }}</span></span>
                                                     <span
                                                         class="old-price"><del>{{ $product->price }}$</del></span>
                                                 @else

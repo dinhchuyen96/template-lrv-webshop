@@ -9,6 +9,9 @@ class WishlistController extends Controller
     public function view(){
         $wishlists = session('wishlist')? session('wishlist') : [];
         // dd($wishlists);
+        if($wishlists == null){
+            return redirect()->route('home')->with('ok', 'Wishlist rỗng, mời bạn chọn lại');;
+        }
         return view('site\wishlist',compact('wishlists'));
     }
     public function add(Product $product)
@@ -17,6 +20,7 @@ class WishlistController extends Controller
         // dd($wishlists);
         $item = [
             'id' => $product->id,
+            'category_id' =>$product->category_id,
             'name' => $product->name,
             'image' => $product->image,
             'price' => $product->price,

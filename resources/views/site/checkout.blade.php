@@ -63,7 +63,7 @@
                                             <h3>Billing Details</h3>
                                         </div>
 
-                                        <form role="form" method="POST">
+                                        <form role="form" method="POST" id="checkout_form">
                                             @csrf
                                             <div class="form-row mb-3">
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
@@ -150,6 +150,7 @@
                                         
                                             <input type="hidden" name="status" value="0" />
                                             
+                                            
                                         </form>
                                     </div> <!-- end of checkout-form -->
                                 </div>
@@ -160,6 +161,7 @@
                                         </div>
                                         <div class="product-container">
                                             @foreach ($carts as $carts)
+                                            <input type="hidden" name="category_id" form="checkout_form" value="{{$carts->category_id}}" />
                                                 <div class="product-list">
                                                     <div class="product-inner media align-items-center">
                                                         <div class="product-image mr-4 mr-sm-5 mr-md-4 mr-lg-5">

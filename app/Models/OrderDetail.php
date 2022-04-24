@@ -19,6 +19,7 @@ class OrderDetail extends Authenticatable
      */
     protected $fillable = [
         'product_id',
+        'category_id',
         'order_id',
         'quantity',
         'price',

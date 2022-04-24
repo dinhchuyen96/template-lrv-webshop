@@ -52,7 +52,7 @@
                                                             <a href="product-details.html"><img src="{{url('uploads')}}/{{$wishlist->image}}" alt="Wishlist Product Image" width="80" title="Compete Track Tote"></a>
                                                             </td>
                                                             <td>
-                                                                <a href="{{route('home.product',['product'=>$wishlist->id,'slug'=>Str::slug($wishlist->name)])}}">{{$wishlist->name}}</a>
+                                                                <a href="{{route('home.product',['product'=>$wishlist->id,'category'=>$wishlist->category_id,'slug'=>Str::slug($wishlist->name)])}}">{{$wishlist->name}}</a>
                                                             </td>
                                                             <td>3</td>
                                                             <td>In Stock</td>

@@ -52,7 +52,7 @@
                                                     <tr>
                                                         <td>{{$i-=1}}</td>
                                                         <td>
-                                                            <a href="{{route('home.product',['product'=>$order->id,'slug'=>Str::slug($order->name)])}}">{{$order->name}}</a>
+                                                            <a href="{{route('home.product',['product'=>$order->id,'category'=>$order->category_id, 'slug'=>Str::slug($order->name)])}}">{{$order->name}}</a>
                                                             <span>{{$order->created_at->format('d-m-Y')}}</span>
                                                         </td>
                                                         <td>

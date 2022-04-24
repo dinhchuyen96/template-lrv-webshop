@@ -3,11 +3,11 @@
 @section('main')
 <form class="form-inline ml-3" method="get">
     <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" style="margin-left: -1rem;width:300px; height: 34px" placeholder="Tìm kiếm sản phẩm" name="search">
+        <input class="form-control form-control-navbar" type="search" style="margin-left: -1rem;width:329px; height: 34px" placeholder="Tìm kiếm sản phẩm" name="search">
     </div>
     <div class="input-group input-group-sm ml-2">
         <div class="form-group">          
-          <select class="form-control" style="height: 34px;width: 121px;margin-left: -10px;" name="cat_id" id="">
+          <select class="form-control" style="height: 34px;width: 135px;margin-left: -10px;" name="cat_id" id="">
             <option value=>Danh mục</option>
             @foreach($pro_cats as $cat)
                 <option value="{{$cat->id}}">{{$cat->name}}</option>
@@ -15,11 +15,11 @@
           </select>
         </div>
         <div class="input-group-append">
-            <button class="btn btn-warning" style="height: 33px; width:163px;margin-top: 2px;" type="submit">
+            <button class="btn btn-warning" style="height: 33px; width:203px;margin-top: 2px;" type="submit">
                 <p>Search</p>
             </button>           
         </div> 
-        <a class="btn btn-primary" style="margin-left: 16.5rem" href="{{ route('product.create')}}">Thêm mới</a>
+        <a class="btn btn-primary" style="margin-left: 16rem" href="{{ route('product.create')}}">Thêm mới</a>
     </div>
 </form>
 <hr>

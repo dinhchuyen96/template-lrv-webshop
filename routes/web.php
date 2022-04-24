@@ -73,7 +73,7 @@ Route::group(['prefix'=>'order','middleware' => 'acc'], function(){
                                     //Categoru & Product Route
 Route::get('/danh-muc/{category}', [HomeController::class, 'category'])->name('home.category');
 
-Route::group(['prefix'=>'//{product}-{category}-{slug?}'], function(){
+Route::group(['prefix'=>'//{product}-{category?}-{slug?}'], function(){
     Route::get('/', [HomeController::class, 'product'])->name('home.product');
     Route::resources([
         'review' => ReviewController::class,

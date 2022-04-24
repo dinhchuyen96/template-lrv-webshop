@@ -318,7 +318,9 @@
                                     <span>new</span>
                                 </div>
                                 <div class="label-product label_sale">
-                                    <span>-20%</span>
+                                    @if ($products->percent_sale > 0)
+                                        <span>sale {{ $products->percent_sale }}%</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="action-links">

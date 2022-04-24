@@ -8,22 +8,26 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     public function view(){
+        // session(['cart'=> null]);
         $carts = session('cart')? session('cart') : [];
+        // dd($carts);
         return view('site\cart',compact('carts'));
     }
     
     public function add(Product $product){
+
         $carts = session('cart')?session('cart'):[];
         $quantity = request('quantity',1);
         if(isset($carts[$product->id])){
             $carts[$product->id]->quantity +=$quantity;
         }else{
              $item = [
-            'id' => $product->id,
-            'name' => $product->name,
-            'image' =>$product->image,
-            'price' => $product->price,
-            'quantity' => $quantity
+                'id' => $product->id,
+                'category_id' => $product->category_id,
+                'name' => $product->name,
+                'image' =>$product->image,
+                'price' => $product->price,
+                'quantity' => $quantity
              ];
             $item =(object)$item;
             $carts[$product->id] = $item;       

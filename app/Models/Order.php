@@ -19,6 +19,7 @@ class Order extends Authenticatable
      */
     protected $fillable = [
         'account_id',
+        'category_id',
         'first_name',
         'last_name',
         'sex',

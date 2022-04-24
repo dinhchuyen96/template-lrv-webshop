@@ -51,10 +51,10 @@
                                                     @foreach($carts as $product)
                                                     <tr>
                                                         <td>
-                                                            <a href="{{route('home.product',['product'=>$product->id,'slug'=>Str::slug($product->name)])}}"><img src="{{url('uploads')}}/{{$product->image}}" alt="Cart Product Image" title="Compete Track Tote" class="img-thumbnail"></a>
+                                                            <a href="{{route('home.product',['product'=>$product->id,'category' => $product->category_id,'slug'=>Str::slug($product->name)])}}"><img src="{{url('uploads')}}/{{$product->image}}" alt="Cart Product Image" title="Compete Track Tote" class="img-thumbnail"></a>
                                                         </td>
                                                         <td>
-                                                            <a href="{{route('home.product',['product'=>$product->id,'slug'=>Str::slug($product->name)])}}">{{$product->name}}</a>
+                                                            <a href="{{route('home.product',['product'=>$product->id,'category' => $product->category_id,'slug'=>Str::slug($product->name)])}}">{{$product->name}}</a>
                                                             <span>Delivery Date: 2019-09-22</span>
                                                             <span>Color: Brown</span>
                                                             <span>Reward Points: 300</span>

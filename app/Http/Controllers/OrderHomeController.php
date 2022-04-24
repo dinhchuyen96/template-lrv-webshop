@@ -16,7 +16,7 @@ class OrderHomeController extends Controller
     public function post_checkout(Request $req){
         $carts = session('cart') ? session('cart'):[];
         if($carts){
-            $data = $req->all('first_name','last_name','email','phone','address','shipping_method','payment_method','status','order_note','total_price');
+            $data = $req->all('first_name','category_id','last_name','email','phone','address','shipping_method','payment_method','status','order_note','total_price');
             $data['account_id'] = Auth::guard('account')->user()->id;
             // dd($data);
 
@@ -26,6 +26,7 @@ class OrderHomeController extends Controller
                     // dd($item);
                     OrderDetail::create([
                         'product_id' =>$item->id,
+                        'category_id' =>$item->category_id,
                         'order_id' =>$order->id,
                         'quantity' => $item->quantity,
                         'price' => $item->price
@@ -33,7 +34,7 @@ class OrderHomeController extends Controller
                 }
                 session(['cart'=>null]);
             }
-            return redirect()->route('home');
+            return redirect()->route('home')->with('ok',"Đặt hàng thành công");
         }
     }        
     public function order(){

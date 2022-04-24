@@ -4240,7 +4240,6 @@
                                                                     <span><i class="fa fa-star"></i></span>
                                                                 @endfor
                                                             @endif
-
                                                         </li>
                                                         <li><a href="#">{{ $psn->review_rt->count() }} Reviews</a></li>
                                                     </ul>
