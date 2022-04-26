@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -92,7 +93,7 @@ class AdminController extends Controller
         //
     }
     public function logout1(){
-        Auth::guard('account')->logout();
+        Auth::logout();
         return redirect()->route('home')->with('ok','Đăng xuất thành công');
     }
     // public function logout( Request $request )
