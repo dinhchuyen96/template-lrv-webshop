@@ -59,8 +59,13 @@ Route::group(['prefix'=>'account'], function(){
     Route::get('/logout',[AccountController::class, 'logout'])->name('home.logout');
     Route::get('/register',[AccountController::class, 'register'])->name('home.register');
     Route::post('/register',[AccountController::class, 'post_register'])->name('home.register');
-    Route::get('/changer-password',[AccountController::class, 'changer-password'])->name('home.changer-password');
-});                    
+    
+});       
+
+Route::group(['prefix'=>'profile','middleware' => 'acc'], function(){
+    Route::get('/changer-password',[AccountController::class, 'changer_password'])->name('home.changer_password');
+    Route::post('/changer-password',[AccountController::class, 'post_changer_password'])->name('home.changer_password');
+});   
 
                             // Order route
 Route::group(['prefix'=>'order','middleware' => 'acc'], function(){
@@ -90,7 +95,7 @@ Route::get('/admin/login', [LoginController::class, 'login'])->name('login');
 Route::post('/admin/login', [LoginController::class, 'post_login'])->name('login');
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('/admin/logout', [AdminController::class, 'logout1'])->name('logout');
+    Route::get('/admin/logout', [AdminController::class, 'logout_admin'])->name('logout');
     Route::get('/', [AdminController::class, 'index'])->name('admin.category.index');
     Route::resources([
         'category' => CategoryController::class,

@@ -63,6 +63,7 @@
                                         @if (auth()->guard('account')->check())
                                             <li><a href="{{ route('home.order') }}">My-Order</a></li>
                                             <li><a href="{{ route('home.logout') }}">Logout</a></li>
+                                            <li><a href="{{ route('home.changer_password') }}">Changer Password</a></li>
                                         @else
                                             <li><a href="{{ route('home.login') }}">Login</a></li>
                                             <li><a href="{{ route('home.register') }}">Register</a></li>

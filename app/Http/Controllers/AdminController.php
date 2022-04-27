@@ -79,7 +79,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        
     }
 
     /**
@@ -92,21 +92,9 @@ class AdminController extends Controller
     {
         //
     }
-    public function logout1(){
+    public function logout_admin(){
         Auth::logout();
         return redirect()->route('home')->with('ok','Đăng xuất thành công');
     }
-    // public function logout( Request $request )
-    // {
-    //     if(Auth::guard('admin')->check()) // this means that the admin was logged in.
-    //         {
-    //             Auth::guard('admin')->logout();
-    //             return redirect()->route('admin.login');
-    //         }
-
-    //         $this->guard()->logout();
-    //         $request->session()->invalidate();
-
-    //         return $this->loggedOut($request) ?: redirect('/');
-    // }
+    
 }
