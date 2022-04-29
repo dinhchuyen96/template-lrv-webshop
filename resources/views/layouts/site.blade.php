@@ -63,7 +63,8 @@
                                         @if (auth()->guard('account')->check())
                                             <li><a href="{{ route('home.order') }}">My-Order</a></li>
                                             <li><a href="{{ route('home.logout') }}">Logout</a></li>
-                                            <li><a href="{{ route('home.changer_password') }}">Changer Password</a></li>
+                                            <li><a href="{{ route('home.changer_password') }}">Changer Password</a>
+                                            </li>
                                         @else
                                             <li><a href="{{ route('home.login') }}">Login</a></li>
                                             <li><a href="{{ route('home.register') }}">Register</a></li>
@@ -230,53 +231,56 @@
                                     <li class="my-cart">
                                         <a class="ha-toggle"><span class="lnr lnr-cart"></span><span
                                                 class="count">{{ $totalQuantity }}</span>My cart</a>
-                                        <ul class="mini-cart-drop-down ha-dropdown">
-                                        @if($carts)
-                                            @foreach ($carts as $carts)
-                                                <li class="mb-30">
-                                                    <div class="cart-img">
-                                                        <a href="product-details.html"><img alt=""
-                                                                src="{{ url('uploads') }}/{{ $carts->image }}"></a>
-                                                    </div>
-                                                    <div class="cart-info">
-                                                        <h4><a
-                                                                href="{{ route('home.product', ['product' => $carts->id,'category' =>$carts->category_id,'slug' => Str::slug($carts->name)]) }}">{{ $carts->name }}</a>
-                                                        </h4>
-                                                        <span> <span>{{ $carts->quantity }}</span>x
-                                                        </span>${{ $carts->price }}</span>
-                                                    </div>
-                                                    <div class="del-icon">
-                                                        <a href="{{ route('home.cart-remove', $carts->id) }}"><i
-                                                                class="fa fa-times-circle"></i></a>
-                                                    </div>
+                                        @if ($carts)
+                                            <ul class="mini-cart-drop-down ha-dropdown">
+                                                @foreach ($carts as $carts)
+                                                    <li class="mb-30">
+                                                        <div class="cart-img">
+                                                            <a href="product-details.html"><img alt=""
+                                                                    src="{{ url('uploads') }}/{{ $carts->image }}"></a>
+                                                        </div>
+                                                        <div class="cart-info">
+                                                            <h4><a
+                                                                    href="{{ route('home.product', ['product' => $carts->id,'category' => $carts->category_id,'slug' => Str::slug($carts->name)]) }}">{{ $carts->name }}</a>
+                                                            </h4>
+                                                            <span> <span>{{ $carts->quantity }}</span>x
+                                                            </span>${{ $carts->price }}</span>
+                                                        </div>
+                                                        <div class="del-icon">
+                                                            <a href="{{ route('home.cart-remove', $carts->id) }}"><i
+                                                                    class="fa fa-times-circle"></i></a>
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                                <li>
+                                                    <div class="subtotal-text">Sub-total: </div>
+                                                    <div class="subtotal-price">${{ $subPrice }}</div>
                                                 </li>
-                                            @endforeach
-                                            @endif
-                                            <li>
-                                                <div class="subtotal-text">Sub-total: </div>
-                                                <div class="subtotal-price">${{ $subPrice }}</div>
-                                            </li>
-                                            <li>
-                                                <div class="subtotal-text">Eco Tax (-2.00): </div>
-                                                <div class="subtotal-price">${{ $tax }}</div>
-                                            </li>
-                                            <li>
-                                                <div class="subtotal-text">Vat (10%): </div>
-                                                <div class="subtotal-price">${{ $vat }}</div>
-                                            </li>
-                                            <li>
-                                                <div class="subtotal-text">Total: </div>
-                                                <div class="subtotal-price"><span>${{ $totalPrice }}</span></div>
-                                            </li>
-                                            <li class="mt-30">
-                                                <a class="cart-button" href="/cart">view cart</a>
-                                            </li>
-                                            <li>
-                                                <a class="cart-button"
-                                                    href="{{ route('home.order_checkout') }}">checkout</a>
-                                            </li>
+                                                <li>
+                                                    <div class="subtotal-text">Eco Tax (-2.00): </div>
+                                                    <div class="subtotal-price">${{ $tax }}</div>
+                                                </li>
+                                                <li>
+                                                    <div class="subtotal-text">Vat (10%): </div>
+                                                    <div class="subtotal-price">${{ $vat }}</div>
+                                                </li>
+                                                <li>
+                                                    <div class="subtotal-text">Total: </div>
+                                                    <div class="subtotal-price"><span>${{ $totalPrice }}</span></div>
+                                                </li>
+                                                <li class="mt-30">
+                                                    <a class="cart-button" href="/cart">view cart</a>
+                                                </li>
+                                                <li>
+                                                    <a class="cart-button"
+                                                        href="{{ route('home.order_checkout') }}">checkout</a>
+                                                </li>
+                                            </ul>
+                                        @else
+                                        <ul class="mini-cart-drop-down ha-dropdown">
+                                            <h3>Cart is empty</h3>
                                         </ul>
-                                        
+                                        @endif
                                     </li>
                                 </ul>
                             </div>

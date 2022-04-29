@@ -23,8 +23,20 @@
 			}
 		});
 		
+// Show hide password
 
-
+		$('#showpass1').click(function(){
+			let input = $(this).prev();
+			input.attr('type', input.attr('type') === 'password' ? 'text' : 'password');
+		});
+		$('#showpass2').click(function(){
+			let input = $(this).prev();
+			input.attr('type', input.attr('type') === 'password' ? 'text' : 'password');
+		});
+		$('#showpass3').click(function(){
+			let input = $(this).prev();
+			input.attr('type', input.attr('type') === 'password' ? 'text' : 'password');
+		});
 
 
 		// Scroll Back

@@ -65,8 +65,8 @@
                                                 <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
                                                     @error('password') {{$message}} @enderror
-                                                    <input type="password" name="password" class="form-control" id="c-password" placeholder="Password" required>
-                                                    <button class="pass-show-btn" type="button">Show</button>
+                                                    <input type="password" name="password" class="form-control"  placeholder="Password" required>
+                                                    <button class="pass-show-btn" id="showpass1" type="button">Show</button>
                                                 </div>
                                             </div>
                                             <div class="login-box mt-5 text-center">

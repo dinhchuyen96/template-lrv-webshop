@@ -32,7 +32,7 @@ class CategoryController extends Controller
     public function create()
     {
         $category = Category::orderBy('id', 'desc')->get();
-        // dd($category);
+        // dd($category); lấy danh mục cha
         return view('admin.category.create', compact('category'));
     }
 
@@ -68,8 +68,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $categories = Category::orderBy('id', 'desc')->get();
-        
+        $categories = Category::orderBy('id', 'desc')->get();        
         return view('admin.category.edit', compact('category','categories'));
     }
 

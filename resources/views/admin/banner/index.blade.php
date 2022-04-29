@@ -55,4 +55,4 @@
 </table>
 <hr>
 {{$data_banner->links()}}
-@stop();
+@stop()

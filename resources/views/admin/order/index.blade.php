@@ -1,12 +1,12 @@
 @extends('layouts.admin')
-@section('title','Danh sách danh mục')
+@section('title','Danh sách đơn hàng')
 @section('main')
 <form class="form-inline ml-3" method="get">
     <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" style="width:350px" placeholder="Tìm đơn hàng theo số điện thoại" name="search">
+        <input class=" form-control form-control-navbar" type="search" style="margin-left:-1rem;width:407px" placeholder="Tìm kiếm đơn hàng" name="search">
         <div class="input-group-append">
-            <button class="btn btn-navbar" type="submit">
-                <i class="fas fa-search"></i>
+            <button class="btn btn-warning" style="height: 31px; width:120px" type="submit">
+                <p>Search</p>
             </button>
         </div>
     </div>
@@ -59,4 +59,4 @@
 </div>
 <hr>
 {{$orders->links()}}
-@stop();
+@stop()

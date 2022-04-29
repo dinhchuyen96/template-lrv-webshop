@@ -65,7 +65,7 @@ class Order extends Authenticatable
     {
         $search_value = request()->search;
         if($search_value){
-            $query = $query->where('phone','LIKE','%'.$search_value.'%');            
+            $query = $query->where('phone','LIKE','%'.$search_value.'%')->orWhere('last_name','LIKE','%'.$search_value.'%');            
         }
         return $query;
     }

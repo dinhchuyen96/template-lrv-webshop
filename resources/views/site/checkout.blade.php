@@ -35,7 +35,8 @@
                                         <h3>Have A Coupon? <span id="show_coupon">Click Here To Enter Your Code.</span></h3>
                                         <div id="checkout_coupon" class="display-content">
                                             <div class="coupon-info">
-                                                <form action="#">
+                                                <form action="" method="POST">
+                                                    @csrf
                                                     <div class="row">
                                                         <div class="col-12 col-sm-12 col-md-6">
                                                             <div class="input-group">
@@ -143,8 +144,8 @@
                                             </div>
                                             
                                             <div class="form-row">
-                                                <div class="col-md-12">
-                                                    <button style="width: 50%;" type="submit" class="center btn btn-primary" >Order</button>
+                                                <div class="col-md-12 text-center">
+                                                    <button style="width: 50%;" type="submit" class=" btn btn-primary" >Order</button>
                                                 </div>
                                             </div>
                                         
@@ -191,7 +192,7 @@
                                                         <tr class="order-total">
                                                             <th>Total</th>
                                                             <td class="text-center">
-                                                                <strong>${{$totalPrice}}</strong></td>
+                                                                <strong>${{number_format($totalPrice)}}</strong></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

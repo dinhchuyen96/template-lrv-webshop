@@ -34,7 +34,7 @@
 </table>
 <hr>
 {{$data->links()}}
-@stop();
+@stop()
 <?php 
     function tableCategories($categories, $parent_id = 0, $char = '')
 {

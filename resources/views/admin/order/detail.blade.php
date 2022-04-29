@@ -112,4 +112,4 @@
     </div>
     <hr>
     {{-- {{$orders->links()}} --}}
-@stop();
+@stop()

@@ -1,39 +1,47 @@
 @extends('layouts.admin')
-@section('title','Thêm mới danh mục')
+@section('title','Thêm mới coupon')
 @section('main')
-<form action="{{route('category.store')}}" method="POST" role="form">
+<form action="{{route('coupon.store')}}" method="POST" role="form">
     @csrf
     <div class="form-group">
-        <label for="">Tên danh mục</label>
+        <label for="">Tên Coupon</label>
         <input type="text" class="form-control" name="name" placeholder="Input field">
         @error('name') {{$message}} @enderror
     </div>
     <div class="form-group">
-        <label for="">Danh mục cha</label>
-        <div class="form-group">
-          <label for=""></label>
-          <select class="form-control" name="parent_id" id="">
-            <option value="0">Parent</option>
-            <?php showCategories($category); ?>
-          </select>
-        </div>
-        @error('name') {{$message}} @enderror
+        <label for="">Discount - %</label>
+        <input type="number" class="form-control" name="discount" placeholder="Input field">
+        @error('discount') {{$message}} @enderror
     </div>
-
+    <div class="form-group">
+        <label for="">Mã coupon</label>
+        <input type="text" class="form-control" name="code" placeholder="Input field">
+        @error('code') {{$message}} @enderror
+    </div>
+    <div class="form-group">
+        <label for="">Thời gian bắt đầu áp dụng</label>
+        <input type="date" class="form-control" name="begin" placeholder="Input field">
+        @error('begin') {{$message}} @enderror
+    </div>
+    <div class="form-group">
+        <label for="">Hết hạn:</label>
+        <input type="date" class="form-control" name="end" placeholder="Input field">
+        @error('end') {{$message}} @enderror
+    </div>
     <div class="form-group">
         <label for="">Trạng thái</label>
         
         <div class="radio">
             <label>
                 <input type="radio" name="status" value="0" >
-                Tạm Ẩn
+                Hết hạn
             </label>
         </div>
          
         <div class="radio">
             <label>
                 <input type="radio" name="status" value="1" checked>
-                Hiển thị
+                Áp dụng
             </label>
         </div>
         

@@ -58,24 +58,24 @@
                                                 <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">Old Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
                                                     @error('old_password') {{$message}} @enderror
-                                                    <input type="password" name="old_password" class="form-control" id="c-password" placeholder="Old Password" required>
-                                                    <button class="pass-show-btn" type="button">Show</button>
+                                                    <input type="password" name="old_password" class="form-control" id="old_password" placeholder="Old Password" required>
+                                                    <button id="showpass1" class="pass-show-btn" type="button">Show</button>
                                                 </div>
                                             </div>
                                             <div class="form-group row align-items-center mb-4">
                                                 <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">New Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
                                                     
-                                                    <input type="password" name="new_password" class="form-control" id="c-password" placeholder="New Password" required>
-                                                    <button class="pass-show-btn" type="button">Show</button>
+                                                    <input type="password" name="new_password" class="form-control" id="new_password" placeholder="New Password" required>
+                                                    <button class="pass-show-btn" type="button" id="showpass2">Show</button>
                                                     @error('new_password') {{$message}} @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row align-items-center mb-4">
                                                 <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">Confirm new Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8">                                                    
-                                                    <input type="password" name="conf_password" class="form-control" id="c-password" placeholder="Confirm new Password" required>
-                                                    <button class="pass-show-btn" type="button">Show</button>
+                                                    <input type="password" name="conf_password" class="form-control" id="conf_password" placeholder="Confirm new Password" required>
+                                                    <button class="pass-show-btn" type="button" id="showpass3">Show</button>
                                                     @error('conf_password') {{$message}} @enderror
                                                 </div>
                                             </div>

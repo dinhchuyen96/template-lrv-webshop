@@ -41,7 +41,7 @@
 
     <button type="submit" class="btn btn-primary">Lưu lại</button>
 </form>
-@stop();
+@stop()
 <?php function showCategories($categories, $parent_id = 0, $char = '')
  {
      foreach ($categories as $key => $item)
