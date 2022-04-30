@@ -254,19 +254,29 @@
                                                 @endforeach
                                                 <li>
                                                     <div class="subtotal-text">Sub-total: </div>
-                                                    <div class="subtotal-price">${{ $subPrice }}</div>
+                                                    <div class="subtotal-price">{{ $subPrice }}$</div>
                                                 </li>
                                                 <li>
                                                     <div class="subtotal-text">Eco Tax (-2.00): </div>
-                                                    <div class="subtotal-price">${{ $tax }}</div>
+                                                    <div class="subtotal-price">{{ $tax }}$</div>
                                                 </li>
                                                 <li>
                                                     <div class="subtotal-text">Vat (10%): </div>
-                                                    <div class="subtotal-price">${{ $vat }}</div>
+                                                    <div class="subtotal-price">{{number_format($vat)}}$</div>
                                                 </li>
+                                                @if ($coupon)
+                                                <li>
+                                                        <div class="subtotal-text">Coupon</div>
+                                                    @if($coupon->discount_ab)
+                                                        <div class="subtotal-price">-{{$coupon->discount_ab}}$</div>
+                                                    @else
+                                                        <div class="subtotal-price">-{{$coupon->discount_rl}}%</div>
+                                                    @endif
+                                                </li>
+                                                @endif
                                                 <li>
                                                     <div class="subtotal-text">Total: </div>
-                                                    <div class="subtotal-price"><span>${{ $totalPrice }}</span></div>
+                                                    <div class="subtotal-price"><span>{{number_format($totalPrice)}}$</span></div>
                                                 </li>
                                                 <li class="mt-30">
                                                     <a class="cart-button" href="/cart">view cart</a>

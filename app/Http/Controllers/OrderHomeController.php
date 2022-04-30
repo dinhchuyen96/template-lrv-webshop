@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\Coupon;
 use App\Models\OrderDetail;
 use App\Models\Product;
+use Carbon\Carbon;
 class OrderHomeController extends Controller
 {
     public function checkout(){
@@ -38,18 +39,26 @@ class OrderHomeController extends Controller
             ];
             $item = (object)$item;
             // dd($item);
-            session(['coupon'=>$item]);  
-            // dd(session('coupon')); 
-            return redirect()->back()->with('ok','Áp dụng coupon thành công');;   
+            $now = Carbon::now();
+            $start_date = Carbon::parse($coupon->begin);
+            $end_date = Carbon::parse($coupon->end);
+
+            if($now->between($start_date,$end_date)){
+                session(['coupon'=>$item]);
+                return redirect()->back()->with('ok','Áp dụng coupon thành công');
+            } else {
+                return redirect()->back()->with('no','Coupon không chính xác hoặc đã hết hạn sử dụng');
+            }            
+            return redirect()->back()->with('ok','Áp dụng coupon thành công');   
         }
         return redirect()->back()->with('no','Coupon không chính xác hoặc đã hết hạn sử dụng');
-        }
+    }
 
-        public function del_coupon()
-        {
+    public function del_coupon(){
             session()->forget(['coupon']);
             return redirect()->back()->with('ok','Xóa coupon thành công');;
-        }
+    }
+
     public function post_checkout(Request $req){
         $carts = session('cart') ? session('cart'):[];
         // dd($carts);
@@ -60,7 +69,6 @@ class OrderHomeController extends Controller
 
             $order = Order::create($data);
             if($order){
-
                 foreach($carts as $key => $item){
                     // dd($item);
                     OrderDetail::create([
@@ -68,8 +76,7 @@ class OrderHomeController extends Controller
                         'category_id' =>$item->category_id,
                         'order_id' =>$order->id,
                         'quantity' => $item->quantity,
-                        'price' => $item->price,
-                        
+                        'price' => $item->price
                     ]);
                 }
             }
@@ -82,12 +89,12 @@ class OrderHomeController extends Controller
     }       
     
     
-    public function order(){
+    public function order_list(){
         $acc_id = Auth::guard('account')->user()->id;
         $orders = Order::where('account_id', $acc_id)->orderBy('id','DESC')->get();
         // dd($orders);
         $i = count($orders)+1;
-        return view('site.order',compact('orders','i'));
+        return view('site.order_list',compact('orders','i'));
     }
     public function wishlist()
     {

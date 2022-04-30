@@ -72,7 +72,9 @@ class AppServiceProvider extends ServiceProvider
                 $tax = $subPrice * 0.02;    // thuế môi trường
                 $vat = ($tax + $subPrice) * 0.1; // tổng thuế vat
                 $totalPrice = $subPrice + $vat + $tax; // tính tổng tiền của checkout
+                // session()->push('cart',$totalPrice);
             }
+            // dd(session('cart'));
             // session()->flush();
             $coupon = session('coupon') ? session('coupon'):[];
             if($coupon){

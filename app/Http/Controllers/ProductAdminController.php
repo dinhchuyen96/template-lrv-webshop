@@ -118,12 +118,7 @@ class ProductAdminController extends Controller
         $product->update($data_product);
         return redirect()->route('product.index')->with('yes','Cập nhật thành công');
     }
-    // public function update_rating(Request $req, Product $product)
-    // {
-    //     $data_rating = $req->only('rating');
-    //     $product->update($data_rating);
-    //     return redirect()->back();
-    // }
+    
 
     /**
      * Remove the specified resource from storage.

@@ -147,7 +147,7 @@
                                             
                                             <div class="form-row">
                                                 <div class="col-md-12 text-center">
-                                                    <button style="width: 50%;" type="submit" class=" btn btn-primary" >Order</button>
+                                                    <button style="width: 50%;" type="submit" class=" btn btn-secondary" >Order</button>
                                                 </div>
                                             </div>
                                         
@@ -202,7 +202,7 @@
                                                                 <th>Coupon
                                                                     <form method="GET">
                                                                         @csrf
-                                                                         <a href="{{route('home.del_coupon')}}" onclick="return confirm('Are you sure?')" type="submit" style="position:absolute;top:494px; left:421px;" class="btn"><i style="font-size:25px" class="fa fa-times-circle"></i></a>
+                                                                         <a href="{{route('home.del_coupon')}}" onclick="return confirm('Are you sure?')" type="submit" style="color:black;position:absolute;top:494px; left:421px;" class="btn"><i style="font-size:25px" class="fa fa-times-circle"></i></a>
                                                                     </form>
                                                                    
                                                                 </th>

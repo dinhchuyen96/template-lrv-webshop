@@ -27,7 +27,7 @@ class CartController extends Controller
                 'name' => $product->name,
                 'image' =>$product->image,
                 'price' => $product->sale_price > 0 ? $product->sale_price : $product->price,
-                'quantity' => $quantity
+                'quantity' => $quantity,
              ];
             $item =(object)$item;
             $carts[$product->id] = $item;       

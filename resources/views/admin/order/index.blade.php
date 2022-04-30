@@ -19,7 +19,7 @@
                 <th>Serial</th>
                 <th>purchase date</th>
                 <th class="text-center">Name</th>
-                <th class="text-center">Status</th>
+                <th class="text-center">Status <br> (waiting confirm: {{$orderwait}})</th>
                 <th>Phone</th>
                 <th>Quantity</th>
                 <th>Unit Price</th>
@@ -50,7 +50,7 @@
                 </td>
                 <td>0{{$order->account->phone}}</td>
                 <td>{{$order->totalQuantity()}}</td>
-                <td>${{$order->totalAmount()}}</td>
+                <td>${{number_format($order->total_price)}}</td>
                 <td><a href="{{route('order.detail',$order->id)}}" type="button" class="btn btn-info">Detail</a></td>
             </tr>
             @endforeach

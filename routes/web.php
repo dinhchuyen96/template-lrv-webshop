@@ -69,7 +69,7 @@ Route::group(['prefix'=>'profile','middleware' => 'acc'], function(){
 
                             // Order route
 Route::group(['prefix'=>'order','middleware' => 'acc'], function(){
-    Route::get('/',[OrderHomeController::class, 'order'])->name('home.order');
+    Route::get('/',[OrderHomeController::class, 'order_list'])->name('home.order');
     Route::get('/checkout',[OrderHomeController::class, 'checkout'])->name('home.order_checkout');
     Route::post('/checkout',[OrderHomeController::class, 'post_checkout'])->name('home.order_checkout');
     Route::post('/checkout/coupon',[OrderHomeController::class, 'check_coupon'])->name('home.checkout_coupon');
