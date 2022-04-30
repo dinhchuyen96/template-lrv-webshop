@@ -4134,10 +4134,12 @@
                                                 </div>
                                                 <div class="pro-quantity-box mb-30">
                                                     <div class="qty-boxx">
-                                                        <label>qty :</label>
-                                                        <input type="text" placeholder="0">
-                                                        <a href="{{ route('home.cart-add', $psn->id) }}"
-                                                            class="btn btn-cart lg-btn">add to cart</a>
+                                                        <form method="GET" action="{{route('home.cart-add',$psn->id)}}">
+                                                            @csrf
+                                                            <label>qty :</label>
+                                                            <input type="number" name="quantity" placeholder="0">
+                                                            <button type="submit" class="btn btn-cart lg-btn">add to cart</button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                                 <div class="pro-social-sharing">
@@ -4288,10 +4290,12 @@
                                                 </div>
                                                 <div class="pro-quantity-box mb-30">
                                                     <div class="qty-boxx">
-                                                        <label>qty :</label>
-                                                        <input type="text" placeholder="0">
-                                                        <a href="{{ route('home.cart-add', $psl->id) }}"
-                                                            class="btn btn-cart lg-btn">add to cart</a>
+                                                        <form method="GET" action="{{route('home.cart-add',$psl->id)}}">
+                                                            @csrf
+                                                            <label>qty :</label>
+                                                            <input type="number" name="quantity" placeholder="0">
+                                                            <button type="submit" class="btn btn-cart lg-btn">add to cart</button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                                 <div class="pro-social-sharing">
