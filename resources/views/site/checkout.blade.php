@@ -28,6 +28,8 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <main id="primary" class="site-main">
+                        @if($coupon)
+                        @else
                         <div class="user-actions-area">
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -35,12 +37,12 @@
                                         <h3>Have A Coupon? <span id="show_coupon">Click Here To Enter Your Code.</span></h3>
                                         <div id="checkout_coupon" class="display-content">
                                             <div class="coupon-info">
-                                                <form action="" method="POST">
+                                                <form action="{{route('home.checkout_coupon')}}" method="POST">
                                                     @csrf
                                                     <div class="row">
                                                         <div class="col-12 col-sm-12 col-md-6">
                                                             <div class="input-group">
-                                                                <input type="text" name="coupon" value=""
+                                                                <input type="text" name="code" value=""
                                                                     placeholder="Coupon Code" id="input-coupon"
                                                                     class="form-control mr-3" required>
                                                                 <input type="submit" value="Apply Coupon" id="button-coupon"
@@ -55,13 +57,13 @@
                                 </div>
                             </div> <!-- end of row -->
                         </div> <!-- end of user-actions -->
-
+                        @endif
                         <div class="checkout-area">
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-7">
                                     <div class="checkout-form">
                                         <div class="section-title left-aligned">
-                                            <h3>Billing Details</h3>
+                                            <h3>Billing Details</h3>                                            
                                         </div>
 
                                         <form role="form" method="POST" id="checkout_form">
@@ -150,8 +152,6 @@
                                             </div>
                                         
                                             <input type="hidden" name="status" value="0" />
-                                            
-                                            
                                         </form>
                                     </div> <!-- end of checkout-form -->
                                 </div>
@@ -187,12 +187,38 @@
                                                     <tbody>
                                                         <tr class="cart-subtotal">
                                                             <th>Subtotal</th>
-                                                            <td class="text-center">${{ $subPrice }}</td>
+                                                            <td class="text-center">{{ $subPrice }}$</td>
+                                                            
+                                                        </tr> <tr>
+                                                            <th class="text-center">Eco Tax (-2%): </th>
+                                                            <td class="text-center">{{ $tax }}$</td>
                                                         </tr>
+                                                        <tr>
+                                                            <th class="text-center">Vat (10%): </th>
+                                                            <td class="text-center">{{ number_format($vat) }}$</td>
+                                                        </tr>
+                                                        @if($coupon)
+                                                            <tr class="cart-coupon">
+                                                                <th>Coupon
+                                                                    <form method="GET">
+                                                                        @csrf
+                                                                         <a href="{{route('home.del_coupon')}}" onclick="return confirm('Are you sure?')" type="submit" style="position:absolute;top:494px; left:421px;" class="btn"><i style="font-size:25px" class="fa fa-times-circle"></i></a>
+                                                                    </form>
+                                                                   
+                                                                </th>
+                                                                <td>
+                                                                    @if($coupon->discount_ab)
+                                                                        <h3>-{{$coupon->discount_ab}}$</h3>
+                                                                    @else
+                                                                        <h3>-{{$coupon->discount_rl}}%</h3>
+                                                                    @endif                                                                   
+                                                                </td>
+                                                            </tr>
+                                                        @endif
                                                         <tr class="order-total">
                                                             <th>Total</th>
                                                             <td class="text-center">
-                                                                <strong>${{number_format($totalPrice)}}</strong></td>
+                                                                <strong>{{number_format($totalPrice)}}$</strong></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -208,6 +234,29 @@
         </div> <!-- end of container -->
     </div>
     <!-- End of Checkout Wrapper -->
-
+    @if(session()->has('ok'))
+    <div class="modal fade" id="overlay">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: rgb(255, 255, 255)">
+                    {{-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> --}}
+                    <h3 class="modal-title" style="color: green">{{session()->get('ok') }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+@if(session()->has('no'))
+    <div class="modal fade" id="overlay">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: rgb(255, 255, 255)">
+                    {{-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> --}}
+                    <h3 class="modal-title" style="color: red">{{session()->get('no') }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
     <!-- scroll to top -->
 @stop()

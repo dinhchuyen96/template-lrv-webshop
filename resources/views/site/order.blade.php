@@ -69,7 +69,7 @@
                                                             @endif
                                                         </td>
                                                         <td> {{$order->totalQuantity()}}</td>
-                                                        <td>${{$order->totalAmount()}}</td>
+                                                        <td>${{number_format($order->total_price)}}</td>
                                                         <td><a href="{{route('home.order_detail',$order->id)}}" type="button" class="btn btn-info">Detail</a></td>
                                                     </tr>
                                                     @endforeach

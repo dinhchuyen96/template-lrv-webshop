@@ -72,6 +72,8 @@ Route::group(['prefix'=>'order','middleware' => 'acc'], function(){
     Route::get('/',[OrderHomeController::class, 'order'])->name('home.order');
     Route::get('/checkout',[OrderHomeController::class, 'checkout'])->name('home.order_checkout');
     Route::post('/checkout',[OrderHomeController::class, 'post_checkout'])->name('home.order_checkout');
+    Route::post('/checkout/coupon',[OrderHomeController::class, 'check_coupon'])->name('home.checkout_coupon');
+    Route::get('/checkout/coupon/_del',[OrderHomeController::class, 'del_coupon'])->name('home.del_coupon');
     Route::get('/detail/{order}',[OrderHomeController::class, 'detail'])->name('home.order_detail');  
 });     
 
@@ -84,6 +86,7 @@ Route::group(['prefix'=>'//{product}-{category?}-{slug?}'], function(){
         'review' => ReviewController::class,
     ]);
 }); 
+
 Route::get('/myaccount', [HomeController::class, 'myaccount'])->name('myaccount');
 
 

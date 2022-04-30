@@ -630,7 +630,19 @@
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: rgb(255, 255, 255)">
                         {{-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> --}}
-                        <h3 class="modal-title" style="color: green">{{ session()->get('ok') }}</h3>
+                        <h3 class="modal-title" style="color: green">{{session()->get('ok') }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+    @if (session()->has('no'))
+        <div class="modal fade" id="overlay">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: rgb(255, 255, 255)">
+                        {{-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> --}}
+                        <h3 class="modal-title" style="color: red">{{session()->get('no') }}</h3>
                     </div>
                 </div>
             </div>
@@ -647,7 +659,6 @@
     <script src="{{ url('home') }}/assets/js/ajax-mail.js"></script>
     <script src="{{ url('home') }}/assets/js/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    // <div id="mydiv">myDiv</div>
 </body>
 
 <!-- Mirrored from template.hasthemes.com/sinrato/sinrato/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 22 Feb 2022 12:52:23 GMT -->

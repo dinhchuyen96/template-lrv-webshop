@@ -105,7 +105,7 @@
                                                 <label for="newpassword" class="col-12 col-sm-12 col-md-4 col-form-label">New Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
                                                     <input type="password" name="password" maxlength="16" class="form-control" id="newpassword" required="">
-                                                    <button class="pass-show-btn" type="button">Show</button>
+                                                    <button id="showpass1" class="pass-show-btn" type="button">Show</button>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -113,7 +113,7 @@
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
                                                     <input type="password" name="conf_password" maxlength="16" class="form-control" id="c-password" >
                                                     @error('conf_password'){{$message}} @enderror
-                                                    <button class="pass-show-btn" type="button">Show</button>
+                                                    <button id="showpass2" class="pass-show-btn" type="button">Show</button>
                                                 </div>
                                             </div>
                                             <div class="form-group row">

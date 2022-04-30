@@ -81,8 +81,7 @@
                 <!-- Default box -->
                 <div class="card">
 
-                    <div  id="mydiv" class="card-body">
-                        
+                    <div  id="mydiv" class="card-body">                        
                         @yield('main')
                     </div>
                     <!-- /.card-body -->

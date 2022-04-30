@@ -19,4 +19,13 @@ class Coupon extends Model
         }
         return $query;
     }
+    public function scopeCheck_coupon($query)
+    {
+        $search_value = request()->search;        
+        if($search_value){
+            $query = $query->where('name','LIKE','%'.$search_value.'%');
+        }
+        return $query;
+        
+    }
 }

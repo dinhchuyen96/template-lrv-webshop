@@ -53,14 +53,6 @@ class Order extends Authenticatable
         }
         return $total;
     }
-    public function totalAmount()
-    {
-        $total = 0;
-        foreach ($this->details as $dt){
-            $total += $dt->quantity * $dt->price;
-        }
-        return $total;
-    }
     public function scopeSearch($query)
     {
         $search_value = request()->search;

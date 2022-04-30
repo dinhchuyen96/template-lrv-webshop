@@ -62,13 +62,28 @@ class AppServiceProvider extends ServiceProvider
             
             $carts = session('cart') ? session('cart'):[];  // lấy giỏ hàng trong session('cart')
             // dd($carts);
+
+            // session()->flush();
+            
+
             foreach($carts as $key =>$cart){ //Duyệt mảng sản phẩm có trong giỏ hàng
                 $totalQuantity += $cart->quantity;  // Tính tổng số lượng sản phẩm có trong giỏ hàng
                 $subPrice += $cart->price * $cart->quantity; // tính tiền chưa thuế / phí
                 $tax = $subPrice * 0.02;    // thuế môi trường
-                $vat = $totalQuantity * $subPrice * 0.01; // tổng thuế
+                $vat = ($tax + $subPrice) * 0.1; // tổng thuế vat
                 $totalPrice = $subPrice + $vat + $tax; // tính tổng tiền của checkout
             }
+            // session()->flush();
+            $coupon = session('coupon') ? session('coupon'):[];
+            if($coupon){
+                if($coupon->discount_ab){
+                    $totalPrice = $totalPrice-$coupon->discount_ab;
+                }else{
+                    $totalPrice =$totalPrice-$totalPrice*$coupon->discount_rl/100;
+                }
+                
+            }
+
 
             $products_search = null;
             $search_value = request()->search;
@@ -82,12 +97,12 @@ class AppServiceProvider extends ServiceProvider
                     $products_search = Product::orderBy('name','ASC')->search()->get();
                 }
             };
-
+            
             
             
            
 
-            $view->with(compact('products_search','cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','totalWishlist','acc','totalCompare'));
+            $view->with(compact('coupon','products_search','cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','totalWishlist','acc','totalCompare'));
         });
     }
 }
