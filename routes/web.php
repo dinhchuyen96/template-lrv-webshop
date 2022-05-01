@@ -26,6 +26,7 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::get('/contactus', [HomeController::class, 'contactus'])->name('contactus');
 Route::get('/compare', [HomeController::class, 'compare'])->name('compare');
+Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 
 
                                 //ADD Products ROUTE
@@ -104,7 +105,8 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
         'category' => CategoryController::class,
         'product' => ProductAdminController::class,
         'banner' => BannerController::class,
-        'coupon' => CouponController::class
+        'coupon' => CouponController::class,
+        'blog' => BlogController::class,
     ]);
     Route::group(['prefix'=>'order'], function(){
         Route::get('/',[OrderAdminController::class, 'index'])->name('order.index');

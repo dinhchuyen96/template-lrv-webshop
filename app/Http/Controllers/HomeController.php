@@ -32,5 +32,9 @@
             $reviews = Review::reviews($product->id); //take Product_id to scopereviews in Model Review
             return view('site\product',compact('product','category','reviews','products_related'));
         }
+        public function blog()
+        {
+            
+        }
     };
 ?>
