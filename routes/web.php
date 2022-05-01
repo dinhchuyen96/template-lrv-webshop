@@ -26,8 +26,16 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::get('/contactus', [HomeController::class, 'contactus'])->name('contactus');
 Route::get('/compare', [HomeController::class, 'compare'])->name('compare');
-Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 
+
+
+Route::group(['prefix'=>'blog'], function(){
+    Route::get('/', [HomeController::class, 'blog'])->name('blog');
+    Route::resources([
+        'blog' => BlogController::class,
+        'comment' => CommentBlogController::class
+    ]);
+});
 
                                 //ADD Products ROUTE
 
