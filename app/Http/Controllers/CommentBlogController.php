@@ -35,7 +35,10 @@ class CommentBlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data= $request->all();
+        // dd($data);
+        Comment_Blog::create($data);
+        return redirect()->back(); 
     }
 
     /**

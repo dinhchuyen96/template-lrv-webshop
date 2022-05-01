@@ -22,6 +22,7 @@
         <tr>
             <th>#</th>
             <th>Tên Blog</th>
+            <th>Title</th>
             <th>Banner</th>
             <th>Nội dung</th>
             <th>Trạng thái</th>
@@ -34,6 +35,7 @@
      <tr>
          <td>{{$key +1 }}</td>
          <td>{{$value->name}}</td>
+         <td>{{$value->title}}</td>
          <td>{{$value->image}}</td>
          <td>{{$value->content}}</td>
          <td>{{$value->status}}</td>

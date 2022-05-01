@@ -96,12 +96,9 @@
                          </div>
                          <div class="blogg-content">
                              <span class="post-date">20 oct 2019</span>
-                             <h5>London Fashion Week 360° Candy Rock & Royal Fashion Day</h5>
-                             <p class="blog-desc">Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Praesent ornare tortor ac ante egestas hendrerit. Aliquam et metus pharetra, bibendum massa nec, fermentum odio. Nunc id leo ultrices, mollis ligula in, finibus tortor. Mauris eu dui ut lectus fermentum eleifend</p>
-                             <p>Proin consectetur aliquam odio nec fringilla. Sed interdum at justo in efficitur. Vivamus gravida volutpat sodales. Fusce ornare sit amet ligula condimentum sagittis.</p>
-                             <blockquote><p>Quisque semper nunc vitae erat pellentesque, ac placerat arcu consectetur. In venenatis elit ac ultrices convallis. Duis est nisi, tincidunt ac urna sed, cursus blandit lectus. In ullamcorper sit amet ligula ut eleifend. Proin dictum tempor ligula, ac feugiat metus. Sed finibus tortor eu scelerisque scelerisque.</p></blockquote> 
-                             <p>Aenean et tempor eros, vitae sollicitudin velit. Etiam varius enim nec quam tempor, sed efficitur ex ultrices. Phasellus pretium est vel dui vestibulum condimentum. Aenean nec suscipit nibh. Phasellus nec lacus id arcu facilisis elementum. Curabitur lobortis, elit ut elementum congue, erat ex bibendum odio, nec iaculis lacus sem non lorem. Duis suscipit metus ante, sed convallis quam posuere quis. Ut tincidunt eleifend odio, ac fringilla mi vehicula nec. Nunc vitae lacus eget lectus imperdiet tempus sed in dui. Nam molestie magna at risus consectetur, placerat suscipit justo dignissim. Sed vitae fringilla enim, nec ullamcorper arcu.</p>
-                             <p>Suspendisse turpis ipsum, tempus in nulla eu, posuere pharetra nibh. In dignissim vitae lorem non mollis. Praesent pretium tellus in tortor viverra condimentum. Nullam dignissim facilisis nisl, accumsan placerat justo ultricies vel. Vivamus finibus mi a neque pretium, ut convallis dui lacinia. Morbi a rutrum velit. Curabitur sagittis quam quis consectetur mattis. Aenean sit amet quam vel turpis interdum sagittis et eget neque. Nunc ante quam, luctus et neque a, interdum iaculis metus. Aliquam vel ante mattis, placerat orci id, vehicula quam. Suspendisse quis eros cursus, viverra urna sed, commodo mauris. Cras diam arcu, fringilla a sem condimentum, viverra facilisis nunc. Curabitur vitae orci id nulla maximus maximus. Nunc pulvinar sollicitudin molestie.</p>
+                             <div>
+                                 {{$data_blog->content}}
+                             </div>
                              <div class="blogg-meta mb-30 mt-30">
                                  <a href="#">0 comment</a>
                                  / Tags:
@@ -131,24 +128,26 @@
                      <div class="blog-comment-wrapper">
                          <h3>leave a reply</h3>
                          <p>Your email address will not be published. Required fields are marked *</p>
-                         <form action="#">
+                         <form action="{{route('comment.store')}}" method="POST">
+                             @csrf
                              <div class="comment-post-box">
                                  <div class="row">
                                      <div class="col-12">
                                          <label>comment</label>
-                                         <textarea name="commnet" placeholder="Write a comment"></textarea>
+                                         <textarea name="commnent" placeholder="Write a comment"></textarea>
                                      </div>
                                      <div class="col-lg-4 col-md-4 col-sm-4">
                                          <label>Name</label>
-                                         <input type="text" class="coment-field" placeholder="Name">
+                                         <input type="text" name="name" class="coment-field" placeholder="Name">
+                                         <input type="hidden" name="product_id" value="{{ $data->id }}">
                                      </div>
                                      <div class="col-lg-4 col-md-4 col-sm-4">
                                          <label>Email</label>
-                                         <input type="text" class="coment-field" placeholder="Email">
+                                         <input type="text" class="coment-field" name="email" placeholder="Email">
                                      </div>
                                      <div class="col-lg-4 col-md-4 col-sm-4">
                                          <label>Website</label>
-                                         <input type="text" class="coment-field" placeholder="Website">
+                                         <input type="text" class="coment-field" name="website" placeholder="Website">
                                      </div>
                                      <div class="col-12">
                                          <div class="coment-btn mt-20">

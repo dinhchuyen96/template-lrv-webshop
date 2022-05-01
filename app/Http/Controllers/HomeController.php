@@ -1,5 +1,6 @@
 <?php
     namespace App\Http\Controllers;
+    use App\Models\Blog;
     use App\Models\Category;
     use App\Models\Product;
     use App\Models\Review;
@@ -34,7 +35,9 @@
         }
         public function blog()
         {
-            return view('site\blog');
+            $data_blog = Blog::orderBy('id','DESC')->search()->paginate(10);
+            dd($data_blog);
+            return view('site\blog',compact('data_blog'));
         }
     };
 ?>

@@ -4,10 +4,20 @@
 <form action="{{route('blog.update', $blog->id)}}" method="POST" role="form">
     @csrf @method('put')
     <div class="form-group">
+        <label for="">Tên blog</label>
+        <textarea type="text" class="form-control" id="content_blog" name="name" value="{{$blog->name}}" placeholder="Input field">
+        @error('name') {{$message}} @enderror
+    </div>    
+    <div class="form-group">
+        <label for="">Title</label>
+        <textarea type="text" class="form-control" id="content_blog" name="title" value="{{$blog->title}}" placeholder="Input field">
+        @error('title') {{$message}} @enderror
+    </div>   
+    <div class="form-group">
         <label for="">Nội dung blog</label>
         <textarea type="text" class="form-control" id="content_blog" name="content" value="{{$blog->content}}" placeholder="Input field">
         @error('content') {{$message}} @enderror
-    </div>    
+    </div>   
     <div class="form-group">
         <label for="">Trạng thái</label>
         

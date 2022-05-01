@@ -9,7 +9,7 @@ class Blog extends Model
 {
     use HasFactory;
     protected $table = 'blogs';
-    protected $fillable = ['name','content','status','image',];
+    protected $fillable = ['name','title','content','status','image',];
 
 
     public function scopeSearch($query)

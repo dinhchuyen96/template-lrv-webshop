@@ -9,6 +9,11 @@
         @error('name') {{$message}} @enderror
     </div>
     <div class="form-group">
+        <label for="">Title</label>
+        <textarea type="text" id="content_blog" class="form-control" name="title" placeholder="Input field"></textarea>
+        @error('title') {{$message}} @enderror
+    </div>
+    <div class="form-group">
         <label for="">Nội dung blog</label>
         <textarea type="text" id="content_blog" class="form-control" name="content" placeholder="Input field"></textarea>
         @error('content') {{$message}} @enderror
