@@ -462,7 +462,7 @@
                                                     class="lnr lnr-chevron-down"></span></a>
 
                                         </li>
-                                        <li><a href="#">BLOG<span class="lnr lnr-chevron-down"></span></a>
+                                        <li><a href="{{route('blog')}}">BLOG<span class="lnr lnr-chevron-down"></span></a>
 
                                         </li>
                                         <li><a href="/contactus">CONTACT US</a></li>

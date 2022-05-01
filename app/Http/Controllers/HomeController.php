@@ -34,7 +34,7 @@
         }
         public function blog()
         {
-            
+            return view('site\blog');
         }
     };
 ?>
