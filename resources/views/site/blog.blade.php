@@ -97,7 +97,6 @@
                          <div class="blogg-content">
                              <span class="post-date">20 oct 2019</span>
                              <div>
-                                 {{$data_blog->content}}
                              </div>
                              <div class="blogg-meta mb-30 mt-30">
                                  <a href="#">0 comment</a>

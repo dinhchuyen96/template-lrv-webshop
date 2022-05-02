@@ -36,7 +36,7 @@
         public function blog()
         {
             $data_blog = Blog::orderBy('id','DESC')->search()->paginate(10);
-            dd($data_blog);
+            // dd($data_blog->all());
             return view('site\blog',compact('data_blog'));
         }
     };

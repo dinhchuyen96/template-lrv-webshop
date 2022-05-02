@@ -9,9 +9,12 @@ class Blog extends Model
 {
     use HasFactory;
     protected $table = 'blogs';
-    protected $fillable = ['name','title','content','status','image',];
+    protected $fillable = ['id','name','title','content','status','image',];
 
-
+    public function comment_blog()
+    {
+        return $this->hasMany(Comment_Blog::class, 'blog_id', 'id');
+    }
     public function scopeSearch($query)
     {
         $search_value = request()->search;
