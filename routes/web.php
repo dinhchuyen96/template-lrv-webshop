@@ -32,7 +32,6 @@ Route::get('/compare', [HomeController::class, 'compare'])->name('compare');
 Route::group(['prefix'=>'blog'], function(){
     Route::get('/', [HomeController::class, 'blog'])->name('blog');
     Route::resources([
-        'blog' => Blog_AdminController::class,
         'comment' => CommentBlogController::class
     ]);
 });
@@ -114,6 +113,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
         'product' => ProductAdminController::class,
         'banner' => BannerController::class,
         'coupon' => CouponController::class,
+        'blog' => Blog_AdminController::class
     ]);
     Route::group(['prefix'=>'order'], function(){
         Route::get('/',[OrderAdminController::class, 'index'])->name('order.index');

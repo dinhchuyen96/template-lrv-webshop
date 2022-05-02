@@ -55,7 +55,7 @@ class ProductAdminController extends Controller
 
         $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
 
-        $check_upload = $req->upload->move(public_path('uploads/'), $final_name);
+        $check_upload = $req->upload->move(public_path('uploads/products'), $final_name);
 
         if($check_upload){
             $data_product['image'] = $final_name;
@@ -110,7 +110,7 @@ class ProductAdminController extends Controller
             $ext = $partInfo['extension'];
             $base_name = $partInfo['filename']; 
             $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
-            $check_upload = $req->upload->move(public_path('uploads/'), $final_name);
+            $check_upload = $req->upload->move(public_path('uploads/products'), $final_name);
             if($check_upload){
                 $data_product['image'] = $final_name;
             }

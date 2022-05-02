@@ -661,9 +661,7 @@
 
     <!-- all js include here -->
     <script src="{{ url('home') }}/assets/js/vendor/jquery-1.12.4.min.js">
-        < /> <
-        script src = "{{ url('home') }}/assets/js/popper.min.js" >
-    </script>
+    <script src = "{{ url('home') }}/assets/js/popper.min.js"></script>
     <script src="{{ url('home') }}/assets/js/bootstrap.min.js"></script>
     <script src="{{ url('home') }}/assets/js/plugins.js"></script>
     <script src="{{ url('home') }}/assets/js/ajax-mail.js"></script>

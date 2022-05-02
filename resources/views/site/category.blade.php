@@ -142,7 +142,7 @@
                                         <div class="product-thumb">
                                             <a
                                                 href="{{ route('home.product', ['product' => $product_cat->id,'category' => $category->id,'slug' => Str::slug($product_cat->name)]) }}">
-                                                <img src="{{ url('uploads') }}/{{ $product_cat->image }}"
+                                                <img src="{{ url('uploads') }}/products/{{ $product_cat->image }}"
                                                     class="pri-img" alt="">
                                                 <img src="assets/img/product/product-2.jpg" class="sec-img" alt="">
                                             </a>
@@ -204,7 +204,7 @@
                                         <div class="sinrato-thumb">
                                             <a
                                                 href="{{ route('home.product', ['product' => $product_cat->id,'category' => $category->id,'slug' => Str::slug($product_cat->name)]) }}">
-                                                <img src="{{ url('uploads') }}/{{ $product_cat->image }}"
+                                                <img src="{{ url('uploads') }}/products/{{ $product_cat->image }}"
                                                     class="pri-img" alt="">
                                                 <img src="assets/img/product/product-9.jpg" class="sec-img" alt="">
                                             </a>
@@ -272,7 +272,7 @@
                                         <div class="product-thumb">
                                             <a
                                                 href="{{ route('home.product', ['product' => $products_byParent_Cat->id,'category' => $category->id,'slug' => Str::slug($products_byParent_Cat->name)]) }}">
-                                                <img src="{{ url('uploads') }}/{{ $products_byParent_Cat->image }}"
+                                                <img src="{{ url('uploads') }}/products/{{ $products_byParent_Cat->image }}"
                                                     class="pri-img" alt="">
                                                 <img src="assets/img/product/product-2.jpg" class="sec-img" alt="">
                                             </a>
@@ -339,7 +339,7 @@
                                         <div class="sinrato-thumb">
                                             <a
                                                 href="{{ route('home.product', ['product' => $products_byParent_Cat->id,'category' => $category->id,'slug' => Str::slug($products_byParent_Cat->name)]) }}">
-                                                <img src="{{ url('uploads') }}/{{ $products_byParent_Cat->image }}"
+                                                <img src="{{ url('uploads') }}/products/{{ $products_byParent_Cat->image }}"
                                                     class="pri-img" alt="">
                                                 <img src="assets/img/product/product-9.jpg" class="sec-img" alt="">
                                             </a>
@@ -428,37 +428,37 @@
                                 <div class="col-lg-5">
                                     <div class="product-large-slider mb-20">
                                         <div class="pro-large-img">
-                                            <img src="{{ url('uploads') }}/{{ $product->image }}" alt="" />
+                                            <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{ url('uploads') }}/{{ $product->image }}" alt="" />
+                                            <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{ url('uploads') }}/{{ $product->image }}" alt="" />
+                                            <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{ url('uploads') }}/{{ $product->image }}" alt="" />
+                                            <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{ url('uploads') }}/{{ $product->image }}" alt="" />
+                                            <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{ url('uploads') }}/{{ $product->image }}" alt="" />
+                                            <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
                                         </div>
                                     </div>
                                     <div class="pro-nav">
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-7">
@@ -585,37 +585,37 @@
                                 <div class="col-lg-5">
                                     <div class="product-large-slider mb-20">
                                         <div class="pro-large-img">
-                                            <img src="{{ url('uploads') }}/{{ $product->image }}" alt="" />
+                                            <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{ url('uploads') }}/{{ $product->image }}" alt="" />
+                                            <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{ url('uploads') }}/{{ $product->image }}" alt="" />
+                                            <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{ url('uploads') }}/{{ $product->image }}" alt="" />
+                                            <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{ url('uploads') }}/{{ $product->image }}" alt="" />
+                                            <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{ url('uploads') }}/{{ $product->image }}" alt="" />
+                                            <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
                                         </div>
                                     </div>
                                     <div class="pro-nav">
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-7">

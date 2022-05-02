@@ -41,7 +41,7 @@
                 <label class="badge badge-success">Hiển thị</label>
                 @endif
             </td>            
-            <td>{{$banner->created_at ? $banner->created_at->format('d/m/Y'): ''}}</td>
+            <td>{{$banner->created_at ? $banner->created_at->format('d/m/Y'):''}}</td>
             <td>
                 <form action="{{ route('banner.destroy', $banner->id) }}" method="post">
                     @csrf @method('DELETE')

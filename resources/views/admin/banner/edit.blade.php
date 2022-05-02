@@ -25,20 +25,19 @@
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md6"><label for="">Ảnh</label>
+        <div class="col-md-12">
+            <label for="">Nội dung title trong slide</label><br>
+            <textarea type="text" value="{{$banner->title}}" name="title" id="tinymce1" placeholder="Nhập title hiển thị trên slide"></textarea>
+        </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-6"><label for="">Ảnh</label>
                 <img src="{{ url('uploads') }}/banner/{{$banner->image_slide}}" alt="" style="width: 280px; height: auto">
                 <input type="file" class="form-control" name="upload" placeholder="Input field">
                 @error('upload')
                     {{ $message }}
                 @enderror
             </div>
-            <div class="col-md-6 form-group">
-                <label for="">Nội dung title trong slide</label><br>
-                <input size="41.5" type="text" value="{{$banner->title}}" name="title" id="" placeholder="Nhập title hiển thị trên slide">
-            </div>
-
-        </div>
-        <div class="row form-group">
             <div class="col-md-6">
                 <label for="">Trạng thái banner</label>
                 <div class="radio">
@@ -54,10 +53,9 @@
                     </label>
                 </div>
             </div>
-            <div class="col-md-6">
 
-            </div>
         </div>
+       
         <button type="submit" class="btn btn-primary">Lưu lại</button>
     </form>
 @stop()

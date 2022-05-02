@@ -37,7 +37,23 @@ class Blog_AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file_name = $req->upload->getClientOriginalName();
+
+        $partInfo = pathinfo($file_name);
+        $ext = $partInfo['extension'];
+
+        $base_name = $partInfo['filename']; 
+
+        $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
+
+        $check_upload = $req->upload->move(public_path('uploads/blog'), $final_name);
+
+        if($check_upload){
+            $data_product['image'] = $final_name;
+        };
+
+        Blog::create($request->only('name','status','title','content'));
+        return redirect()->route('blog.index')->with('yes','Thêm mới thành công');
     }
 
     /**

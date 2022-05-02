@@ -12,13 +12,8 @@
                         <div class="row">
                             <div class="col-sm-6 col-sm-8">
                                 <div class="slider-text">
-                                    <h1><a href=""><a
-                                                href="{{ route('home.product', ['product' => $banner->id,'category' => $banner->category_id,'slug' => Str::slug($banner->name)]) }}">{{ $banner->title }}</a>
-                                    </h1>
-                                    <p>
-                                        {{ $banner->name }}-<a
-                                            href="{{ route('home.product', ['product' => $banner->product_id,'category' => $banner->category_id,'slug' => Str::slug($banner->pro->name)]) }}">{{ $banner->pro->name }}</a>
-                                    </p>
+                                    <a href="{{ route('home.product', ['product' => $banner->id,'category' => $banner->category_id,'slug' => Str::slug($banner->name)]) }}">{{ $banner->title }}</a>                                    {{ $banner->name }}
+                                    
                                     <a class="btn-1 home-btn" href="{{ route('home.cart-add', $banner->product_id) }}">shop
                                         now</a>
                                 </div>
@@ -128,10 +123,10 @@
                                     <div class="product-thumb">
                                         <a
                                             href="{{ route('home.product', ['product' => $psn->id,'category' => $psn->category_id,'slug' => Str::slug($psn->name)]) }}">
-                                            <img src="{{ url('uploads') }}/{{ $psn->image }}" class="pri-img"
-                                                style="width:100%; height: 200px" alt="">
-                                            <img src="{{ url('uploads') }}/{{ $psn->image }}" class="sec-img"
-                                                alt="">
+                                            <img src="{{ url('uploads') }}/products/{{ $psn->image }}"
+                                                class="pri-img" style="width:100%; height: 200px" alt="">
+                                            <img src="{{ url('uploads') }}/products/{{ $psn->image }}"
+                                                class="sec-img" alt="">
                                         </a>
                                         <div class="box-label">
                                             <div class="label-product label_new">
@@ -154,7 +149,8 @@
                                     </div>
                                     <div class="product-caption">
                                         <div class="manufacture-product">
-                                            <p><a href="{{ route('home.category', $psn->id) }}">{{ $psn->cat->name }}</a>
+                                            <p><a
+                                                    href="{{ route('home.category', $psn->id) }}">{{ $psn->cat->name }}</a>
                                             </p>
                                         </div>
                                         <div class="product-name">
@@ -178,7 +174,7 @@
                                         <div class="price-box">
                                             @if ($psn->sale_price < $psn->price && $psn->sale_price != 0)
                                                 <span class="regular-price"><span
-                                                        class="special-price">{{number_format($psn->sale_price,0)}}$</span></span>
+                                                        class="special-price">{{ number_format($psn->sale_price, 0) }}$</span></span>
                                                 <span class="old-price"><del>{{ $psn->price }}$</del></span>
                                             @else
                                                 <span class="regular-price"><span
@@ -218,10 +214,10 @@
                                         <div class="product-thumb">
                                             <a
                                                 href="{{ route('home.product', ['product' => $psl->id,'category' => $psl->category_id,'slug' => Str::slug($psl->name)]) }}">
-                                                <img src="{{ url('uploads') }}/{{ $psl->image }}" class="pri-img"
-                                                    style="width:100%; height: 200px" alt="">
-                                                <img src="{{ url('uploads') }}/{{ $psl->image }}" class="sec-img"
-                                                    alt="">
+                                                <img src="{{ url('uploads') }}/products/{{ $psl->image }}"
+                                                    class="pri-img" style="width:100%; height: 200px" alt="">
+                                                <img src="{{ url('uploads') }}/products/{{ $psl->image }}"
+                                                    class="sec-img" alt="">
                                             </a>
                                             <div class="box-label">
                                                 <div class="label-product label_new">
@@ -268,7 +264,7 @@
                                             <div class="price-box">
                                                 @if ($psl->sale_price < $psl->price && $psl->sale_price != 0)
                                                     <span class="regular-price"><span
-                                                            class="special-price">{{number_format($psl->sale_price,0)}}$</span></span>
+                                                            class="special-price">{{ number_format($psl->sale_price, 0) }}$</span></span>
                                                     <span class="old-price"><del>{{ $psl->price }}$</del></span>
                                                 @else
                                                     <span class="regular-price"><span
@@ -4029,37 +4025,43 @@
                                     <div class="col-lg-5">
                                         <div class="product-large-slider mb-20">
                                             <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/{{ $psn->image }}" alt="" />
+                                                <img src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
                                             </div>
                                             <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/{{ $psn->image }}" alt="" />
+                                                <img src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
                                             </div>
                                             <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/{{ $psn->image }}" alt="" />
+                                                <img src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
                                             </div>
                                             <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/{{ $psn->image }}" alt="" />
+                                                <img src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
                                             </div>
                                             <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/{{ $psn->image }}" alt="" />
+                                                <img src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
                                             </div>
                                             <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/{{ $psn->image }}" alt="" />
+                                                <img src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
                                             </div>
                                         </div>
                                         <div class="pro-nav">
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/{{ $psn->image }}" alt="" /></div>
+                                                    src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
+                                            </div>
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/{{ $psn->image }}" alt="" /></div>
+                                                    src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
+                                            </div>
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/{{ $psn->image }}" alt="" /></div>
+                                                    src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
+                                            </div>
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/{{ $psn->image }}" alt="" /></div>
+                                                    src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
+                                            </div>
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/{{ $psn->image }}" alt="" /></div>
+                                                    src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
+                                            </div>
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/{{ $psn->image }}" alt="" /></div>
+                                                    src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-7">
@@ -4093,7 +4095,7 @@
                                                 <span class="old-price"><del>${{$psn->price}}</del></span> --}}
                                                     @if ($psn->sale_price > 0)
                                                         <span class="regular-price"><span
-                                                                class="special-price">${{number_format($psn->sale_price,0)}}</span></span>
+                                                                class="special-price">${{ number_format($psn->sale_price, 0) }}</span></span>
                                                         <span
                                                             class="old-price"><del>{{ $psn->price }}$</del></span>
                                                     @else
@@ -4134,11 +4136,12 @@
                                                 </div>
                                                 <div class="pro-quantity-box mb-30">
                                                     <div class="qty-boxx">
-                                                        <form method="GET" action="{{route('home.cart-add',$psn->id)}}">
+                                                        <form method="GET" action="{{ route('home.cart-add', $psn->id) }}">
                                                             @csrf
                                                             <label>qty :</label>
                                                             <input type="number" name="quantity" placeholder="0">
-                                                            <button type="submit" class="btn btn-cart lg-btn">add to cart</button>
+                                                            <button type="submit" class="btn btn-cart lg-btn">add to
+                                                                cart</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -4189,37 +4192,43 @@
                                     <div class="col-lg-5">
                                         <div class="product-large-slider mb-20">
                                             <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/{{ $psl->image }}" alt="" />
+                                                <img src="{{ url('uploads') }}/products/{{ $psl->image }}" alt="" />
                                             </div>
                                             <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/{{ $psl->image }}" alt="" />
+                                                <img src="{{ url('uploads') }}/products/{{ $psl->image }}" alt="" />
                                             </div>
                                             <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/{{ $psl->image }}" alt="" />
+                                                <img src="{{ url('uploads') }}/products/{{ $psl->image }}" alt="" />
                                             </div>
                                             <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/{{ $psl->image }}" alt="" />
+                                                <img src="{{ url('uploads') }}/products/{{ $psl->image }}" alt="" />
                                             </div>
                                             <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/{{ $psl->image }}" alt="" />
+                                                <img src="{{ url('uploads') }}/products/{{ $psl->image }}" alt="" />
                                             </div>
                                             <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/{{ $psl->image }}" alt="" />
+                                                <img src="{{ url('uploads') }}/products/{{ $psl->image }}" alt="" />
                                             </div>
                                         </div>
                                         <div class="pro-nav">
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/{{ $psl->image }}" alt="" /></div>
+                                                    src="{{ url('uploads') }}/products/{{ $psl->image }}" alt="" />
+                                            </div>
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/{{ $psl->image }}" alt="" /></div>
+                                                    src="{{ url('uploads') }}/products/{{ $psl->image }}" alt="" />
+                                            </div>
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/{{ $psl->image }}" alt="" /></div>
+                                                    src="{{ url('uploads') }}/products/{{ $psl->image }}" alt="" />
+                                            </div>
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/{{ $psl->image }}" alt="" /></div>
+                                                    src="{{ url('uploads') }}/products/{{ $psl->image }}" alt="" />
+                                            </div>
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/{{ $psl->image }}" alt="" /></div>
+                                                    src="{{ url('uploads') }}/products/{{ $psl->image }}" alt="" />
+                                            </div>
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/{{ $psl->image }}" alt="" /></div>
+                                                    src="{{ url('uploads') }}/products/{{ $psl->image }}" alt="" />
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-7">
@@ -4249,7 +4258,7 @@
                                                 <div class="price-box mb-15">
                                                     @if ($psl->sale_price > 0)
                                                         <span class="regular-price"><span
-                                                                class="special-price">${{number_format($psl->sale_price,0)}}</span></span>
+                                                                class="special-price">${{ number_format($psl->sale_price, 0) }}</span></span>
                                                         <span
                                                             class="old-price"><del>{{ $psl->price }}$</del></span>
                                                     @else
@@ -4290,11 +4299,12 @@
                                                 </div>
                                                 <div class="pro-quantity-box mb-30">
                                                     <div class="qty-boxx">
-                                                        <form method="GET" action="{{route('home.cart-add',$psl->id)}}">
+                                                        <form method="GET" action="{{ route('home.cart-add', $psl->id) }}">
                                                             @csrf
                                                             <label>qty :</label>
                                                             <input type="number" name="quantity" placeholder="0">
-                                                            <button type="submit" class="btn btn-cart lg-btn">add to cart</button>
+                                                            <button type="submit" class="btn btn-cart lg-btn">add to
+                                                                cart</button>
                                                         </form>
                                                     </div>
                                                 </div>

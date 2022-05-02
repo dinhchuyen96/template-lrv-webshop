@@ -5,9 +5,9 @@
         @csrf
         <div class="form-group">
             <label for="">Tên Banner</label>
-            <input type="text" class="form-control" value="{{ old('name')}}"name="name" placeholder="Input field">
+            <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Input field">
             @error('name')
-                {{$message}}
+                {{ $message }}
             @enderror
         </div>
         <div class="row form-group">
@@ -16,15 +16,14 @@
                 <select class="form-control" name="product_id" id="">
                     <option>Chọn sản phẩm</option>
                     @foreach ($pros as $pro)
-                        <option value="{{ $pro->id}}">{{$pro->name}}</option>
+                        <option value="{{ $pro->id }}">{{ $pro->name }}</option>
                     @endforeach
                 </select>
                 @error('product_id')
                     {{ $message }}
                 @enderror
-            </div>                      
-        </div>
-        <div class="row form-group">
+            </div>
+
             <div class="col-md-6">
                 <label for="">Trạng thái</label>
                 <div class="radio">
@@ -36,23 +35,25 @@
                 <div class="radio">
                     <label>
                         <input type="radio" name="status" value="1"">
-                        Hiển thị
-                    </label>
-                </div>
-            </div>
-                <div class="col-md-6"> 
-                    <label for="">Nội dung title trong slide</label><br>
-                    <input size="41.5" type="text" name="title" id="" placeholder="Nhập title hiển thị trên slide">
-                </div>
-
-            </div>
-            <div class=" form-group">
-                <label for="">Ảnh</label>
-                <input type="file" class="form-control" name="upload" placeholder="Input field">
-                @error('upload')
-                    {{ $message }}
-                @enderror
-            </div>
-            <button type="submit" class="btn btn-primary">Lưu lại</button>
-    </form>
+                                    Hiển thị
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label for="">SLIDE Title</label><br>
+                            <textarea id="tinymce1" type="text" name="title"
+                                placeholder="Nhập title hiển thị trên slide"></textarea>
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <label for="">Ảnh</label>
+                            <input type="file" class="form-control" name="upload" placeholder="Input field">
+                            @error('upload'){{ $message }}@enderror
+                        </div>
+                    </div>
+                        <button type="submit" class="btn btn-primary">Lưu lại</button>
+                </form>
 @stop()

@@ -30,9 +30,9 @@
                     <div class="col-lg-5">
                         <div class="product-large-slider mb-20">
                             <div class="pro-large-img">
-                                <img src="{{ url('uploads') }}/{{ $product->image }}" />
+                                <img src="{{ url('uploads') }}/products/{{ $product->image }}" />
                                 <div class="img-view">
-                                    <a class="img-popup" href="{{ url('uploads') }}/{{ $product->image }}"><i
+                                    <a class="img-popup" href="{{ url('uploads') }}/products/{{ $product->image }}"><i
                                             class="fa fa-search"></i></a>
                                 </div>
                             </div>

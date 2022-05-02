@@ -83,7 +83,7 @@
                 @foreach ($order->details as $detail)
                     <tr>
                         <td>1</td>
-                        <td><a href="{{route('home.product',['product'=>$detail->product->id,'category' => $detail->category_id,'slug'=>Str::slug($detail->product->name)])}}"><img src="{{ url('uploads') }}/{{ $detail->product->image }}" width="60px"></a></td>
+                        <td><a href="{{route('home.product',['product'=>$detail->product->id,'category' => $detail->category_id,'slug'=>Str::slug($detail->product->name)])}}"><img src="{{ url('uploads') }}/products/{{ $detail->product->image }}" width="60px"></a></td>
                         <td><a href="{{route('home.product',['product'=>$detail->product->id,'category' => $detail->category_id,'slug'=>Str::slug($detail->product->name)])}}">{{ $detail->product->name}}</a></td>
                         <td>{{ $detail->quantity }}</td>
                         <td>{{ $detail->price }}</td>

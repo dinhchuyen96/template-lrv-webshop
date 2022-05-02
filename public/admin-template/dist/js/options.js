@@ -20,8 +20,22 @@ $(document).ready(function(){
         
 
     });
-      
-
+    tinymce.init({
+        selector: '#tinymce',
+        height: 500,
+        plugins: 'image',
+        toolbar: 'bold italic underline | image',
+        branding: false,
+        file_picker_callback: filemanager.tinyMceCallback,
+    });   
+    tinymce.init({
+        selector: '#tinymce1',
+        height: 300,
+        plugins: 'image',
+        toolbar: 'bold italic underline | image',
+        branding: false,
+        file_picker_callback: filemanager.tinyMceCallback,
+    });     
 
 
 
