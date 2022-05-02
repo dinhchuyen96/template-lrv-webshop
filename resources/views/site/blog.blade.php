@@ -138,7 +138,7 @@
                                      <div class="col-lg-4 col-md-4 col-sm-4">
                                          <label>Name</label>
                                          <input type="text" name="name" class="coment-field" placeholder="Name">
-                                         <input type="hidden" name="product_id" value="{{ $data->id }}">
+                                         <input type="hidden" name="product_id" value="">
                                      </div>
                                      <div class="col-lg-4 col-md-4 col-sm-4">
                                          <label>Email</label>
