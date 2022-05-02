@@ -15,7 +15,7 @@
     </div>
     <div class="form-group">
         <label for="">Nội dung blog</label>
-        <textarea type="text" id="tinymce" class="form-control" name="content" placeholder="Input field"></textarea>
+        <textarea type="text" id="tinymce" class="form-control" placeholder="Input field"></textarea>
         @error('content') {{$message}} @enderror
     </div>
     

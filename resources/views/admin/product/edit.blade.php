@@ -79,7 +79,7 @@
         </div>
         <div class="form-group">
             <label for="">Ảnh</label>
-            <img src="{{ url('uploads') }}/{{ $product->image }}" alt="" style="width: 280px; height: auto">
+            <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" style="width: 280px; height: auto">
             <input type="file" class="form-control" name="upload" placeholder="Input field">
             @error('upload')
                 {{ $message }}

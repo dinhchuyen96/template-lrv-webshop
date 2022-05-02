@@ -43,7 +43,7 @@
             <td width="5px">{{$model->name}}</td>
             <td>{{$model->cat->name}}</td>
             <td>{{number_format($model->price)}} / {{$model->sale_price}}<br><br>-{{$model->percent_sale}}%</td>
-            <td><img src="{{url('uploads')}}/{{$model->image}}" alt="" style="width: 150px; height: 100px"></td>
+            <td><img src="{{url('uploads')}}/products/{{$model->image}}" alt="" style="width: 150px; height: 100px"></td>
             <td>
                 @if($model->status ==0 )
                 <label class="badge badge-danger"><h5>Tạm ẩn</h5></label>

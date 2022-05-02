@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-    console.log("ahinnnnhi")
+    
    
     $("#percent_sale").keyup(function(){
         // alert( "Handler for .keyup() called." );
@@ -23,7 +23,7 @@ $(document).ready(function(){
     tinymce.init({
         selector: '#tinymce',
         height: 500,
-        plugins: 'image',
+        plugins: ["advlist autolink lists link image charmap print preview hr anchor pagebreak", "searchreplace wordcount visualblocks visualchars fullscreen", "insertdatetime media nonbreaking save table contextmenu directionality", "emoticons template paste textcolor colorpicker textpattern imagetools code fullscreen"],
         toolbar: 'bold italic underline | image',
         branding: false,
         file_picker_callback: filemanager.tinyMceCallback,
@@ -31,11 +31,13 @@ $(document).ready(function(){
     tinymce.init({
         selector: '#tinymce1',
         height: 300,
-        plugins: 'image',
+        plugins:  ["advlist autolink lists link image charmap print preview hr anchor pagebreak", "searchreplace wordcount visualblocks visualchars fullscreen", "insertdatetime media nonbreaking save table contextmenu directionality", "emoticons template paste textcolor colorpicker textpattern imagetools code fullscreen"],
         toolbar: 'bold italic underline | image',
         branding: false,
         file_picker_callback: filemanager.tinyMceCallback,
-    });     
+    });    
+    var myContent = tinymce.get("tinymce1").getContent({ format: "text" }); 
+
 
 
 
