@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Danh sách blog_tag')
+@section('title','Danh sách blog category')
 @section('main')
 <form class="form-inline ml-3" method="get">
     <div class="input-group input-group-sm">
@@ -11,7 +11,7 @@
         </div>
         <div></div>
            
-        <a class="btn btn-primary" style="margin-left: 20rem" href="{{ route('blog_tag.create')}}">Thêm mới</a>
+        <a class="btn btn-primary" style="margin-left: 20rem" href="{{ route('blog_cat.create')}}">Thêm mới</a>
             
         </div>
     </div>
@@ -21,7 +21,7 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Tên Blog_tag</th>
+            <th>Tên Blog category</th>
             <th>Trạng thái</th>
             <th>Ngày tạo</th>
             <th></th>
@@ -31,7 +31,7 @@
         @foreach ($data as $key => $value)
                 <tr>
                     <td>{{ $key + 1 }}</td>
-                    <td>{{ $value->tag_name }}</td>
+                    <td>{{ $value->blog_cat }}</td>
                     <td>@if($value->status ==0 )
                         <label class="badge badge-danger">Tạm ẩn</label>
                         @else
@@ -39,9 +39,9 @@
                         @endif</td>
                     <td>{{ $value->created_at }}</td>
                     <td>
-                        <form action="{{ route('blog_tag.destroy', $value->id) }}" method="POST">
+                        <form action="{{ route('blog_cat.destroy', $value->id) }}" method="POST">
                             @csrf @method('DELETE')
-                            <a href="{{ route('blog_tag.edit', $value->id) }}" class="btn btn-primary">Sửa</a>
+                            <a href="{{ route('blog_cat.edit', $value->id) }}" class="btn btn-primary">Sửa</a>
                             <button class="btn btn-danger" onclick="return confirm('are you sure?')">Xóa</button>
                         </form>
                     </td>

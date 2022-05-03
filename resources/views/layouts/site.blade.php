@@ -438,9 +438,7 @@
                                                                     <li><a
                                                                             href="{{ route('home.category', $ccat->id) }}">{{ $ccat->name }}
                                                                             @if ($ccat->children->isNotEmpty())
-                                                                                <span
-                                                                                    class="lnr lnr-chevron-right"></span>
-
+                                                                                <span class="lnr lnr-chevron-right"></span>
                                                                                 <ul class="dropdown">
                                                                                     @foreach ($ccat->children as $cccat)
                                                                                         <li><a
@@ -462,8 +460,12 @@
                                                     class="lnr lnr-chevron-down"></span></a>
 
                                         </li>
-                                        <li><a href="{{route('blog')}}">BLOG<span class="lnr lnr-chevron-down"></span></a>
-
+                                        <li><a href="">BLOG<span class="lnr lnr-chevron-down"></span></a>
+                                            <ul class="dropdown">
+                                                @foreach ($blog_cats as $blog_cat)
+                                                    <li><a href="{{ route('blog',Str::slug($blog_cat->cat_name)) }}">{{$blog_cat->cat_name}}</a></li>
+                                                @endforeach
+                                            </ul>
                                         </li>
                                         <li><a href="/contactus">CONTACT US</a></li>
                                     </ul>

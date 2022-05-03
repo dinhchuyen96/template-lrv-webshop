@@ -8,8 +8,8 @@
         <div class="form-group">
           <label for=""></label>
           <select class="form-control" name="tag_id" id="">
-              @foreach($blog_tag as $tags)
-                <option value="{{$tags->id}}">{{$tags->tag_name}}</option>
+              @foreach($blog_cat as $tags)
+                <option value="{{$tags->id}}">{{$tags->blog_cat}}</option>
             @endforeach;
           </select>
         </div>

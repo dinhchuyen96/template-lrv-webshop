@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Blog_tag extends Model
+class Blog_cat extends Model
 {
     use HasFactory;
-    protected $table = 'blog_tag';
-    protected $fillable = ['id','tag_name','status',];
+    protected $table = 'blog_cat';
+    protected $fillable = ['id','cat_name','status',];
 
 
 
@@ -17,7 +17,7 @@ class Blog_tag extends Model
     {
         $search_value = request()->search;
         if($search_value){
-            $query = $query->where('tag_name','LIKE','%'.$search_value.'%');
+            $query = $query->where('cat_name','LIKE','%'.$search_value.'%');
         }
         return $query;
         // dd($query);

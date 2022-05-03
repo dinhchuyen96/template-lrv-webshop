@@ -1,5 +1,5 @@
 @extends('layouts.site')
-@section('title','cart')
+@section('title','Blog')
 @section('main')
     <!-- blog wrapper start -->
    <div class="blog-area-wrapper pt-40 pb-70">
@@ -14,11 +14,9 @@
                          </div>
                          <div class="sidebar-content-box">
                              <div class="filter-attribute-container">
-                                 <ul>
-                                     <li><a class="active" href="#">Categories 1 (05)</a></li>
-                                     <li><a href="#">Categories 2 (03)</a></li>
-                                     <li><a href="#">Categories 3 (10)</a></li>
-                                     <li><a href="#">Categories 4 (02)</a></li>
+                                 <ul>@foreach($blog_cat as $blog_cat)
+                                     <li><a href="#">{{$blog_cat->cat_name}} (05)</a></li>
+                                     @endforeach
                                  </ul>
                              </div>
                          </div>
@@ -91,12 +89,13 @@
                      <div class="single-blogg-item mb-30">
                          <div class="blogg-thumb">
                              <a href="blog-details.html">
-                                 <img src="assets/img/blog/blog8.jpg" alt="">
+                                 <img src="{{ url('uploads') }}/blog/{{ $data_blog->image_blog }}" alt="">
                              </a>
                          </div>
                          <div class="blogg-content">
-                             <span class="post-date">20 oct 2019</span>
+                             <span class="post-date">{{$data_blog->created_at->format('d-m-Y')}}</span>
                              <div>
+                                 {!! $data_blog->content !!}}
                              </div>
                              <div class="blogg-meta mb-30 mt-30">
                                  <a href="#">0 comment</a>

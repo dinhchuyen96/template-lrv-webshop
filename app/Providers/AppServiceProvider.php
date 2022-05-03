@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\Big_category;
+use App\Models\Blog_cat;
 use Auth;
 
 class AppServiceProvider extends ServiceProvider
@@ -59,7 +60,7 @@ class AppServiceProvider extends ServiceProvider
             $cats = Category::with(['children' => function ($q) {
                 $q->active(); //scope
             }])->orderBy('name','ASC')->active()->where('parent_id', 0)->get(); // Lấy danh sách danh mục có trong bảng danh mục 
-            
+            $blog_cats = Blog_cat::orderBy('id', 'ASC')->get();
             $carts = session('cart') ? session('cart'):[];  // lấy giỏ hàng trong session('cart')
             // dd($carts);
 
@@ -104,7 +105,7 @@ class AppServiceProvider extends ServiceProvider
             
            
 
-            $view->with(compact('coupon','products_search','cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','totalWishlist','acc','totalCompare'));
+            $view->with(compact('coupon','products_search','blog_cats','cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','totalWishlist','acc','totalCompare'));
         });
     }
 }

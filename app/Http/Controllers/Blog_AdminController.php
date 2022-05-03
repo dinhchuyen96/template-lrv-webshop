@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
-use App\Models\Blog_tag;
+use App\Models\Blog_cat;
 use Illuminate\Http\Request;
 use Str;
 
@@ -28,9 +28,9 @@ class Blog_AdminController extends Controller
      */
     public function create()
     {
-        $blog_tag = Blog_tag::orderBy('id', 'desc')->get();
-        // dd($blog_tag);
-        return view('admin.blog.create', compact('blog_tag'));
+        $blog_cat = Blog_cat::orderBy('id', 'desc')->get();
+        // dd($blog_cat);
+        return view('admin.blog.create', compact('blog_cat'));
     }
 
     /**
@@ -80,8 +80,8 @@ class Blog_AdminController extends Controller
      */
     public function edit(Blog $blog)
     {   
-        $blog_tag = Blog_tag::orderBy('id', 'ASC')->get();
-        return view('admin.blog.edit', compact('blog','blog_tag'));
+        $blog_cat = Blog_cat::orderBy('id', 'ASC')->get();
+        return view('admin.blog.edit', compact('blog','blog_cat'));
     }
 
     /**
@@ -93,7 +93,7 @@ class Blog_AdminController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        $data_blog = $request->all('name','tag_name','','title','content','status');
+        $data_blog = $request->all('name','blog_cat','','title','content','status');
         if($request->has('upload')){
             $file_name = $request->upload->getClientOriginalName();
             $partInfo = pathinfo($file_name);

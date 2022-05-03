@@ -30,7 +30,7 @@ Route::get('/compare', [HomeController::class, 'compare'])->name('compare');
 
 
 Route::group(['prefix'=>'blog'], function(){
-    Route::get('/', [HomeController::class, 'blog'])->name('blog');
+    Route::get('/{slug}', [HomeController::class, 'blog'])->name('blog');
     Route::resources([
         'comment' => CommentBlogController::class
     ]);
@@ -113,7 +113,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
         'product' => ProductAdminController::class,
         'banner' => BannerController::class,
         'coupon' => CouponController::class,
-        'blog_tag' => Blog_tagController::class,
+        'blog_cat' => Blog_tagController::class,
         'blog' => Blog_AdminController::class
     ]);
     Route::group(['prefix'=>'order'], function(){

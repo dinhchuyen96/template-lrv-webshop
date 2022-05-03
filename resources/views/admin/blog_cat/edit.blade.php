@@ -1,12 +1,12 @@
 @extends('layouts.admin')
-@section('title','Chỉnh sửa blog_tag')
+@section('title','Chỉnh sửa blog category')
 @section('main')
-<form action="{{route('blog_tag.update',$blog_tag->id)}}" method="POST" role="form" >
+<form action="{{route('blog_cat.update',$blog_cat->id)}}" method="POST" role="form" >
     @csrf @method('put')
     <div class="form-group">
         <label for="">Tag name</label>
-        <input type="text" class="form-control" name="tag_name" value="{{$blog_tag->tag_name}}" placeholder="Input field">
-        @error('tag_name') {{$message}} @enderror
+        <input type="text" class="form-control" name="blog_cat" value="{{$blog_cat->blog_cat}}" placeholder="Input field">
+        @error('blog_cat') {{$message}} @enderror
     </div>
    
     <div class="form-group">
@@ -14,14 +14,14 @@
         
         <div class="radio">
             <label>
-                <input type="radio" name="status" value="0" {{$blog_tag->status == '0' ? 'checked' : ''}}>
+                <input type="radio" name="status" value="0" {{$blog_cat->status == '0' ? 'checked' : ''}}>
                 Tạm Ẩn
             </label>
         </div>
          
         <div class="radio">
             <label>
-                <input type="radio" name="status" value="1" {{$blog_tag->status == '1' ? 'checked' : ''}}>
+                <input type="radio" name="status" value="1" {{$blog_cat->status == '1' ? 'checked' : ''}}>
                 Hiển thị
             </label>
         </div>

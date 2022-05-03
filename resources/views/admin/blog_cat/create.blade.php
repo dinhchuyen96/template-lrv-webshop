@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 @section('title','Thêm mới blog tag')
 @section('main')
-<form action="{{route('blog_tag.store')}}" method="POST" role="form">
+<form action="{{route('blog_cat.store')}}" method="POST" role="form">
     @csrf
     <div class="form-group">
         <label for="">Tên tag</label>
-        <input type="text" class="form-control" name="tag_name" placeholder="Input field">
-        @error('tag_name') {{$message}} @enderror
+        <input type="text" class="form-control" name="blog_cat" placeholder="Input field">
+        @error('blog_cat') {{$message}} @enderror
     </div>
     <div class="form-group">
         <label for="">Trạng thái</label>
