@@ -30,6 +30,7 @@
             <th style="width:200px">Tên sản phẩm</th>
             <th style="width:50px">Danh mục</th>
             <th>Giá / Sale</th>
+            <th>Mô tả</th>
             <th class="text-center">Ảnh</th>
             <th>Trạng thái</th>
             <th>Ngày tạo</th>
@@ -37,26 +38,27 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($data_product as $key => $model)
+        @foreach($data_product as $key => $value)
         <tr>
             <td>{{$key +1}}</td>
-            <td width="5px">{{$model->name}}</td>
-            <td>{{$model->cat->name}}</td>
-            <td>{{number_format($model->price)}} / {{$model->sale_price}}<br><br>-{{$model->percent_sale}}%</td>
-            <td><img src="{{url('uploads')}}/products/{{$model->image}}" alt="" style="width: 150px; height: 100px"></td>
+            <td width="5px">{{$value->name}}</td>
+            <td>{{$value->cat->name}}</td>
+            <td>{{number_format($value->price)}} / {{$value->sale_price}}<br><br>-{{$value->percent_sale}}%</td>
+            <td><button class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $value->id }}">Chi tiết</button></td>
+            <td><img src="{{url('uploads')}}/products/{{$value->image}}" style="width: 150px; height: 100px"></td>
             <td>
-                @if($model->status ==0 )
+                @if($value->status ==0 )
                 <label class="badge badge-danger"><h5>Tạm ẩn</h5></label>
                 @else
                 <label class="badge badge-success"><h5>Hiển thị</h5></label>
                 @endif
             </td>
             
-            <td>{{$model->created_at ? $model->created_at->format('d/m/Y'): ''}}</td>
+            <td>{{$value->created_at ? $value->created_at->format('d/m/Y'): ''}}</td>
             <td>
-                <form action="{{ route('product.destroy', $model->id) }}" method="post">
+                <form action="{{ route('product.destroy', $value->id) }}" method="post">
                     @csrf @method('DELETE')
-                    <a href="{{ route('product.edit', $model->id) }}" class="btn btn-primary">Sửa</a>
+                    <a href="{{ route('product.edit', $value->id) }}" class="btn btn-primary">Sửa</a>
                     <button class="btn btn-danger" onclick="return confirm('are you sure?')">Xóa</button>
                 </form>
             </td>
@@ -66,4 +68,30 @@
 </table>
 <hr>
 {{$data_product->links()}}
-@stop();
+@foreach ($data_product as $key => $value)
+        <div class="modal fade" id="myModal-{{$value->id}}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" style="max-width: 90%" role="document">
+                <div class="modal-content">
+                    <div class="modal-header row">
+                        <div class="row">
+                            <h2>Tóm tắt:</h2>
+                            <br>
+                            <div class="col-md-12">{!! $value->sort_description !!}</div>
+                        </div>
+                        <hr>
+                        <br>
+                        <div class=row>
+                            <h2>Chi tiết:</h2>
+                            <br>
+                            <div class="col-md-12">{!! $value->description !!}</div>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+@stop()
