@@ -31,8 +31,9 @@ class ProductAdminController extends Controller
      */
     public function create()
     {
-        $pro_cats =Category::orderBy('name','ASC')->get();
-        return view('admin.product.create', compact('pro_cats'));
+        $p_cats =Category::where('parent_id','=',0)->orderBy('name','ASC')->get();
+        $c_cats =Category::orderBy('name','ASC')->get();
+        return view('admin.product.create', compact('p_cats','c_cats'));
         
     }
 
@@ -46,6 +47,7 @@ class ProductAdminController extends Controller
     {
         $data_product = $req->all('name','sort_description','description','price','percent_sale','sale_price','parent_cat','category_id','status',);
         // upload ảnh
+        // dd($data_product);
         $file_name = $req->upload->getClientOriginalName();
 
         $partInfo = pathinfo($file_name);
@@ -89,9 +91,11 @@ class ProductAdminController extends Controller
      */
     public function edit(Product $product)
     {
-        $pro_cats =Category::orderBy('name','ASC')->get();
-        $pros = Product::orderBy('name', 'ASC')->get();
-        return view('admin.product.edit', compact('pro_cats','product'));
+        $p_cats =Category::where('parent_id','=',0)->orderBy('name','ASC')->get();
+        $c_cats = Category::orderBy('name','ASC')->get();;
+        // $pros = Product::orderBy('name', 'ASC')->get();
+        // dd($pro_cats);
+        return view('admin.product.edit', compact('p_cats','c_cats','product'));
     }
 
     /**
@@ -115,6 +119,7 @@ class ProductAdminController extends Controller
                 $data_product['image'] = $final_name;
             }
         }
+        // dd($data_product);
         $product->update($data_product);
         return redirect()->route('product.index')->with('yes','Cập nhật thành công');
     }

@@ -37,12 +37,14 @@
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $value->name }}</td>
                     <td>{{ $value->title }}</td>
-                    <td>{{ $value->image }}</td>
-                    <td><?php echo $value->content ?></td>
+                    <td><img src="{{ url('uploads') }}/blog/{{ $value->image_blog }}"
+                            style="width: 100px; height: 100px" alt=""></td>
+                    <td><button class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $value->id }}">Nội
+                            dung</button></td>
                     <td>{{ $value->status }}</td>
                     <td>{{ $value->created_at }}</td>
                     <td>
-                        <form action="{{ route('blog.destroy', $value->id) }}" method="post">
+                        <form action="{{ route('blog.destroy', $value->id) }}" method="POST">
                             @csrf @method('DELETE')
                             <a href="{{ route('blog.edit', $value->id) }}" class="btn btn-primary">Sửa</a>
                             <button class="btn btn-danger" onclick="return confirm('are you sure?')">Xóa</button>
@@ -54,4 +56,20 @@
     </table>
     <hr>
     {{ $data->links() }}
+    @foreach ($data as $key => $value)
+        <div class="modal fade" id="myModal-{{$value->id}}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" style="max-width: 850px" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div>{!! $value->content !!}</div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    @endforeach
 @stop()

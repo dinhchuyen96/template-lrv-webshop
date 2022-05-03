@@ -1,6 +1,5 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
-<> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin| @yield('title')</title>
@@ -15,10 +14,6 @@
     <link rel="icon" href="{{ url('home')}}/assets/img/icon/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="{{ url('home')}}/assets/css/options.css">
     <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    
-    </head>
 	<!-- Bootstrap css -->
     {{-- <link rel="stylesheet" href="{{ url('home')}}/assets/css/bootstrap.min.css">
     <!-- linear-icon -->
@@ -111,12 +106,16 @@
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> --}}
     {{-- <script src="{{ url('admin-template')}}/plugins/jquery/jquery.min.js"></script> --}}
     <!-- Bootstrap 4 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <script src="{{ url('admin-template')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
+    <script src="https://cdn.tiny.cloud/1/vzb6x1ui57bic5qby8li2cgxt36toy1h7zq4bw108ozp5phi/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="{{ url('admin-template')}}/dist/js/adminlte.min.js"></script>  
     <script src="{{ url('admin-template')}}/dist/js/options.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ url('admin-template')}}/dist/js/demo.js"></script>
+    
     
 </body>
 

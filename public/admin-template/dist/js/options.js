@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-    
+    // console.log('ahihi');
    
     $("#percent_sale").keyup(function(){
         // alert( "Handler for .keyup() called." );
@@ -35,9 +35,15 @@ $(document).ready(function(){
         toolbar: 'bold italic underline | image',
         branding: false,
         file_picker_callback: filemanager.tinyMceCallback,
-    });    
-    var myContent = tinymce.get("tinymce1").getContent({ format: "text" }); 
-
+    });   
+    tinymce.init({
+            selector: '#tinymce_sort',
+            height: 300,
+            plugins:  ["advlist autolink lists link image charmap print preview hr anchor pagebreak", "searchreplace wordcount visualblocks visualchars fullscreen", "insertdatetime media nonbreaking save table contextmenu directionality", "emoticons template paste textcolor colorpicker textpattern imagetools code fullscreen"],
+            toolbar: 'bold italic underline | image',
+            branding: false,
+            file_picker_callback: filemanager.tinyMceCallback,
+        }); 
 
 
 

@@ -113,6 +113,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
         'product' => ProductAdminController::class,
         'banner' => BannerController::class,
         'coupon' => CouponController::class,
+        'blog_tag' => Blog_tagController::class,
         'blog' => Blog_AdminController::class
     ]);
     Route::group(['prefix'=>'order'], function(){

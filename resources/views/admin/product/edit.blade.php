@@ -6,9 +6,11 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label for="">Danh mục sản phẩm cha</label>
-                <select class="form-control" name="parent_cat" id="">
+                <select class="form-control" name="parent_cat" id="" value="{{$product->parent_cat}}">
                     <option>Chọn danh mục</option>
-                    <?php showCategories1($cats); ?>
+                    @foreach($p_cats as $key => $value)
+                        <option value="{{$value->parent_cat}}" @if($value->id == $product->parent_cat) selected @endif >{{$value->name}}</option>
+                    @endforeach                    
                 </select>
                 @error('parent_cat')
                     {{ $message }}
@@ -16,9 +18,9 @@
             </div>
             <div class="col-md-6">
                 <label for="">Danh mục sản phẩm con</label>
-                <select class="form-control" name="category_id" id="">
+                <select class="form-control" name="category_id" id="" value="{{$product->category_id}}">
                     <option>Chọn danh mục</option>
-                    <?php showCategories($pro_cats); ?>
+                    <?php showCategories($c_cats); ?>
                 </select>
                 @error('category_id')
                     {{ $message }}
@@ -36,54 +38,57 @@
         <div class="row form-group">
             <div class="col-md-5">
                 <label for="">Giá</label>
-                <input type="text" class="form-control set_price_product" id="price" value="{{ $product->price }}" name="price"
-                    placeholder="Input field">
+                <input type="text" class="form-control set_price_product" id="price" value="{{ $product->price }}"
+                    name="price" placeholder="Input field">
                 @error('price')
                     {{ $message }}
                 @enderror
             </div>
-            
+
             <div class="col-md-2"><label for="">% Sale</label>
-                <input type="number" value="{{ old('percent_sale') }}" id="percent_sale" class="form-control set_price_product" name="percent_sale"
-                    placeholder="Nhập % giảm giá">
+                <input type="number" value="{{ old('percent_sale') }}" id="percent_sale"
+                    class="form-control set_price_product" name="percent_sale" placeholder="Nhập % giảm giá">
                 @error('price')
                     {{ $message }}
                 @enderror
             </div>
             <div class="col-md-5">
                 <label for="">Giá khuyễn mãi</label>
-                <input type="text" class="form-control" id="sale_price" value="{{$product->sale_price}}" name="sale_price"
-                    placeholder="Input field">
+                <input type="text" class="form-control" id="sale_price" value="{{ $product->sale_price }}"
+                    name="sale_price" placeholder="Input field">
                 @error('sale_price')
                     {{ $message }}
                 @enderror
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-6">
-                <label for="">Mô tả ngắn gọn</label>
-                <input type="text" class="form-control" value="{{ $product->sort_description }}" name="sort_description"
-                    placeholder="Input field">
-                @error('sort_description')
-                    {{ $message }}
-                @enderror
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label for="">Mô tả chi tiết</label>
-                <input type="text" class="form-control" value="{{ $product->description }}" name="description"
-                    placeholder="Input field">
+                <textarea id="tinymce" type="text" class="form-control" name="description"
+                    placeholder="Input field">{{ $product->description }}</textarea>
                 @error('description')
                     {{ $message }}
                 @enderror
             </div>
         </div>
-        <div class="form-group">
-            <label for="">Ảnh</label>
-            <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" style="width: 280px; height: auto">
-            <input type="file" class="form-control" name="upload" placeholder="Input field">
-            @error('upload')
-                {{ $message }}
-            @enderror
+        <div class="form-group row">
+            <div class="col-md-8">
+                <label for="">Mô tả ngắn gọn</label>
+                <textarea id="tinymce_sort" type="text" class="form-control" name="sort_description"
+                    placeholder="Input field">{{ $product->sort_description }}</textarea>
+                @error('sort_description')
+                    {{ $message }}
+                @enderror
+            </div>
+            <div class="col-md-4 mt-4">
+                <label for="">Ảnh</label>
+                <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt=""
+                    style="width: 280px; height: auto">
+                <input type="file" class="form-control" name="upload" placeholder="Input field">
+                @error('upload')
+                    {{ $message }}
+                @enderror
+            </div>
         </div>
         <div class="row form-group">
             <div class="col-md-4">
@@ -101,36 +106,26 @@
                     </label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Lưu lại</button>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-12"><button type="submit" style="width: 50%" class="btn btn-primary">Lưu lại</button>
+            </div>
+        </div>
     </form>
-@stop();
-<?php function showCategories1($categories, $parent_id = 0, $char = '')
+@stop()
+<?php 
+function showCategories($categories, $parent_id = 0, $char = '')
 {
-    foreach ($categories as $key => $item)
-    {
+    foreach ($categories as $key => $item) {
         // Nếu là chuyên mục con thì hiển thị
-        if ($item->parent_id == $parent_id)
-        {
+        if ($item->parent_id == $parent_id) {
             // Xử lý hiển thị chuyên mục
-            echo '<option value="'.$item->id.'">'.$char.$item->name.'</option>';
+            echo '<option value="' . $item->id . '">' . $char . $item->name . '</option>';
             // Xóa chuyên mục đã lặp
             unset($categories[$key]);
+            // Tiếp tục đệ quy để tìm chuyên mục con của chuyên mục đang lặp
+            showCategories($categories, $item->id, $char . '---');
         }
     }
-};
-function showCategories($categories, $parent_id = 0, $char = ''){
-        foreach ($categories as $key => $item)
-        {
-            // Nếu là chuyên mục con thì hiển thị
-            if ($item->parent_id == $parent_id)
-            {
-                // Xử lý hiển thị chuyên mục
-                echo '<option value="'.$item->id.'">'.$char.$item->name.'</option>';
-                // Xóa chuyên mục đã lặp
-                unset($categories[$key]);
-                // Tiếp tục đệ quy để tìm chuyên mục con của chuyên mục đang lặp
-                showCategories($categories, $item->id, $char.'---');
-            }
-        }
-    }  
- ?>
+}
+?>

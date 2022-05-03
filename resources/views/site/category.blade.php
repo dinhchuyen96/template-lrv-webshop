@@ -233,7 +233,7 @@
                                                 <span><i class="fa fa-star"></i></span>
                                             </div>
                                             <div class="sinrato-product-des">
-                                                <p>{{ $product_cat->sort_description }}</p>
+                                                {!! $product_cat->sort_description !!}
                                             </div>
                                         </div>
                                         <div class="sinrato-box-action">
@@ -499,7 +499,7 @@
                                                 @endif
                                             </div>
                                             <div class="product-detail-sort-des pb-20">
-                                                <p>{{ $product->sort_description }}</p>
+                                                {!! $product->sort_description !!}
                                             </div>
                                             <div class="pro-details-list pt-20">
                                                 <ul>
@@ -650,7 +650,7 @@
                                                 @endif
                                             </div>
                                             <div class="product-detail-sort-des pb-20">
-                                                <p>{{ $product->sort_description }}</p>
+                                                {!! $product->sort_description !!}
                                             </div>
                                             <div class="pro-details-list pt-20">
                                                 <ul>

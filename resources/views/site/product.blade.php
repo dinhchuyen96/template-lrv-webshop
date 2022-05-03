@@ -115,7 +115,7 @@
                                         @endif
                                 </div>
                                 <div class="product-detail-sort-des pb-20">
-                                    <p>{{ $product->sort_description }}</p>
+                                    {!! $product->sort_description !!}
                                 </div>
                                 <div class="pro-details-list pt-20 mb-20">
                                     <ul>
@@ -182,7 +182,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="tab_description" role="tabpanel"
                                     aria-labelledby="nav_desctiption">
-                                    <p>{{ $product->description}}</p>
+                                    {!!$product->description!!}
                                 </div>
                                 <div class="tab-pane fade" id="tab_review" role="tabpanel" aria-labelledby="nav_review">
                                     <div class="product-review">
@@ -310,8 +310,8 @@
                     <div class="product-item mb-30">
                         <div class="product-thumb">
                             <a href="{{route('home.product',['product'=>$products->id,'category'=>$category->id,'slug'=>Str::slug($products->name)])}}">
-                                <img src="{{url('uploads')}}/{{$products->image}}" class="pri-img" alt="">
-                                <img src="{{url('uploads')}}/{{$products->image}}" class="sec-img" alt="">
+                                <img src="{{url('uploads')}}/products/{{$products->image}}" class="pri-img" alt="">
+                                <img src="{{url('uploads')}}/products/{{$products->image}}" class="sec-img" alt="">
                             </a>
                             <div class="box-label">
                                 <div class="label-product label_new">
@@ -386,36 +386,36 @@
                                 <div class="col-lg-5">
                                     <div class="product-large-slider mb-20">
                                         <div class="pro-large-img">
-                                            <img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
+                                            <img src="{{url('uploads')}}/products/{{$product_rl->image}}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
+                                            <img src="{{url('uploads')}}/products/{{$product_rl->image}}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
+                                            <img src="{{url('uploads')}}/products/{{$product_rl->image}}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
+                                            <img src="{{url('uploads')}}/products/{{$product_rl->image}}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
+                                            <img src="{{url('uploads')}}/products/{{$product_rl->image}}" alt="" />
                                         </div>
                                         <div class="pro-large-img">
-                                            <img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
+                                            <img src="{{url('uploads')}}/products/{{$product_rl->image}}" alt="" />
                                         </div>
                                     </div>
                                     <div class="pro-nav">
-                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/products/{{$product_rl->image}}" alt="" />
                                         </div>
-                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/products/{{$product_rl->image}}" alt="" />
                                         </div>
-                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/products/{{$product_rl->image}}" alt="" />
                                         </div>
-                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/products/{{$product_rl->image}}" alt="" />
                                         </div>
-                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/products/{{$product_rl->image}}" alt="" />
                                         </div>
-                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/{{$product_rl->image}}" alt="" />
+                                        <div class="pro-nav-thumb"><img src="{{url('uploads')}}/products/{{$product_rl->image}}" alt="" />
                                         </div>
                                     </div>
                                 </div>

@@ -9,7 +9,7 @@ class Blog extends Model
 {
     use HasFactory;
     protected $table = 'blogs';
-    protected $fillable = ['id','name','title','content','status','image',];
+    protected $fillable = ['id','tag_id','name','title','content','status','image_blog',];
 
     public function comment_blog()
     {

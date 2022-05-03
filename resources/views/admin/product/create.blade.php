@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Thêm mới sản phẩm')
+@section('title','Thêm mới sản phẩm')
 @section('main')
     <form action="{{ route('product.store') }}" method="POST" role="form" enctype="multipart/form-data">
         @csrf
@@ -8,7 +8,9 @@
                 <label for="">Danh mục sản phẩm cha</label>
                 <select class="form-control" name="parent_cat" id="">
                     <option>Chọn danh mục</option>
-                    <?php showCategories1($cats); ?>
+                    @foreach($p_cats as $key => $value)
+                        <option>{{$value->name}}</option>
+                    @endforeach 
                 </select>
                 @error('parent_cat')
                     {{ $message }}
@@ -18,7 +20,7 @@
                 <label for="">Danh mục sản phẩm con</label>
                 <select class="form-control" name="category_id" id="">
                     <option>Chọn danh mục</option>
-                    <?php showCategories($pro_cats); ?>
+                    <?php showCategories($c_cats); ?>
                 </select>
                 @error('category_id')
                     {{ $message }}
@@ -26,7 +28,7 @@
             </div>
             <div class="col-md-6">
                 <label for="">Tên sản phẩm</label>
-                <input type="text" style="padding" class="form-control" value="{{ old('name') }}" name="name"
+                <input type="text" style="padding" class="form-control" value="{{old('name')}}" name="name"
                     placeholder="Nhập tên của sản phẩm">
                 @error('name')
                     {{ $message }}
@@ -35,16 +37,16 @@
         </div>
         <div class="form-group">
             <label for="">Tóm tắt sản phẩm</label>
-            <input type="text" class="form-control" value="{{ old('sort_description') }}" name="sort_description"
-                placeholder="Tóm tắt ngắn nội dung sản phẩm">
+            <textarea id="tinymce_sort" class="form-control" name="sort_description"
+                placeholder="Tóm tắt ngắn nội dung sản phẩm">{{ old('sort_description') }}</textarea>
             @error('sort_description')
                 {{ $message }}
             @enderror
         </div>
         <div class="form-group">
             <label for="">Mô tả sản phẩm</label>
-            <input type="text" class="form-control" value="{{ old('description') }}" name="description"
-                placeholder="Mô tả chi tiết sản phẩm">
+            <textarea type="text" id="tinymce_detail" class="form-control" value="{{ old('description') }}" name="description"
+                placeholder="Mô tả chi tiết sản phẩm"></textarea>
             @error('description')
                 {{ $message }}
             @enderror
@@ -104,21 +106,8 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Lưu lại</button>
     </form>
-@stop();
-<?php function showCategories1($categories, $parent_id = 0, $char = '')
-    {
-        foreach ($categories as $key => $item)
-        {
-            // Nếu là chuyên mục con thì hiển thị
-            if ($item->parent_id == $parent_id)
-            {
-                // Xử lý hiển thị chuyên mục
-                echo '<option value="'.$item->id.'">'.$char.$item->name.'</option>';
-                // Xóa chuyên mục đã lặp
-                unset($categories[$key]);
-            }
-        }
-    };
+@stop()
+<?php 
     function showCategories($categories, $parent_id = 0, $char = '')
     {
         foreach ($categories as $key => $item)
