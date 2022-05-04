@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\models\blog_cat;
 use Illuminate\Http\Request;
 
-class Blog_tagController extends Controller
+class Blog_catController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,7 +37,7 @@ class Blog_tagController extends Controller
      */
     public function store(Request $request)
     {
-        blog_cat::create($request->only('cat_name','status'));
+        blog_cat::create($request->only('name','status'));
         return redirect()->route('blog_cat.index')->with('yes','Thêm mới thành công');
     }
 
@@ -85,6 +85,8 @@ class Blog_tagController extends Controller
      */
     public function destroy(blog_cat $blog_cat)
     {
-        //
+        $blog_cat->delete();
+        // dd($category);
+        return redirect()->route('blog_cat.index')->with('yes','Xóa thành công');
     }
 }

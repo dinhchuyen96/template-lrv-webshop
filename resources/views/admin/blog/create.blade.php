@@ -7,9 +7,9 @@
         <label for="">Blog tag</label>
         <div class="form-group">
           <label for=""></label>
-          <select class="form-control" name="tag_id" id="">
+          <select class="form-control" name="cat_id" id="">
               @foreach($blog_cat as $tags)
-                <option value="{{$tags->id}}">{{$tags->blog_cat}}</option>
+                <option value="{{$tags->id}}">{{$tags->cat_name}}</option>
             @endforeach;
           </select>
         </div>

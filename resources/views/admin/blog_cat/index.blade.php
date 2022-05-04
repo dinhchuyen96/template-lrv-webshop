@@ -31,7 +31,7 @@
         @foreach ($data as $key => $value)
                 <tr>
                     <td>{{ $key + 1 }}</td>
-                    <td>{{ $value->blog_cat }}</td>
+                    <td>{{ $value->name}}</td>
                     <td>@if($value->status ==0 )
                         <label class="badge badge-danger">Tạm ẩn</label>
                         @else

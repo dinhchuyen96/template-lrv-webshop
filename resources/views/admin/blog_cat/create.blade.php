@@ -5,8 +5,8 @@
     @csrf
     <div class="form-group">
         <label for="">Tên tag</label>
-        <input type="text" class="form-control" name="blog_cat" placeholder="Input field">
-        @error('blog_cat') {{$message}} @enderror
+        <input type="text" class="form-control" name="name" placeholder="Input field">
+        @error('name') {{$message}} @enderror
     </div>
     <div class="form-group">
         <label for="">Trạng thái</label>

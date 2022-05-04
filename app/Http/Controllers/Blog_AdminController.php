@@ -41,7 +41,7 @@ class Blog_AdminController extends Controller
      */
     public function store(Request $request)
     {   
-        $data_blog = $request->all('name','tag_id','title','content','image_blog','status',);
+        $data_blog = $request->all('name','cat_id','title','content','image_blog','status',);
         $file_name = $request->upload->getClientOriginalName();
 
         $partInfo = pathinfo($file_name);
@@ -81,6 +81,7 @@ class Blog_AdminController extends Controller
     public function edit(Blog $blog)
     {   
         $blog_cat = Blog_cat::orderBy('id', 'ASC')->get();
+        // dd($blog);
         return view('admin.blog.edit', compact('blog','blog_cat'));
     }
 

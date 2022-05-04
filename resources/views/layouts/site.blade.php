@@ -109,10 +109,10 @@
                             <form method="get">
                                 <div class="top-cat hm1">
                                     <div class="search-form">
-                                        <select class="form-control" name="cat_id" id="">
+                                        <select class="form-control" name="search" id="">
                                             <option value="">Select</option>
                                             @foreach ($cats as $cat)
-                                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                                <option value="{{ $cat->name }}">{{ $cat->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -121,12 +121,8 @@
                                     placeholder="Search entire store here">
                                 <input type="submit" class="top-search-btn" value="Search">
                             </form>
-                            @if ($products_search != null)
-
-
+                            @if ($search_value)
                                 <!-- Modal -->
-
-
                                 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog" style="max-width: 850px" role="document">
@@ -145,9 +141,9 @@
                                                         <div class="product-thumb">
                                                             <a
                                                                 href="{{ route('home.product', ['product' => $value->id,'category' => $value->category_id,'slug' => Str::slug($value->name)]) }}">
-                                                                <img src="{{ url('uploads') }}/{{ $value->image }}"
+                                                                <img src="{{ url('uploads') }}/products/{{ $value->image }}"
                                                                     width="250px" class="pri-img" alt="">
-                                                                <img src="{{ url('uploads') }}/{{ $value->image }}"
+                                                                <img src="{{ url('uploads') }}/products/{{ $value->image }}"
                                                                     width="250px" class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
@@ -463,7 +459,7 @@
                                         <li><a href="">BLOG<span class="lnr lnr-chevron-down"></span></a>
                                             <ul class="dropdown">
                                                 @foreach ($blog_cats as $blog_cat)
-                                                    <li><a href="{{ route('blog',Str::slug($blog_cat->cat_name)) }}">{{$blog_cat->cat_name}}</a></li>
+                                                    <li><a href="{{ route('blog',['blog_cat_id' => $blog_cat->id, 'slug' => Str::slug($blog_cat->name)]) }}">{{$blog_cat->name}}</a></li>
                                                 @endforeach
                                             </ul>
                                         </li>

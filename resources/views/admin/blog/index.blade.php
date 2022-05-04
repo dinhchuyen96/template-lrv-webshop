@@ -22,6 +22,7 @@
         <thead>
             <tr>
                 <th>#</th>
+                <th>Category</th>
                 <th>Tên Blog</th>
                 <th>Title</th>
                 <th>Banner</th>
@@ -35,6 +36,7 @@
             @foreach ($data as $key => $value)
                 <tr>
                     <td>{{ $key + 1 }}</td>
+                    <td>{{$value->cat_blog->name}}</td>
                     <td>{{ $value->name }}</td>
                     <td>{{ $value->title }}</td>
                     <td><img src="{{ url('uploads') }}/blog/{{ $value->image_blog }}"

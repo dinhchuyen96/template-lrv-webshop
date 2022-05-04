@@ -60,7 +60,7 @@ class AppServiceProvider extends ServiceProvider
             $cats = Category::with(['children' => function ($q) {
                 $q->active(); //scope
             }])->orderBy('name','ASC')->active()->where('parent_id', 0)->get(); // Lấy danh sách danh mục có trong bảng danh mục 
-            $blog_cats = Blog_cat::orderBy('id', 'ASC')->get();
+            $blog_cats = Blog_cat::orderBy('id', 'ASC')->where('status','>',0)->get();
             $carts = session('cart') ? session('cart'):[];  // lấy giỏ hàng trong session('cart')
             // dd($carts);
 
@@ -90,22 +90,20 @@ class AppServiceProvider extends ServiceProvider
 
             $products_search = null;
             $search_value = request()->search;
-            $cat_id = request()->cat_id;
+            $search_value_cat = request()->cat_id;
             // $messages = "ahihnnnnnnnnnnni";
             if($search_value){
                 $products_search = Product::orderBy('name','ASC')->search()->get();
-            }else{
+            }
                 // $products_search = null;
-                if($cat_id){
-                    $products_search = Product::orderBy('name','ASC')->search()->get();
-                }
-            };
+            if($search_value_cat){
+                $products_search = Product::orderBy('name','ASC')->search()->get();
+            }
             
-            
-            
+            // dd($products_search);
            
 
-            $view->with(compact('coupon','products_search','blog_cats','cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','totalWishlist','acc','totalCompare'));
+            $view->with(compact('coupon','search_value','search_value_cat','products_search','blog_cats','cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','totalWishlist','acc','totalCompare'));
         });
     }
 }

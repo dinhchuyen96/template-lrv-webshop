@@ -23,6 +23,7 @@
             return view('site\myaccount');
         }
         public function category(Category $category){
+            // dd($category);
             $products = $category->products_byCat()->paginate(12);
             $products1 = $category->products_byParent_Cat()->paginate(12);
             // dd($category->id);
@@ -34,12 +35,13 @@
             $reviews = Review::reviews($product->id); //take Product_id to scopereviews in Model Review
             return view('site\product',compact('product','category','reviews','products_related'));
         }
-        public function blog()
-        {
-            $data_blog = Blog::orderBy('id','DESC')->search()->first();
-            $blog_cat = Blog_cat::orderBy('id', 'ASC')->get();
+        public function blog(Blog_cat $blog_cat_id)
+        {   
+            // dd($blog_cat_id);
+            $data_blog = Blog::orderBy('id','DESC')->first();
+            // $blog_cat = Blog_cat::orderBy('id', 'ASC')->->get();
             // dd($data_blog->all());
-            return view('site\blog',compact('data_blog','blog_cat'));
+            return view('site\blog',compact('blog_cat_id','data_blog'));
         }
     };
 ?>

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+    protected $table = 'categories';
     protected $fillable = ['name','status','parent_id',];
     
     public function scopeActive($query){

@@ -50,9 +50,7 @@ class CompareController extends Controller
                 return redirect()->route('home.compare')->with('ok', 'Xóa sản phẩm khỏi compare thành công');
             }
             if($procompare == null){
-                return redirect()->route('home')->with('ok', 'Compare rỗng, mời bạn chọn lại');
-            
-                return redirect()->route('home');
+                return redirect()->route('home')->with('ok', 'Compare rỗng, mời bạn chọn lại');          
             }
         }
     }

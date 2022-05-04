@@ -5,7 +5,7 @@
     @csrf @method('put')
     <div class="form-group">
         <label for="">Tag name</label>
-        <input type="text" class="form-control" name="blog_cat" value="{{$blog_cat->blog_cat}}" placeholder="Input field">
+        <input type="text" class="form-control" name="blog_cat" value="{{$blog_cat->name}}" placeholder="Input field">
         @error('blog_cat') {{$message}} @enderror
     </div>
    

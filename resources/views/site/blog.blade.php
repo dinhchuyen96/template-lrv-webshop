@@ -1,7 +1,7 @@
 @extends('layouts.site')
 @section('title','Blog')
 @section('main')
-    <!-- blog wrapper start -->
+            <!-- blog wrapper start -->
    <div class="blog-area-wrapper pt-40 pb-70">
     <div class="container-fluid">
         <div class="row">
@@ -14,8 +14,8 @@
                          </div>
                          <div class="sidebar-content-box">
                              <div class="filter-attribute-container">
-                                 <ul>@foreach($blog_cat as $blog_cat)
-                                     <li><a href="#">{{$blog_cat->cat_name}} (05)</a></li>
+                                 <ul>@foreach($blog_cats as $blog_cat)
+                                     <li><a href="{{ route('blog',['blog_cat_id' => $blog_cat->id, 'slug' => Str::slug($blog_cat->name)]) }}" @if ($blog_cat->id == $blog_cat_id->id) class="active" @endif>{{$blog_cat->name}}</a></li>
                                      @endforeach
                                  </ul>
                              </div>

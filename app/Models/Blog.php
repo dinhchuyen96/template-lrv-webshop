@@ -9,7 +9,7 @@ class Blog extends Model
 {
     use HasFactory;
     protected $table = 'blogs';
-    protected $fillable = ['id','tag_id','name','title','content','status','image_blog',];
+    protected $fillable = ['cat_id','name','title','content','status','image_blog',];
 
     public function comment_blog()
     {
@@ -24,4 +24,9 @@ class Blog extends Model
         return $query;
         // dd($query);
     }
+    public function cat_blog()
+    {
+        return $this->belongsTo(Blog_cat::class,'cat_id','id');
+    }
+   
 }
