@@ -38,9 +38,8 @@
         public function blog(Blog_cat $blog_cat_id)
         {   
             // dd($blog_cat_id);
-            $data_blog = Blog::orderBy('id','DESC')->first();
-            // $blog_cat = Blog_cat::orderBy('id', 'ASC')->->get();
-            // dd($data_blog->all());
+            $data_blog = $blog_cat_id->blog_byCat()->first();
+            // dd($data_blog);
             return view('site\blog',compact('blog_cat_id','data_blog'));
         }
     };

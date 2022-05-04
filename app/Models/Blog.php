@@ -28,5 +28,8 @@ class Blog extends Model
     {
         return $this->belongsTo(Blog_cat::class,'cat_id','id');
     }
-   
+   public function get_blog()
+   {
+        Blog::orderBy('id','DESC')->first();
+   }
 }

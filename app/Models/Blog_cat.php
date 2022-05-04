@@ -26,7 +26,7 @@ class Blog_cat extends Model
         // dd($query);
     }
     public function blog_byCat(){
-        return $this->hasMany(Blog::class, 'cat_id','id');
+        return $this->hasMany(Blog::class,'cat_id','id');
     }
 }
 
