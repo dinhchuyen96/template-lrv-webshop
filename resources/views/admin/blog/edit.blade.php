@@ -8,30 +8,34 @@
                 <label for="">Blog tag</label>
                 <label for=""></label>
                 <select class="form-control" name="tag_id" id="">
-                    @foreach ($blog_cat as $cats)
-                        <option value="{{ $cats->id }}">{{ $cats->cat_name }}</option>
+                    @foreach ($blog_cats as $cats)
+                        <option value="{{ $cats->id }}">{{ $cats->name }}</option>
                     @endforeach;
                 </select>
                 @error('name')
                     {{ $message }}
                 @enderror
             </div>
-            <div class="col-md-6">
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <label for="">Tên blog</label>
-                <input type="text" class="form-control" id="content_blog" name="name" value="{{ $blog->name }}"
-                    placeholder="Input field">
+                <textarea type="text" class="form-control" id="" name="name" value="{{ $blog->name }}"
+                    placeholder="Input field"></textarea>
                 @error('name')
                     {{ $message }}
                 @enderror
             </div>
         </div>
         <div class="form-group">
-            <label for="">Title</label>
-            <input type="text" class="form-control" id="content_blog" name="title" value="{{ $blog->title }}"
-                placeholder="Input field">
-            @error('title')
-                {{ $message }}
-            @enderror
+            <div class="form-group">
+                <label for="">Title</label>
+                <textarea type="text" id="tinymce1" class="form-control" value="{{ old('title') }}" name="title"
+                    placeholder="Input field"></textarea>
+                @error('title')
+                    {{ $message }}
+                @enderror
+            </div>
         </div>
         <div class="form-group">
             <label for="">Nội dung blog</label>
@@ -67,8 +71,9 @@
 
         </div>
         <div class="row text-center">
-            <div class="col-md-12"><button type="submit" style="width: 50%" class="btn btn-primary">Lưu lại</button></div>
+            <div class="col-md-12"><button type="submit" style="width: 50%" class="btn btn-primary">Lưu lại</button>
+            </div>
         </div>
-        
+
     </form>
 @stop()

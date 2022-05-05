@@ -456,10 +456,10 @@
                                                     class="lnr lnr-chevron-down"></span></a>
 
                                         </li>
-                                        <li><a href="">BLOG<span class="lnr lnr-chevron-down"></span></a>
+                                        <li><a href="{{route('blog')}}">BLOG<span class="lnr lnr-chevron-down"></span></a>
                                             <ul class="dropdown">
                                                 @foreach ($blog_cats as $blog_cat)
-                                                    <li><a href="{{ route('blog',['blog_cat_id' => $blog_cat->id, 'slug' => Str::slug($blog_cat->name)]) }}">{{$blog_cat->name}}</a></li>
+                                                    <li><a href="{{ route('blog_cat_id',['blog_cat_id' => $blog_cat->id, 'slug' => Str::slug($blog_cat->name)]) }}">{{$blog_cat->name}}</a></li>
                                                 @endforeach
                                             </ul>
                                         </li>

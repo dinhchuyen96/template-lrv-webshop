@@ -46,7 +46,6 @@ class Product extends Model
     public function scopeProduct_new($query, $limit = 4){
         $query = $query->orderBy('id','DESC')->where('status','>',0)->limit($limit)->get();
         return $query;
-    }
-    
+    }   
     
 }

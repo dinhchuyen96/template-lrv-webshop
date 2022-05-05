@@ -55,7 +55,7 @@ class OrderHomeController extends Controller
     }
 
     public function del_coupon(){
-            session()->forget(['coupon']);
+            session()->forget(['coupon']); // xóa coupon khỏi session
             return redirect()->back()->with('ok','Xóa coupon thành công');;
     }
 

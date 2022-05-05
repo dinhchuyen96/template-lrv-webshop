@@ -40,7 +40,7 @@
                     <td>{{ $value->name }}</td>
                     <td>{{ $value->title }}</td>
                     <td><img src="{{ url('uploads') }}/blog/{{ $value->image_blog }}"
-                            style="width: 100px; height: 100px" alt=""></td>
+                            style="width: 100px; height: 100px" alt="No image"></td>
                     <td><button class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $value->id }}">Nội
                             dung</button></td>
                     <td>{{ $value->status }}</td>

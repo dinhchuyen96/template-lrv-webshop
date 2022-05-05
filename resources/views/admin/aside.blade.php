@@ -155,6 +155,14 @@
             </ul>
           </li>
           <li class="nav-item">
+            <a href="{{route('comment.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-search"></i>
+              <p>
+                Comment Blog
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-search"></i>
               <p>
@@ -182,7 +190,6 @@
               <i class="nav-icon fas fa-search"></i>
               <p>
                 Đơn hàng
-                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
           </li>

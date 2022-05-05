@@ -30,7 +30,9 @@ Route::get('/compare', [HomeController::class, 'compare'])->name('compare');
 
 
 Route::group(['prefix'=>'blog'], function(){
-    Route::get('/{blog_cat_id}-{slug}', [HomeController::class, 'blog'])->name('blog');
+    Route::get('/', [HomeController::class, 'blog'])->name('blog');
+    Route::get('/{blog_cat_id}-{slug}', [HomeController::class, 'blog_cat_id'])->name('blog_cat_id');
+    Route::get('/{blog_cat_id}-{slug}/{slug2}/{blog}', [HomeController::class, 'blog_detail'])->name('blog_detail');
     Route::resources([
         'comment' => CommentBlogController::class
     ]);

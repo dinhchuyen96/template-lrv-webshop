@@ -24,6 +24,15 @@ class Blog extends Model
         return $query;
         // dd($query);
     }
+    public function scopeFilter_Date($query)
+    {
+        $start = Carbon::parse($request->start_date);
+        $end = Carbon::parse($request->end_date);
+        $get_all_blog = User::whereDate('created_at','<=',$end)
+        ->whereDate('created_at','>=',$start)
+        ->get();
+        return $get_all_user;        
+    }
     public function cat_blog()
     {
         return $this->belongsTo(Blog_cat::class,'cat_id','id');

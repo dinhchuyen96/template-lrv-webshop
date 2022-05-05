@@ -1,26 +1,31 @@
-#btn-delete{
+#btn-delete {
     display: none;
     border: 1px;
     width: 0px;
     height: 0px;
-    position: absolute!important;
-    padding: 0; 
-    
+    position: absolute !important;
+    padding: 0;
+
 }
-#review{
+
+#review {
     width: 250px;
 }
-#review:hover #btn-delete{
+
+#review:hover #btn-delete {
     display: inline-block;
 }
-.ml-1-compare{
+
+.ml-1-compare {
     margin-left: -1rem;
 }
 
-.table-bordered thead th, tr{
+.table-bordered thead th,
+tr {
     text-align: center;
 }
-.qty-boxx input{
+
+.qty-boxx input {
     border: 1px solid #ddd;
     border-radius: 25px;
     font-size: 16px;
@@ -32,3 +37,29 @@
     width: 80px;
 }
 
+.listnews{
+    display: block;
+    overflow: hidden;
+}
+
+.listnews li{
+    display: block;
+    overflow: hidden;
+    padding: 20px 0;
+    border-top: 1px solid #e5e5e5;
+}
+
+.listnews li .linkimg{
+    float: left;
+    width: 200px;
+    height: auto;
+    margin-right: 15px;
+    overflow: hidden;
+}
+
+.listnews li .linkimg img{
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}

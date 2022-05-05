@@ -14,7 +14,9 @@ class CommentBlogController extends Controller
      */
     public function index()
     {
-        //
+        $comments = Comment_Blog::orderBy('id', 'DESC')->paginate(15);
+        // dd($comments);
+        return view('admin.comment_blog.index',compact('comments'));
     }
 
     /**
@@ -38,7 +40,7 @@ class CommentBlogController extends Controller
         $data= $request->all();
         // dd($data);
         Comment_Blog::create($data);
-        return redirect()->back(); 
+        return redirect()->back()->with('ok','Gửi comment thành công'); 
     }
 
     /**
@@ -81,8 +83,10 @@ class CommentBlogController extends Controller
      * @param  \App\Models\Comment_Blog  $comment_Blog
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment_Blog $comment_Blog)
+    public function destroy(Comment_Blog $comment)
     {
-        //
+        // dd($comment);
+        $comment->delete();
+        return redirect()->back()->with('yes','Xóa thành công');
     }
 }

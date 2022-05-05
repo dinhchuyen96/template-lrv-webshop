@@ -20,15 +20,17 @@ class Category extends Model
         if($search_value){
             $query = $query->where('name','LIKE','%'.$search_value.'%');
         }
-        return $query;
-        
+        return $query;        
     }
+
     public function products_byCat(){
         return $this->hasMany(product::class, 'category_id','id');
     }
+
     public function products_byParent_Cat(){
         return $this->hasMany(product::class, 'parent_cat','id');
     }
+    
     public function children()
     {
         return $this->hasMany(Category::class, 'parent_id', 'id');
