@@ -11,6 +11,11 @@ use App\Http\Controllers\OrderAdminController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CompareController;
 
+Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
+    ->name('ckfinder_connector');
+
+Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')
+    ->name('ckfinder_browser');
 /*
 |--------------------------------------------------------------------------
 | Web Routes

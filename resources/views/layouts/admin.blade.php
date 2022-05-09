@@ -115,8 +115,9 @@
     <script src="{{ url('admin-template')}}/dist/js/options.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ url('admin-template')}}/dist/js/demo.js"></script>
-    
-    
+    <script src="{{ url('ckeditor/ckeditor.js')}}"></script>  
+    @yield('script')
+    @include('ckfinder::setup')
 </body>
 
 </html>

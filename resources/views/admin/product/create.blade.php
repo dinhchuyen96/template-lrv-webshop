@@ -104,9 +104,23 @@
                      
 
                 </div>
+                <textarea name="hungtt" id="text" cols="30" rows="10"></textarea>
+
                 <button type="submit" class="btn btn-primary">Lưu lại</button>
     </form>
 @stop()
+@section('script')
+    <script>
+    CKEDITOR.replace( 'hungtt', {        
+        filebrowserBrowseUrl     : "{{ route('ckfinder_browser') }}",
+        filebrowserImageBrowseUrl: "{{ route('ckfinder_browser') }}?type=Images&token=123",
+        filebrowserFlashBrowseUrl: "{{ route('ckfinder_browser') }}?type=Flash&token=123", 
+        filebrowserUploadUrl     : "{{ route('ckfinder_connector') }}?command=QuickUpload&type=Files", 
+        filebrowserImageUploadUrl: "{{ route('ckfinder_connector') }}?command=QuickUpload&type=Images",
+        filebrowserFlashUploadUrl: "{{ route('ckfinder_connector') }}?command=QuickUpload&type=Flash",
+    } );
+    </script>
+@stop
 <?php 
     function showCategories($categories, $parent_id = 0, $char = '')
     {
