@@ -101,15 +101,11 @@
                 <h3><span>New</span> product</h3>
                 <div class="boxx-tab">
                     <ul class="nav my-tab">
-                        <li>
-                            <a class="active" data-toggle="tab" href="#one">Camera, Photo & Video</a>
-                        </li>
-                        <li>
-                            <a data-toggle="tab" href="#two">Audio & Home Theater</a>
-                        </li>
-                        <li>
-                            <a data-toggle="tab" href="#three">Cellphones & Accessories</a>
-                        </li>
+                        @foreach ($cats as $cat)                                
+                                <li>
+                                    <a class="" data-toggle="tab" href="#{{$cat->id}}">{{$cat->name}}</a>
+                                </li> 
+                            @endforeach
                     </ul>
                 </div>
             </div>
@@ -191,21 +187,26 @@
                 <div class="section-title product-spacing hm-11">
                     <h3><span>Our</span> product</h3>
                     <div class="boxx-tab">
+                        
                         <ul class="nav my-tab">
-                            <li>
-                                <a class="active" data-toggle="tab" href="#one">Camera, Photo & Video</a>
-                            </li>
-                            <li>
+                            @foreach ($cats as $key => $cat)                                
+                                <li>
+                                    <a class="{{$key == 0 ? 'active' : ''}}" data-toggle="tab" href="#{{$cat->id}}">{{$cat->name}}</a>
+                                </li> 
+                            @endforeach
+
+                            {{-- <li>
                                 <a data-toggle="tab" href="#two">Audio & Home Theater</a>
                             </li>
                             <li>
                                 <a data-toggle="tab" href="#three">Cellphones & Accessories</a>
-                            </li>
+                            </li> --}}
                         </ul>
+                       
                     </div>
                 </div>
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="one">
+                    <div class="k fade show active" id="one">
                         <div class="product-gallary-wrapper">
                             <div class="product-gallary-active owl-carousel owl-arrow-style product-spacing">
                                 @foreach ($product_sale as $psl)

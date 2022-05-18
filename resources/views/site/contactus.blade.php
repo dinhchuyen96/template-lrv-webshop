@@ -40,7 +40,7 @@
                             <i class="fa fa-map-marker"></i>
                         </div>
                         <h3>address street</h3>
-                        <p>Address : No 40 Baria Sreet<br>NewYork City, United States.</p>
+                        <p>Address : {{$contacts->address_1}} <br> {{$contacts->address_2}}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
@@ -49,7 +49,7 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <h3>number phone</h3>
-                        <p>Phone 1: 0(1234) 567 89012<br>Phone 2: 0(987) 567 890</p>
+                        <p>Phone 1: {{$contacts->phone_1}}<br>Phone 2: {{$contacts->phone_2}}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
@@ -58,7 +58,7 @@
                             <i class="fa fa-fax"></i>
                         </div>
                         <h3>number fax</h3>
-                        <p>Fax 1: 0(1234) 567 89012<br>Fax 2: 0(987) 567 890</p>
+                        <p>Fax 1: {{$contacts->fax_1}}<br>Fax 2: {{$contacts->fax_2}}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
@@ -67,7 +67,7 @@
                             <i class="fa fa-envelope"></i>
                         </div>
                         <h3>address email</h3>
-                        <p>info@roadthemes.com<br>yourname@roadthemes.com</p>
+                        <p>{{$contacts->email_1}}<br>{{$contacts->email_2}}</p>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="contact2-title text-center mb-60">
-                        <h2>tell us your project</h2>
+                        <h2>Tell us about your care</h2>
                     </div>
                 </div>
             </div>

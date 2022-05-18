@@ -9,7 +9,7 @@ class Coupon extends Model
 {
     use HasFactory;
     protected $table = 'coupons';
-    protected $fillable = ['name','discount_ab','discount_rl','code','begin','end','status',];
+    protected $fillable = ['name','discount_ab','discount_rl','code','begin','end','status'];
 
     public function scopeSearch($query)
     {

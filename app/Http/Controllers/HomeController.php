@@ -3,21 +3,26 @@
     use App\Models\Blog;
     use App\Models\Blog_cat;
     use App\Models\Category;
+    use App\Models\Contact;
     use App\Models\Product;
     use App\Models\Review;
     use App\Models\Banner;
     use Illuminate\Http\Request;
+    use DB;
     class HomeController extends Controller{
         public function home(Request $request,Product $product){
             $category = Category::paginate(2);
             $product_sale = Product::product_sale(8);
             $product_new = Product::product_new(4);
             $banners = Banner::banner(3);
-            // dd($product_new);
+            // $tab_pro = Product::get()->groupBy('parent_cat');
+            // dd($tab_pro);
             return view('site\home',compact('product_sale','product_new','banners'));
         }
         public function contactus(){
-            return view('site.contactus');
+            $contacts = Contact::first();
+            // dd($contacts[0]);
+            return view('site.contactus',compact('contacts'));
         }
         public function myaccount(){
             return view('site\myaccount');

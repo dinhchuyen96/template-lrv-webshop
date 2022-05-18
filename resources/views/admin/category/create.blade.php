@@ -19,6 +19,7 @@
         </div>
         @error('name') {{$message}} @enderror
     </div>
+    
 
     <div class="form-group">
         <label for="">Trạng thái</label>

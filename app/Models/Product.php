@@ -33,6 +33,10 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+    public function parent_cat()
+    {
+        return $this->belongsTo(Category::class, 'parent_cat', 'parent_id');
+    }
     public function review_rt()
     {
         return $this->hasMany(Review::class, 'product_id', 'id');

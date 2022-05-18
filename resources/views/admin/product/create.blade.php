@@ -100,9 +100,6 @@
                         </label>
                     </div>
                     </div>
-                    
-                     
-
                 </div>
                 <textarea name="hungtt" id="text" cols="30" rows="10"></textarea>
 
