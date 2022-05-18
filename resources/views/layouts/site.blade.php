@@ -232,8 +232,8 @@
                                                 @foreach ($carts as $carts)
                                                     <li class="mb-30">
                                                         <div class="cart-img">
-                                                            <a href="product-details.html"><img alt=""
-                                                                    src="{{ url('uploads') }}/{{ $carts->image }}"></a>
+                                                            <a href=""><img alt=""
+                                                                    src="{{ url('uploads') }}/products/{{ $carts->image }}"></a>
                                                         </div>
                                                         <div class="cart-info">
                                                             <h4><a

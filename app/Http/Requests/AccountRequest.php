@@ -32,8 +32,7 @@ class AccountRequest extends FormRequest
             'password' => 'required',
             'conf_password' => 'required|same:password',
             'address'=>'required',
-            'birth_day' => 'required',
-            // 'status' => 'required',
+            'birth_day' => 'required'
         ];
     }
     public function messages(){
@@ -49,8 +48,7 @@ class AccountRequest extends FormRequest
             'conf_password.same' => 'Mật khẩu chưa khớp, vui lòng nhập lại',
             'conf_password.required' => 'Vui lòng nhập lại mật khẩu',
             'address.required' => 'Vui lòng nhập địa chỉ của bạn',
-            'birth_day.required' => 'Vui lòng nhập sinh nhật của bạn',
-            'status.required' => 'Vui lòng nhập',
+            'birth_day.required' => 'Vui lòng nhập sinh nhật của bạn'
         ];
     }
 

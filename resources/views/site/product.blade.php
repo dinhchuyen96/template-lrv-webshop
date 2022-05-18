@@ -194,13 +194,13 @@
                                                         @csrf @method('DELETE')
                                                         <tbody>
                                                             <tr>
-                                                                <td><strong>{{ $reviews->name_reviewer }} </strong></td>
+                                                                <td style="text-align: left"><strong>{{ $reviews->name_reviewer }} </strong></td>
                                                                 <td class="text-right">
                                                                     {{ $reviews->created_at->format('d-m-Y') }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">
-                                                                    <p id="review">{{ $reviews->content_review }}-
+                                                                    <p style="text-align: left" id="review">{{ $reviews->content_review }}-
                                                                         @if ($reviews->account_id == $acc->id)
                                                                             <button id="btn-delete" onclick="return confirm('are you sure?')" class="btn">
                                                                                 <i style="color:rgb(240, 29, 29)" class="fa fa-window-close" aria-hidden="true"></i>
@@ -261,9 +261,9 @@
                                                     <label class="col-form-label"><span class="text-danger">*</span>
                                                         Your Review</label>
                                                     <textarea class="form-control" name="content_review" required></textarea>
-                                                    <div class="help-block pt-10"><span
-                                                            class="text-danger">Note:</span> HTML is not translated!
-                                                    </div>
+                                                    <div class="help-block pt-10"><span class="text-danger">Note:</span> HTML is not translated! </div>
+                                                    <div style="color: red;">
+                                                    @error('content_review') {{$message}} @enderror</div>
                                                 </div>
                                             </div>
                                             <div class="form-group row">

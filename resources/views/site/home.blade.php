@@ -12,8 +12,7 @@
                         <div class="row">
                             <div class="col-sm-6 col-sm-8">
                                 <div class="slider-text">
-                                    <a href="{{ route('home.product', ['product' => $banner->id,'category' => $banner->category_id,'slug' => Str::slug($banner->name)]) }}">{!!$banner->title!!}></a>                                    {{ $banner->name }}
-                                    
+                                    <a >{!!$banner->title!!}></a>{{ $banner->name }}                                    
                                     <a class="btn-1 home-btn" href="{{ route('home.cart-add', $banner->product_id) }}">shop now</a>
                                 </div>
                             </div>
@@ -267,7 +266,6 @@
                                         </div>
                                     </div><!-- </div> end single item -->
                                 @endforeach
-
                             </div>
                         </div>
                     </div>

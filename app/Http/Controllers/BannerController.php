@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use App\Http\Requests\BannerRequest;
+
 use App\Models\Category;
 use App\Models\Product;
 use Str;
@@ -38,9 +40,9 @@ class BannerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BannerRequest $request)
     {
-        $data_banner = $request->all('name','title','image_slide','status','product_id',);
+        $data_banner = $request->all('name','title','image_slide','status');
         // dd($data_banner);
         $file_name = $request->upload->getClientOriginalName();
 
@@ -80,8 +82,7 @@ class BannerController extends Controller
      */
     public function edit(banner $banner)
     {
-        $pros = Product::orderBy('name', 'ASC')->get();
-        return view('admin.banner.edit', compact('banner','pros'));
+        return view('admin.banner.edit', compact('banner'));
     }
 
     /**
@@ -93,7 +94,7 @@ class BannerController extends Controller
      */
     public function update(Request $request, banner $banner)
     {
-        $data_banner = $request->all('name','status','title','product_id','created_at');
+        $data_banner = $request->all('name','status','title','created_at');
         if($request->has('upload')){
             $file_name = $request->upload->getClientOriginalName();
             $partInfo = pathinfo($file_name);
