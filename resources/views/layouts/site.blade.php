@@ -43,7 +43,7 @@
                     <div class="col-lg-8 col-12">
                         <div class="header-top-left">
                             <ul>
-                                <li><span>Email: </span>support@sinrato.com</li>
+                                <li><span>Email: </span>{{$hotline->email_1}}</li>
                                 <li>Free Shipping for all Order of $99</li>
                             </ul>
                         </div>
@@ -389,7 +389,7 @@
                                 </nav>
                             </div> <!-- </div> end main menu -->
                             <div class="header-call-action">
-                                <p><span class="lnr lnr-phone"></span>Hotline : <strong>1-001-234-5678</strong></p>
+                                <p><span class="lnr lnr-phone"></span>Hotline : <strong>{{$hotline->phone_1}}</strong></p>
                             </div>
                         </div>
                     </div>

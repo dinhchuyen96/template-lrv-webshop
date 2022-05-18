@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Danh sách coupon')
+@section('title', 'Danh sách liên hệ')
 @section('main')
     <form class="form-inline ml-3" method="get">
         <div class="input-group input-group-sm">
@@ -10,8 +10,7 @@
                     <p>Search</p>
                 </button>
             </div>
-            <a class="btn btn-primary" style="margin-left: 20rem" href="{{ route('coupon.create') }}">Thêm mới</a>
-
+            <a class="btn btn-primary" style="margin-left: 20rem" href="{{ route('contact.create') }}">Thêm mới</a>
         </div>
         </div>
     </form>
@@ -24,16 +23,25 @@
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Fax</th>
+                <th>Trạng thái</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
+            @foreach($contact as $contact)
                 <tr>
                     <td>{{$contact->id}}</td>
                     <td>{{ $contact->address_1}} - {{$contact->address_2 }}</td>
                     <td>{{ $contact->email_1 }}<br>{{ $contact->email_2 }}</td>
                     <td> {{ $contact->phone_1 }} <br>{{ $contact->phone_2 }}</td>
                     <td>{{ $contact->fax_1 }} <br>{{ $contact->fax_2 }}</td>
+                    <td>
+                        @if($contact->status ==0 ) 
+                            <label class="badge badge-danger">Tạm ẩn</label>
+                        @else 
+                            <label class="badge badge-success">Hiển thị</label>
+                        @endif
+                    </td>
                     <td>
                         <form action="{{ route('contact.destroy', $contact->id) }}" method="post">
                             @csrf @method('DELETE')
@@ -42,6 +50,7 @@
                         </form>
                     </td>
                 </tr>
+            @endforeach 
         </tbody>
     </table>
 @stop()

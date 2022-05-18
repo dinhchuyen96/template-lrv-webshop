@@ -20,7 +20,7 @@
             return view('site\home',compact('product_sale','product_new','banners'));
         }
         public function contactus(){
-            $contacts = Contact::first();
+            $contacts = Contact::where('status','>',0)->first();
             // dd($contacts[0]);
             return view('site.contactus',compact('contacts'));
         }

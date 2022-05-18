@@ -20,25 +20,20 @@
     </div>
 
     <div class="form-group">
-        <label for="">Trạng thái</label>
-        
+        <label for="">Trạng thái</label>        
         <div class="radio">
             <label>
                 <input type="radio" name="status" value="0" {{$category->status == '0' ? 'checked' : ''}}>
                 Tạm Ẩn
             </label>
-        </div>
-         
+        </div>         
         <div class="radio">
             <label>
                 <input type="radio" name="status" value="1" {{$category->status == '1' ? 'checked' : ''}}>
                 Hiển thị
             </label>
-        </div>
-        
+        </div>        
     </div>
-
-
     <button type="submit" class="btn btn-primary">Lưu lại</button>
 </form>
 @stop()

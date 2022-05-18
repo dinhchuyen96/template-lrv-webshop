@@ -14,8 +14,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contact = Contact::first();
-        // dd($data);
+        $contact = Contact::get();
+        // dd($contact);
         return view('admin.contact.index',compact('contact'));
     }
 
@@ -60,6 +60,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
+        // dd($contact);
         return view('admin.contact.edit', compact('contact'));
     }
 
@@ -72,7 +73,9 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        // dd($request->all());
+        $contact->update($request->all());
+        return redirect()->route('contact.index')->with('yes','Cập nhật thành công');
     }
 
     /**

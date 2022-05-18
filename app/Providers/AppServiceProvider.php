@@ -4,6 +4,7 @@ namespace App\Providers;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\Big_category;
@@ -99,11 +100,11 @@ class AppServiceProvider extends ServiceProvider
             if($search_value_cat){
                 $products_search = Product::orderBy('name','ASC')->search()->get();
             }
-            
+            $hotline = Contact::where('status','>',0)->first();
             // dd($products_search);
            
 
-            $view->with(compact('coupon','search_value','search_value_cat','products_search','blog_cats','cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','totalWishlist','acc','totalCompare'));
+            $view->with(compact('coupon','search_value','search_value_cat','products_search','blog_cats','cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','totalWishlist','acc','totalCompare','hotline'));
         });
     }
 }
