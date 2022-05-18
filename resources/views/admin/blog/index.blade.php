@@ -43,7 +43,13 @@
                             style="width: 100px; height: 100px" alt="No image"></td>
                     <td><button class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $value->id }}">Nội
                             dung</button></td>
-                    <td>{{ $value->status }}</td>
+                    <td>
+                        @if( $value->status ==0 ) 
+                            <label class="badge badge-danger">Tạm ẩn</label>
+                        @else 
+                            <label class="badge badge-success">Hiển thị</label>
+                        @endif                        
+                    </td>
                     <td>{{ $value->created_at }}</td>
                     <td>
                         <form action="{{ route('blog.destroy', $value->id) }}" method="POST">
