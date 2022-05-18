@@ -30,7 +30,10 @@ class Category extends Model
     public function products_byParent_Cat(){
         return $this->hasMany(product::class, 'parent_cat','id');
     }
-    
+    public function products_new_byParent_Cat(){
+        return $this->hasMany(product::class, 'parent_cat','id');
+    }
+
     public function children()
     {
         return $this->hasMany(Category::class, 'parent_id', 'id');

@@ -141,7 +141,7 @@
                                     <div class="product-item mb-30">
                                         <div class="product-thumb">
                                             <a
-                                                href="{{ route('home.product', ['product' => $product_cat->id,'category' => $category->id,'slug' => Str::slug($product_cat->name)]) }}">
+                                                href="{{ route('home.product', ['product' => $product_cat->id, 'category' => $category->id, 'slug' => Str::slug($product_cat->name)]) }}">
                                                 <img src="{{ url('uploads') }}/products/{{ $product_cat->image }}"
                                                     class="pri-img" alt="">
                                                 <img src="assets/img/product/product-2.jpg" class="sec-img" alt="">
@@ -169,7 +169,7 @@
                                             </div>
                                             <div class="product-name">
                                                 <h4><a
-                                                        href="{{ route('home.product', ['product' => $product_cat->id,'category' => $category->id,'slug' => Str::slug($product_cat->name)]) }}">{{ $product_cat->name }}</a>
+                                                        href="{{ route('home.product', ['product' => $product_cat->id, 'category' => $category->id, 'slug' => Str::slug($product_cat->name)]) }}">{{ $product_cat->name }}</a>
                                                 </h4>
                                             </div>
                                             <div class="ratings">
@@ -203,7 +203,7 @@
                                     <div class="sinrato-list-item mb-30">
                                         <div class="sinrato-thumb">
                                             <a
-                                                href="{{ route('home.product', ['product' => $product_cat->id,'category' => $category->id,'slug' => Str::slug($product_cat->name)]) }}">
+                                                href="{{ route('home.product', ['product' => $product_cat->id, 'category' => $category->id, 'slug' => Str::slug($product_cat->name)]) }}">
                                                 <img src="{{ url('uploads') }}/products/{{ $product_cat->image }}"
                                                     class="pri-img" alt="">
                                                 <img src="assets/img/product/product-9.jpg" class="sec-img" alt="">
@@ -222,16 +222,23 @@
                                             </div>
                                             <div class="sinrato-product-name">
                                                 <h4><a
-                                                        href="{{ route('home.product', ['product' => $product_cat->id,'category' => $category->id,'slug' => Str::slug($product_cat->name)]) }}">{{ $product_cat->name }}</a>
+                                                        href="{{ route('home.product', ['product' => $product_cat->id, 'category' => $category->id, 'slug' => Str::slug($product_cat->name)]) }}">{{ $product_cat->name }}</a>
                                                 </h4>
                                             </div>
                                             <div class="sinrato-ratings mb-15">
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
+                                                @if ($product_cat->review_rt->avg('rating') == 0)
+                                                    <span><i class="fa fa-star"></i></span>
+                                                    <span><i class="fa fa-star"></i></span>
+                                                    <span><i class="fa fa-star"></i></span>
+                                                    <span><i class="fa fa-star"></i></span>
+                                                    <span><i class="fa fa-star"></i></span>
+                                                @else
+                                                    @for ($i = 0; $i < $product_cat->review_rt->avg('rating'); $i++)
+                                                        <span><i class="fa fa-star"></i></span>
+                                                    @endfor
+                                                @endif
                                             </div>
+
                                             <div class="sinrato-product-des">
                                                 {!! $product_cat->sort_description !!}
                                             </div>
@@ -271,7 +278,7 @@
                                     <div class="product-item mb-30">
                                         <div class="product-thumb">
                                             <a
-                                                href="{{ route('home.product', ['product' => $products_byParent_Cat->id,'category' => $category->id,'slug' => Str::slug($products_byParent_Cat->name)]) }}">
+                                                href="{{ route('home.product', ['product' => $products_byParent_Cat->id, 'category' => $category->id, 'slug' => Str::slug($products_byParent_Cat->name)]) }}">
                                                 <img src="{{ url('uploads') }}/products/{{ $products_byParent_Cat->image }}"
                                                     class="pri-img" alt="">
                                                 <img src="assets/img/product/product-2.jpg" class="sec-img" alt="">
@@ -304,7 +311,7 @@
                                             </div>
                                             <div class="product-name">
                                                 <h4><a
-                                                        href="{{ route('home.product', ['product' => $products_byParent_Cat->id,'category' => $products_byParent_Cat->cat->id,'slug' => Str::slug($products_byParent_Cat->name)]) }}">{{ $products_byParent_Cat->name }}</a>
+                                                        href="{{ route('home.product', ['product' => $products_byParent_Cat->id, 'category' => $products_byParent_Cat->cat->id, 'slug' => Str::slug($products_byParent_Cat->name)]) }}">{{ $products_byParent_Cat->name }}</a>
                                                 </h4>
                                             </div>
                                             <div class="ratings">
@@ -338,7 +345,7 @@
                                     <div class="sinrato-list-item mb-30">
                                         <div class="sinrato-thumb">
                                             <a
-                                                href="{{ route('home.product', ['product' => $products_byParent_Cat->id,'category' => $category->id,'slug' => Str::slug($products_byParent_Cat->name)]) }}">
+                                                href="{{ route('home.product', ['product' => $products_byParent_Cat->id, 'category' => $category->id, 'slug' => Str::slug($products_byParent_Cat->name)]) }}">
                                                 <img src="{{ url('uploads') }}/products/{{ $products_byParent_Cat->image }}"
                                                     class="pri-img" alt="">
                                                 <img src="assets/img/product/product-9.jpg" class="sec-img" alt="">
@@ -357,7 +364,7 @@
                                             </div>
                                             <div class="sinrato-product-name">
                                                 <h4><a
-                                                        href="{{ route('home.product', ['product' => $products_byParent_Cat->id,'category' => $category->id,'slug' => Str::slug($products_byParent_Cat->name)]) }}">{{ $products_byParent_Cat->name }}</a>
+                                                        href="{{ route('home.product', ['product' => $products_byParent_Cat->id, 'category' => $category->id, 'slug' => Str::slug($products_byParent_Cat->name)]) }}">{{ $products_byParent_Cat->name }}</a>
                                                 </h4>
                                             </div>
                                             <div class="sinrato-ratings mb-15">
@@ -448,17 +455,23 @@
                                     </div>
                                     <div class="pro-nav">
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
+                                        </div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
+                                        </div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
+                                        </div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
+                                        </div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
+                                        </div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-7">
@@ -466,7 +479,7 @@
                                         <div class="product-details-contentt">
                                             <div class="pro-details-name mb-10">
                                                 <h3><a
-                                                        href="{{ route('home.product', ['product' => $product->id,'category' => $category->id,'slug' => Str::slug($product->name)]) }}">{{ $product->name }}</a>
+                                                        href="{{ route('home.product', ['product' => $product->id, 'category' => $category->id, 'slug' => Str::slug($product->name)]) }}">{{ $product->name }}</a>
                                                 </h3>
                                             </div>
                                             <div class="pro-details-review mb-20">
@@ -605,17 +618,23 @@
                                     </div>
                                     <div class="pro-nav">
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
+                                        </div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
+                                        </div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
+                                        </div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
+                                        </div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
+                                        </div>
                                         <div class="pro-nav-thumb"><img
-                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" /></div>
+                                                src="{{ url('uploads') }}/products/{{ $product->image }}" alt="" />
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-7">
@@ -623,7 +642,7 @@
                                         <div class="product-details-contentt">
                                             <div class="pro-details-name mb-10">
                                                 <h3><a
-                                                        href="{{ route('home.product', ['product' => $product->id,'category' => $category->id,'slug' => Str::slug($product->name)]) }}">{{ $product->name }}</a>
+                                                        href="{{ route('home.product', ['product' => $product->id, 'category' => $category->id, 'slug' => Str::slug($product->name)]) }}">{{ $product->name }}</a>
                                                 </h3>
                                             </div>
                                             <div class="pro-details-review mb-20">
