@@ -82,7 +82,9 @@ class BannerController extends Controller
      */
     public function edit(banner $banner)
     {
-        return view('admin.banner.edit', compact('banner'));
+        $pros =Product::orderBy('name','ASC')->get();
+
+        return view('admin.banner.edit', compact('banner','pros'));
     }
 
     /**

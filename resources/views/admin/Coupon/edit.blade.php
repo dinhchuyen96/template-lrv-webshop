@@ -1,20 +1,20 @@
 @extends('layouts.admin')
 @section('title', 'Chỉnh sửa Coupon')
 @section('main')
-    <form action="{{ route('coupon.update', $coupon->id) }}" method="POST" role="form">
+    <form action="{{ route('coupon.update', $coupon1->id) }}" method="POST" role="form">
         @csrf @method('put')
         <div class="form-group row">
             <div class="col-md-6">
-                <label for="">Tên coupon</label>
-                <input type="text" class="form-control" name="name" value="{{ $coupon->name }}"
+                <label for="">Tên coupon1</label>
+                <input type="text" class="form-control" name="name" value="{{ $coupon1->name }}"
                     placeholder="Input field">
                 @error('name')
                     {{ $message }}
                 @enderror
             </div>
             <div class="col-md-6">
-                <label for="">Mã coupon</label>
-                <input type="text" class="form-control" name="code" value="{{ $coupon->code }}"
+                <label for="">Mã coupon1</label>
+                <input type="text" class="form-control" name="code" value="{{ $coupon1->code }}"
                     placeholder="Input field">
                 @error('code')
                     {{ $message }}
@@ -24,7 +24,7 @@
         <div class="form-group row">
             <div class="col-md-6">
                 <label for="">Discount - $</label>
-                <input type="number" class="form-control" name="discount_ab" value="{{ $coupon->discount_ab }}"
+                <input type="number" class="form-control" name="discount_ab" value="{{ $coupon1->discount_ab }}"
                     placeholder="Input field">
                 @error('discount')
                     {{ $message }}
@@ -32,7 +32,7 @@
             </div>
             <div class="col-md-6">
                 <label for="">Discount - %</label>
-                <input type="number" class="form-control" name="discount_rl" value="{{ $coupon->discount_rl}}"
+                <input type="number" class="form-control" name="discount_rl" value="{{ $coupon1->discount_rl}}"
                     placeholder="Input field">
                 @error('discount')
                     {{ $message }}
@@ -42,7 +42,7 @@
         <div class="row">
             <div class="col-md-4">
                 <label for="">Bắt đầu áp dụng:</label>
-                <input type="date" class="form-control" name="begin" value="{{ $coupon->begin }}"
+                <input type="date" class="form-control" name="begin" value="{{ $coupon1->begin }}"
                     placeholder="Input field">
                 @error('begin')
                     {{ $message }}
@@ -50,7 +50,7 @@
             </div>
             <div class="col-md-4">
                 <label for="">Hết hạn:</label></label>
-                <input type="date" class="form-control" name="end" value="{{ $coupon->end }}"
+                <input type="date" class="form-control" name="end" value="{{ $coupon1->end }}"
                     placeholder="Input field">
                 @error('end')
                     {{ $message }}
@@ -60,14 +60,14 @@
                 <label for="">Trạng thái</label>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="status" value="0" {{ $coupon->status == '0' ? 'checked' : '' }}>
+                        <input type="radio" name="status" value="0" {{ $coupon1->status == '0' ? 'checked' : '' }}>
                         Hết hạn
                     </label>
                 </div>
 
                 <div class="radio">
                     <label>
-                        <input type="radio" name="status" value="1" {{ $coupon->status == '1' ? 'checked' : '' }}>
+                        <input type="radio" name="status" value="1" {{ $coupon1->status == '1' ? 'checked' : '' }}>
                         Áp dụng
                     </label>
                 </div>

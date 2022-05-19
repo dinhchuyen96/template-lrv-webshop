@@ -122,7 +122,8 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
         'coupon' => CouponController::class,
         'blog_cat' => Blog_catController::class,
         'blog' => Blog_AdminController::class,
-        'contact' => ContactController::class
+        'contact' => ContactController::class,
+        'brand_sale' => Brand_saleController::class
     ]);
     Route::group(['prefix'=>'order'], function(){
         Route::get('/',[OrderAdminController::class, 'index'])->name('order.index');

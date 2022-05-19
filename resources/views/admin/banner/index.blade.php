@@ -21,7 +21,7 @@
         <tr>
             <td>{{$key +1 }}</td>
             <td>{{$banner->name}}</td>
-            <td>{{$banner->pro->name}}</td>=
+            <td>{{$banner->pro->name}}</td>
             <td><img src="{{url('uploads')}}/banner/{{$banner->image_slide}}" style="width: 100px; height: 100px" alt=""></td>
             <td>{{$banner->title}}</td>
             <td>

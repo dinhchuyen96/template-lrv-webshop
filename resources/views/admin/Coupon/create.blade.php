@@ -11,14 +11,20 @@
             @enderror
         </div>
         <div class="form-group row">
-            <div class="col-md-6"><label for="">Mã coupon</label>
+            <div class="col-md-4"><label for="">Mã coupon</label>
                 <input type="text" class="form-control" name="code" placeholder="Input field">
                 @error('code')
                     {{ $message }}
                 @enderror
             </div>
-            <div class="col-md-6"><label for="">Discount - %</label>
-                <input type="number" class="form-control" name="discount" placeholder="Input field">
+            <div class="col-md-4"><label for="">Discount - %</label>
+                <input type="number" class="form-control" name="discount_rl" placeholder="Input field">
+                @error('discount')
+                    {{ $message }}
+                @enderror
+            </div>
+            <div class="col-md-4"><label for="">Discount - $</label>
+                <input type="number" class="form-control" name="discount_ab " placeholder="Input field">
                 @error('discount')
                     {{ $message }}
                 @enderror

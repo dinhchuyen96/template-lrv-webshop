@@ -37,7 +37,8 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
-        coupon::create($request->only('name','code','begin','end','status'));
+        // dd($request);
+        Coupon::create($request->only('name','code','discount_ab','discount_rl','begin','end','status'));
         return redirect()->route('coupon.index')->with('yes','Thêm mới thành công');
     }
 
@@ -60,8 +61,10 @@ class CouponController extends Controller
      */
     public function edit(Coupon $coupon)
     {
-        
-        return view('admin.coupon.edit', compact('coupon'));
+        // dd($coupon);
+        $coupon1 = $coupon;
+        return view('admin.Coupon.edit',compact('coupon1'));
+
     }
 
     /**
