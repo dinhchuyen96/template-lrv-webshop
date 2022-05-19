@@ -502,9 +502,9 @@
                             <div class="widget-body">
                                 <div class="footer-useful-link">
                                     <ul>
-                                        <li><span>Address:</span> 4710-4890 Breckinridge St,Fayetteville, NC 28311</li>
-                                        <li><span>email:</span> support@sinrato.com</li>
-                                        <li><span>Call us:</span> <strong>1-1001-234-5678</strong></li>
+                                        <li><span>Address:</span> {{$hotline->address_1}}<br>{{$hotline->address_2}}</li>
+                                        <li><span>email:</span>{{$hotline->email_1}}</li>
+                                        <li><span>Call us:</span> <strong>{{$hotline->phone_1}}</strong></li>
                                     </ul>
                                 </div>
                             </div>

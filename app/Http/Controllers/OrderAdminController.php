@@ -9,13 +9,13 @@ class OrderAdminController extends Controller
     public function index()
     {
          $orders = Order::orderBy('id', 'DESC')->search()->paginate(15);
-         $orderwait = 0;
+         $orderwait = 0; // số đơn hàng đợi duyệt
          foreach ($orders as $orders){
             if($orders->status == 0){
                $orderwait++;
             }
          }
-         $orders = Order::orderBy('id', 'DESC')->search()->paginate(15);
+         $orders = Order::orderBy('id','DESC')->search()->paginate(15);
          $i = count($orders)+1;
          return view('admin.order.index',compact('orders','i','orderwait'));
     }

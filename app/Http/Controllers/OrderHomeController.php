@@ -61,9 +61,10 @@ class OrderHomeController extends Controller
 
     public function post_checkout(Request $req){
         $carts = session('cart') ? session('cart'):[];
+        // dd($req);
         // dd($carts);
         if($carts){
-            $data = $req->all('first_name','category_id','last_name','email','phone','address','shipping_method','payment_method','status','order_note','total_price');
+            $data = $req->all('first_name','discount_ab','discount_rl','category_id','last_name','email','phone','address','shipping_method','payment_method','status','order_note','fee','total_price');
             $data['account_id'] = Auth::guard('account')->user()->id;
             // dd($data);
 
@@ -87,23 +88,24 @@ class OrderHomeController extends Controller
             return redirect()->route('home')->with('ok',"Mời bạn đặt hàng");
         }
     }       
-    
-    
-    public function order_list(){
-        $acc_id = Auth::guard('account')->user()->id;
-        $orders = Order::where('account_id', $acc_id)->orderBy('id','DESC')->get();
-        // dd($orders);
-        $i = count($orders)+1;
-        return view('site.order_list',compact('orders','i'));
-    }
     public function wishlist()
     {
         $acc_id = Auth::guard('account')->user()->id;
         // dd($acc_id);
         return view('site.wishlist');
     }
-    public function detail(Order $order){
+    
+    public function order_list(){ // lịch sử đơn hàng
+        $acc_id = Auth::guard('account')->user()->id;
+        $orders = Order::where('account_id', $acc_id)->orderBy('id','DESC')->get();
+        // dd($orders);
+        $i = count($orders)+1;
+        return view('site.order_list',compact('orders','i'));
+    }
+    
+    public function detail(Order $order){ // chi tiết từng đơn hàng
         //  dd($order);
-        return view('site.order_detail',compact('order'));
+        $i=0;
+        return view('site.order_detail',compact('order','i'));
     }
 }

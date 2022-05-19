@@ -7,6 +7,7 @@
     use App\Models\Product;
     use App\Models\Review;
     use App\Models\Banner;
+    use App\Models\Brand_sale;
     use Illuminate\Http\Request;
     use DB;
     class HomeController extends Controller{
@@ -15,9 +16,11 @@
             $product_sale = Product::product_sale(8);
             $product_new = Product::product_new(4);
             $banners = Banner::banner(3);
+            $logo = Brand_sale::where('status','>',0)->get();
+            // dd($logo);
             // $tab_pro = Product::get()->groupBy('parent_cat');
             // dd($tab_pro);
-            return view('site\home',compact('product_sale','product_new','banners'));
+            return view('site\home',compact('product_sale','product_new','banners','logo'));
         }
         public function contactus(){
             $contacts = Contact::where('status','>',0)->first();

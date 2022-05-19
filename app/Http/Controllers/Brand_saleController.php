@@ -38,7 +38,7 @@ class Brand_saleController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all('name','status');
+        $data = $request->all('name','status','category_id');
         // dd($data_banner);
         $file_name = $request->upload->getClientOriginalName();
 
@@ -90,7 +90,21 @@ class Brand_saleController extends Controller
      */
     public function update(Request $request, brand_sale $brand_sale)
     {
-        //
+        $data = $request->all('name','status','category_id');
+        if($request->has('upload')){
+            $file_name = $request->upload->getClientOriginalName();
+            $partInfo = pathinfo($file_name);
+            $ext = $partInfo['extension'];
+            $base_name = $partInfo['filename']; 
+            $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
+            $check_upload = $request->upload->move(public_path('uploads/logo'), $final_name);
+            if($check_upload){
+                $data['logo'] = $final_name;
+            }
+        }
+        // dd($data_banner);
+        $brand_sale->update($data);
+        return redirect()->route('brand_sale.index')->with('yes','Cập nhật thành công');
     }
 
     /**
@@ -101,6 +115,7 @@ class Brand_saleController extends Controller
      */
     public function destroy(brand_sale $brand_sale)
     {
-        //
+        $brand_sale->delete();
+        return redirect()->route('brand_sale.index')->with('yes', "Xóa thành công");
     }
 }

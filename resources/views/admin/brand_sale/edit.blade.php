@@ -1,17 +1,33 @@
 @extends('layouts.admin')
 @section('title', 'Chỉnh sửa Brand Sale')
 @section('main')
-    <form action="{{ route('brand_sale.update', $brand_sale->id) }}" enctype="multipart/form-data" method="POST" role="form">
+    <form action="{{ route('brand_sale.update', $brand_sale->id) }}" enctype="multipart/form-data" method="POST" role="form" >
         @csrf @method('put')
         <div class="row">
             <div class="col-md-6">
                 <label for="">Tên Brand_sale</label>
                 <input type="text" class="form-control" name="name" value="{{ $brand_sale->name }}"
-                    placeholder="Input field">
+                    placeholder="Input field" required>
                 @error('name')
                     {{ $message }}
                 @enderror
             </div>
+            <div class="col-md-6">
+                <label for="">Danh mục liên quan</label>
+                <div class="form-group">
+                    <select class="form-control" name="category_id" id="" required>
+                      <option value="">Chọn danh mục</option>
+                      @foreach($cats as $cat)
+                      @foreach ($cat->children as $ccat)
+                        <option value="{{$ccat->id }}">{{ $ccat->name }}</option>
+                        @endforeach
+                      @endforeach
+                    </select>
+                  </div>
+                @error('product_id')
+                    {{ $message }}
+                @enderror
+            </div>     
         </div>
         <div class="row form-group">
             <div class="col-md-6"><label for="">Ảnh</label>

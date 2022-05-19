@@ -141,6 +141,7 @@
                                                     <input name="order_note" value="" type="text" class="form-control"
                                                         id="email_address">
                                                     <input name="total_price" type="hidden" value="{{$totalPrice}}" class="">
+                                                    <input name="fee" type="hidden" value="{{$fee}}" class="">
                                                 </div>
                                                 
                                             </div>
@@ -167,7 +168,7 @@
                                                     <div class="product-inner media align-items-center">
                                                         <div class="product-image mr-4 mr-sm-5 mr-md-4 mr-lg-5">
                                                             <a href="#">
-                                                                <img src="{{ url('uploads') }}/{{ $carts->image }}"
+                                                                <img src="{{ url('uploads') }}/products/{{ $carts->image }}"
                                                                     alt="Compete Track Tote" title="Compete Track Tote">
                                                             </a>
                                                         </div>
@@ -209,8 +210,10 @@
                                                                 <td>
                                                                     @if($coupon->discount_ab)
                                                                         <h3>-{{$coupon->discount_ab}}$</h3>
+                                                                        <input type="hidden" name="discount_ab" value="{{$coupon->discount_ab}}" form="checkout_form">
                                                                     @else
                                                                         <h3>-{{$coupon->discount_rl}}%</h3>
+                                                                        <input type="hidden" name="discount_rl" value="{{$coupon->discount_rl}}" form="checkout_form">
                                                                     @endif                                                                   
                                                                 </td>
                                                             </tr>
@@ -218,7 +221,7 @@
                                                         <tr class="order-total">
                                                             <th>Total</th>
                                                             <td class="text-center">
-                                                                <strong>{{number_format($totalPrice)}}$</strong></td>
+                                                                <strong>{{number_format($totalPrice)}}$ - {{$totalQuantity}} items</strong></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

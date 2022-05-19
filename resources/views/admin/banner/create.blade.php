@@ -6,7 +6,7 @@
         <div class="form-group row">
             <div class="col-md-6">
                 <label for="">Tên Banner</label>
-                <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Input field">
+                <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Input field" required>
                 @error('name')
                     {{ $message }}
                 @enderror
@@ -14,7 +14,6 @@
             <div class="col-md-6">
                 <label for="">Sản phẩm đại diện</label>
                 <div class="form-group">
-                    <label for=""></label>
                     <select class="form-control" name="product_id" id="" required>
                       <option value="">Chọn sản phẩm</option>
                       @foreach($pros as $pros)
@@ -31,7 +30,7 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label for="">SLIDE Title</label><br>
-                <textarea id="tinymce1" type="text" name="title" placeholder="Nhập title hiển thị trên slide"></textarea>
+                <textarea id="tinymce1" type="text" name="title" placeholder="Nhập title hiển thị trên slide" required></textarea >
                 <div style="color: red;">
                     @error('title')
                         {{ $message }}

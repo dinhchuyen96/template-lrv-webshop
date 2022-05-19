@@ -11,12 +11,12 @@
                         <option value="{{ $tags->id }}">{{ $tags->name }}</option>
                     @endforeach;
                 </select>
-                @error('name')
+                @error('cat_id')
                     {{ $message }}
                 @enderror
             </div>
             <div class="col-md-6"> <label for="">Tên Blog</label>
-                <textarea type="text" id="tinymce0" class="form-control" name="name" placeholder="Input field">{{ old('name') }}</textarea>
+                <textarea type="text" id="tinymce0" class="form-control" name="name" placeholder="Input field" required>{{ old('name') }}</textarea>
                 @error('name')
                     {{ $message }}
                 @enderror

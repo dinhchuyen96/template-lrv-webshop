@@ -9,5 +9,10 @@ class Brand_sale extends Model
 {
     use HasFactory;
     protected $table = 'brand_sales';
-    protected $fillable = ['name','logo','status'];
+    protected $fillable = ['name','logo','status','category_id'];
+
+    public function cat()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
 }

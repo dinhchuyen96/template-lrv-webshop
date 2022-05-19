@@ -56,6 +56,7 @@ class AppServiceProvider extends ServiceProvider
             $totalPrice = 0; // tổng tiền = 0
             $vat=0; // thuế vat =0
             $tax = 0; // thuế ECO
+            $fee =0; // tổng phí
             // load with de chong n+1
             #relate https://viblo.asia/p/tim-hieu-ve-eager-loading-trong-laravel-XL6lA8YJZek
             $cats = Category::with(['children' => function ($q) {
@@ -73,6 +74,7 @@ class AppServiceProvider extends ServiceProvider
                 $subPrice += $cart->price * $cart->quantity; // tính tiền chưa thuế / phí
                 $tax = $subPrice * 0.02;    // thuế môi trường
                 $vat = ($tax + $subPrice) * 0.1; // tổng thuế vat
+                $fee = ($tax + $vat);
                 $totalPrice = $subPrice + $vat + $tax; // tính tổng tiền của checkout
                 // session()->push('cart',$totalPrice);
             }
@@ -104,7 +106,7 @@ class AppServiceProvider extends ServiceProvider
             // dd($products_search);
            
 
-            $view->with(compact('coupon','search_value','search_value_cat','products_search','blog_cats','cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','totalWishlist','acc','totalCompare','hotline'));
+            $view->with(compact('coupon','search_value','search_value_cat','products_search','blog_cats','cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','fee','totalWishlist','acc','totalCompare','hotline'));
         });
     }
 }

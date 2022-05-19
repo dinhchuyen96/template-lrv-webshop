@@ -25,7 +25,7 @@ class ChangerPasswordRequest extends FormRequest
     {
         return [
             'old_password' => 'required',
-            'new_password' => 'required|different:old_password|min:6|string',
+            'new_password' => 'required|different:old_password|min:6|max:12|string',
             'conf_password' => 'required|same:new_password',
         ];
     }
@@ -35,6 +35,7 @@ class ChangerPasswordRequest extends FormRequest
             'new_password.required' => 'Vui lòng nhập mật khẩu',
             'new_password.different' => 'Mật khẩu mới cần khác mật khẩu cũ',
             'new_password.min' => 'Mật khẩu tối thiểu 6 ký tự',
+            'new_password.max' => 'Mật khẩu tối đa 12 ký tự',
             'conf_password.same' => 'Mật khẩu chưa khớp, vui lòng nhập lại',
             'conf_password.required' => 'Vui lòng nhập lại mật khẩu',
         ];

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Blog_cat;
 use Illuminate\Http\Request;
+use App\Http\Requests\BlogCreateRequest;
+
 use Str;
 
 class Blog_AdminController extends Controller
@@ -39,7 +41,7 @@ class Blog_AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogCreateRequest $request)
     {   
         $data_blog = $request->all('name','cat_id','title','content','image_blog','status',);
         if($request->upload){
@@ -96,7 +98,7 @@ class Blog_AdminController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        $data_blog = $request->all('name','blog_cat','','title','content','status');
+        $data_blog = $request->all('name','blog_cat','title','content','status');
         if($request->has('upload')){
             $file_name = $request->upload->getClientOriginalName();
             $partInfo = pathinfo($file_name);

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Danh sách Banner')
+@section('title','Danh sách Brand')
 @section('main')
     <a class="btn btn-primary" style="margin-left: 59rem" href="{{ route('brand_sale.create') }}">Thêm mới</a>
 <hr>
@@ -7,7 +7,8 @@
     <thead>
         <tr>
             <th>STT</th>
-            <th>Tên Logo</th>
+            <th>Tên thương hiệu</th>
+            <th>Danh mục liên quan</th>
             <th>Logo</th>
             <th>Trạng thái</th>
             <th>Ngày tạo</th>
@@ -19,6 +20,7 @@
         <tr>
             <td>{{$key +1 }}</td>
             <td>{{$data->name}}</td>
+            <td>{{$data->cat->name}}</td>
             <td><img src="{{url('uploads')}}/logo/{{$data->logo}}" style="width: 100px; height: 100px" alt=""></td>
             <td>
                 @if($data->status ==0 )

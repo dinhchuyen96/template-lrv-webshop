@@ -6,15 +6,31 @@
         <div class="form-group row">
             <div class="col-md-6">
                 <label for="">Tên thương hiệu</label>
-                <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Input field">
+                <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Input field" required>
                 @error('name')
                     {{ $message }}
                 @enderror
-            </div>            
+            </div>  
+            <div class="col-md-6">
+                <label for="">Danh mục liên quan</label>
+                <div class="form-group">
+                    <select class="form-control" name="category_id" id="" required>
+                      <option value="">Chọn danh mục</option>
+                      @foreach($cats as $cat)
+                      @foreach ($cat->children as $ccat)
+                        <option value="{{$ccat->id }}">{{ $ccat->name }}</option>
+                        @endforeach
+                      @endforeach
+                    </select>
+                  </div>
+                @error('product_id')
+                    {{ $message }}
+                @enderror
+            </div>          
         </div>        
         <div class=" form-group">
             <label for="">Logo</label>
-            <input type="file" class="form-control" name="upload" placeholder="Input field">
+            <input type="file" class="form-control" name="upload" placeholder="Input field" required>
             @error('upload')
                 {{ $message }}
             @enderror

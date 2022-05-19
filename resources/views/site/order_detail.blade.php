@@ -1,20 +1,20 @@
 @extends('layouts.site')
-@section('title', 'cart')
+@section('title', 'My Order')
 @section('main')
     <div class="container">
         <hr class="mt-5">
         <h3 class="mt-5">Thông tin chi tiết đơn hàng</h3>
-            @if ($order->status == 0)
-                <span class="btn btn-primary">Chờ xác nhận</span>
-            @elseif($order->status == 1)
-                <span class="btn btn-info">Đã xác nhận</span>
-            @elseif($order->status == 2)
-                <span class="btn btn-warning">Đang giao hàng</span>
-            @elseif($order->status == 3)
-                <span class="btn btn-success">Đã giao thành công</span>
-            @elseif($order->status == 4)
-                <span class="btn btn-danger">Hoàn đơn</span>
-            @endif
+        @if ($order->status == 0)
+            <span class="btn btn-primary">Chờ xác nhận</span>
+        @elseif($order->status == 1)
+            <span class="btn btn-info">Đã xác nhận</span>
+        @elseif($order->status == 2)
+            <span class="btn btn-warning">Đang giao hàng</span>
+        @elseif($order->status == 3)
+            <span class="btn btn-success">Đã giao thành công</span>
+        @elseif($order->status == 4)
+            <span class="btn btn-danger">Hoàn đơn</span>
+        @endif
         <div class="row mt-5">
             <div class="col-md-6">
                 <h3>Thông tin người mua</h3>
@@ -75,21 +75,54 @@
                     <th>Ảnh</th>
                     <th>Tên Sản Phẩm</th>
                     <th>Số lượng</th>
-                    <th>Giá</th>
+                    <th>Đơn giá</th>
                     <th>Thành tiền</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($order->details as $detail)
+                @foreach ($order->details as $product_detail)
                     <tr>
-                        <td>1</td>
-                        <td><a href="{{route('home.product',['product'=>$detail->product->id,'category' => $detail->category_id,'slug'=>Str::slug($detail->product->name)])}}"><img src="{{ url('uploads') }}/products/{{ $detail->product->image }}" width="60px"></a></td>
-                        <td><a href="{{route('home.product',['product'=>$detail->product->id,'category' => $detail->category_id,'slug'=>Str::slug($detail->product->name)])}}">{{ $detail->product->name}}</a></td>
-                        <td>{{ $detail->quantity }}</td>
-                        <td>{{ $detail->price }}</td>
-                        <td>{{ $detail->quantity * $detail->price }}</td>
+                        <td>{{ $i += 1 }}</td>
+                        <td><a
+                                href="{{ route('home.product', ['product' => $product_detail->product->id, 'category' => $product_detail->category_id, 'slug' => Str::slug($product_detail->product->name)]) }}"><img
+                                    src="{{ url('uploads') }}/products/{{ $product_detail->product->image }}"
+                                    width="60px"></a></td>
+                        <td><a
+                                href="{{ route('home.product', ['product' => $product_detail->product->id, 'category' => $product_detail->category_id, 'slug' => Str::slug($product_detail->product->name)]) }}">{{ $product_detail->product->name }}</a>
+                        </td>
+                        <td>{{ $product_detail->quantity }}</td>
+                        <td>{{ $product_detail->price }}</td>
+                        <td>{{ $product_detail->quantity * $product_detail->price }}$</td>
                     </tr>
                 @endforeach
+                <tr class="table-info">
+                    <td></td>
+                    <td></td>
+                    <th>Thuế + Phí</th>
+                    <th></th>
+                    <td></td>
+                    <td>+{{$order->fee}}$</td>
+
+                </tr>
+                <tr class="table-info">
+                    <td></td>
+                    <td></td>
+                    <th>Coupon</th>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        @if($order->discount_ab) -{{$order->discount_ab}}$ @else -{{$order->discount_rl}}% @endif
+                    </td>
+
+                </tr>
+                <tr class="table-info">>
+                    <th></th>
+                    <td></td>
+                    <th>Tổng thanh toán:</th>
+                    <th>{{ $order->totalQuantity() }}</th>
+                    <td></td>
+                    <th>{{number_format( $order->total_price)}}$</th>
+                </tr>
             </tbody>
         </table>
     </div>

@@ -22,6 +22,9 @@ class Order extends Authenticatable
         'category_id',
         'first_name',
         'last_name',
+        'discount_ab',
+        'discount_rl',
+        'fee',
         'sex',
         'email',
         'phone',
@@ -45,11 +48,11 @@ class Order extends Authenticatable
     {
         return $this -> hasMany(OrderDetail::class, 'order_id','id');
     }
-    public function totalQuantity()
+    public function totalQuantity() // đếm số sản phẩm trong đơn hàng
     {
         $total = 0;
         foreach ($this->details as $dt){
-            $total += $dt->quantity;
+            $total += $dt->quantity; 
         }
         return $total;
     }
