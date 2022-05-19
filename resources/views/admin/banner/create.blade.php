@@ -11,6 +11,21 @@
                     {{ $message }}
                 @enderror
             </div>
+            <div class="col-md-6">
+                <label for="">Sản phẩm đại diện</label>
+                <div class="form-group">
+                    <label for=""></label>
+                    <select class="form-control" name="product_id" id="" required>
+                      <option value="">Chọn sản phẩm</option>
+                      @foreach($pros as $pros)
+                        <option value="{{$pros->id }}">{{ $pros->name }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                @error('product_id')
+                    {{ $message }}
+                @enderror
+            </div>
         </div>
 
         <div class="row form-group">

@@ -42,7 +42,7 @@ class BannerController extends Controller
      */
     public function store(BannerRequest $request)
     {
-        $data_banner = $request->all('name','title','image_slide','status');
+        $data_banner = $request->all('name','title','product_id','image_slide','status');
         // dd($data_banner);
         $file_name = $request->upload->getClientOriginalName();
 
@@ -94,7 +94,7 @@ class BannerController extends Controller
      */
     public function update(Request $request, banner $banner)
     {
-        $data_banner = $request->all('name','status','title','created_at');
+        $data_banner = $request->all('name','product_id','status','title','created_at');
         if($request->has('upload')){
             $file_name = $request->upload->getClientOriginalName();
             $partInfo = pathinfo($file_name);

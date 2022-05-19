@@ -60,6 +60,7 @@ class CouponController extends Controller
      */
     public function edit(Coupon $coupon)
     {
+        
         return view('admin.coupon.edit', compact('coupon'));
     }
 
@@ -85,6 +86,6 @@ class CouponController extends Controller
     public function destroy(Coupon $coupon)
     {
         $coupon->delete();
-        return redirect()->back()->with('yes','Xóa thành công');
+        return redirect()->route('coupon.index')->with('yes', "Xóa thành công");
     }
 }

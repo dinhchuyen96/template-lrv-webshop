@@ -100,7 +100,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-2 col-md-4 col-sm-4 col-12">
                         <div class="logo">
-                            <a href="index.html"><img src="{{ url('home') }}/assets/img/logo/logo-sinrato.png"
+                            <a href=""><img src="{{ url('home') }}/assets/img/logo/logo-sinrato.png"
                                     alt="brand-logo"></a>
                         </div>
                     </div>

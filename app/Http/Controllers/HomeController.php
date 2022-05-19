@@ -29,8 +29,8 @@
         }
         public function category(Category $category){
             // dd($category);
-            $products = $category->products_byCat()->paginate(12); // lấy sản phẩm theo danh mục cấp 2
-            $products1 = $category->products_byParent_Cat()->paginate(12); // lấy sản phẩm theo danh mục cấp 1
+            $products = $category->products_byCat()->paginate(12);
+            $products1 = $category->products_byParent_Cat()->paginate(12);
             // dd($category->id);
             return view('site\category',compact('category','products','products1'));
         }

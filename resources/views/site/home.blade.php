@@ -98,15 +98,6 @@
         <div class="container-fluid">
             <div class="section-title product-spacing hm-11">
                 <h3><span>New</span> product</h3>
-                <div class="boxx-tab">
-                    <ul class="nav my-tab">
-                        @foreach ($cats as $cat)                                
-                                <li>
-                                    <a class="" data-toggle="tab" href="#{{$cat->id}}">{{$cat->name}}</a>
-                                </li> 
-                            @endforeach
-                    </ul>
-                </div>
             </div>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="one">
@@ -185,25 +176,27 @@
                 </div>
                 <div class="section-title product-spacing hm-11">
                     <h3><span>Our</span> product</h3>
-                    <div class="boxx-tab">                        
+                    <div class="boxx-tab">
+                        
                         <ul class="nav my-tab">
                             @foreach ($cats as $key => $cat)                                
                                 <li>
-                                    <a class="{{$key == 0 ? 'active' : ''}} " data-toggle="tab" href="#test-{{$cat->id}}">{{$cat->name}}</a>
+                                    <a class="{{$key == 0 ? 'active' : ''}}" data-toggle="tab" href="#test-{{$cat->id}}">{{$cat->name}}</a>
                                 </li> 
                             @endforeach
-                        </ul>
+                        </ul>                       
                     </div>
-                </div>         
+                </div>
                 <div class="tab-content">
-                    @foreach ($cats as $key => $cat)  
-                    <div class="fade tab-pane {{$key == 0? 'active': '' }}" id="test-{{$cat->id}}">
+                    @foreach ($cats as $key => $cat)   
+                    <div class="tab-pane fade show {{$key==0? 'active':''}}" id="test-{{$cat->id}}">
                         <div class="product-gallary-wrapper">
                             <div class="product-gallary-active owl-carousel owl-arrow-style product-spacing">
                                 @foreach ($cat->products_byParent_Cat as $psl)
                                     <div class="product-item">
                                         <div class="product-thumb">
-                                            <a href="{{ route('home.product', ['product' => $psl->id,'category' => $psl->category_id,'slug' => Str::slug($psl->name)]) }}">
+                                            <a
+                                                href="{{ route('home.product', ['product' => $psl->id,'category' => $psl->category_id,'slug' => Str::slug($psl->name)]) }}">
                                                 <img src="{{ url('uploads') }}/products/{{ $psl->image }}"
                                                     class="pri-img" style="width:100%; height: 200px" alt="">
                                                 <img src="{{ url('uploads') }}/products/{{ $psl->image }}"
@@ -271,7 +264,6 @@
                     </div>
                     @endforeach
                 </div>
-            
             </div>
 
         </div>
@@ -1923,7 +1915,38 @@
             </div>
         </div>
         <!-- home product module three end -->
-        
+
+        <!-- home banner statics area -->
+        <div class="banner-statics">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="single-banner-statics">
+                            <a href="shop-grid-left-sidebar.html"><img
+                                    src="{{ url('home') }}/assets/img/banner/img1-middle-sinrato1.jpg" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="single-banner-statics">
+                            <a href="shop-grid-left-sidebar.html"><img
+                                    src="{{ url('home') }}/assets/img/banner/img2-middle-sinrato1.jpg" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- home banner statics end -->
+        <!-- home banner statics area -->
+        <div class="banner-statics">
+            <div class="container-fluid">
+                <div class="single-banner-statics">
+                    <a href="shop-grid-left-sidebar.html"><img
+                            src="{{ url('home') }}/assets/img/banner/img-bottom-sinrato1.jpg" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <!-- home banner statics area end -->
+
         <!-- brand sale area start -->
         <div class="brand-area pb-70">
             <div class="container-fluid">
@@ -1937,32 +1960,32 @@
                         <ul class="nav brand-active owl-carousel">
                             <li>
                                 <a class="active" href="#brand-one" data-toggle="tab">
-                                    <img src="{{ url('home') }}/assets/img/brand/brand1.png" alt="">
+                                    <img src="{{ url('uploads') }}/logo/img/brand/brand1.png" alt="">
                                 </a>
                             </li>
                             <li>
                                 <a href="#brand-two" data-toggle="tab">
-                                    <img src="{{ url('home') }}/assets/img/brand/brand2.png" alt="">
+                                    <img src="{{ url('uploads') }}/logo/img/brand/brand2.png" alt="">
                                 </a>
                             </li>
                             <li>
                                 <a href="#brand-three" data-toggle="tab">
-                                    <img src="{{ url('home') }}/assets/img/brand/brand3.png" alt="">
+                                    <img src="{{ url('uploads') }}/logo/img/brand/brand3.png" alt="">
                                 </a>
                             </li>
                             <li>
                                 <a href="#brand-one" data-toggle="tab">
-                                    <img src="{{ url('home') }}/assets/img/brand/brand4.png" alt="">
+                                    <img src="{{ url('uploads') }}/logo/img/brand/brand4.png" alt="">
                                 </a>
                             </li>
                             <li>
                                 <a href="#brand-three" data-toggle="tab">
-                                    <img src="{{ url('home') }}/assets/img/brand/brand5.png" alt="">
+                                    <img src="{{ url('uploads') }}/logo/img/brand/brand5.png" alt="">
                                 </a>
                             </li>
                             <li>
                                 <a href="#brand-two" data-toggle="tab">
-                                    <img src="{{ url('home') }}/assets/img/brand/brand6.png" alt="">
+                                    <img src="{{ url('uploads') }}/logo/img/brand/brand6.png" alt="">
                                 </a>
                             </li>
                         </ul>
