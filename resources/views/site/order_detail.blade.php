@@ -115,7 +115,7 @@
                     </td>
 
                 </tr>
-                <tr class="table-info">>
+                <tr class="table-info">
                     <th></th>
                     <td></td>
                     <th>Tổng thanh toán:</th>

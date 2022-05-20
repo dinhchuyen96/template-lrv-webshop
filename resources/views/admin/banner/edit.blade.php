@@ -27,7 +27,7 @@
         <div class="row form-group">
         <div class="col-md-12">
             <label for="">Nội dung title trong slide</label><br>
-            <textarea type="text" value="{{$banner->title}}" name="title" id="tinymce1" placeholder="Nhập title hiển thị trên slide"></textarea>
+            <textarea type="text" name="title" id="tinymce1" placeholder="Nhập title hiển thị trên slide">{{$banner->title}}</textarea>
         </div>
         </div>
         <div class="row form-group">

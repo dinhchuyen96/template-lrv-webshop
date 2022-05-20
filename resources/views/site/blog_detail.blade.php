@@ -139,21 +139,25 @@
                              <div class="comment-post-box">
                                  <div class="row">
                                      <div class="col-12">
-                                         <label>comment</label>
-                                         <textarea name="comment" placeholder="Write a comment"> </textarea>
+                                         <label>Comment *</label>
+                                         <textarea name="comment" required placeholder="Write a comment"> </textarea>
+                                         @error('comment') {{$message}} @enderror
                                      </div>
                                      <div class="col-lg-4 col-md-4 col-sm-4">
-                                         <label>Name</label>
-                                         <input type="text" name="name" class="coment-field" placeholder="Name">
+                                         <label>Name *</label>
+                                         <input type="text" name="name" required class="coment-field" placeholder="Name">
+                                         @error('name') {{$message}} @enderror
                                          <input type="hidden" name="blog_id" value="{{$blog->id }}">
                                      </div>
                                      <div class="col-lg-4 col-md-4 col-sm-4">
-                                         <label>Email</label>
-                                         <input type="text" class="coment-field" name="email" placeholder="Email">
+                                         <label>Email *</label>
+                                         <input type="email" class="coment-field" name="email" placeholder="Email">
+                                         @error('email') {{$message}} @enderror
                                      </div>
                                      <div class="col-lg-4 col-md-4 col-sm-4">
                                          <label>Website</label>
                                          <input type="text" class="coment-field" name="webside" placeholder="Website">
+                                         @error('webside') {{$message}} @enderror
                                      </div>
                                      <div class="col-12">
                                          <div class="coment-btn mt-20">

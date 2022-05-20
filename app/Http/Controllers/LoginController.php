@@ -9,7 +9,7 @@ use Auth;
 class LoginController extends Controller
 {
     public function login(){
-        return view('site.login');
+        return view('site.ad_login');
     }
     public function post_login(Request $req){
         $data = $req->only('email','password');

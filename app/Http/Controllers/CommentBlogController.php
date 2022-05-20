@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment_Blog;
 use Illuminate\Http\Request;
+use App\Http\Requests\CommentBlogRequest;
+
 
 class CommentBlogController extends Controller
 {
@@ -35,7 +37,7 @@ class CommentBlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentBlogRequest $request)
     {
         $data= $request->all();
         // dd($data);

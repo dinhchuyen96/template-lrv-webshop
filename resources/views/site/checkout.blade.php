@@ -188,11 +188,11 @@
                                                     <tbody>
                                                         <tr class="cart-subtotal">
                                                             <th>Subtotal</th>
-                                                            <td class="text-center">{{ $subPrice }}$</td>
+                                                            <td class="text-center">{{number_format( $subPrice) }}$</td>
                                                             
                                                         </tr> <tr>
                                                             <th class="text-center">Eco Tax (-2%): </th>
-                                                            <td class="text-center">{{ $tax }}$</td>
+                                                            <td class="text-center">{{number_format($tax)}}$</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="text-center">Vat (10%): </th>

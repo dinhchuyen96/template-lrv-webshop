@@ -34,9 +34,17 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+               <li class="nav-item">
+                <a href="{{route('order.index')}}" class="nav-link">
+                  <i class="nav-icon fas fa-shipping-fast"></i>
+                  <p>
+                    Đơn hàng
+                  </p>
+                </a>
+              </li>
           <li class="nav-item">
             <a href="{{ route('admin.dashboard')}}/" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-list-ol"></i>
               <p>
                 Danh mục
                 <i class="right fas fa-angle-left"></i>
@@ -61,7 +69,7 @@
           
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-search"></i>
+              <i class="nav-icon fab fa-product-hunt"></i>
               <p>
                 Sản Phẩm
                 <i class="fas fa-angle-left right"></i>
@@ -84,7 +92,7 @@
           </li>
           <li class="nav-item">
             <a href="" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-percent"></i>
               <p>
                 Coupon
                 <i class="right fas fa-angle-left"></i>
@@ -108,7 +116,7 @@
           </li>
           <li class="nav-item">
             <a href="" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-list"></i>
               <p>
                 Blog category
                 <i class="right fas fa-angle-left"></i>
@@ -132,7 +140,7 @@
           </li>
           <li class="nav-item">
             <a href="" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-blog"></i>
               <p>
                 Blog
                 <i class="right fas fa-angle-left"></i>
@@ -156,7 +164,7 @@
           </li>
           <li class="nav-item">
             <a href="{{route('comment.index')}}" class="nav-link">
-              <i class="nav-icon fas fa-search"></i>
+              <i class="nav-icon fas fa-comments"></i>
               <p>
                 Comment Blog
               </p>
@@ -164,7 +172,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-search"></i>
+              <i class="nav-icon fas fa-images"></i>
               <p>
                 Banner
                 <i class="fas fa-angle-left right"></i>
@@ -187,7 +195,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-search"></i>
+              <i class="nav-icon fas fa-copyright"></i>
               <p>
                 Brand sale
                 <i class="fas fa-angle-left right"></i>
@@ -208,17 +216,10 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="{{route('order.index')}}" class="nav-link">
-              <i class="nav-icon fas fa-search"></i>
-              <p>
-                Đơn hàng
-              </p>
-            </a>
-          </li>
+          
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-search"></i>
+              <i class="nav-icon fas fa-info"></i>
               <p>
                 Thông tin liên hệ
                 <i class="fas fa-angle-left right"></i>

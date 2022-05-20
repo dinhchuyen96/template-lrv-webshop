@@ -31,10 +31,7 @@ class CartController extends Controller
              ];
             $item =(object)$item;
             $carts[$product->id] = $item;       
-        };
-       
-        // session(['cart'=> null]);
-        // dd($carts);        
+        }; 
           session(['cart'=> $carts]);
           return redirect()->back()->with('ok', 'Thêm sản phẩm vào giỏ hàng thành công');
     }
