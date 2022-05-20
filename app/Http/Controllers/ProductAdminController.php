@@ -21,6 +21,7 @@ class ProductAdminController extends Controller
     {
         $pro_cats = Category::orderBy('name','DESC')->get();
         $data_product = Product::orderBy('id','DESC')->search()->paginate(10);
+        // dd($data_product->all());
         return view('admin.product.index',compact('data_product','pro_cats'));
     }
 
@@ -33,6 +34,8 @@ class ProductAdminController extends Controller
     {
         $p_cats =Category::where('parent_id','=',0)->orderBy('name','ASC')->get();
         $c_cats =Category::orderBy('name','ASC')->get();
+        // dd($c_cats);
+        // dd($p_cats);
         return view('admin.product.create', compact('p_cats','c_cats'));
         
     }
@@ -94,7 +97,8 @@ class ProductAdminController extends Controller
         $p_cats =Category::where('parent_id','=',0)->orderBy('name','ASC')->get();
         $c_cats = Category::orderBy('name','ASC')->get();;
         // $pros = Product::orderBy('name', 'ASC')->get();
-        // dd($pro_cats);
+        // dd($p_cats);
+        // dd($product);
         return view('admin.product.edit', compact('p_cats','c_cats','product'));
     }
 
@@ -107,6 +111,7 @@ class ProductAdminController extends Controller
      */
     public function update(ProductEditRequest $req,Product $product)
     {
+        // dd($req->all());
         $data_product = $req->all('name','price','sale_price','percent_sale','parent_cat','category_id','status','description','sort_description','title_slide','take_slide');
         if($req->has('upload')){
             $file_name = $req->upload->getClientOriginalName();

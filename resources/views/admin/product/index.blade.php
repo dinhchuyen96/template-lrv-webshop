@@ -29,7 +29,7 @@
             <th style="width:10px">#</th>
             <th style="width:200px">Tên sản phẩm</th>
             <th style="width:50px">Danh mục</th>
-            <th>Giá / Sale</th>
+            <th>Giá <hr> Sale</th>
             <th>Mô tả</th>
             <th class="text-center">Ảnh</th>
             <th>Trạng thái</th>
@@ -42,8 +42,8 @@
         <tr>
             <td>{{$key +1}}</td>
             <td width="5px">{{$value->name}}</td>
-            <td>{{$value->cat->name}}</td>
-            <td>{{number_format($value->price)}} / {{$value->sale_price}}<br><br>-{{$value->percent_sale}}%</td>
+            <td>{{$value->p_cat->name}}<hr>{{$value->cat->name}}</td>
+            <td>{{number_format($value->price)}} / {{$value->sale_price}}<hr>-{{$value->percent_sale}}%</td>
             <td><button class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $value->id }}">Chi tiết</button></td>
             <td><img src="{{url('uploads')}}/products/{{$value->image}}" style="width: 150px; height: 100px"></td>
             <td>

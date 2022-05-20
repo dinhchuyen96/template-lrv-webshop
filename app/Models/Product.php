@@ -33,9 +33,9 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
-    public function parent_cat()
+    public function p_cat()
     {
-        return $this->belongsTo(Category::class, 'parent_cat', 'parent_id');
+        return $this->belongsTo(Category::class, 'parent_cat', 'id');
     }
     public function review_rt()
     {

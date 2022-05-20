@@ -16,10 +16,10 @@
                 <label for="">Danh mục liên quan</label>
                 <div class="form-group">
                     <select class="form-control" name="category_id" id="" required>
-                      <option value="">Chọn danh mục</option>
+                      <option value="{{$brand_sale->category_id}}">{{$brand_sale->cat->name}}</option>
                       @foreach($cats as $cat)
-                      @foreach ($cat->children as $ccat)
-                        <option value="{{$ccat->id }}">{{ $ccat->name }}</option>
+                        @foreach ($cat->children as $ccat)
+                             <option value="{{$ccat->id }}">{{ $ccat->name }}</option>
                         @endforeach
                       @endforeach
                     </select>

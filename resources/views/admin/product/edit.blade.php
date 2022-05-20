@@ -7,9 +7,9 @@
             <div class="col-md-6">
                 <label for="">Danh mục sản phẩm cha</label>
                 <select class="form-control" name="parent_cat" id="" value="{{$product->parent_cat}}">
-                    <option>Chọn danh mục</option>
+                    <option value="{{$product->parent_cat}}">{{$product->p_cat->name}}</option>
                     @foreach($p_cats as $key => $value)
-                        <option value="{{$value->parent_cat}}" @if($value->id == $product->parent_cat) selected @endif >{{$value->name}}</option>
+                        <option value="{{$value->id}}">{{$value->name}}</option>
                     @endforeach                    
                 </select>
                 @error('parent_cat')
@@ -19,7 +19,7 @@
             <div class="col-md-6">
                 <label for="">Danh mục sản phẩm con</label>
                 <select class="form-control" name="category_id" id="" value="{{$product->category_id}}">
-                    <option>Chọn danh mục</option>
+                    <option value="{{$product->category_id}}">{{$product->cat->name}}</option>
                     <?php showCategories($c_cats); ?>
                 </select>
                 @error('category_id')

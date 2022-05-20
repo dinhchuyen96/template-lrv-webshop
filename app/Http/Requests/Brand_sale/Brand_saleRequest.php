@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Brand_sale;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,9 +24,9 @@ class Brand_saleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:50',
+            'name' => 'required|max:50|unique:brand_sales',
             'category_id' => 'required',
-            'upload' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:3056',
+            'upload' => 'image|mimes:jpg,png,jpeg,gif,svg|max:3056',
         ];
     }
     public function messages()
@@ -35,7 +35,7 @@ class Brand_saleRequest extends FormRequest
             'name.required' => 'Vui lòng nhập tên thương hiệu',
             'category_id.required' => 'Vui lòng chọn',
             'name.max' => 'Tên thương hiệu quá dài',
-            'upload.required' => 'Logo không được để trống',
+            // 'upload.required' => 'Logo không được để trống',
             'upload.mimes' => 'Logo phải có định dạng VD jpg, jpeg, gif, png',
             'upload.max' => 'file quá lớn, vui lòng chọn file nhỏ hơn'
         ];

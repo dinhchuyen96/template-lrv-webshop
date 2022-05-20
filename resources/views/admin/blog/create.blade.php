@@ -16,7 +16,8 @@
                 @enderror
             </div>
             <div class="col-md-6"> <label for="">Tên Blog</label>
-                <textarea type="text" id="tinymce0" class="form-control" name="name" placeholder="Input field" required>{{ old('name') }}</textarea>
+                <textarea type="text" id="tinymce0" class="form-control" name="name" placeholder="Input field"
+                    required>{{ old('name') }}</textarea>
                 @error('name')
                     {{ $message }}
                 @enderror
@@ -61,8 +62,9 @@
                 </label>
             </div>
         </div>
-
-
-        <button type="submit" class="btn btn-primary">Lưu lại</button>
+        <div class="row text-center">
+            <div class="col-md-12"><button type="submit" style="width: 50%" class="btn btn-primary">Lưu lại</button>
+            </div>
+        </div>
     </form>
 @stop()

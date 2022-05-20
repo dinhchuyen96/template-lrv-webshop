@@ -35,7 +35,6 @@ class ReviewRequest extends FormRequest
     {
         return [
             'product_id.required' => 'Có lỗi xảy ra, vui lòng thử lại sau',
-            'name_reviewer.unique' => 'Mời bạn nhập!',
             'content_review.required' => 'Mời bạn nhập!',
             'name_review.max' => 'Tên quá dài, mời bạn nhập lại',
             'name_review.min' => 'Mời bạn nhập đầy đủ họ-tên',

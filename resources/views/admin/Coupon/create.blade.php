@@ -60,8 +60,9 @@
             </div>
 
         </div>
-
-
-        <button type="submit" class="btn btn-primary">Lưu lại</button>
+        <div class="row text-center">
+            <div class="col-md-12"><button type="submit" style="width: 50%" class="btn btn-primary">Lưu lại</button>
+            </div>
+        </div>
     </form>
 @stop()

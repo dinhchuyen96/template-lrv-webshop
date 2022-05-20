@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand_sale;
 use Illuminate\Http\Request;
 use App\Http\Requests\Brand_saleRequest;
+use App\Http\Requests\Brand_saleEditRequest;
 
 use Str;
 
@@ -90,7 +91,7 @@ class Brand_saleController extends Controller
      * @param  \App\Models\brand_sale  $brand_sale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, brand_sale $brand_sale)
+    public function update(Brand_saleEditRequest $request, brand_sale $brand_sale)
     {
         $data = $request->all('name','status','category_id');
         if($request->has('upload')){

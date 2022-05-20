@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title','Danh sách Brand')
 @section('main')
-    <a class="btn btn-primary" style="margin-left: 59rem" href="{{ route('brand_sale.create') }}">Thêm mới</a>
+    <a class="btn btn-primary" style="margin-left: 57rem" href="{{ route('brand_sale.create') }}">Thêm mới</a>
 <hr>
 <table class="table table-bordered">
     <thead>
