@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
+
 
 class ContactController extends Controller
 {
@@ -35,7 +37,7 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
         Contact::create($request->only('address_1','address_2','email_1','email_2','phone_1','phone_2','fax_1','fax_2'));
         return redirect()->route('contact.index')->with('yes','Thêm mới thành công');
@@ -71,7 +73,7 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(ContactRequest $request, Contact $contact)
     {
         // dd($request->all());
         $contact->update($request->all());
@@ -86,6 +88,7 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return redirect()->route('contact.index')->with('yes', "Xóa thành công");
     }
 }

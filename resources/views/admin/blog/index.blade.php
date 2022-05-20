@@ -36,21 +36,20 @@
             @foreach ($data as $key => $value)
                 <tr>
                     <td>{{ $key + 1 }}</td>
-                    <td>{{$value->cat_blog->name}}</td>
+                    <td>{{ $value->cat_blog->name }}</td>
                     <td>{{ $value->name }}</td>
-                    <td>{{ $value->title }}</td>
                     <td><img src="{{ url('uploads') }}/blog/{{ $value->image_blog }}"
                             style="width: 100px; height: 100px" alt="No image"></td>
                     <td><button class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $value->id }}">Nội
                             dung</button></td>
                     <td>
-                        @if( $value->status ==0 ) 
+                        @if ($value->status == 0)
                             <label class="badge badge-danger">Tạm ẩn</label>
-                        @else 
+                        @else
                             <label class="badge badge-success">Hiển thị</label>
-                        @endif                        
+                        @endif
                     </td>
-                    <td>{{ $value->created_at }}</td>
+                    <td>{{ $value->created_at->format('H:i / d-m-Y') }}</td>
                     <td>
                         <form action="{{ route('blog.destroy', $value->id) }}" method="POST">
                             @csrf @method('DELETE')
@@ -65,11 +64,13 @@
     <hr>
     {{ $data->links() }}
     @foreach ($data as $key => $value)
-        <div class="modal fade" id="myModal-{{$value->id}}" tabindex="-1" role="dialog"
+        <div class="modal fade" id="myModal-{{ $value->id }}" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" style="max-width: 850px" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header row">
+                        <div>{!! $value->title !!}</div>
+                        <hr style="border-top: 2px solid yellow;">
                         <div>{!! $value->content !!}</div>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>

@@ -538,7 +538,7 @@
                     <div class="col-12">
                         <div class="footer-bottom-content">
                             <div class="footer-copyright">
-                                <p>&copy; 2021 <b>Sinrato</b> Made with <i class="fa fa-heart text-danger"></i> by <a
+                                <p>&copy; 20/5/2022 <b>Đình Chuyên</b> Made with <i class="fa fa-heart text-danger"></i> by <a
                                         href="https://hasthemes.com/"><b>HasThemes</b></a></p>
                             </div>
                             <div class="footer-custom-link">

@@ -10,7 +10,7 @@ class CartController extends Controller
     public function view(){
         // session(['cart'=> null]);
         $carts = session('cart')? session('cart') : [];
-        // dd($carts);
+        dd("ahihi");
         return view('site\cart',compact('carts'));
     }
     

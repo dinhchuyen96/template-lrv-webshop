@@ -6,8 +6,8 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Review;
 use Illuminate\Http\Request;
-use App\Http\Requests\ProductCreateRequest;
-use App\Http\Requests\ProductEditRequest;
+use App\Http\Requests\Product\ProductCreateRequest;
+use App\Http\Requests\Product\ProductEditRequest;
 use Str;
 
 class ProductAdminController extends Controller

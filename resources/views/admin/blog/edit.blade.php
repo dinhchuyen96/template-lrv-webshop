@@ -20,8 +20,8 @@
         <div class="row">
             <div class="col-md-12">
                 <label for="">Tên blog</label>
-                <textarea type="text" class="form-control" id="" name="name" value="{{ $blog->name }}"
-                    placeholder="Input field"></textarea>
+                <textarea type="text" class="form-control" id="" name="name" value=""
+                    placeholder="Input field">{{ $blog->name }}</textarea>
                 @error('name')
                     {{ $message }}
                 @enderror
@@ -30,8 +30,8 @@
         <div class="form-group">
             <div class="form-group">
                 <label for="">Title</label>
-                <textarea type="text" id="tinymce1" class="form-control" value="{{ old('title') }}" name="title"
-                    placeholder="Input field"></textarea>
+                <textarea type="text" id="tinymce1" class="form-control" name="title"
+                    placeholder="Input field">{{$blog->title}}</textarea>
                 @error('title')
                     {{ $message }}
                 @enderror

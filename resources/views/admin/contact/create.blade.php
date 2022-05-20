@@ -34,7 +34,7 @@
         <div class="form-group row">
             <div class="col-md-6">
                 <label for="">Số điện thoại 1</label>
-                <input type="number" class="form-control" name="phone_1" placeholder="Input field">
+                <input type="number" class="form-control" required name="phone_1" placeholder="Input field">
                 @error('phone_1')
                     {{ $message }}
                 @enderror

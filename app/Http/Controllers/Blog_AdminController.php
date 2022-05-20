@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Blog_cat;
 use Illuminate\Http\Request;
-use App\Http\Requests\BlogCreateRequest;
+use App\Http\Requests\Blog\BlogCreateRequest;
+use App\Http\Requests\Blog\BlogEditRequest;
 
 use Str;
 
@@ -96,7 +97,7 @@ class Blog_AdminController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(BlogEditRequest $request, Blog $blog)
     {
         $data_blog = $request->all('name','blog_cat','title','content','status');
         if($request->has('upload')){

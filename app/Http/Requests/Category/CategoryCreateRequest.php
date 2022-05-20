@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-
-class CategoryEditRequest extends FormRequest
+class CategoryCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +24,7 @@ class CategoryEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:categories,name,'.$this->category->id
+            'name' => 'required|unique:categories',
         ];
     }
     public function messages()
@@ -35,4 +34,5 @@ class CategoryEditRequest extends FormRequest
             'name.unique' => 'Tên danh mục đã được sử dụng'
         ];
     }
+    
 }
