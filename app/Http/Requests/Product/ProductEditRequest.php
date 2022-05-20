@@ -29,7 +29,7 @@ class ProductEditRequest extends FormRequest
             'price' => 'required|numeric',
             'category_id' => 'required|numeric',
             'sale_price' => 'numeric|min:0|lt:price',
-            'upload' => 'image|mimes:jpg,png,jpeg,gif,svg'
+            'upload' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:5120'
         ];
     }
     public function messages()
@@ -42,7 +42,9 @@ class ProductEditRequest extends FormRequest
             'price.required' => 'Giá sản phẩm không được để trống',
             'sale_price.numeric' => 'Giá khuyễn mãi phải là số',
             'category_id.required' => 'Tên danh mục không được để trống',
-            'upload.mimes' => 'Ảnh phải có định dạng VD jpg, jpeg, gif, png '
+            'upload.required' => 'Vui lòng chọn ảnh',
+            'upload.mimes' => 'Ảnh phải có định dạng VD jpg, jpeg, gif, png ',
+            'upload.max' => 'Ảnh quá lớn',
         ];
     }
 }

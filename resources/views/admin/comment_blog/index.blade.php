@@ -31,7 +31,7 @@
             <tr>
                 <td>{{$comments->id}}</td>
                 <td>
-                    <a href="">{{ $comments->blog_id }}</a>
+                    <a href="">{{ $comments->blog_name->name }}</a>
                 </td>
                 <td>{{$comments->name}}</td>
                 <td>{{$comments->email }}</td>

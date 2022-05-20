@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand_sale;
 use Illuminate\Http\Request;
+use App\Http\Requests\Brand_saleRequest;
+
 use Str;
 
 
@@ -36,7 +38,7 @@ class Brand_saleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Brand_saleRequest $request)
     {
         $data = $request->all('name','status','category_id');
         // dd($data_banner);

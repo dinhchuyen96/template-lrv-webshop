@@ -25,9 +25,9 @@ class CommentBlogRequest extends FormRequest
     {
         return [
             'comment' => 'required|string|min:10|max:255',
-            'name' => 'required|min:10|max:30',
+            'name' => 'required|min:2|max:30',
             'email' => 'required|email|min:10|max:100',
-            'webside' => 'nullable|max:100|min:10|string',
+            'webside' => 'nullable|max:100|min:5|string',
         ];
     }
     public function messages()

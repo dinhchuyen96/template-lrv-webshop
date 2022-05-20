@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Account;
-use App\Http\Requests\AccountRequest;
-use App\Http\Requests\ChangerPasswordRequest;
+use App\Http\Requests\Account\AccountRequest;
+use App\Http\Requests\Account\ChangerPasswordRequest;
 use Auth;
 use Hash;
 

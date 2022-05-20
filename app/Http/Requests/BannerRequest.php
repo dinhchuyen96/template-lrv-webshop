@@ -25,12 +25,16 @@ class BannerRequest extends FormRequest
     {
         return [
             'title' => 'required',
+            'upload' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:5120',
         ];
     }
     public function messages()
     {
         return [
             'title.required' => 'Title không được để trống',
+            'upload.required' => 'Logo không được để trống',
+            'upload.mimes' => 'Logo phải có định dạng VD jpg, jpeg, gif, png',
+            'upload.max' => 'file quá lớn, vui lòng chọn file nhỏ hơn'
         ];
     }
 }

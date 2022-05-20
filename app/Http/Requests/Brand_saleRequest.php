@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BlogRequest extends FormRequest
+class Brand_saleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,17 @@ class BlogRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:name',
-            'title' => 'required|unique:title|max:400',
-            'content' => 'required|min:20|max:90000',
-            'upload' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:5120',
+            'name' => 'required|max:50',
+            'category_id' => 'required',
+            'upload' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:3056',
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => 'Tên Blog không được để trống',
-            'name.unique' => 'Tên Blog đã được sử dụng',
-            'content.required' => 'Nội dung blog không được để trống',
-            'content.min' => 'Nội dung blog quá ngắn',
-            'content.max' => 'Nội dung quá dài, vui lòng thử lại',
+            'name.required' => 'Vui lòng nhập tên thương hiệu',
+            'category_id.required' => 'Vui lòng chọn',
+            'name.max' => 'Tên thương hiệu quá dài',
             'upload.required' => 'Logo không được để trống',
             'upload.mimes' => 'Logo phải có định dạng VD jpg, jpeg, gif, png',
             'upload.max' => 'file quá lớn, vui lòng chọn file nhỏ hơn'
