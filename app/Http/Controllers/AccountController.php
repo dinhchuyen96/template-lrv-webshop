@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Account;
-use App\Http\Requests\Account\AccountRequest;
+use App\Http\Requests\Account\RegisterRequest;
 use App\Http\Requests\Account\ChangerPasswordRequest;
+use App\Http\Requests\Account\LoginRequest;
 use Auth;
 use Hash;
 
 class AccountController extends Controller
 {
-    public function login(){
+    public function login(){ // đăng nhập tài khoản khách hàng
         return view('site.login');
     }
-    public function post_login(Request $req){
+    public function post_login(LoginRequest $req){
        $data = $req->only('email','password');
        if(Auth::guard('account')->attempt($data)){
            return redirect()->route('home')->with('ok','Đăng nhập thành công');
@@ -26,7 +27,7 @@ class AccountController extends Controller
         return view('site.register');
         
     }
-    public function post_register(AccountRequest $req){
+    public function post_register(RegisterRequest $req){
         $data= $req->all();
         $data['password'] = bcrypt($req->password);
         Account::create($data);

@@ -8,22 +8,20 @@ class OrderAdminController extends Controller
 {
     public function index()
     {
-         $orders = Order::orderBy('id', 'DESC')->search()->paginate(15);
-         $orderwait = 0; // số đơn hàng đợi duyệt
-         foreach ($orders as $orders){
-            if($orders->status == 0){
-               $orderwait++;
-            }
-         }
+         // $orders = Order::orderBy('id', 'DESC')->search()->paginate(2);
+         // $orderwait = 0; // số đơn hàng đợi duyệt
+         // foreach ($orders as $orders){
+         //    if($orders->status == 0){
+         //       $orderwait++;
+         //    }
+         // }
          $orders = Order::orderBy('id','DESC')->search()->paginate(15);
-         $i = count($orders)+1;
-         return view('admin.order.index',compact('orders','i','orderwait'));
+         return view('admin.order.index',compact('orders'));
     }
     public function detail(Order $order)
     {
-      $i=0;
       // dd($order);
-       return view('admin.order.detail', compact('order','i'));
+       return view('admin.order.detail', compact('order'));
     }
     public function status(Order $order,Request $req)
     {

@@ -2,20 +2,19 @@
 @section('title', 'Thông tin chi tiết đơn hàng')
 @section('main')
     <div class="container">
-        <hr class="mt-5">
         <h3 class="mt-5">Trạng thái đơn hàng</h3>
-        <form action="{{route('order_status',$order->id)}}" method="post">
+        <form action="{{ route('order_status', $order->id) }}" method="post">
             @csrf
             <div class="form-group row">
                 <div class="form-group col-md-5">
                     <label for=""></label>
                     <select class="form-control" name="status" id="">
                         <option value="">Trạng thái</option>
-                        <option value="0" {{$order->status == 0 ? 'selected' : ''}}>Chờ Duyệt</option>
-                        <option value="1" {{$order->status == 1 ? 'selected' : ''}}>Đã phê duyệt</option>
-                        <option value="2" {{$order->status == 2 ? 'selected' : ''}}>Đang giao hàng</option>
-                        <option value="3" {{$order->status == 3 ? 'selected' : ''}}>Đã giao thành công</option>
-                        <option value="4" {{$order->status == 4 ? 'selected' : ''}}>Hoàn đơn</option>
+                        <option value="0" {{ $order->status == 0 ? 'selected' : '' }}>Chờ Duyệt</option>
+                        <option value="1" {{ $order->status == 1 ? 'selected' : '' }}>Đã phê duyệt</option>
+                        <option value="2" {{ $order->status == 2 ? 'selected' : '' }}>Đang giao hàng</option>
+                        <option value="3" {{ $order->status == 3 ? 'selected' : '' }}>Đã giao thành công</option>
+                        <option value="4" {{ $order->status == 4 ? 'selected' : '' }}>Hoàn đơn</option>
                     </select>
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>
@@ -46,7 +45,7 @@
                         </tr>
                         <tr>
                             <td>Ghi chú</td>
-                            <td>{{ $order->order_note}}</td>
+                            <td>{{ $order->order_note }}</td>
                         </tr>
                         <tr>
                             <td>Ngày mua</td>
@@ -94,7 +93,7 @@
             <tbody>
                 @foreach ($order->details as $detail)
                     <tr>
-                        <td>{{$i+=1}}</td>
+                        <td>{{ $i += 1 }}</td>
                         <td><img src="{{ url('uploads') }}/products/{{ $detail->product->image }}" width="100px"></td>
                         <td>{{ $detail->product->name }}</td>
                         <td>{{ $detail->quantity }}</td>
@@ -108,7 +107,7 @@
                     <th>Thuế + Phí</th>
                     <th></th>
                     <td></td>
-                    <td>+{{$order->fee}}$</td>
+                    <td>+{{ $order->fee }}$</td>
 
                 </tr>
                 <tr class="table-info">
@@ -118,7 +117,15 @@
                     <td></td>
                     <td></td>
                     <td>
-                        @if($order->discount_ab) -{{$order->discount_ab}}$ @else -{{$order->discount_rl}}% @endif
+                        @if ($order->discount_ab || $order->discount_rl)
+                            @if ($order->discount_ab)
+                                -{{$order->discount_ab}}$
+                            @else
+                                -{{$order->discount_rl}}%
+                            @endif
+                        @else
+                            None
+                        @endif
                     </td>
 
                 </tr>
@@ -128,7 +135,7 @@
                     <th>Tổng thanh toán:</th>
                     <th>{{ $order->totalQuantity() }}</th>
                     <td></td>
-                    <th>{{number_format( $order->total_price)}}$</th>
+                    <th>{{ number_format($order->total_price) }}$</th>
                 </tr>
             </tbody>
         </table>

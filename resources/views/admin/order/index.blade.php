@@ -19,7 +19,7 @@
                 <th>Serial</th>
                 <th>purchase date</th>
                 <th class="text-center">Name</th>
-                <th class="text-center">Status <br> (waiting confirm: {{$orderwait}})</th>
+                <th class="text-center">Status <br> (waiting confirm: )</th>
                 <th>Phone</th>
                 <th>Quantity</th>
                 <th>Unit Price</th>
@@ -29,7 +29,7 @@
         <tbody>
             @foreach($orders as $order)
             <tr>
-                <td>{{$i-=1}}</td>
+                <td>{{$order->id}}</td>
                 <td>
                     <a href="{{route('home.product',['product'=>$order->id,'category'=> $order->category_id,'slug'=>Str::slug($order->name)])}}">{{$order->name}}</a>
                     <span>{{$order->created_at->format('d-m-Y')}}</span>
@@ -37,9 +37,9 @@
                 <td>{{$order->account->first_name}} {{$order->account->last_name}}</td>
                 <td>
                     @if ($order->status == 0)
-                        <span class="btn btn-primary">Chờ xác nhận</span>
+                        <span class="btn btn-dark">Chờ xác nhận</span>
                     @elseif($order->status == 1)
-                        <span class="btn btn-info">Đã xác nhận</span>
+                        <span class="btn btn-primary">Đã xác nhận</span>
                     @elseif($order->status == 2)
                         <span class="btn btn-warning">Đang giao hàng</span>
                     @elseif($order->status == 3)
