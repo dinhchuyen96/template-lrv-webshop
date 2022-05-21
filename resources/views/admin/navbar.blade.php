@@ -16,7 +16,7 @@
     <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
         <li>
-            <a href="{{route('logout')}}">Logout</a>
+            <a href="{{route('ad_logout')}}">Logout</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">

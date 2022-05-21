@@ -8,7 +8,7 @@ use App\Models\User;
 use Auth;
 class LoginController extends Controller
 {
-    public function login(){
+    public function login(){ // login tài khoản quản trị viên
         return view('site.ad_login');
     }
     public function post_login(Request $req){
@@ -19,5 +19,9 @@ class LoginController extends Controller
         }else{
             return redirect()->back()->with('no','Mật khẩu không hợp lệ');
         };
+    }
+    public function logout_admin(){ // logout tài khoản quản trị viên
+        Auth::logout();
+        return redirect()->back()->with('ok','Đăng xuất thành công');
     }
 }

@@ -92,9 +92,6 @@ class AdminController extends Controller
     {
         //
     }
-    public function logout_admin(){
-        Auth::logout();
-        return redirect()->route('home')->with('ok','Đăng xuất thành công');
-    }
+    
     
 }
