@@ -6,22 +6,22 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Account\LoginRequest;
 use App\Models\User;
 use Auth;
-class LoginController extends Controller
+class Login_adController extends Controller
 {
     public function login(){ // login tài khoản quản trị viên
-        return view('site.ad_login');
+        return view('site.login_ad');
     }
     public function post_login(Request $req){
         $data = $req->only('email','password');
         $check_login = Auth::attempt($data);
         if($check_login){
-            return redirect()->route('category.index')->with('yes','WellCome Back');
+            return redirect()->route('order.index')->with('yes','WellCome Back');
         }else{
-            return redirect()->back()->with('no','Mật khẩu không hợp lệ');
+            return redirect()->back()->with('wrong','Tài khoản hoặc mật khẩu không chính xác');
         };
     }
     public function logout_admin(){ // logout tài khoản quản trị viên
         Auth::logout();
-        return redirect()->back()->with('ok','Đăng xuất thành công');
+        return redirect()->back();
     }
 }

@@ -1,20 +1,20 @@
 <!DOCTYPE HTML>
 <html lang="en">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin| @yield('title')</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin| @yield('title')</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ url('admin-template')}}/plugins/fontawesome-free/css/all.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url('admin-template')}}/dist/css/adminlte.min.css">
-    <link rel="icon" href="{{ url('home')}}/assets/img/icon/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="{{ url('home')}}/assets/css/options.css">
-    <head>
-	<!-- Bootstrap css -->
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{{ url('admin-template') }}/plugins/fontawesome-free/css/all.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="{{ url('admin-template') }}/dist/css/adminlte.min.css">
+<link rel="icon" href="{{ url('home') }}/assets/img/icon/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{{ url('home') }}/assets/css/options.css">
+
+<head>
+    <!-- Bootstrap css -->
     {{-- <link rel="stylesheet" href="{{ url('home')}}/assets/css/bootstrap.min.css">
     <!-- linear-icon -->
     <link rel="stylesheet" href="{{ url('home')}}/assets/css/font-awesome.min.css">
@@ -25,8 +25,7 @@
     <link rel="stylesheet" href="{{ url('home')}}/assets/css/default.css">
     <!-- Main Style css -->
     <link rel="stylesheet" href="{{ url('home')}}/assets/css/style.css">
-    <!-- responsive css -->
-     --}}
+    <!-- responsive css --> --}}
 
     <!-- Modernizer JS -->
     {{-- <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script> --}}
@@ -52,28 +51,29 @@
                         <div class="col-sm-4">
                             <h1>@yield('title')</h1>
                         </div>
-                        @if(session()->has('yes'))
-                            <div id="alert_cat" style="position:absolute; right: 5rem" class="col-sm-6 alert alert-success text-center" role="alert">
-                                <strong>{{session()->get('yes')}}</strong>
+                        @if (session()->has('yes'))
+                            <div id="alert_cat" style="position:absolute; right: 5rem"
+                                class="col-sm-6 alert alert-success text-center" role="alert">
+                                <strong>{{ session()->get('yes') }}</strong>
                             </div>
                         @endif
-                        @if(session()->has('no'))
+                        @if (session()->has('no'))
                             <div class="col-sm-8 alert alert-danger text-center" role="alert">
-                                <strong>{{session()->get('no')}}</strong>
+                                <strong>{{ session()->get('no') }}</strong>
                             </div>
                         @endif
                     </div>
                 </div><!-- /.container-fluid -->
                 <script>
                     setTimeout(function() {
-			             $('#alert_cat').fadeOut('fast');
-		            }, 4000); // <-- time in milliseconds
+                        $('#alert_cat').fadeOut('fast');
+                    }, 4000); // <-- time in milliseconds
                 </script>
             </section>
             <section class="content">
                 <!-- Default box -->
                 <div class="card">
-                    <div  id="mydiv" class="card-body">                        
+                    <div id="mydiv" class="card-body">
                         @yield('main')
                     </div>
                     <!-- /.card-body -->
@@ -108,14 +108,15 @@
     <!-- Bootstrap 4 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <script src="{{ url('admin-template')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url('admin-template') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="https://cdn.tiny.cloud/1/vzb6x1ui57bic5qby8li2cgxt36toy1h7zq4bw108ozp5phi/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="{{ url('admin-template')}}/dist/js/adminlte.min.js"></script>  
-    <script src="{{ url('admin-template')}}/dist/js/options.js"></script>
+    <script src="https://cdn.tiny.cloud/1/vzb6x1ui57bic5qby8li2cgxt36toy1h7zq4bw108ozp5phi/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script src="{{ url('admin-template') }}/dist/js/adminlte.min.js"></script>
+    <script src="{{ url('admin-template') }}/dist/js/options.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="{{ url('admin-template')}}/dist/js/demo.js"></script>
-    <script src="{{ url('ckeditor/ckeditor.js')}}"></script>  
+    <script src="{{ url('admin-template') }}/dist/js/demo.js"></script>
+    <script src="{{ url('ckeditor/ckeditor.js') }}"></script>
     @yield('script')
     @include('ckfinder::setup')
 </body>

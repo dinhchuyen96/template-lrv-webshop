@@ -20,7 +20,7 @@ class AccountController extends Controller
        if(Auth::guard('account')->attempt($data)){
            return redirect()->route('home')->with('ok','Đăng nhập thành công');
        }else{
-        return redirect()->route('home.login')->with('no','Mời bạn đăng nhập lại');
+        return redirect()->route('home.login')->with('wrong','Mời bạn đăng nhập lại');
        }
     }
     public function register(){

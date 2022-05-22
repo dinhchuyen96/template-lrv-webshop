@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Login_adController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OrderHomeController;
@@ -74,7 +74,7 @@ Route::group(['prefix'=>'account'], function(){
     Route::get('/logout',[AccountController::class, 'logout'])->name('home.logout');
     Route::get('/register',[AccountController::class, 'register'])->name('home.register');
     Route::post('/register',[AccountController::class, 'post_register'])->name('home.register');
-    
+
 });       
 
 Route::group(['prefix'=>'profile','middleware' => 'acc'], function(){
@@ -109,11 +109,11 @@ Route::get('/myaccount', [HomeController::class, 'myaccount'])->name('myaccount'
 
                                     // ADMIN Route
 
-Route::get('/admin/login', [LoginController::class, 'login'])->name('login');
-Route::post('/admin/login', [LoginController::class, 'post_login'])->name('login');
+Route::get('/admin/login', [Login_adController::class, 'login'])->name('login');
+Route::post('/admin/login', [Login_adController::class, 'post_login'])->name('login');
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('/admin/logout', [LoginController::class, 'logout_admin'])->name('ad_logout');
+    Route::get('/logout', [Login_adController::class, 'logout_admin'])->name('ad_logout');
     Route::get('/', [AdminController::class, 'index'])->name('admin.category.index');
     Route::resources([
         'category' => CategoryController::class,

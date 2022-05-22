@@ -16,11 +16,6 @@ class Review extends Model
         // dd($product_id);
         return $query;
     }
-    public function scopeRating($query, $product_id){ 
-        $query = $query->where('product_id',$product_id)->avg('rating');
-        // dd($product_id);
-        return $query;
-    }
     
     
 }

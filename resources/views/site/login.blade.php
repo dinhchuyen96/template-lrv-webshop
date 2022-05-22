@@ -1,5 +1,5 @@
 @extends('layouts.site')
-@section('title','login')
+@section('title', 'login')
 @section('main')
 
     <!-- header area end -->
@@ -22,19 +22,30 @@
         </div>
     </div>
     <!-- breadcrumb area end -->
-    <div class="card-body">
-        @if(session()->has('ok'))
-        <div class="text-center alert alert-success" style="color: green" role="alert">
-            <h2>{{session()->get('ok')}}</h2>
+
+    @if (session()->has('ok'))
+        <div class="card-body">
+            <div class="text-center alert alert-success" style="color: green" role="alert">
+                <h2>{{ session()->get('ok') }}</h2>
+            </div>
         </div>
-        @endif
-        @if(session()->has('no'))
-        <div class="alert text-center alert-danger" role="alert">
-            <h2>{{session()->get('no')}}</h2>
+    @endif
+    @if (session()->has('no'))
+        <div class="card-body">
+            <div class="alert text-center alert-danger" role="alert">
+                <h2>{{ session()->get('no') }}</h2>
+            </div>
         </div>
-        @endif
-        @yield('main')
-    </div>
+    @endif
+    @if (session()->has('wrong'))
+        <div class="card-body" style="margin-bottom: -4rem">
+            <div class="alert text-center alert-danger" role="alert">
+                <h2>{{ session()->get('wrong') }}</h2>
+            </div>
+        </div>
+    @endif
+    @yield('main')
+
     <!-- Start of Login Wrapper -->
     <div class="login-wrapper pb-70">
         <div class="container-fluid">
@@ -55,26 +66,39 @@
                                         <form action="" method="post">
                                             @csrf
                                             <div class="form-group row align-items-center mb-4">
-                                                <label for="email" class="col-12 col-sm-12 col-md-4 col-form-label">Email address</label>
+                                                <label for="email" class="col-12 col-sm-12 col-md-4 col-form-label">Email
+                                                    address</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
-                                                    <input type="text" name="email" class="form-control" id="email" placeholder="Email" required>
-                                                    @error('email') {{$message}} @enderror                                                    
+                                                    <input type="text" name="email" class="form-control" id="email"
+                                                        placeholder="Email" required>
+                                                    @error('email')
+                                                        {{ $message }}
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row align-items-center mb-4">
-                                                <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">Password</label>
+                                                <label for="c-password"
+                                                    class="col-12 col-sm-12 col-md-4 col-form-label">Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
-                                                    @error('password') {{$message}} @enderror
-                                                    <input type="password" name="password" class="form-control"  placeholder="Password" required>
-                                                    <button class="pass-show-btn" id="showpass1" type="button">Show</button>
+
+                                                    <input type="password" name="password" class="form-control"
+                                                        placeholder="Password" required>
+                                                    <button class="pass-show-btn" id="showpass1"
+                                                        type="button">Show</button>
+                                                    <div style="color: red;">
+                                                        @error('password')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="login-box mt-5 text-center">
-                                                <p><a href="#">Forgot your password?</a></p>
+                                                <p><a href="">Forgot your password?</a></p>
                                                 <button type="submit" class="btn btn-secondary mb-4 mt-4">Sign In</button>
                                             </div>
                                             <div class="text-center pt-20 top-bordered">
-                                                <p>No account? <a href="{{route('home.register')}}">Create one here</a>.</p>
+                                                <p>No account? <a href="{{ route('home.register') }}">Create one here</a>.
+                                                </p>
                                             </div>
                                         </form>
                                     </div>
@@ -88,10 +112,10 @@
     </div>
     <!-- End of Login Wrapper -->
 
-   <!-- scroll to top -->
+    <!-- scroll to top -->
     <div class="scroll-top not-visible">
         <i class="fa fa-angle-up"></i>
     </div> <!-- /End Scroll to Top -->
 
-    <!-- footer area start -->  
-    @stop()
+    <!-- footer area start -->
+@stop()

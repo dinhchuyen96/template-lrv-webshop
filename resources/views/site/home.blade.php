@@ -2080,7 +2080,7 @@
                                             <div class="product-details-contentt">
                                                 <div class="pro-details-name mb-10">
                                                     <h3><a
-                                                            href="{{ route('home.product', ['product' => $psn->id, 'category' => $psn->id, 'slug' => Str::slug($psn->name)]) }}">{{ $psn->name }}</a>
+                                                            href="{{ route('home.product', ['product' => $psn->id, 'category' => $psn->category_id, 'slug' => Str::slug($psn->name)]) }}">{{ $psn->name }}</a>
                                                     </h3>
                                                 </div>
                                                 <div class="pro-details-review mb-20">

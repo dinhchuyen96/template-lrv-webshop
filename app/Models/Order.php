@@ -51,8 +51,8 @@ class Order extends Authenticatable
     public function totalQuantity() // đếm số sản phẩm trong đơn hàng
     {
         $total = 0;
-        foreach ($this->details as $dt){
-            $total += $dt->quantity; 
+        foreach ($this->details as $details){
+            $total += $details->quantity; 
         }
         return $total;
     }

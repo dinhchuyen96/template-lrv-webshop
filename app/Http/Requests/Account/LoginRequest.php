@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Account;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,8 +24,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|exists:users',
-            'password' => 'required|max:10|min:6',
+            'email' => 'required|exists:accounts',
+            'password' => 'required|max:10|min:5',
         ];
     }
     public function messages()
@@ -34,8 +34,8 @@ class LoginRequest extends FormRequest
             'email.required' => 'Email không được để trống',
             'email.exists' => 'Email không hợp lệ',
             'password.required' => 'Mời bạn nhập mật khẩu',
-            'password.min' => 'Mật khẩu phải từ 6-10 ký tự',
-            'password.max' => 'Mật khẩu phải từ 6-10 ký tự'
+            'password.min' => 'Mật khẩu phải từ 5-10 ký tự',
+            'password.max' => 'Mật khẩu phải từ 5-10 ký tự'
         ];
     }
 }
