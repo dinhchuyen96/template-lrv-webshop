@@ -2,24 +2,33 @@
 @section('title', 'Thông tin chi tiết đơn hàng')
 @section('main')
     <div class="container">
-        <h3 class="mt-5">Trạng thái đơn hàng</h3>
-        <form action="{{ route('order_status', $order->id) }}" method="post">
-            @csrf
-            <div class="form-group row">
-                <div class="form-group col-md-5">
-                    <label for=""></label>
-                    <select class="form-control" name="status" id="">
-                        <option value="">Trạng thái</option>
-                        <option value="0" {{ $order->status == 0 ? 'selected' : '' }}>Chờ Duyệt</option>
-                        <option value="1" {{ $order->status == 1 ? 'selected' : '' }}>Đã phê duyệt</option>
-                        <option value="2" {{ $order->status == 2 ? 'selected' : '' }}>Đang giao hàng</option>
-                        <option value="3" {{ $order->status == 3 ? 'selected' : '' }}>Đã giao thành công</option>
-                        <option value="4" {{ $order->status == 4 ? 'selected' : '' }}>Hoàn đơn</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </div>
+        <div class="form-group row">
+            <div class="col-md-2">
+                <h3 class="mt-5">Trạng thái</h3>
             </div>
-        </form>
+            <div class="form-group col-md-5 mt-5">
+                <button href="" style="width: 100%"
+                    class="btn
+                    @if ($order->status == 0) btn-dark 
+                    @elseif ($order->status == 1) btn-primary  
+                    @elseif ($order->status == 2) btn-warning  
+                    @elseif ($order->status == 3) btn-success  
+                    @elseif ($order->status == 4) btn-danger @endif "
+                    type="button">
+                    @if ($order->status == 0)
+                        Chờ duyệt
+                    @elseif ($order->status == 1)
+                        Đã duyệt
+                    @elseif ($order->status == 2)
+                        Đang giao
+                    @elseif ($order->status == 3)
+                        Thành công
+                    @elseif ($order->status == 4)
+                        Hoàn đơn
+                    @endif
+                </button>
+            </div>
+        </div>
         <div class="row mt-5">
             <div class="col-md-6">
                 <h3 style="margin-left: 12rem">Thông tin người mua</h3>
@@ -119,9 +128,9 @@
                     <td>
                         @if ($order->discount_ab || $order->discount_rl)
                             @if ($order->discount_ab)
-                                -{{$order->discount_ab}}$
+                                -{{ $order->discount_ab }}$
                             @else
-                                -{{$order->discount_rl}}%
+                                -{{ $order->discount_rl }}%
                             @endif
                         @else
                             None

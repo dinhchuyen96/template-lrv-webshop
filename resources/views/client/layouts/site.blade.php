@@ -586,6 +586,7 @@
     <script src = "{{ url('home') }}/assets/js/plugins.js"></script>
     <script src = "{{ url('home') }}/assets/js/ajax-mail.js"></script>
     <script src = "{{ url('home') }}/assets/js/main.js"></script>
+    <script src = "{{ url('home') }}/assets/js/addcart.js"></script>
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
 

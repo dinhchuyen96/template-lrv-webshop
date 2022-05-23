@@ -11,6 +11,9 @@ use App\Models\Product;
 use Carbon\Carbon;
 class OrderHomeController extends Controller
 {
+    public function thank(){
+        return view('client.site.thank');
+    }
     public function checkout(){
         $acc = Auth::guard('account')->user();
         $carts = session('cart') ? session('cart'):[];
@@ -82,7 +85,7 @@ class OrderHomeController extends Controller
                 }
             }
             session()->forget(['cart', 'coupon']);
-            return redirect()->route('home')->with('ok',"Đặt hàng thành công");
+            return redirect()->route('thank');
             
         }else{
             return redirect()->route('home')->with('ok',"Mời bạn đặt hàng");

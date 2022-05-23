@@ -9,7 +9,7 @@
 		setTimeout(function() { // tu an thong bao ngoai home
 			$('#overlay').modal('hide');
 		}, 1800);
-
+		
 		// 
 		
 

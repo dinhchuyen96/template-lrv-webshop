@@ -9,7 +9,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-2 mt-4 pt-2">
-                        <h2 class="h3 text-gray-800">Đơn hàng</h2>
+                        <h3 class="h3 text-gray-800">Đơn hàng</h3>
                     </div>
                     <div class="col-md-2">
                         <label for="start_date">Ngày bắt đầu: <span class="text-danger">*</span></label>
@@ -46,7 +46,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-2">
-                        <h2 class="h3 text-gray-800">Tổng tiền</h2>
+                        <h3 class="h3 text-gray-800">Tổng tiền</h3>
                     </div>
                     <div class="col-md-2">
                         {{-- <label for="start_date">Ngày bắt đầu: <span class="text-danger">*</span></label> --}}
@@ -60,10 +60,11 @@
                         {{-- <label for="status">Trạng thái:</label> --}}
                         <select class="form-control" id="status" name="status">
                             <option value="-1">Tất cả</option>
-                            <option value="0">Chờ xác nhận</option>
-                            <option value="1">Xác nhận</option>
-                            <option value="2">Hoàn thành</option>
-                            <option value="3">Hủy</option>
+                            <option value="0">Chờ duyệt</option>
+                            <option value="1">Duyệt</option>
+                            <option value="2">Đang giao</option>
+                            <option value="3">Thành công</option>
+                            <option value="4">Hoàn đơn</option>
                         </select>
                     </div>
                     <div class="col-md-3">

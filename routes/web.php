@@ -92,6 +92,7 @@ Route::group(['prefix'=>'order','middleware' => 'acc'], function(){
     Route::post('/checkout/coupon',[OrderHomeController::class, 'check_coupon'])->name('home.checkout_coupon');
     Route::get('/checkout/coupon/_del',[OrderHomeController::class, 'del_coupon'])->name('home.del_coupon');
     Route::get('/detail/{order}',[OrderHomeController::class, 'detail'])->name('home.order_detail');  
+    Route::get('/thank',[OrderHomeController::class, 'thank'])->name('thank'); 
 });     
 
                                     //Categoru & Product Route
