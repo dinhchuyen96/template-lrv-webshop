@@ -1,4 +1,4 @@
-@extends('layouts.site')
+@extends('client.layouts.site')
 @section('title','register')
 @section('main')
     <!-- header area end -->
@@ -90,28 +90,28 @@
                                             <div class="form-group row">
                                                 <label for="f-name" class="col-12 col-sm-12 col-md-4 col-form-label">Phone</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="text" class="form-control" value="{{old('phone')}}" name="phone" id="f-name" required="">
+                                                    <input type="text" class="form-control" value="{{old('phone')}}" name="phone" id="f-name" required>
                                                     @error('phone'){{$message}} @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputpassword" class="col-12 col-sm-12 col-md-4 col-form-label">Address</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="text" class="form-control" value="{{old('address')}}" name="address" id="address" required="">
+                                                    <input type="text" class="form-control" value="{{old('address')}}" name="address" id="address" required>
                                                     @error('address'){{$message}} @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="newpassword" class="col-12 col-sm-12 col-md-4 col-form-label">New Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="password" name="password" maxlength="16" class="form-control" id="newpassword" required="">
+                                                    <input type="password" name="password" maxlength="16" class="form-control" id="newpassword" required>
                                                     <button id="showpass1" class="pass-show-btn" type="button">Show</button>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">Confirm Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="password" name="conf_password" maxlength="16" class="form-control" id="c-password" >
+                                                    <input type="password" name="conf_password" maxlength="16" class="form-control" id="c-password" required>
                                                     @error('conf_password'){{$message}} @enderror
                                                     <button id="showpass2" class="pass-show-btn" type="button">Show</button>
                                                 </div>

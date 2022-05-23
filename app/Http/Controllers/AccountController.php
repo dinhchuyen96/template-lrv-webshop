@@ -13,7 +13,7 @@ use Hash;
 class AccountController extends Controller
 {
     public function login(){ // đăng nhập tài khoản khách hàng
-        return view('site.login');
+        return view('client.site.login');
     }
     public function post_login(LoginRequest $req){
        $data = $req->only('email','password');
@@ -24,7 +24,7 @@ class AccountController extends Controller
        }
     }
     public function register(){
-        return view('site.register');
+        return view('client.site.register');
         
     }
     public function post_register(RegisterRequest $req){
@@ -40,7 +40,7 @@ class AccountController extends Controller
     }
     public function changer_password()
     {
-        return view('site.changer_pw');
+        return view('client.site.changer_pw');
     }
     public function post_changer_password(ChangerPasswordRequest $req){
         $user = Auth::guard('account')->user();

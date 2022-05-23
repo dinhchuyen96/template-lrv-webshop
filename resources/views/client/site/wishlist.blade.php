@@ -1,4 +1,4 @@
-@extends('layouts.site')
+@extends('client.layouts.site')
 @section('title', 'checkout')
 @section('main')
     <!-- breadcrumb area start -->

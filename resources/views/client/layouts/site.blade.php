@@ -106,7 +106,7 @@
                     </div>
                     <div class="col-lg-6 col-md-12 col-12 order-sm-last">
                         <div class="header-middle-inner">
-                            <form method="get">
+                            <form method="get"  >
                                 <div class="top-cat hm1">
                                     <div class="search-form">
                                         <select class="form-control" name="search" id="">
@@ -118,7 +118,7 @@
                                     </div>
                                 </div>
                                 <input type="text" type="search" name="search" class="top-cat-field"
-                                    placeholder="Search entire store here">
+                                    placeholder="Search entire store here" required>
                                 <input type="submit" class="top-search-btn" value="Search">
                             </form>
                             @if ($search_value)
@@ -579,13 +579,14 @@
     @endif
 
     <!-- all js include here -->
-    <script src="{{ url('home') }}/assets/js/vendor/jquery-1.12.4.min.js">
+    <script src = "{{ url('home') }}/assets/js/vendor/jquery-1.12.4.min.js">
     <script src = "{{ url('home') }}/assets/js/popper.min.js"></script>
-    <script src="{{ url('home') }}/assets/js/bootstrap.min.js"></script>
-    <script src="{{ url('home') }}/assets/js/plugins.js"></script>
-    <script src="{{ url('home') }}/assets/js/ajax-mail.js"></script>
-    <script src="{{ url('home') }}/assets/js/main.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src = "{{ url('home') }}/assets/js/bootstrap.min.js"></script>
+    <script src = "{{ url('home') }}/assets/js/bootstrap.min.js"></script>
+    <script src = "{{ url('home') }}/assets/js/plugins.js"></script>
+    <script src = "{{ url('home') }}/assets/js/ajax-mail.js"></script>
+    <script src = "{{ url('home') }}/assets/js/main.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
 
 <!-- Mirrored from template.hasthemes.com/sinrato/sinrato/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 22 Feb 2022 12:52:23 GMT -->

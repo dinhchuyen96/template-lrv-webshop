@@ -11,7 +11,7 @@ class CompareController extends Controller
 {
     public function view(){
         $procompare = session('compare')? session('compare') : [];
-        return view('site\compare',compact('procompare'));
+        return view('client.site\compare',compact('procompare'));
     }
     public function add(Product $product)
     {

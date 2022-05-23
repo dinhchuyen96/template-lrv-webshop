@@ -1,4 +1,4 @@
-@extends('layouts.site')
+@extends('client.layouts.site')
 @section('title', 'checkout')
 @section('main')
     <!-- header area end -->
@@ -107,7 +107,7 @@
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
                                                     <label for="tel_number">telephone</label>
                                                     <input name="phone" type="tel" value="{{ $acc->phone }}" class="form-control"
-                                                        id="tel_number">
+                                                        id="tel_number" pattern="[0-9]{10}">
                                                 </div>
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
                                                     <label for="fax_num">Fax</label>

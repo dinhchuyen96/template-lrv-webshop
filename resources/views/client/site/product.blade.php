@@ -1,4 +1,4 @@
-@extends('layouts.site')
+@extends('client.layouts.site')
 @section('title', 'Product detail')
 @section('main')
 

@@ -1,4 +1,4 @@
-@extends('layouts.site')
+@extends('client.layouts.site')
 @section('title', 'contact_us')
 @section('main')
     <!-- header area end -->

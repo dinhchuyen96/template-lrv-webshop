@@ -9,7 +9,7 @@ use Auth;
 class Login_adController extends Controller
 {
     public function login(){ // login tài khoản quản trị viên
-        return view('site.login_ad');
+        return view('client.site.login_ad');
     }
     public function post_login(Request $req){
         $data = $req->only('email','password');

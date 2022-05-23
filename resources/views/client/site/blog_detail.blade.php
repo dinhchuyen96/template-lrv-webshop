@@ -1,4 +1,4 @@
-@extends('layouts.site')
+@extends('client.layouts.site')
 @section('title','Blog')
 @section('main')
             <!-- blog wrapper start -->

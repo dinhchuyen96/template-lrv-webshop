@@ -1,4 +1,4 @@
-@extends('layouts.site')
+@extends('client.layouts.site')
 @section('title', 'Laptop - Mobile Phone')
 @section('main')
     <div class="main-wrapper pt-35">

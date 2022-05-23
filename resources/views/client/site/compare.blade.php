@@ -1,4 +1,4 @@
-@extends('layouts.site')
+@extends('client.layouts.site')
 @section('title', 'cart')
 @section('main')
     <!-- header area end -->

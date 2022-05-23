@@ -11,7 +11,7 @@ class CartController extends Controller
         // session(['cart'=> null]);
         $carts = session('cart')? session('cart') : [];
         // dd("ahihi");
-        return view('site\cart',compact('carts'));
+        return view('client.site\cart',compact('carts'));
     }
     
     public function add(Product $product){

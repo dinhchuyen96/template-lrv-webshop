@@ -17,7 +17,7 @@ class OrderHomeController extends Controller
         // $coupon = session('coupon') ? session('coupon'):[];
         // dd($coupon->discount_ab);
         if($carts){
-            return view('site\checkout', compact('acc'));
+            return view('client.site\checkout', compact('acc'));
         }else{
             return redirect()->route('home')->with('ok',"Mời bạn đặt hàng");
         }
@@ -92,7 +92,7 @@ class OrderHomeController extends Controller
     {
         $acc_id = Auth::guard('account')->user()->id;
         // dd($acc_id);
-        return view('site.wishlist');
+        return view('client.site.wishlist');
     }
     
     public function order_list(){ // lịch sử đơn hàng
@@ -100,12 +100,12 @@ class OrderHomeController extends Controller
         $orders = Order::where('account_id', $acc_id)->orderBy('id','DESC')->get();
         // dd($orders);
         $i = count($orders)+1;
-        return view('site.order_list',compact('orders','i'));
+        return view('client.site.order_list',compact('orders','i'));
     }
     
     public function detail(Order $order){ // chi tiết từng đơn hàng
         //  dd($order);
         $i=0;
-        return view('site.order_detail',compact('order','i'));
+        return view('client.site.order_detail',compact('order','i'));
     }
 }

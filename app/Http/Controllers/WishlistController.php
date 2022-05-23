@@ -12,7 +12,7 @@ class WishlistController extends Controller
         if($wishlists == null){
             return redirect()->route('home')->with('ok', 'Wishlist rỗng, mời bạn chọn lại');;
         }
-        return view('site\wishlist',compact('wishlists'));
+        return view('client.site\wishlist',compact('wishlists'));
     }
     public function add(Product $product)
     {
