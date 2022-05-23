@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 @section('title', 'Edit contact')
 @section('main')
     <form action="{{ route('contact.update', $contact->id) }}" method="POST" role="form">

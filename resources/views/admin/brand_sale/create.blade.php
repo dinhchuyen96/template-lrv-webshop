@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 @section('title', 'Thêm mới brand sale')
 @section('main')
     <form action="{{ route('brand_sale.store') }}" enctype="multipart/form-data" method="POST" role="form">

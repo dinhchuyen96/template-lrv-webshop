@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 @section('title', 'Thêm mới coupon')
 @section('main')
     <form action="{{ route('coupon.store') }}" method="POST" role="form">

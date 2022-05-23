@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 @section('title','Danh sách Banner')
 @section('main')
     <a class="btn btn-primary" style="margin-left: 59rem" href="{{ route('banner.create') }}">Thêm mới</a>

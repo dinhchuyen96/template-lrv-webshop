@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 @section('title', 'Chỉnh sửa banner')
 @section('main')
     <form action="{{ route('banner.update', $banner->id) }}" enctype="multipart/form-data" method="POST" role="form">

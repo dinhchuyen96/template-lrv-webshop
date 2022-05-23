@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 @section('title', 'Thêm mới blog tag')
 @section('main')
     <form action="{{ route('blog_cat.store') }}" method="POST" role="form">

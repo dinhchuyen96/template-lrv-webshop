@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 @section('title', 'Chỉnh sửa Brand Sale')
 @section('main')
     <form action="{{ route('brand_sale.update', $brand_sale->id) }}" enctype="multipart/form-data" method="POST" role="form" >

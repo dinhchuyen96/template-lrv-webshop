@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 @section('title', 'Add new contact')
 @section('main')
     <form action="{{ route('contact.store') }}" method="POST" role="form">

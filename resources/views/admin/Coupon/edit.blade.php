@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 @section('title', 'Chỉnh sửa Coupon')
 @section('main')
     <form action="{{ route('coupon.update', $coupon1->id) }}" method="POST" role="form">

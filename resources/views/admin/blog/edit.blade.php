@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 @section('title', 'Edit blog')
 @section('main')
     <form action="{{ route('blog.update', $blog->id) }}" enctype="multipart/form-data" method="POST" role="form">

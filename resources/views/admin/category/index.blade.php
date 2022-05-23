@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 @section('title', 'Danh sách danh mục')
 @section('main')
     <form class="form-inline ml-3" method="get">

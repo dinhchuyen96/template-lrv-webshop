@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 @section('title','Danh sách Brand')
 @section('main')
     <a class="btn btn-primary" style="margin-left: 57rem" href="{{ route('brand_sale.create') }}">Thêm mới</a>
