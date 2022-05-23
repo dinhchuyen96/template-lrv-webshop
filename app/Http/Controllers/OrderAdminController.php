@@ -21,7 +21,8 @@ class OrderAdminController extends Controller
     public function detail(Order $order)
     {
       // dd($order);
-       return view('admin.order.detail', compact('order'));
+      $i =0;
+       return view('admin.order.detail', compact('i','order'));
     }
     public function status(Order $order,Request $req)
     {

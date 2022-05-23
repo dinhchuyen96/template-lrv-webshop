@@ -44,13 +44,13 @@
             <td width="5px">{{$value->name}}</td>
             <td>{{$value->p_cat->name}}<hr>{{$value->cat->name}}</td>
             <td>{{number_format($value->price)}} / {{$value->sale_price}}<hr>-{{$value->percent_sale}}%</td>
-            <td><button class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $value->id }}">Chi tiết</button></td>
+            <td><button class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $value->id }}"><i class="fas fa-info-circle"></i></button></td>
             <td><img src="{{url('uploads')}}/products/{{$value->image}}" style="width: 150px; height: 100px"></td>
             <td>
                 @if($value->status ==0 )
-                <label class="badge badge-danger"><h5>Tạm ẩn</h5></label>
+                <label class="badge badge-danger"><h5><i class="far fa-eye-slash"></i></h5></label>
                 @else
-                <label class="badge badge-success"><h5>Hiển thị</h5></label>
+                <label class="badge badge-success"><h5><i class="fas fa-check"></i></h5></label>
                 @endif
             </td>
             
@@ -58,8 +58,8 @@
             <td>
                 <form action="{{ route('product.destroy', $value->id) }}" method="post">
                     @csrf @method('DELETE')
-                    <a href="{{ route('product.edit', $value->id) }}" class="btn btn-primary">Sửa</a>
-                    <button class="btn btn-danger" onclick="return confirm('are you sure?')">Xóa</button>
+                    <a href="{{ route('product.edit', $value->id) }}" class="btn btn-primary"><i class="far fa-edit"></i></a>
+                    <button class="btn btn-danger" onclick="return confirm('are you sure?')"><i class="fas fa-backspace"></i></button>
                 </form>
             </td>
         </tr>
