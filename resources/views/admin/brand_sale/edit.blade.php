@@ -32,7 +32,7 @@
         <div class="row form-group">
             <div class="col-md-6"><label for="">Ảnh</label>
                 <img src="{{ url('uploads') }}/logo/{{$brand_sale->logo}}" alt="" style="width: 280px; height: auto">
-                <input type="file" class="form-control" name="upload" placeholder="Input field">
+                <input type="file" class="form-control" name="upload" placeholder="Input field" accept=".png,.gif,.jpg,.jpeg,.svg">
                 @error('upload')
                     {{ $message }}
                 @enderror

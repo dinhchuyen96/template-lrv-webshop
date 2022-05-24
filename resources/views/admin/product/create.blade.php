@@ -6,7 +6,7 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label for="">Danh mục sản phẩm cha</label>
-                <select class="form-control" name="parent_cat" id="">
+                <select class="form-control" name="parent_cat" id="" required>
                     <option>Chọn danh mục</option>
                     @foreach ($p_cats as $key => $value)
                         <option value="{{ $value->id }}">{{ $value->name }}</option>
@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-6">
                 <label for="">Danh mục sản phẩm con</label>
-                <select class="form-control" name="category_id" id="">
+                <select class="form-control" name="category_id" id="" required>
                     <option value="">Chọn danh mục</option>
                     <?php showCategories($c_cats); ?>
                 </select>
@@ -28,7 +28,7 @@
             </div>
             <div class="col-md-6">
                 <label for="">Tên sản phẩm</label>
-                <input type="text" style="padding" class="form-control" value="{{ old('name') }}" name="name"
+                <input type="text" style="padding" class="form-control" value="{{ old('name') }}" name="name" required
                     placeholder="Nhập tên của sản phẩm">
                 @error('name')
                     {{ $message }}
@@ -37,7 +37,7 @@
         </div>
         <div class="form-group">
             <label for="">Tóm tắt sản phẩm</label>
-            <textarea id="tinymce_sort" class="form-control" name="sort_description"
+            <textarea id="tinymce_sort" class="form-control" name="sort_description" required
                 placeholder="Tóm tắt ngắn nội dung sản phẩm">{{ old('sort_description') }}</textarea>
             @error('sort_description')
                 {{ $message }}
@@ -45,7 +45,7 @@
         </div>
         <div class="form-group">
             <label for="">Mô tả sản phẩm</label>
-            <textarea type="text" id="tinymce_detail" class="form-control" value="{{ old('description') }}" name="description"
+            <textarea type="text" id="tinymce_detail" class="form-control" value="{{ old('description') }}" name="description" required
                 placeholder="Mô tả chi tiết sản phẩm"></textarea>
             @error('description')
                 {{ $message }}
@@ -54,7 +54,7 @@
         <script></script>
         <div class="row form-group">
             <div class="col-md-5"><label for="">Giá</label>
-                <input type="text" value="{{ old('price') }}" id="price" class="form-control set_price_product"
+                <input type="text" value="{{ old('price') }}" id="price" class="form-control set_price_product" required
                     name="price" placeholder="Nhập giá sản phẩm">
                 @error('price')
                     {{ $message }}
@@ -77,7 +77,7 @@
         </div>
         <div class="form-group">
             <label for="">Ảnh</label>
-            <input type="file" class="form-control" name="upload" placeholder="Input field">
+            <input type="file" class="form-control" name="upload" placeholder="Input field" accept=".png,.gif,.jpg,.jpeg,.svg">
             @error('upload')
                 {{ $message }}
             @enderror

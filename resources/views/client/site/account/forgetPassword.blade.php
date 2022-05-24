@@ -26,7 +26,7 @@
                                                     address</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
                                                     <input type="text" name="email" class="form-control" id="email"
-                                                        placeholder="Email" required>
+                                                        placeholder="Email" maxlength="40" required>
                                                     @error('email')
                                                         {{ $message }}
                                                     @enderror

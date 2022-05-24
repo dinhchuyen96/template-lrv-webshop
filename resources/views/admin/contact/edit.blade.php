@@ -6,7 +6,7 @@
         <div class="form-group row">
             <div class="col-md-6">
                 <label for="">Đường - Phố</label>
-                <input type="text" class="form-control" name="address_1" value="{{ $contact->address_1 }}"
+                <input type="text" class="form-control" name="address_1" value="{{ $contact->address_1 }}" required
                     placeholder="Input field">
                 @error('address_1')
                     {{ $message }}
@@ -15,7 +15,7 @@
             <div class="col-md-6">
                 <label for="">Quận - Huyện</label>
                 <input type="text" class="form-control" name="address_2" value="{{ $contact->address_2 }}"
-                    placeholder="Input field">
+                    placeholder="Input field" required>
                 @error('address_2')
                     {{ $message }}
                 @enderror
@@ -24,15 +24,15 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label for="">Email 1</label>
-                <input type="text" class="form-control" name="email_" value="{{ $contact->email_1 }}"
-                    placeholder="Input field">
+                <input type="email" class="form-control" name="email_" value="{{ $contact->email_1 }}"
+                    placeholder="Input field" required>
                 @error('email_')
                     {{ $message }}
                 @enderror
             </div>
             <div class="col-md-6">
                 <label for="">Email 2</label>
-                <input type="text" class="form-control" name="email_" value="{{ $contact->email_1 }}"
+                <input type="email" class="form-control" name="email_" value="{{ $contact->email_1 }}"
                     placeholder="Input field">
                 @error('email_')
                     {{ $message }}
@@ -43,7 +43,7 @@
             <div class="col-md-6">
                 <label for="">Số điện thoại 1</label>
                 <input type="number" class="form-control" name="phone_1" value="{{ $contact->phone_1 }}"
-                    placeholder="Input field">
+                    placeholder="Input field" required>
                 @error('phone_1')
                     {{ $message }}
                 @enderror

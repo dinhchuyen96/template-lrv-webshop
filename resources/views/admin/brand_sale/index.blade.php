@@ -23,17 +23,13 @@
             <td>{{$data->cat->name}}</td>
             <td><img src="{{url('uploads')}}/logo/{{$data->logo}}" style="width: 100px; height: 100px" alt=""></td>
             <td>
-                @if($data->status ==0 )
-                <label class="badge badge-danger">Tạm ẩn</label>
-                @else
-                <label class="badge badge-success">Hiển thị</label>
-                @endif
+                <label class="badge {{$data->status == 1 ? 'badge-success':'badge-danger'}} ">{{ $data->status == 1 ? 'Hiển thị' : 'Tạm Ẩn' }}</label>  
             </td>            
             <td>{{$data->created_at ? $data->created_at->format('d/m/Y'):''}}</td>
             <td>
                 <form action="{{ route('brand_sale.destroy', $data->id) }}" method="post">
                     @csrf @method('DELETE')
-                    <a href="{{ route('brand_sale.edit', $data->id) }}" class="btn btn-primary"><i class="far fa-edit"></a>
+                    <a href="{{ route('brand_sale.edit', $data->id) }}" class="btn btn-primary"><i class="far fa-edit"></i></a>
                     <button class="btn btn-danger" onclick="return confirm('are you sure?')"><i class="fas fa-backspace"></i></button>
                 </form>
             </td>

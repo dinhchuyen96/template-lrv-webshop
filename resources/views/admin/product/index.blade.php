@@ -46,14 +46,7 @@
             <td>{{number_format($value->price)}} / {{$value->sale_price}}<hr>-{{$value->percent_sale}}%</td>
             <td><button class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $value->id }}"><i class="fas fa-info-circle"></i></button></td>
             <td><img src="{{url('uploads')}}/products/{{$value->image}}" style="width: 150px; height: 100px"></td>
-            <td>
-                @if($value->status ==0 )
-                <label class="badge badge-danger"><h5>Tạm ẩn</i></h5></label>
-                @else
-                <label class="badge badge-success"><h5>Hiển thị</i></h5></label>
-                @endif
-            </td>
-            
+            <td><label class="badge {{$value->status == 1 ? 'badge-success':'badge-danger'}} ">{{ $value->status == 1 ? 'Hiển thị' : 'Tạm Ẩn' }}</label></td>
             <td>{{$value->created_at ? $value->created_at->format('d/m/Y'): ''}}</td>
             <td>
                 <form action="{{ route('product.destroy', $value->id) }}" method="post">

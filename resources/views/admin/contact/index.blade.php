@@ -35,12 +35,7 @@
                     <td>{{ $contact->email_1 }}<br>{{ $contact->email_2 }}</td>
                     <td> {{ $contact->phone_1 }} <br>{{ $contact->phone_2 }}</td>
                     <td>{{ $contact->fax_1 }} <br>{{ $contact->fax_2 }}</td>
-                    <td>
-                        @if($contact->status ==0 ) 
-                            <label class="badge badge-danger">Tạm ẩn</label>
-                        @else 
-                            <label class="badge badge-success">Hiển thị</label>
-                        @endif
+                    <td><label class="badge {{$contact->status == 1 ? 'badge-success':'badge-danger'}} ">{{ $contact->status == 1 ? 'Hiển thị' : 'Tạm Ẩn' }}</label>
                     </td>
                     <td>
                         <form action="{{ route('contact.destroy', $contact->id) }}" method="post">

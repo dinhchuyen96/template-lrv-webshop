@@ -24,25 +24,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- categories filter end -->
-                        <!-- categories filter start -->
-                         {{-- <div class="single-sidebar mb-45">
-                            <div class="sidebar-inner-title mb-25">
-                                <h3>Recent post</h3>
-                            </div>
-                            <div class="sidebar-content-box">
-                                <div class="filter-attribute-container">
-                                    <ul>
-                                        <li><a class="active" href="#">blog image post</a></li>
-                                        <li><a href="#">Post with gallery</a></li>
-                                        <li><a href="#">Post with Audio</a></li>
-                                        <li><a href="#">Post with Video</a></li>
-                                        <li><a href="#">Maecenas ultricies</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>  --}}
-                        <!-- categories filter end -->
                         <!-- categories filter start -->
                          <div class="single-sidebar mb-45">
                             <div class="sidebar-inner-title mb-25">
@@ -60,32 +41,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- categories filter end -->
-                        <!-- categories filter start -->
-                        {{-- <div class="single-sidebar mb-45">
-                            <div class="sidebar-inner-title mb-25">
-                                <h3>Tag</h3>
-                            </div>
-                            <div class="sidebar-content-box">
-                                <div class="blog-tag-line">
-                                    <a href="#">fashion</a>
-                                    <a href="#">cloath</a>
-                                    <a href="#">camera</a>
-                                    <a href="#">laptop</a>
-                                    <a href="#">bag</a>
-                                    <a href="#">watch</a>
-                                </div>
-                            </div>
-                        </div> --}}
-                        <!-- categories filter end -->
                     </div>
-                    <!-- sidebar promote picture start -->
-                    {{-- <div class="single-sidebar mb-30">
-                        <div class="sidebar-thumb">
-                            <a href="#"><img src="assets/img/banner/img-static-sidebar.jpg" alt=""></a>
-                        </div>
-                    </div> --}}
-                    <!-- sidebar promote picture end -->
                 </div>
                 <div class="col-lg-9 order-first order-lg-last">
                     <div class="blog-wrapper-inner">

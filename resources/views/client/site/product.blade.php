@@ -246,7 +246,7 @@
                                                 <div class="col">
                                                     <label class="col-form-label"><span class="text-danger">*</span>
                                                         Your Name</label>
-                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                    <input type="hidden" name="product_id" value="{{ $product->id }}" required>
                                                     <input type="hidden" name="account_id" value="{{ $acc->id }}">
                                                     <input type="text"
                                                         value="{{ $acc->first_name}} {{ $acc->last_name }}"

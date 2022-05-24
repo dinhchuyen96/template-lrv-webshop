@@ -6,7 +6,7 @@
         <div class="form-group row">
             <div class="col-md-6">
                 <label for="">Blog category</label>
-                <select class="form-control" name="cat_id" id="">
+                <select class="form-control" name="cat_id" id="" required>
                     @foreach ($blog_cats as $tags)
                         <option value="{{ $tags->id }}">{{ $tags->name }}</option>
                     @endforeach;
@@ -16,7 +16,7 @@
                 @enderror
             </div>
             <div class="col-md-6"> <label for="">Tên Blog</label>
-                <textarea type="text" id="tinymce0" class="form-control" name="name" placeholder="Input field"
+                <textarea type="text" id="tinymce0" class="form-control" required name="name" placeholder="Input field"
                     required>{{ old('name') }}</textarea>
                 @error('name')
                     {{ $message }}
@@ -27,7 +27,7 @@
         <div class="form-group">
             <label for="">Title</label>
             <textarea type="text" id="tinymce1" class="form-control" value="{{ old('title') }}" name="title"
-                placeholder="Input field"></textarea>
+                placeholder="Input field" required></textarea>
             @error('title')
                 {{ $message }}
             @enderror
@@ -35,14 +35,14 @@
         <div class="form-group">
             <label for="">Nội dung blog</label>
             <textarea type="text" id="tinymce" name="content" class="form-control"
-                placeholder="Input field">{{ old('content') }}</textarea>
+                placeholder="Input field" required>{{ old('content') }}</textarea>
             @error('content')
                 {{ $message }}
             @enderror
         </div>
         <div class="form-group">
             <label for="">Ảnh</label>
-            <input type="file" class="form-control" name="upload" placeholder="Input field">
+            <input type="file" class="form-control" name="upload" placeholder="Input field" accept=".png,.gif,.jpg,.jpeg,.svg">
             @error('upload')
                 {{ $message }}
             @enderror

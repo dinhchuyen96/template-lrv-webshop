@@ -40,7 +40,7 @@
         </div>
         <div class=" form-group">
             <label for="">Ảnh</label>
-            <input type="file" class="form-control" name="upload" placeholder="Input field">
+            <input type="file" class="form-control" name="upload" placeholder="Input field" accept=".png,.gif,.jpg,.jpeg,.svg">
             @error('upload')
                 {{ $message }}
             @enderror

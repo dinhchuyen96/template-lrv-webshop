@@ -5,14 +5,14 @@
         @csrf
         <div class="form-group">
             <label for="">Tên Coupon</label>
-            <input type="text" class="form-control" name="name" placeholder="Input field">
+            <input type="text" class="form-control" name="name" placeholder="Input field" required>
             @error('name')
                 {{ $message }}
             @enderror
         </div>
         <div class="form-group row">
             <div class="col-md-4"><label for="">Mã coupon</label>
-                <input type="text" class="form-control" name="code" placeholder="Input field">
+                <input type="text" class="form-control" name="code" placeholder="Input field" required> 
                 @error('code')
                     {{ $message }}
                 @enderror

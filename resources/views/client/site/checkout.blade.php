@@ -90,7 +90,7 @@
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
                                                     <label for="email_address">Email Address <span
                                                             class="text-danger">*</span></label>
-                                                    <input name="email" value="{{ $acc->email }}" type="email" class="form-control"
+                                                    <input name="email" value="{{ $acc->email }}" type="email" class="form-control" maxlength="40"
                                                         id="email_address" required>
                                                 </div>
                                             </div>

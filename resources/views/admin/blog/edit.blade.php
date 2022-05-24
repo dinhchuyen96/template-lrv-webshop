@@ -7,7 +7,7 @@
             <div class="col-md-6">
                 <label for="">Blog cat</label>
                 <label for=""></label>
-                <select class="form-control" name="cat_id" id="">
+                <select class="form-control" name="cat_id" id="" required>
                     @foreach ($blog_cats as $cats)
                         <option value="{{ $cats->id }}">{{ $cats->name }}</option>
                     @endforeach;
@@ -21,7 +21,7 @@
             <div class="col-md-12">
                 <label for="">Tên blog</label>
                 <textarea type="text" class="form-control" id="" name="name" value=""
-                    placeholder="Input field">{{ $blog->name }}</textarea>
+                    placeholder="Input field" required>{{ $blog->name }}</textarea>
                 @error('name')
                     {{ $message }}
                 @enderror
@@ -30,7 +30,7 @@
         <div class="form-group">
             <div class="form-group">
                 <label for="">Title</label>
-                <textarea type="text" id="tinymce1" class="form-control" name="title"
+                <textarea required type="text" id="tinymce1" class="form-control" name="title"
                     placeholder="Input field">{{$blog->title}}</textarea>
                 @error('title')
                     {{ $message }}
@@ -39,7 +39,7 @@
         </div>
         <div class="form-group">
             <label for="">Nội dung blog</label>
-            <textarea type="text" id="tinymce" class="form-control" id="content_blog" name="content" value=""
+            <textarea type="text" id="tinymce" class="form-control" id="content_blog" required name="content" value=""
                 placeholder="Input field">{{ $blog->content }}</textarea>
             @error('content')
                 {{ $message }}
@@ -49,7 +49,7 @@
             <div class="col-md-6"><label for="">Ảnh</label>
                 <img src="{{ url('uploads') }}/blog/{{ $blog->image_blog }}" alt=""
                     style="width: 483px; height: auto">
-                <input type="file" class="form-control" name="upload" placeholder="Input field">
+                <input type="file" class="form-control" name="upload" placeholder="Input field" accept=".png,.gif,.jpg,.jpeg,.svg">
                 @error('upload')
                     {{ $message }}
                 @enderror

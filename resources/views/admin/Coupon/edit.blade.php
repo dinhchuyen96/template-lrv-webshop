@@ -5,8 +5,8 @@
         @csrf @method('put')
         <div class="form-group row">
             <div class="col-md-6">
-                <label for="">Tên coupon1</label>
-                <input type="text" class="form-control" name="name" value="{{ $coupon1->name }}"
+                <label for="">Tên coupon</label>
+                <input type="text" class="form-control" name="name" value="{{ $coupon1->name }}" required
                     placeholder="Input field">
                 @error('name')
                     {{ $message }}
@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-6">
                 <label for="">Mã coupon1</label>
-                <input type="text" class="form-control" name="code" value="{{ $coupon1->code }}"
+                <input type="text" class="form-control" name="code" value="{{ $coupon1->code }}" required
                     placeholder="Input field">
                 @error('code')
                     {{ $message }}

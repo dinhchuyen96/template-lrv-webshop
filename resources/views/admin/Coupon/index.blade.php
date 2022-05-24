@@ -41,14 +41,10 @@
                     @else
                         <td>-{{ $coupons->discount_ab }}$</td>
                     @endif
-                    <td>{{ $coupons->begin}}</td>
+                    <td>{{ $coupons->begin }}</td>
                     <td>{{ $coupons->end }}</td>
                     <td>
-                        @if ($coupons->status == 0)
-                            <label class="badge badge-danger">Hết hạn</label>
-                        @else
-                            <label class="badge badge-success">Đang áp dụng</label>
-                        @endif
+                        <label class="badge {{ $coupons->status == 1 ? 'badge-success' : 'badge-danger' }} ">{{ $coupons->status == 1 ? 'Áp dụng' : 'Hết hạn' }}</label>
                     </td>
                     <td>{{ $coupons->created_at ? $coupons->created_at->format('d/m/Y') : '' }}</td>
                     <td>

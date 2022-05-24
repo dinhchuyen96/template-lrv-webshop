@@ -5,7 +5,7 @@
     @csrf @method('put')
     <div class="form-group">
         <label for="">Tên danh mục</label>
-        <input type="text" class="form-control" name="name" value="{{$category->name}}" placeholder="Input field">
+        <input type="text" class="form-control" name="name" required value="{{$category->name}}" placeholder="Input field">
         @error('name') {{$message}} @enderror
     </div>
     <div class="form-group">
@@ -17,6 +17,7 @@
             <?php showCategories($categories); ?>
           </select>
         </div>
+        @error('parent_id') {{$message}} @enderror
     </div>
 
     <div class="form-group">

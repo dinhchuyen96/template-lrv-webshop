@@ -12,11 +12,11 @@
             @csrf
             <div class="input-container">
                 <i class="fa fa-envelope icon"></i>
-                <input type="email" placeholder="Email" name="email" class="input-field" required>
+                <input type="email" placeholder="Email" name="email" class="input-field"  maxlength="40"  required>
             </div>
             <div class="input-container">
                 <i class="fa fa-key icon"></i>
-                <input type="password" placeholder="Password" name="password" class="input-field" required>
+                <input type="password" placeholder="Password"  minlength="5"  maxlength="10" name="password" class="input-field" required>
             </div>
             <div class="text-center" style="color: red;">
                 @error('email')

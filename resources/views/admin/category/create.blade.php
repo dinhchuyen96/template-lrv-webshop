@@ -5,7 +5,7 @@
         @csrf
         <div class="form-group">
             <label for="">Tên danh mục</label>
-            <input type="text" class="form-control" name="name" placeholder="Input field">
+            <input type="text" class="form-control" name="name" placeholder="Input field" required>
             @error('name')
                 {{ $message }}
             @enderror
@@ -19,7 +19,7 @@
                     <?php showCategories($category); ?>
                 </select>
             </div>
-            @error('name')
+            @error('parent_id')
                 {{ $message }}
             @enderror
         </div>

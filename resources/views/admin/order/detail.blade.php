@@ -24,7 +24,7 @@
                     @elseif ($order->status == 3)
                         Thành công
                     @elseif ($order->status == 4)
-                        Hoàn đơn
+                        Hoàn / Hủy
                     @endif
                 </button>
             </div>
@@ -33,16 +33,31 @@
                     @csrf
                     <div class="form-group row">
                         <div class="form-group col-md-12 row">
+                            @if($order->status < 3)
                             <select class="form-control col-md-8" name="status" id="">
-                                <option value="">Trạng thái</option>
-                                <option value="0" {{ $order->status == 0 ? 'selected' : '' }}>Chờ Duyệt</option>
-                                <option value="1" {{ $order->status == 1 ? 'selected' : '' }}>Đã duyệt</option>
-                                <option value="2" {{ $order->status == 2 ? 'selected' : '' }}>Đang giao hàng</option>
-                                <option value="3" {{ $order->status == 3 ? 'selected' : '' }}>Thành công</option>
-                                <option value="4" {{ $order->status == 4 ? 'selected' : '' }}>Hoàn đơn</option>
+                                @if ($order->status === 0)
+                                    <option value="0" selected>Chờ duyệt</option>
+                                    <option value="1">Đã duyệt</option>
+                                    <option value="4">Hoàn hủy</option>
+                                @elseif ($order->status === 1)
+                                    <option value="1" selected>Đã duyệt</option>
+                                    <option value="2">Đang giao</option>
+                                    <option value="3">Thành công</option>
+                                    <option value="4">Hoàn / hủy</option>
+                                @elseif ($order->status === 2)
+                                    <option value="3" selected>Đang giao</option>
+                                    <option value="4">Hoàn / hủy</option>
+                                @endif
                             </select>
-                            <button type="submit" class="col-md-4 btn btn-primary">Cập nhật</button>
-
+                            <button  type="submit" class="col-md-4 btn btn-primary"
+                                            @if ($order->status == 0) class="btn btn-dark" 
+                                            @elseif ($order->status == 1) class="btn btn-primary"  
+                                            @elseif ($order->status == 2) class="btn btn-warning"  
+                                            @elseif ($order->status == 3) class="btn btn-success " disabled
+                                            @elseif ($order->status == 4) class="btn btn-danger" disabled
+                                            @endif
+                                            type="submit"  onclick="return confirm('Cập nhật trạng thái?')" > Cập nhật</button>
+                        @endif
                         </div>
 
                     </div>
@@ -109,9 +124,10 @@
         <br>
         <div class="row">
             <h3>Hóa đơn bán hàng</h3>
-        <a  href="{{route('order.index')}}" class="btn btn-primary mb-3"  style="margin-left: 41rem">Quay lại đơn hàng</a>
+            <a href="{{ route('order.index') }}" class="btn btn-primary mb-3" style="margin-left: 41rem">Quay lại đơn
+                hàng</a>
         </div>
-        
+
         <table class="table">
             <thead>
                 <tr>

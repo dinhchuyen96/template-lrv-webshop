@@ -4,8 +4,8 @@
     <form action="{{ route('blog_cat.update', $blog_cat->id) }}" method="POST" role="form">
         @csrf @method('put')
         <div class="form-group">
-            <label for="">Tag name</label>
-            <input type="text" class="form-control" name="blog_cat" value="{{ $blog_cat->name }}"
+            <label for="">Tên category</label>
+            <input type="text" class="form-control" name="blog_cat" value="{{ $blog_cat->name }}" required
                 placeholder="Input field">
             @error('blog_cat')
                 {{ $message }}

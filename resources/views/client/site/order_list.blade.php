@@ -57,15 +57,15 @@
                                                         </td>
                                                         <td>
                                                             @if ($order->status == 0)
-                                                                <span class="btn btn-primary">Chờ xác nhận</span>
+                                                                <span class="btn btn-primary">Chờ duyệt</span>
                                                             @elseif($order->status == 1)
-                                                                <span class="btn btn-info">Đã xác nhận</span>
+                                                                <span class="btn btn-info">Đã duyệt</span>
                                                             @elseif($order->status == 2)
                                                                 <span class="btn btn-warning">Đang giao hàng</span>
                                                             @elseif($order->status == 3)
-                                                                <span class="btn btn-success">Đã giao thành công</span>
+                                                                <span class="btn btn-success">Thành công</span>
                                                             @elseif($order->status == 4)
-                                                                <span class="btn btn-danger">Hoàn đơn</span>
+                                                                <span class="btn btn-danger">Hoàn / Hủy</span>
                                                             @endif
                                                         </td>
                                                         <td> {{$order->totalQuantity()}}</td>

@@ -64,7 +64,7 @@
                                                             <form action="{{route('home.cart-update',$product->id)}}" method="get" id="cart-update">
                                                                 <div class="input-group btn-block">
                                                                     <div class="product-qty mr-3">
-                                                                        <input type="number" name="quantity" value="{{$product->quantity}}">
+                                                                        <input type="number" name="quantity" value="{{$product->quantity}}"  min="1" max="69">
                                                                     </div>
                                                                     <span class="input-group-btn">
                                                                         <button type="submit" class="btn btn-primary" id="cart-update"><i class="fa fa-refresh"></i></button>

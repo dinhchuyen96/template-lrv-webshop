@@ -94,15 +94,15 @@
                                                                         <td>{{$order->created_at->format('d-m-Y')}}</td>
                                                                         <td>
                                                                             @if ($order->status == 0)
-                                                                                <span class="btn btn-primary">Chờ xác nhận</span>
+                                                                                <span style="width: 7rem" class="btn btn-primary">Chờ duyệt</span>
                                                                             @elseif($order->status == 1)
-                                                                                <span class="btn btn-info">Đã xác nhận</span>
+                                                                                <span style="width: 7rem"class="btn btn-info">Đã duyệt</span>
                                                                             @elseif($order->status == 2)
-                                                                                <span class="btn btn-warning">Đang giao hàng</span>
+                                                                                <span style="width: 7rem"class="btn btn-warning">Đang giao hàng</span>
                                                                             @elseif($order->status == 3)
-                                                                                <span class="btn btn-success">Đã giao thành công</span>
+                                                                                <span style="width: 7rem" class="btn btn-success">Thành công</span>
                                                                             @elseif($order->status == 4)
-                                                                                <span class="btn btn-danger">Hoàn đơn</span>
+                                                                                <span style="width: 7rem" class="btn btn-danger">Hoàn / hủy</span>
                                                                             @endif</td>
                                                                             <td>${{number_format($order->total_price)}} for {{$order->totalQuantity()}} item </td>
                                                                             <td><a href="{{route('home.order_detail',$order->id)}}" type="button" class="btn btn-info">View</a></td>
@@ -166,7 +166,7 @@
                                                         <div class="form-group row">
                                                             <label for="f-name" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Phone</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
-                                                                <input type="text" class="form-control" value="0{{$acc->phone}}" name="phone" id="" required>
+                                                                <input type="number" pattern="[0-9]{10}" class="form-control" value="0{{$acc->phone}}" name="phone" id="" required>
                                                                 @error('phone'){{$message}} @enderror
                                                             </div>
                                                         </div>
@@ -180,7 +180,7 @@
                                                         <div class="form-group row">
                                                             <label for="birth" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Birthdate (Optional)</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
-                                                                <input type="date" class="form-control" name="birth_day"id="birth" value="{{$acc->birth_day}}" required>
+                                                                <input type="date" class="form-control" name="birth_day"id="birth" max="2016-01-01" min="1945-12-31"  value="{{$acc->birth_day}}" required>
                                                             </div>
                                                         </div>
                                                         <div class="form-check row p-0 mt-5">

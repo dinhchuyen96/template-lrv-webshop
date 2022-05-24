@@ -84,18 +84,6 @@
                                                         @endforeach
 
                                                     </tr>
-                                                    {{-- <tr>
-                                                        <td class="product-title">Brands</td>
-                                                        <td><a class="text-color" href="#">Studio Design</a></td>
-                                                        <td><a class="text-color" href="#">Graphic Corner</a></td>
-                                                        <td><a class="text-color" href="#">Graphic Corner</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="product-title">Availability</td>
-                                                        <td>In Stock</td>
-                                                        <td>In Stock</td>
-                                                        <td>In Stock</td>
-                                                    </tr> --}}
                                                     <tr>
                                                         <td class="product-title">Rating</td>
                                                         @foreach ($procompare as $value)

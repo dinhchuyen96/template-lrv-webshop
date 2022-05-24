@@ -83,7 +83,7 @@
                                             <div class="form-group row">
                                                 <label for="email" class="col-12 col-sm-12 col-md-4 col-form-label">Email Address</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="text" class="form-control" value="{{old('email')}}" name="email" id="email" required="">
+                                                    <input type="text" class="form-control" value="{{old('email')}}" maxlength="40" name="email" id="email" required="">
                                                     @error('email'){{$message}} @enderror
                                                 </div>
                                             </div>
@@ -104,14 +104,14 @@
                                             <div class="form-group row">
                                                 <label for="newpassword" class="col-12 col-sm-12 col-md-4 col-form-label">New Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="password" name="password" maxlength="16" class="form-control" id="newpassword" required>
+                                                    <input type="password" name="password" maxlength="10" class="form-control" id="newpassword" required>
                                                     <button id="showpass1" class="pass-show-btn" type="button">Show</button>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">Confirm Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="password" name="conf_password" maxlength="16" class="form-control" id="c-password" required>
+                                                    <input type="password" name="conf_password" maxlength="10" class="form-control" id="c-password" required>
                                                     @error('conf_password'){{$message}} @enderror
                                                     <button id="showpass2" class="pass-show-btn" type="button">Show</button>
                                                 </div>
@@ -119,7 +119,7 @@
                                             <div class="form-group row">
                                                 <label for="birth" class="col-12 col-sm-12 col-md-4 col-form-label">Birthdate (Optional)</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="date" class="form-control" max="2002-01-01" name="birth_day" id="birth" placeholder="MM / DD / YYYY" required="">
+                                                    <input type="date" class="form-control" max="2016-01-01" min="1945-12-31" name="birth_day" id="birth" placeholder="MM / DD / YYYY" required="">
                                                     @error('birth_day'){{$message}} @enderror
                                                 </div>
                                             </div>

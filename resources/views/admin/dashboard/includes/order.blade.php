@@ -39,15 +39,15 @@
                             <td>{{ $order->account->first_name }} {{ $order->account->last_name }}</td>
                             <td>
                                 @if ($order->status == 0)
-                                    <span class="btn btn-dark">Chờ xác nhận</span>
+                                    <span style="width: 7rem"  class="btn btn-dark">Chờ duyệt</span>
                                 @elseif($order->status == 1)
-                                    <span class="btn btn-primary">Đã xác nhận</span>
+                                    <span style="width: 7rem" class="btn btn-primary">Đã duyệt</span>
                                 @elseif($order->status == 2)
-                                    <span class="btn btn-warning">Đang giao hàng</span>
+                                    <span style="width: 7rem" class="btn btn-warning">Đang giao hàng</span>
                                 @elseif($order->status == 3)
-                                    <span class="btn btn-success">Đã giao thành công</span>
+                                    <span style="width: 7rem" class="btn btn-success">Thành công</span>
                                 @elseif($order->status == 4)
-                                    <span class="btn btn-danger">Hoàn đơn</span>
+                                    <span style="width: 7rem" class="btn btn-danger">Hoàn / hủy</span>
                                 @endif
                             </td>
                             <td>0{{ $order->account->phone }}</td>

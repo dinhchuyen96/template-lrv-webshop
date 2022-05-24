@@ -81,7 +81,7 @@
                                                     class="col-12 col-sm-12 col-md-4 col-form-label">Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
 
-                                                    <input type="password" name="password" class="form-control"
+                                                    <input type="password" name="password" class="form-control"  minlength="5"  maxlength="10" 
                                                         placeholder="Password" required>
                                                     <button class="pass-show-btn" id="showpass1"
                                                         type="button">Show</button>

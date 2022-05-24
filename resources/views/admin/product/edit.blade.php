@@ -6,7 +6,7 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label for="">Danh mục sản phẩm cha</label>
-                <select class="form-control" name="parent_cat" id="" value="{{$product->parent_cat}}">
+                <select class="form-control" name="parent_cat" id="" value="{{$product->parent_cat}}" required>
                     <option value="{{$product->parent_cat}}">{{$product->p_cat->name}}</option>
                     @foreach($p_cats as $key => $value)
                         <option value="{{$value->id}}">{{$value->name}}</option>
@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-6">
                 <label for="">Danh mục sản phẩm con</label>
-                <select class="form-control" name="category_id" id="" value="{{$product->category_id}}">
+                <select class="form-control" name="category_id" id="" value="{{$product->category_id}}" required>
                     <option value="{{$product->category_id}}">{{$product->cat->name}}</option>
                     <?php showCategories($c_cats); ?>
                 </select>
@@ -28,7 +28,7 @@
             </div>
             <div class="col-md-6">
                 <label for="">Tên sản phẩm</label>
-                <input type="text" class="form-control" name="name" value="{{ $product->name }}"
+                <input type="text" class="form-control" name="name" value="{{ $product->name }}" required
                     placeholder="Input field">
                 @error('name')
                     {{ $message }}
@@ -38,7 +38,7 @@
         <div class="row form-group">
             <div class="col-md-5">
                 <label for="">Giá</label>
-                <input type="text" class="form-control set_price_product" id="price" value="{{ $product->price }}"
+                <input type="text" class="form-control set_price_product" id="price" value="{{ $product->price }}" required
                     name="price" placeholder="Input field">
                 @error('price')
                     {{ $message }}
@@ -64,7 +64,7 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label for="">Mô tả chi tiết</label>
-                <textarea id="tinymce" type="text" class="form-control" name="description"
+                <textarea id="tinymce" type="text" class="form-control" name="description" required
                     placeholder="Input field">{{ $product->description }}</textarea>
                 @error('description')
                     {{ $message }}
@@ -74,7 +74,7 @@
         <div class="form-group row">
             <div class="col-md-8">
                 <label for="">Mô tả ngắn gọn</label>
-                <textarea id="tinymce_sort" type="text" class="form-control" name="sort_description"
+                <textarea id="tinymce_sort" type="text" class="form-control" name="sort_description" required
                     placeholder="Input field">{{ $product->sort_description }}</textarea>
                 @error('sort_description')
                     {{ $message }}
@@ -84,7 +84,7 @@
                 <label for="">Ảnh</label>
                 <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt=""
                     style="width: 280px; height: auto">
-                <input type="file" class="form-control" name="upload" placeholder="Input field">
+                <input type="file" class="form-control" name="upload" placeholder="Input field" accept=".png,.gif,.jpg,.jpeg,.svg"> 
                 @error('upload')
                     {{ $message }}
                 @enderror
