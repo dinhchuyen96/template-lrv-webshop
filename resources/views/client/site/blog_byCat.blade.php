@@ -26,7 +26,7 @@
                         </div>
                         <!-- categories filter end -->
                         <!-- categories filter start -->
-                        {{-- <div class="single-sidebar mb-45">
+                         {{-- <div class="single-sidebar mb-45">
                             <div class="sidebar-inner-title mb-25">
                                 <h3>Recent post</h3>
                             </div>
@@ -41,17 +41,17 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>  --}}
                         <!-- categories filter end -->
                         <!-- categories filter start -->
-                        {{-- <div class="single-sidebar mb-45">
+                         <div class="single-sidebar mb-45">
                             <div class="sidebar-inner-title mb-25">
                                 <h3>Blog archives</h3>
                             </div>
                             <div class="sidebar-content-box">
                                 <div class="filter-attribute-container">
                                     <ul>
-                                        <li><a class="active" href="#">March 2019 (02)</a></li>
+                                        <li><a class="active" href="">March 2019 (02)</a></li>
                                         <li><a href="#">December 2019 (01)</a></li>
                                         <li><a href="#">April 2019 (05)</a></li>
                                         <li><a href="#">September 2017 (02)</a></li>
@@ -59,7 +59,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                         <!-- categories filter end -->
                         <!-- categories filter start -->
                         {{-- <div class="single-sidebar mb-45">

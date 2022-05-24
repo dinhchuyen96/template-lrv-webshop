@@ -48,9 +48,9 @@
             <td><img src="{{url('uploads')}}/products/{{$value->image}}" style="width: 150px; height: 100px"></td>
             <td>
                 @if($value->status ==0 )
-                <label class="badge badge-danger"><h5><i class="far fa-eye-slash"></i></h5></label>
+                <label class="badge badge-danger"><h5>Tạm ẩn</i></h5></label>
                 @else
-                <label class="badge badge-success"><h5><i class="fas fa-check"></i></h5></label>
+                <label class="badge badge-success"><h5>Hiển thị</i></h5></label>
                 @endif
             </td>
             

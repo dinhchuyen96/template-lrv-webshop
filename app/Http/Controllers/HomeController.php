@@ -9,6 +9,7 @@
     use App\Models\Banner;
     use App\Models\Brand_sale;
     use Illuminate\Http\Request;
+    use Carbon\Carbon;
     use DB;
     class HomeController extends Controller{
         public function home(Request $request,Product $product){
@@ -53,7 +54,8 @@
         {   
             // dd($blog_cat_id->id);
             $data_blog = $blog_cat_id->blog_byCat()->paginate(10);
-            // dd($data_blog);
+            // dd($test);
+            
             return view('client.site\blog_byCat',compact('data_blog','blog_cat_id'));
         }
         public function blog_detail(Blog_cat $blog_cat_id, $slug, $slug2 ,Blog $blog)
