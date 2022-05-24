@@ -34,7 +34,7 @@
                                     <div class="section-title">
                                         <h3>History of your order</h3>
                                     </div>
-                                    @if($orders->count())
+                                    @if(isset($orders))
                                         <div class="table-responsive">
                                             <table class="table table-bordered">
                                                 <thead>

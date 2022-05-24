@@ -36,19 +36,19 @@
             $products = $category->products_byCat()->paginate(12);
             $products1 = $category->products_byParent_Cat()->paginate(12);
             // dd($category->id);
-            return view('client.site\category',compact('category','products','products1'));
+            return view('client.site.category',compact('category','products','products1'));
         }
         public function product(Product $product,Category $category){
             $products_related = $category->products_byCat()->paginate(6);
             $reviews = Review::reviews($product->id); //take Product_id to scopereviews in Model Review
-            return view('client.site\product',compact('product','category','reviews','products_related'));
+            return view('client.site.product',compact('product','category','reviews','products_related'));
         }
         public function blog(Blog_cat $blog)
         {   
             $data_blog = Blog::paginate(10);
             // dd($data_blog);
             // dd($blog);
-            return view('client.site\blog',compact('data_blog'));
+            return view('client.site.blog.blog',compact('data_blog'));
         }
         public function blog_cat_id(Blog_cat $blog_cat_id)
         {   
@@ -56,12 +56,12 @@
             $data_blog = $blog_cat_id->blog_byCat()->paginate(10);
             // dd($test);
             
-            return view('client.site\blog_byCat',compact('data_blog','blog_cat_id'));
+            return view('client.site.blog.blog_byCat',compact('data_blog','blog_cat_id'));
         }
         public function blog_detail(Blog_cat $blog_cat_id, $slug, $slug2 ,Blog $blog)
         {
             // dd($blog);
-           return view('client.site.blog_detail',compact('blog','blog_cat_id'));
+           return view('client.site.blog.blog_detail',compact('blog','blog_cat_id'));
         }
     };
 ?>

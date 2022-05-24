@@ -58,7 +58,7 @@
                                     @elseif ($order->status == 4) btn-danger    
                                     @endif
                                                     
-                                "type="submit">
+                                "type="submit" onclick="return confirm('Are you sure?')">
                                 <i class="fas fa-sync-alt"></i>
                             </button>
                             </div>

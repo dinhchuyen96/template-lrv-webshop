@@ -33,7 +33,7 @@
                                 <div class="row align-items-center no-gutters">
                                    <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
                                        <div class="single-info">
-                                           <p class="user-name">Hello <span>John Doe</span> <br>not John Doe? <a class="log-out" href="login.html">Log Out</a></p>
+                                           <p class="user-name">Hello <span>{{$acc->first_name}} {{$acc->last_name}}</span> <br>not {{$acc->last_name}}? <a class="log-out" href="{{route('home.logout')}}">Log Out</a></p>
                                        </div>
                                    </div>
                                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
@@ -48,7 +48,7 @@
                                    </div>
                                    <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-3">
                                        <div class="single-info justify-content-lg-center">
-                                           <a class="btn btn-secondary" href="cart.html">View Cart</a>
+                                           <a class="btn btn-secondary" href="{{route('home.cart')}}">View Cart</a>
                                        </div>
                                    </div>
                                </div> <!-- end of row -->
@@ -60,10 +60,8 @@
                                         <ul class="nav flex-column dashboard-list" role="tablist">
                                             <li><a class="nav-link active" data-toggle="tab" href="#dashboard">Dashboard</a></li>
                                             <li> <a class="nav-link" data-toggle="tab" href="#orders">Orders</a></li>
-                                            <li><a class="nav-link" data-toggle="tab" href="#downloads">Downloads</a></li>
-                                            <li><a class="nav-link" data-toggle="tab" href="#address">Addresses</a></li>
                                             <li><a class="nav-link" data-toggle="tab" href="#account-details">Account details</a></li>
-                                            <li><a class="nav-link" href="login.html">logout</a></li>
+                                            <li><a class="nav-link" href="{{route('home.changer_password')}}">Changer Password</a></li>
                                         </ul> <!-- end of dashboard-list -->
                                     </div>
 
@@ -77,142 +75,112 @@
 
                                             <div id="orders" class="tab-pane fade">
                                                 <h3>Orders</h3>
-                                                <div class="table-responsive">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Order</th>
-                                                                <th>Date</th>
-                                                                <th>Status</th>
-                                                                <th>Total</th>
-                                                                <th>Actions</th>                
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>September 10, 2019</td>
-                                                                <td>Processing</td>
-                                                                <td>$25.00 for 1 item </td>
-                                                                <td><a class="btn btn-secondary" href="cart.html">view</a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>2</td>
-                                                                <td>October 4, 2019</td>
-                                                                <td>Processing</td>
-                                                                <td>$17.00 for 1 item </td>
-                                                                <td><a class="btn btn-secondary" href="cart.html">view</a></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                                @if(isset($orders))
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Order</th>
+                                                                    <th>Date</th>
+                                                                    <th>Status</th>
+                                                                    <th>Total</th>
+                                                                    <th>Actions</th>                
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($orders as $order)
+                                                                    <tr>
+                                                                        <td>{{$i-=1}}</td>
+                                                                        <td>{{$order->created_at->format('d-m-Y')}}</td>
+                                                                        <td>
+                                                                            @if ($order->status == 0)
+                                                                                <span class="btn btn-primary">Chờ xác nhận</span>
+                                                                            @elseif($order->status == 1)
+                                                                                <span class="btn btn-info">Đã xác nhận</span>
+                                                                            @elseif($order->status == 2)
+                                                                                <span class="btn btn-warning">Đang giao hàng</span>
+                                                                            @elseif($order->status == 3)
+                                                                                <span class="btn btn-success">Đã giao thành công</span>
+                                                                            @elseif($order->status == 4)
+                                                                                <span class="btn btn-danger">Hoàn đơn</span>
+                                                                            @endif</td>
+                                                                            <td>${{number_format($order->total_price)}} for {{$order->totalQuantity()}} item </td>
+                                                                            <td><a href="{{route('home.order_detail',$order->id)}}" type="button" class="btn btn-info">View</a></td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                @else
+                                                    <h3>You dont have a order!</h3>
+                                                @endif
                                             </div> <!-- end of tab-pane -->
-
-                                            <div id="downloads" class="tab-pane fade">
-                                                <h3>Downloads</h3>
-                                                <div class="table-responsive">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Product</th>
-                                                                <th>Downloads</th>
-                                                                <th>Expires</th>
-                                                                <th>Download</th>               
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Volga - Ecommerce Bootstrap Template</td>
-                                                                <td>August 10, 2019</td>
-                                                                <td>Never</td>
-                                                                <td><a class="btn btn-secondary" href="#">Download File</a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Gatcomart - Ecommerce HTML Template</td>
-                                                                <td>September 11, 2019</td>
-                                                                <td>Never</td>
-                                                                <td><a class="btn btn-secondary" href="#">Download File</a></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div> <!-- end of tab-pane -->
-
-                                            <div id="address" class="tab-pane">
-                                               <p>The following addresses will be used on the checkout page by default.</p>
-                                                <h4 class="billing-address">Billing address</h4>
-                                                <a class="btn btn-secondary my-4" href="#">edit</a>
-                                                <p>HasTech</p>
-                                                <p>Bangladesh</p>   
-                                            </div> <!-- end of tab-pane -->
-
                                             <div id="account-details" class="tab-pane fade">
                                                 <h3>Account details </h3>
                                                 <div class="login-form">
-                                                    <form action="#">
+                                                    <form action="{{route('home.account_edit')}}" method="POST">
+                                                        @csrf
                                                         <div class="form-group row align-items-center">
                                                             <label class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Title</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
                                                                 <div class="form-row">
                                                                     <div class="col-6 col-sm-3">
                                                                         <div class="custom-radio">
-                                                                            <input class="form-check-input" type="radio" name="gender" id="male">
+                                                                            <input class="form-check-input" @if($acc->sex == "anh") checked @endif type="radio" value="anh" name="sex" id="male">
                                                                             <span class="checkmark"></span>
                                                                             <label class="form-check-label" for="male">Mr.</label>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-6 col-sm-3">
                                                                         <div class="custom-radio">
-                                                                            <input class="form-check-input" type="radio" name="gender" id="female">
+                                                                            <input class="form-check-input" @if($acc->sex == "chị") checked @endif type="radio" value="chị" name="sex" id="female">
                                                                             <span class="checkmark"></span>
                                                                             <label class="form-check-label" for="female">Mrs.</label>
                                                                         </div>
                                                                     </div>
+                                                                    @error('sex'){{$message}} @enderror
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="f-name" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">First Name</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
-                                                                <input type="text" class="form-control" id="f-name" required>
+                                                                <input type="text" class="form-control" value="{{$acc->first_name}}" name="first_name" id="first_name" required>
+                                                                @error('first_name'){{$message}} @enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="l-name" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Last Name</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
-                                                                <input type="text" class="form-control" id="l-name" required>
+                                                                <input type="text" class="form-control" value="{{$acc->last_name}}" id="last_name" name="last_name" required>
+                                                                @error('last_name'){{$message}} @enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="email" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Email Address</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
-                                                                <input type="text" class="form-control" id="email" required>
+                                                                <input type="text" class="form-control" name="email" value="{{$acc->email}}" id="email" readonly required>
+                                                                @error('email'){{$message}} @enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="inputpassword" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Current Password</label>
+                                                            <label for="f-name" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Phone</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
-                                                                <input type="password" class="form-control" id="inputpassword" required>
+                                                                <input type="text" class="form-control" value="0{{$acc->phone}}" name="phone" id="" required>
+                                                                @error('phone'){{$message}} @enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="newpassword" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">New Password</label>
+                                                            <label for="inputaddress" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Address</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
-                                                                <input type="password" class="form-control" id="newpassword" required>
-                                                                <button class="pass-show-btn" type="button">Show</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label for="c-password" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Confirm Password</label>
-                                                            <div class="col-12 col-sm-12 col-md-8 col-lg-6">
-                                                                <input type="password" class="form-control" id="c-password" required>
-                                                                <button class="pass-show-btn" type="button">Show</button>
+                                                                <input type="text" class="form-control" value="{{$acc->address}}" name="address" id="address" required>
+                                                                @error('address'){{$message}} @enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="birth" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Birthdate (Optional)</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
-                                                                <input type="text" class="form-control" id="birth" placeholder="MM / DD / YYYY" required>
+                                                                <input type="date" class="form-control" name="birth_day"id="birth" value="{{$acc->birth_day}}" required>
                                                             </div>
                                                         </div>
                                                         <div class="form-check row p-0 mt-5">

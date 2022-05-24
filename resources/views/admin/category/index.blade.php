@@ -65,8 +65,8 @@ function tableCategories($categories, $parent_id = 0, $char = '')
                 ' 
                         <a href="' .
                 route('category.edit', $item->id) .
-                '" class="btn btn-primary">Sửa</a>
-                        <button class="btn btn-danger" onclick="return confirm(\'bạn có muốn xóa không?\')">Xóa</button>
+                '" class="btn btn-primary"><i class="far fa-edit"></a>
+                        <button class="btn btn-danger" onclick="return confirm(\'bạn có muốn xóa không?\')"><i class="fas fa-backspace"></i></button>
                      </form>';
 
             echo '</td>';

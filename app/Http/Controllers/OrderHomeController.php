@@ -14,17 +14,8 @@ class OrderHomeController extends Controller
     public function thank(){
         return view('client.site.thank');
     }
-    public function checkout(){
-        $acc = Auth::guard('account')->user();
-        $carts = session('cart') ? session('cart'):[];
-        // $coupon = session('coupon') ? session('coupon'):[];
-        // dd($coupon->discount_ab);
-        if($carts){
-            return view('client.site\checkout', compact('acc'));
-        }else{
-            return redirect()->route('home')->with('ok',"Mời bạn đặt hàng");
-        }
-        
+    public function checkout(){        
+        return view('client.site\checkout');        
     }
     public function check_coupon(Request $req)
     {

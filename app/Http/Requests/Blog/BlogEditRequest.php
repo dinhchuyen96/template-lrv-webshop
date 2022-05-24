@@ -26,9 +26,9 @@ class BlogEditRequest extends FormRequest
         
         return [
             'name' => 'required|unique:blogs,name,'.$this->blog->id,
-            'title' => 'required|max:700|unique:blogs,title,'.$this->blog->id,
+            'title' => 'required|max:7000|unique:blogs,title,'.$this->blog->id,
             'content' => 'required|min:20|max:90000',
-            'upload' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:5120',
+            'upload' => 'image|mimes:jpg,png,jpeg,gif,svg|max:5120',
         ];
     }
     public function messages()
@@ -41,8 +41,8 @@ class BlogEditRequest extends FormRequest
             'content.required' => 'Nội dung blog không được để trống',
             'content.min' => 'Nội dung blog quá ngắn',
             'content.max' => 'Nội dung quá dài, vui lòng thử lại',
-            'upload.required' => 'Logo không được để trống',
-            'upload.mimes' => 'Logo phải có định dạng VD jpg, jpeg, gif, png',
+            'upload.required' => 'Ảnh blog không được để trống',
+            'upload.mimes' => 'Tệp phải có định dạng VD jpg, jpeg, gif, png',
             'upload.max' => 'file quá lớn, vui lòng chọn file nhỏ hơn'
         ];
     }

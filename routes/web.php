@@ -79,9 +79,11 @@ Route::group(['prefix'=>'account'], function(){
 
 });       
 
-Route::group(['prefix'=>'profile','middleware' => 'acc'], function(){
+Route::group(['prefix'=>'my-account','middleware' => 'acc'], function(){
+    Route::get('/profile',[AccountController::class, 'my_account'])->name('my_account');
     Route::get('/changer-password',[AccountController::class, 'changer_password'])->name('home.changer_password');
     Route::post('/changer-password',[AccountController::class, 'post_changer_password'])->name('home.changer_password');
+    Route::post('/edit',[AccountController::class, 'post_edit_account'])->name('home.account_edit');
 });   
 
                             // Order route
@@ -115,10 +117,9 @@ Route::get('/myaccount', [HomeController::class, 'myaccount'])->name('myaccount'
 Route::get('/admin/login', [Login_adController::class, 'login'])->name('login');
 Route::post('/admin/login', [Login_adController::class, 'post_login'])->name('login');
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-Route::get('filter-order', [DashboardController::class, 'fillterOrder'])->name('filter.order');
-Route::get('filter-money', [DashboardController::class, 'filterMoney'])->name('filter.money');
-     
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('filter-order', [DashboardController::class, 'fillterOrder'])->name('filter.order');
+    Route::get('filter-money', [DashboardController::class, 'filterMoney'])->name('filter.money');     
     Route::get('/logout', [Login_adController::class, 'logout_admin'])->name('ad_logout');
     Route::get('/', [AdminController::class, 'index'])->name('admin.category.index');
     Route::resources([

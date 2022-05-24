@@ -26,24 +26,7 @@
                             </div>
                         </div>
                         <!-- categories filter end -->
-                        <!-- categories filter start -->
-                        <div class="single-sidebar mb-45">
-                            <div class="sidebar-inner-title mb-25">
-                                <h3>Recent post</h3>
-                            </div>
-                            <div class="sidebar-content-box">
-                                <div class="filter-attribute-container">
-                                    <ul>
-                                        <li><a class="active" href="#">blog image post</a></li>
-                                        <li><a href="#">Post with gallery</a></li>
-                                        <li><a href="#">Post with Audio</a></li>
-                                        <li><a href="#">Post with Video</a></li>
-                                        <li><a href="#">Maecenas ultricies</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- categories filter end -->
+                        
                         <!-- categories filter start -->
                         <div class="single-sidebar mb-45">
                             <div class="sidebar-inner-title mb-25">

@@ -44,7 +44,10 @@ class Blog_AdminController extends Controller
      */
     public function store(BlogCreateRequest $request)
     {   
+        // dd("ok");
         $data_blog = $request->all('name','cat_id','title','content','image_blog','status',);
+        // dd($data_blog);
+
         if($request->upload){
             $file_name = $request->upload->getClientOriginalName();
 
@@ -99,7 +102,7 @@ class Blog_AdminController extends Controller
      */
     public function update(BlogEditRequest $request, Blog $blog)
     {
-        $data_blog = $request->all('name','blog_cat','title','content','status');
+        $data_blog = $request->all('name','cat_id','title','content','status');
         if($request->has('upload')){
             $file_name = $request->upload->getClientOriginalName();
             $partInfo = pathinfo($file_name);

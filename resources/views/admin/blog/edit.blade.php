@@ -5,9 +5,9 @@
         @csrf @method('PUT')
         <div class="row form-group">
             <div class="col-md-6">
-                <label for="">Blog tag</label>
+                <label for="">Blog cat</label>
                 <label for=""></label>
-                <select class="form-control" name="tag_id" id="">
+                <select class="form-control" name="cat_id" id="">
                     @foreach ($blog_cats as $cats)
                         <option value="{{ $cats->id }}">{{ $cats->name }}</option>
                     @endforeach;

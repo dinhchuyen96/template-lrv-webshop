@@ -56,14 +56,13 @@
                                         <a class="ha-toggle" style="color:#fedc19" href="#">Hello
                                             {{ $acc->last_name }}<span class="lnr lnr-chevron-down"></span></a>
                                     @else
-                                        <a class="ha-toggle" href="#">My Account<span
+                                        <a class="ha-toggle" href="#"><i class="fa fa-user" style="font-size:25px" aria-hidden="true"></i><span
                                                 class="lnr lnr-chevron-down"></span></a>
                                     @endif
                                     <ul class="box-dropdown ha-dropdown">
                                         @if (auth()->guard('account')->check())
-                                            <li><a href="{{ route('home.order') }}">My-Order</a></li>
+                                            <li><a href="{{ route('my_account') }}">My-Account</a></li>
                                             <li><a href="{{ route('home.logout') }}">Logout</a></li>
-                                            <li><a href="{{ route('home.changer_password') }}">Changer Password</a>
                                             </li>
                                         @else
                                             <li><a href="{{ route('home.login') }}">Login</a></li>

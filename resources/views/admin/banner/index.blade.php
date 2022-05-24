@@ -35,8 +35,8 @@
             <td>
                 <form action="{{ route('banner.destroy', $banner->id) }}" method="post">
                     @csrf @method('DELETE')
-                    <a href="{{ route('banner.edit', $banner->id) }}" class="btn btn-primary">Sửa</a>
-                    <button class="btn btn-danger" onclick="return confirm('are you sure?')">Xóa</button>
+                    <a href="{{ route('banner.edit', $banner->id) }}" class="btn btn-primary"><i class="far fa-edit"></a>
+                    <button class="btn btn-danger" onclick="return confirm('are you sure?')"><i class="fas fa-backspace"></i></button>
                 </form>
             </td>
         </tr>

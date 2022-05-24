@@ -4335,9 +4335,9 @@ label {
     display: flex;
 }
 
-.user-info .single-info p a {
+/* .user-info .single-info p a {
     color: #111;
-}
+} */
 
 .user-info .user-name span {
     font-size: 15px;
