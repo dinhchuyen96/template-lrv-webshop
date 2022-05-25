@@ -98,8 +98,13 @@ class OrderHomeController extends Controller
     }
     
     public function detail(Order $order){ // chi tiết từng đơn hàng
-        //  dd($order);
+        $item = null;
+        $acc_online_id = Auth::guard('account')->user()->id;
+        $account_id = $order->account_id;
+        if($acc_online_id == $account_id){
+            $item = $order;
+        }
         $i=0;
-        return view('client.site.order_detail',compact('order','i'));
+        return view('client.site.order_detail',compact('item','i'));
     }
 }

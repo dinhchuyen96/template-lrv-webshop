@@ -283,9 +283,6 @@
                             <li>
                                 <a data-toggle="tab" href="#module-two">On sale Products</a>
                             </li>
-                            <li>
-                                <a data-toggle="tab" href="#module-three">Featured Products</a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -296,7 +293,7 @@
                                 <div class="col mb-30">
                                     <div class="product-item">
                                         <div class="product-thumb">
-                                            <a href="product-details.html">
+                                            <a href="{{ route('home.product', ['product' => $top_sale->id,'category' => $top_sale->cat->id,'slug' => Str::slug($top_sale->name)]) }}">
                                                 <img src="{{ url('uploads') }}/products/{{ $top_sale->image }}"
                                                     class="pri-img" alt="">
                                                 <img src="assets/img/product/product-3.jpg" class="sec-img" alt="">
@@ -304,7 +301,7 @@
                                             <div class="box-label">
                                                 <div class="label-product label_sale">
                                                     @if ($top_sale->percent_sale > 0)
-                                                        <span>Sale - {{ $top_sale->percent_sale }}%</span>
+                                                        <span>Sale - {{ $top_sale->percent_sale }}%</span>                                                        
                                                     @endif
                                                 </div>
                                             </div>
@@ -314,17 +311,16 @@
                                                 <a href="{{ route('home.add-compare', $top_sale->id) }}"
                                                     title="Compare"><i class="lnr lnr-sync"></i></a>
                                                 <a href="#" title="Quick view"
-                                                    data-target="#quickk_view-product-{{ $top_sale->id }}"
+                                                    data-target="#quickk_view{{ $top_sale->id }}"
                                                     data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                             </div>
                                         </div>
                                         <div class="product-caption">
                                             <div class="manufacture-product">
-                                                <p><a href="shop-grid-left-sidebar.html">{{ $top_sale->cat->name }}</a>
-                                                </p>
+                                                <p><a href="{{ route('home.category', $top_sale->cat->id) }}">{{ $top_sale->cat->name }}</a></p>
                                             </div>
                                             <div class="product-name">
-                                                <h4><a href="product-details.html">{{ $top_sale->name }}</a></h4>
+                                                <h4><a href="{{ route('home.product', ['product' => $top_sale->id,'category' => $top_sale->cat->id,'slug' => Str::slug($top_sale->name)]) }}">{{ $top_sale->name }}</a></h4>
                                             </div>
                                             <div class="ratings">
                                                 @if ($top_sale->review_rt->avg('rating') == 0)
@@ -365,7 +361,7 @@
                                 <div class="col mb-30">
                                     <div class="product-item">
                                         <div class="product-thumb">
-                                            <a href="product-details.html">
+                                            <a href="{{ route('home.product', ['product' => $product_sale_hot->id,'category' => $product_sale_hot->cat->id,'slug' => Str::slug($product_sale_hot->name)]) }}">
                                                 <img src="{{ url('uploads') }}/products/{{ $product_sale_hot->image }}"
                                                     class="pri-img" alt="">
                                                 <img src="assets/img/product/product-1.jpg" class="sec-img" alt="">
@@ -373,7 +369,7 @@
                                             <div class="box-label">
                                                 <div class="label-product label_sale">
                                                     @if ($product_sale_hot->percent_sale > 0)
-                                                        <span>Sale - {{ $product_sale_hot->percent_sale }}%</span>
+                                                        <span>Sale - {{ $product_sale_hot->percent_sale }}%</span>                                                        
                                                     @endif
                                                 </div>
                                             </div>
@@ -383,18 +379,18 @@
                                                 <a href="{{ route('home.add-compare', $product_sale_hot->id) }}"
                                                     title="Compare"><i class="lnr lnr-sync"></i></a>
                                                 <a href="#" title="Quick view"
-                                                    data-target="#quickk_view-product-{{ $product_sale_hot->id }}"
+                                                    data-target="#quickk_view{{$product_sale_hot->id }}"
                                                     data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                             </div>
                                         </div>
                                         <div class="product-caption">
                                             <div class="manufacture-product">
                                                 <p><a
-                                                        href="shop-grid-left-sidebar.html">{{ $product_sale_hot->cat->name }}</a>
+                                                        href="{{ route('home.category', $product_sale_hot->cat->id) }}">{{ $product_sale_hot->cat->name }}</a>
                                                 </p>
                                             </div>
                                             <div class="product-name">
-                                                <h4><a href="product-details.html">{{ $product_sale_hot->name }}</a></h4>
+                                                <h4><a href="{{ route('home.product', ['product' => $product_sale_hot->id,'category' => $product_sale_hot->cat->id,'slug' => Str::slug($product_sale_hot->name)]) }}">{{ $product_sale_hot->name }}</a></h4>
                                             </div>
                                             <div class="ratings">
                                                 @if ($product_sale_hot->review_rt->avg('rating') == 0)
@@ -426,50 +422,6 @@
                                     </div>
                                 </div> <!-- single item end -->
                             @endforeach
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="module-three">
-                        <div class="module-four-wrapper custom-seven-column">
-                            <div class="col mb-30">
-                                <div class="product-item">
-                                    <div class="product-thumb">
-                                        <a href="product-details.html">
-                                            <img src="assets/img/product/product-14.jpg" class="pri-img" alt="">
-                                            <img src="assets/img/product/product-1.jpg" class="sec-img" alt="">
-                                        </a>
-                                        <div class="box-label">
-                                            <div class="label-product label_new">
-                                                <span>new</span>
-                                            </div>
-                                        </div>
-                                        <div class="action-links">
-                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                            <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                            <a href="#" title="Quick view" data-target="#quickk_view" data-toggle="modal"><i
-                                                    class="lnr lnr-magnifier"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-caption">
-                                        <div class="manufacture-product">
-                                            <p><a href="shop-grid-left-sidebar.html">apple</a></p>
-                                        </div>
-                                        <div class="product-name">
-                                            <h4><a href="product-details.html">jamuna XB10 Portable Speaker</a></h4>
-                                        </div>
-                                        <div class="ratings">
-                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                            <span><i class="lnr lnr-star"></i></span>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="regular-price">£30.31</span>
-                                        </div>
-                                        <button class="btn-cart" type="button">add to cart</button>
-                                    </div>
-                                </div>
-                            </div> <!-- single item end -->
                         </div>
                     </div>
                 </div>
@@ -509,7 +461,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title">
-                            <h3><span>Brand</span> sale</h3>
+                            <h3><span>Brand</span></h3>
                         </div>
                     </div>
                     <div class="col-12">
@@ -596,41 +548,12 @@
                                             <div class="pro-large-img">
                                                 <img src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
                                             </div>
-                                            <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
-                                            </div>
-                                            <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
-                                            </div>
-                                            <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
-                                            </div>
-                                            <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
-                                            </div>
-                                            <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
-                                            </div>
                                         </div>
                                         <div class="pro-nav">
                                             <div class="pro-nav-thumb"><img
                                                     src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
                                             </div>
-                                            <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
-                                            </div>
-                                            <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
-                                            </div>
-                                            <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
-                                            </div>
-                                            <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
-                                            </div>
-                                            <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                     <div class="col-lg-7">
@@ -673,7 +596,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="product-detail-sort-des pb-20">
-                                                    <p>{{ $psn->sort_description }}</p>
+                                                    <p>{!! $psn->sort_description !!}</p>
                                                 </div>
                                                 <div class="pro-details-list pt-20">
                                                     <ul>
@@ -750,6 +673,144 @@
             </div>
         @endforeach
         <!-- Quick view modal start -->
+        @foreach ($product_top_sale as $product_sale_top)
+            <div class="modal fade" id="quickk_view{{ $product_sale_top->id }}">
+                <div class="container">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="product-large-slider mb-20">
+                                            <div class="pro-large-img">
+                                                <img src="{{ url('uploads') }}/products/{{ $product_sale_top->image }}"
+                                                    alt="" />
+                                            </div>
+                                        </div>
+                                        <div class="pro-nav">
+                                            <div class="pro-nav-thumb"><img
+                                                    src="{{ url('uploads') }}/products/{{ $product_sale_top->image }}"
+                                                    alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="product-details-inner">
+                                            <div class="product-details-contentt">
+                                                <div class="pro-details-name mb-10">
+                                                    <h3>{{ $product_sale_top->name }}</h3>
+                                                </div>
+                                                <div class="pro-details-review mb-20">
+                                                    <ul>
+                                                        <li>
+                                                            @if ($product_sale_top->review_rt->avg('rating') == 0)
+                                                                <span><i class="fa fa-star"></i></span>
+                                                                <span><i class="fa fa-star"></i></span>
+                                                                <span><i class="fa fa-star"></i></span>
+                                                                <span><i class="fa fa-star"></i></span>
+                                                                <span><i class="fa fa-star"></i></span>
+                                                            @else
+                                                                @for ($i = 0; $i < $product_sale_top->review_rt->avg('rating'); $i++)
+                                                                    <span><i class="fa fa-star"></i></span>
+                                                                @endfor
+                                                            @endif
+                                                        </li>
+                                                        <li><a href="#">{{ $psn->review_rt->count() }} Reviews</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="price-box mb-15">
+                                                    @if ($product_sale_top->sale_price > 0)
+                                                        <span class="regular-price"><span
+                                                                class="special-price">${{ number_format($product_sale_top->sale_price, 0) }}</span></span>
+                                                        <span
+                                                            class="old-price"><del>{{ $product_sale_top->price }}$</del></span>
+                                                    @else
+                                                        <span class="regular-price"><span
+                                                                class="special-price">${{ $product_sale_top->price }}</span></span>
+                                                    @endif
+                                                </div>
+                                                <div class="product-detail-sort-des pb-20">
+                                                    <p>{!! $product_sale_top->sort_description !!}</p>
+                                                </div>
+                                                <div class="pro-details-list pt-20">
+                                                    <ul>
+                                                        <li><span>Availability :</span>In Stock</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="product-availabily-option mt-15 mb-15">
+                                                    <h3>Available Options</h3>
+                                                    <div class="color-optionn">
+                                                        <h4><sup>*</sup>color</h4>
+                                                        <ul>
+                                                            <li>
+                                                                <a class="c-black" href="#" title="Black"></a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="c-blue" href="#" title="Blue"></a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="c-brown" href="#" title="Brown"></a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="c-gray" href="#" title="Gray"></a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="c-red" href="#" title="Red"></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="pro-quantity-box mb-30">
+                                                    <div class="qty-boxx">
+                                                        <form method="GET"
+                                                            action="{{ route('home.cart-add', $product_sale_top->id) }}">
+                                                            @csrf
+                                                            <label>qty :</label>
+                                                            <input type="number" name="quantity" placeholder="0" min="1"
+                                                                max="50">
+                                                            <button type="submit" class="btn btn-cart lg-btn">add to
+                                                                cart</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <div class="pro-social-sharing">
+                                                    <label>share :</label>
+                                                    <ul>
+                                                        <li class="list-inline-item">
+                                                            <a href="#" class="bg-facebook" title="Facebook">
+                                                                <i class="fa fa-facebook"></i>
+                                                                <span>like 0</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="#" class="bg-twitter" title="Twitter">
+                                                                <i class="fa fa-twitter"></i>
+                                                                <span>tweet</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="#" class="bg-google" title="Google Plus">
+                                                                <i class="fa fa-google-plus"></i>
+                                                                <span>google +</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach 
+        <!-- Quick view modal end -->
+        <!-- Quick view modal start -->
         @foreach ($product_sale as $product_sale)
             <div class="modal fade" id="quickk_view{{ $product_sale->id }}">
                 <div class="container">
@@ -766,48 +827,8 @@
                                                 <img src="{{ url('uploads') }}/products/{{ $product_sale->image }}"
                                                     alt="" />
                                             </div>
-                                            <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/products/{{ $product_sale->image }}"
-                                                    alt="" />
-                                            </div>
-                                            <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/products/{{ $product_sale->image }}"
-                                                    alt="" />
-                                            </div>
-                                            <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/products/{{ $product_sale->image }}"
-                                                    alt="" />
-                                            </div>
-                                            <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/products/{{ $product_sale->image }}"
-                                                    alt="" />
-                                            </div>
-                                            <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/products/{{ $product_sale->image }}"
-                                                    alt="" />
-                                            </div>
                                         </div>
                                         <div class="pro-nav">
-                                            <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $product_sale->image }}"
-                                                    alt="" />
-                                            </div>
-                                            <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $product_sale->image }}"
-                                                    alt="" />
-                                            </div>
-                                            <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $product_sale->image }}"
-                                                    alt="" />
-                                            </div>
-                                            <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $product_sale->image }}"
-                                                    alt="" />
-                                            </div>
-                                            <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $product_sale->image }}"
-                                                    alt="" />
-                                            </div>
                                             <div class="pro-nav-thumb"><img
                                                     src="{{ url('uploads') }}/products/{{ $product_sale->image }}"
                                                     alt="" />
@@ -852,7 +873,34 @@
                                                 <div class="product-detail-sort-des pb-20">
                                                     <p>{{ $product_sale->sort_description }}</p>
                                                 </div>
-
+                                                <div class="pro-details-list pt-20">
+                                                    <ul>
+                                                        <li><span>Availability :</span>In Stock</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="product-availabily-option mt-15 mb-15">
+                                                    <h3>Available Options</h3>
+                                                    <div class="color-optionn">
+                                                        <h4><sup>*</sup>color</h4>
+                                                        <ul>
+                                                            <li>
+                                                                <a class="c-black" href="#" title="Black"></a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="c-blue" href="#" title="Blue"></a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="c-brown" href="#" title="Brown"></a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="c-gray" href="#" title="Gray"></a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="c-red" href="#" title="Red"></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                                 <div class="pro-quantity-box mb-30">
                                                     <div class="qty-boxx">
                                                         <form method="GET"
@@ -898,6 +946,6 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @endforeach 
         <!-- Quick view modal end -->
     @stop()

@@ -14,9 +14,9 @@
     class HomeController extends Controller{
         public function home(Request $request,Product $product){
             $category = Category::paginate(2);
-            $product_sale = Product::product_sale(10);
+            $product_sale = Product::product_sale(5);
             $product_new = Product::product_new(4);
-            $product_top_sale = Product::product_top_sale(10);
+            $product_top_sale = Product::product_top_sale(5);
             $banners = Banner::banner(3);
             $logo = Brand_sale::where('status','>',0)->get();
             // dd($product_sale);

@@ -106,7 +106,7 @@
                                             <div class="form-row mb-3">
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
                                                     <label for="tel_number">telephone</label>
-                                                    <input name="phone" type="tel" value="{{ $acc->phone }}" class="form-control"
+                                                    <input name="phone" type="tel" value="0{{ $acc->phone }}" class="form-control"
                                                         id="tel_number" pattern="[0-9]{10}">
                                                 </div>
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
