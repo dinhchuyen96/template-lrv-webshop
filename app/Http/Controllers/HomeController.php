@@ -14,14 +14,13 @@
     class HomeController extends Controller{
         public function home(Request $request,Product $product){
             $category = Category::paginate(2);
-            $product_sale = Product::product_sale(8);
+            $product_sale = Product::product_sale(10);
             $product_new = Product::product_new(4);
+            $product_top_sale = Product::product_top_sale(10);
             $banners = Banner::banner(3);
             $logo = Brand_sale::where('status','>',0)->get();
-            // dd($logo);
-            // $tab_pro = Product::get()->groupBy('parent_cat');
-            // dd($tab_pro);
-            return view('client.site\home',compact('product_sale','product_new','banners','logo'));
+            // dd($product_sale);
+            return view('client.site\home',compact('product_sale','product_new','product_top_sale','banners','logo'));
         }
         public function contactus(){
             $contacts = Contact::where('status','>',0)->first();

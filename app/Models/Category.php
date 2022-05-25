@@ -28,7 +28,7 @@ class Category extends Model
     }
 
     public function products_byParent_Cat(){
-        return $this->hasMany(product::class, 'parent_cat','id');
+        return $this->hasMany(product::class, 'parent_cat','id')->limit(6);
     }
     
     public function children()

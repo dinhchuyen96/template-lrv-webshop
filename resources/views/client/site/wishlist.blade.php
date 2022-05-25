@@ -49,7 +49,7 @@
                                                     @foreach($wishlists as $wishlist)
                                                     <tr>
                                                         <td>
-                                                            <a href="product-details.html"><img src="{{url('uploads')}}/{{$wishlist->image}}" alt="Wishlist Product Image" width="80" title="Compete Track Tote"></a>
+                                                            <a href="product-details.html"><img src="{{url('uploads')}}/products/{{$wishlist->image}}" alt="Wishlist Product Image" width="80" title="Compete Track Tote"></a>
                                                             </td>
                                                             <td>
                                                                 <a href="{{route('home.product',['product'=>$wishlist->id,'category'=>$wishlist->category_id,'slug'=>Str::slug($wishlist->name)])}}">{{$wishlist->name}}</a>

@@ -43,10 +43,14 @@ class Product extends Model
     }
 
     public function scopeProduct_sale($query, $limit = 4){
-        $query = $query->where('sale_price','>',0)->where('status','>',0)->limit($limit)->get();
+        $query = $query->where('sale_price','>',0)->where('status','>',0)->orderBy('percent_sale','DESC')->limit($limit)->get();
         return $query;
     }
     
+    public function scopeProduct_top_sale($query, $limit = 6){
+        $query = $query->where('number_sale','>',0)->where('status','>',0)->orderBy('number_sale','DESC')->limit($limit)->get();
+        return $query;
+    }
     public function scopeProduct_new($query, $limit = 4){
         $query = $query->orderBy('id','DESC')->where('status','>',0)->limit($limit)->get();
         return $query;
