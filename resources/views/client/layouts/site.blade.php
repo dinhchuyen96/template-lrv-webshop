@@ -44,7 +44,6 @@
                         <div class="header-top-left">
                             <ul>
                                 <li><span>Email: </span>{{$hotline->email_1}}</li>
-                                <li>Free Shipping for all Order of $99</li>
                             </ul>
                         </div>
                     </div>

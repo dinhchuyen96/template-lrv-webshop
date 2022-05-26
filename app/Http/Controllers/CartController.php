@@ -41,10 +41,10 @@ class CartController extends Controller
             unset($carts[$product->id]); 
             session(['cart'=> $carts]);
         }
-        if($carts != null){
+        if(!empty($carts)){
             return redirect()->route('home.cart')->with('ok', 'Xóa sản phẩm khỏi giỏ hàng thành công');
         }        
-        if($carts == null){
+        if(empty($carts)){
             return redirect()->route('home')->with('ok', 'Giỏ hàng rỗng, mời bạn đặt hàng');;
         }
     }
@@ -55,7 +55,7 @@ class CartController extends Controller
              $carts[$product->id]->quantity =$quantity;
              session(['cart'=> $carts]);
         }
-        return redirect()->route('home.cart')->with('ok', 'Cập nhật số lượng thành công');
+        return redirect()->route('home.cart')->with('ok', 'Cập nhật giỏ hàng thành công');
     }
     public function clear(Product $product){
          session(['cart'=> null]);

@@ -1,7 +1,7 @@
 @extends('client.layouts.site')
 @section('title', 'My Order')
 @section('main')
-    @if ($item == null)
+    @if (is_null($item))
         <div class="row mt-5 mb-5">
             <div class="col-md-12 text-center">
                   <h2>Có lỗi xảy ra, vui lòng đăng nhập lại</h2>

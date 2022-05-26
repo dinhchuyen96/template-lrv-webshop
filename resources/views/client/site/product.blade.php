@@ -201,7 +201,7 @@
                                                             <tr>
                                                                 <td colspan="2">
                                                                     <p style="text-align: left" id="review">{{ $reviews->content_review }}-
-                                                                        @if ($reviews->account_id == $acc->id)
+                                                                        @if ($reviews->account_id == $acc->id || $acc->id == '-1')
                                                                             <button id="btn-delete" onclick="return confirm('are you sure?')" class="btn">
                                                                                 <i style="color:rgb(240, 29, 29)" class="fa fa-window-close" aria-hidden="true"></i>
                                                                             </button>

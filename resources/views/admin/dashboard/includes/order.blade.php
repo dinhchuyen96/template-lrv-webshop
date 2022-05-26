@@ -8,7 +8,7 @@
                         <th>Serial</th>
                         <th>purchase date</th>
                         <th class="text-center">Name</th>
-                        <th class="text-center">Status <br> (waiting confirm: )</th>
+                        <th class="text-center">Status </th>
                         <th>Phone</th>
                         <th>Quantity</th>
                         <th>Unit Price</th>
@@ -20,7 +20,7 @@
                         <th>Serial</th>
                         <th>purchase date</th>
                         <th class="text-center">Name</th>
-                        <th class="text-center">Status <br> (waiting confirm: )</th>
+                        <th class="text-center">Status </th>
                         <th>Phone</th>
                         <th>Quantity</th>
                         <th>Unit Price</th>
@@ -38,17 +38,48 @@
                             </td>
                             <td>{{ $order->account->first_name }} {{ $order->account->last_name }}</td>
                             <td>
-                                @if ($order->status == 0)
-                                    <span style="width: 7rem"  class="btn btn-dark">Chờ duyệt</span>
-                                @elseif($order->status == 1)
-                                    <span style="width: 7rem" class="btn btn-primary">Đã duyệt</span>
-                                @elseif($order->status == 2)
-                                    <span style="width: 7rem" class="btn btn-warning">Đang giao hàng</span>
-                                @elseif($order->status == 3)
-                                    <span style="width: 7rem" class="btn btn-success">Thành công</span>
-                                @elseif($order->status == 4)
-                                    <span style="width: 7rem" class="btn btn-danger">Hoàn / hủy</span>
-                                @endif
+                                <form action="{{ route('order_status', $order->id) }}" method="post">
+                                    @csrf
+                                    <div class="form-group row">
+                                        <div class="form-group col-md-8">
+                                            <select class="form-control" name="status" id="">
+                                                @if ($order->status === 0)
+                                                    <option value="0" selected>Chờ duyệt</option>
+                                                    <option value="1">Đã duyệt</option>
+                                                    <option value="4">Hoàn hủy</option>
+                                                @elseif ($order->status === 1)
+                                                    <option value="1" selected>Đã duyệt</option>
+                                                    <option value="2">Đang giao</option>
+                                                    <option value="3">Thành công</option>
+                                                    <option value="4">Hoàn / hủy</option>
+                                                @elseif ($order->status === 2)
+                                                    <option value="3" selected>Đang giao</option>
+                                                    <option value="4">Hoàn / hủy</option>
+                                                @elseif($order->status === 3)
+                                                    <option value="3" selected>Thành công</option>
+                                                @else
+                                                    <option value="4" selected>Hoàn / hủy</option>
+                                                @endif
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button href=""
+                                                @if ($order->status == 0) class="btn btn-dark" 
+                                                @elseif ($order->status == 1) class="btn btn-primary"  
+                                                @elseif ($order->status == 2) class="btn btn-warning"  
+                                                @elseif ($order->status == 3) class="btn btn-success " disabled
+                                                @elseif ($order->status == 4) class="btn btn-danger" disabled
+                                                @endif
+                                                type="submit"  onclick="return confirm('Cập nhật trạng thái?')">
+                                                @if($order->status == 3)<i class="fas fa-check"></i>
+                                                @elseif ($order->status == 4)<i class="fas fa-times"></i>
+                                                
+                                                @else <i class="fas fa-sync-alt"></i>                                            
+                                                @endif
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </td>
                             <td>0{{ $order->account->phone }}</td>
                             <td>{{ $order->totalQuantity() }}</td>

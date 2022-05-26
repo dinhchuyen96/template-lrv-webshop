@@ -38,7 +38,6 @@ class DashboardController extends Controller
             $number = Order::where('status',$status)->whereBetween('created_at', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])->count();  
             $totalMoney = Order::where('status',$status)->whereBetween('created_at', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])->sum('total_price');       
         }
-    //    dd($number);
        return view('admin.dashboard.index', compact('totalMoney','number'));
       
     }
