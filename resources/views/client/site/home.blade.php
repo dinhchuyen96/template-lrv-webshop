@@ -633,7 +633,7 @@
                                                             @csrf
                                                             <label>qty :</label>
                                                             <input type="number" name="quantity" placeholder="0" min="1"
-                                                                max="50">
+                                                                max="69">
                                                             <button type="submit" class="btn btn-cart lg-btn">add to
                                                                 cart</button>
                                                         </form>
@@ -770,7 +770,7 @@
                                                             @csrf
                                                             <label>qty :</label>
                                                             <input type="number" name="quantity" placeholder="0" min="1"
-                                                                max="50">
+                                                                max="69">
                                                             <button type="submit" class="btn btn-cart lg-btn">add to
                                                                 cart</button>
                                                         </form>
@@ -908,7 +908,7 @@
                                                             @csrf
                                                             <label>qty :</label>
                                                             <input type="number" name="quantity" placeholder="0" min="1"
-                                                                max="50">
+                                                                max="69">
                                                             <button type="submit" class="btn btn-cart lg-btn">add to
                                                                 cart</button>
                                                         </form>
