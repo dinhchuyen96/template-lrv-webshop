@@ -48,7 +48,7 @@ class ProductAdminController extends Controller
      */
     public function store(ProductCreateRequest $req)
     {
-        $data_product = $req->all('name','sort_description','description','price','percent_sale','sale_price','parent_cat','category_id','status',);
+        $data_product = $req->all('name','number_sale','sort_description','description','price','percent_sale','sale_price','parent_cat','category_id','status',);
         // upload ảnh
         // dd($data_product);
         $file_name = $req->upload->getClientOriginalName();
@@ -112,7 +112,7 @@ class ProductAdminController extends Controller
     public function update(ProductEditRequest $req,Product $product)
     {
         // dd($req->all());
-        $data_product = $req->all('name','price','sale_price','percent_sale','parent_cat','category_id','status','description','sort_description','title_slide','take_slide');
+        $data_product = $req->all('name','number_sale','price','sale_price','percent_sale','parent_cat','category_id','status','description','sort_description','title_slide','take_slide');
         if($req->has('upload')){
             $file_name = $req->upload->getClientOriginalName();
             $partInfo = pathinfo($file_name);

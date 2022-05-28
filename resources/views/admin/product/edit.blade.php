@@ -6,11 +6,11 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label for="">Danh mục sản phẩm cha</label>
-                <select class="form-control" name="parent_cat" id="" value="{{$product->parent_cat}}" required>
-                    <option value="{{$product->parent_cat}}">{{$product->p_cat->name}}</option>
-                    @foreach($p_cats as $key => $value)
-                        <option value="{{$value->id}}">{{$value->name}}</option>
-                    @endforeach                    
+                <select class="form-control" name="parent_cat" id="" value="{{ $product->parent_cat }}" required>
+                    <option value="{{ $product->parent_cat }}">{{ $product->p_cat->name }}</option>
+                    @foreach ($p_cats as $key => $value)
+                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                    @endforeach
                 </select>
                 @error('parent_cat')
                     {{ $message }}
@@ -18,14 +18,16 @@
             </div>
             <div class="col-md-6">
                 <label for="">Danh mục sản phẩm con</label>
-                <select class="form-control" name="category_id" id="" value="{{$product->category_id}}" required>
-                    <option value="{{$product->category_id}}">{{$product->cat->name}}</option>
+                <select class="form-control" name="category_id" id="" value="{{ $product->category_id }}" required>
+                    <option value="{{ $product->category_id }}">{{ $product->cat->name }}</option>
                     <?php showCategories($c_cats); ?>
                 </select>
                 @error('category_id')
                     {{ $message }}
                 @enderror
             </div>
+        </div>
+        <div class="row form-group">
             <div class="col-md-6">
                 <label for="">Tên sản phẩm</label>
                 <input type="text" class="form-control" name="name" value="{{ $product->name }}" required
@@ -34,12 +36,21 @@
                     {{ $message }}
                 @enderror
             </div>
+            <div class="col-md-6">
+                <label for="">Số lượng đã bán</label>
+                <input type="number" class="form-control"
+                    name="number_sale" value="{{ $product->number_sale }}" placeholder="Input field">
+                @error('number_sale')
+                    {{ $message }}
+                @enderror
+            </div>
+
         </div>
         <div class="row form-group">
             <div class="col-md-5">
                 <label for="">Giá</label>
-                <input type="text" class="form-control set_price_product" id="price" value="{{ $product->price }}" required
-                    name="price" placeholder="Input field">
+                <input type="text" class="form-control set_price_product" id="price" value="{{ $product->price }}"
+                    required name="price" placeholder="Input field">
                 @error('price')
                     {{ $message }}
                 @enderror
@@ -84,7 +95,8 @@
                 <label for="">Ảnh</label>
                 <img src="{{ url('uploads') }}/products/{{ $product->image }}" alt=""
                     style="width: 280px; height: auto">
-                <input type="file" class="form-control" name="upload" placeholder="Input field" accept=".png,.gif,.jpg,.jpeg,.svg"> 
+                <input type="file" class="form-control" name="upload" placeholder="Input field"
+                    accept=".png,.gif,.jpg,.jpeg,.svg">
                 @error('upload')
                     {{ $message }}
                 @enderror
@@ -113,7 +125,7 @@
         </div>
     </form>
 @stop()
-<?php 
+<?php
 function showCategories($categories, $parent_id = 0, $char = '')
 {
     foreach ($categories as $key => $item) {

@@ -119,7 +119,7 @@
                                     placeholder="Search entire store here" required>
                                 <input type="submit" class="top-search-btn" value="Search">
                             </form>
-                            @if ($search_value)
+                            @if (isset($search_value))
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">

@@ -82,7 +82,7 @@
                                         class="linkimg">
                                         <img width="240" height="116"
                                             src="{{url('uploads') }}/blog/{{ $data_blog->image_blog }}"
-                                            alt="OPPO Find X5 Pro 5G tr&#236;nh l&#224;ng Việt Nam ng&#224;y 05/05/2022: Chinh phục từng khoảnh khắc">
+                                            alt="">
 
                                     </a>
                                     <a href="{{route('blog_detail',['blog_cat_id'=>$data_blog->cat_id,'slug'=>Str::slug($blog_cat->name),'slug2'=>Str::slug($data_blog->name),'blog'=>$data_blog->id])}}"

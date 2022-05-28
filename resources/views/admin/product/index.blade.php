@@ -32,7 +32,10 @@
             <th>Giá <hr> Sale</th>
             <th>Mô tả</th>
             <th class="text-center">Ảnh</th>
-            <th>Trạng thái</th>
+            <th>Trạng thái
+                <hr>
+                Doanh số
+            </th>
             <th>Ngày tạo</th>
             <th></th>
         </tr>
@@ -46,7 +49,7 @@
             <td>{{number_format($value->price)}} / {{$value->sale_price}}<hr>-{{$value->percent_sale}}%</td>
             <td><button class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $value->id }}"><i class="fas fa-info-circle"></i></button></td>
             <td><img src="{{url('uploads')}}/products/{{$value->image}}" style="width: 150px; height: 100px"></td>
-            <td><label class="badge {{$value->status == 1 ? 'badge-success':'badge-danger'}} ">{{ $value->status == 1 ? 'Hiển thị' : 'Tạm Ẩn' }}</label></td>
+            <td><label class="badge {{$value->status == 1 ? 'badge-success':'badge-danger'}} ">{{ $value->status == 1 ? 'Hiển thị' : 'Tạm Ẩn' }}</label><hr>{{$value->number_sale}}</td>
             <td>{{$value->created_at ? $value->created_at->format('d/m/Y'): ''}}</td>
             <td>
                 <form action="{{ route('product.destroy', $value->id) }}" method="post">

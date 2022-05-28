@@ -26,6 +26,8 @@
                     {{ $message }}
                 @enderror
             </div>
+        </div>
+        <div class="form-group row">
             <div class="col-md-6">
                 <label for="">Tên sản phẩm</label>
                 <input type="text" style="padding" class="form-control" value="{{ old('name') }}" name="name" required
@@ -34,6 +36,14 @@
                     {{ $message }}
                 @enderror
             </div>
+            <div class="col-md-6">
+                <label for="">Doanh số</label>
+                <input type="number" name="number_sale" class="form-control" value='0' id=""> 
+                @error('number_sale')
+                    {{ $message }}
+                @enderror
+            </div>
+           
         </div>
         <div class="form-group">
             <label for="">Tóm tắt sản phẩm</label>
@@ -45,8 +55,8 @@
         </div>
         <div class="form-group">
             <label for="">Mô tả sản phẩm</label>
-            <textarea type="text" id="tinymce_detail" class="form-control" value="{{ old('description') }}" name="description" required
-                placeholder="Mô tả chi tiết sản phẩm"></textarea>
+            <textarea type="text" id="tinymce_detail" class="form-control" value="{{ old('description') }}" name="description"
+                required placeholder="Mô tả chi tiết sản phẩm"></textarea>
             @error('description')
                 {{ $message }}
             @enderror
@@ -75,9 +85,11 @@
                 @enderror
             </div>
         </div>
+
         <div class="form-group">
             <label for="">Ảnh</label>
-            <input type="file" class="form-control" name="upload" placeholder="Input field" accept=".png,.gif,.jpg,.jpeg,.svg">
+            <input type="file" class="form-control" name="upload" placeholder="Input field"
+                accept=".png,.gif,.jpg,.jpeg,.svg">
             @error('upload')
                 {{ $message }}
             @enderror

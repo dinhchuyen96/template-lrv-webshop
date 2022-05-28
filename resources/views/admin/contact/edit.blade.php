@@ -50,7 +50,7 @@
             </div>
             <div class="col-md-6">
                 <label for="">Số điện thoại 2</label>
-                <input type="number" class="form-control" name="phone_2" value="{{ $contact->phone_2 }}"
+                <input type="tel" class="form-control" name="phone_2" value="{{ $contact->phone_2 }}"
                     placeholder="Input field">
                 @error('phone_2')
                     {{ $message }}
@@ -60,7 +60,7 @@
         <div class="form-group row">
             <div class="col-md-6">
                 <label for="">Số fax 1</label>
-                <input type="number" class="form-control" name="fax_1" value="{{ $contact->fax_1 }}"
+                <input type="tel" class="form-control" name="fax_1" value="{{ $contact->fax_1 }}"
                     placeholder="Input field">
                 @error('fax_1')
                     {{ $message }}

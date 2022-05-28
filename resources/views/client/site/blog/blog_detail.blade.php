@@ -156,7 +156,7 @@
                                      </div>
                                      <div class="col-lg-4 col-md-4 col-sm-4">
                                          <label>Website</label>
-                                         <input type="text" class="coment-field" name="webside" placeholder="Website">
+                                         <input type="url" class="coment-field" name="webside" placeholder="Website">
                                          @error('webside') {{$message}} @enderror
                                      </div>
                                      <div class="col-12">

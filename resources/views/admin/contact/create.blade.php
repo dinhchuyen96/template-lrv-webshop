@@ -34,14 +34,14 @@
         <div class="form-group row">
             <div class="col-md-6">
                 <label for="">Số điện thoại 1</label>
-                <input type="number" class="form-control" required name="phone_1" placeholder="Input field" required pattern="[0-9]{10}">
+                <input type="tel" class="form-control" required name="phone_1" placeholder="Input field" required pattern="[0-9]{10}">
                 @error('phone_1')
                     {{ $message }}
                 @enderror
             </div>
             <div class="col-md-6">
                 <label for="">Số điện thoại 2</label>
-                <input type="number" class="form-control" name="phone_2" placeholder="Input field" pattern="[0-9]{10}">
+                <input type="tel" class="form-control" name="phone_2" placeholder="Input field" pattern="[0-9]{10}">
                 @error('phone_2')
                     {{ $message }}
                 @enderror

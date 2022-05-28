@@ -26,6 +26,7 @@ class ProductCreateRequest extends FormRequest
         return [
             'name' => 'required|unique:products',
             'price' => 'required|numeric',
+            'number_sale' => 'numeric',
             'category_id' => 'required|numeric',
             'sale_price' => 'lt:price',
             'upload' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:5120'
@@ -37,6 +38,7 @@ class ProductCreateRequest extends FormRequest
             'name.required' => 'Tên sản phẩm không được để trống',
             'name.unique' => 'Tên sản phẩm đã được sử dụng',
             'price.numeric' => 'Giá sản phẩm phải là số',
+            'number_sale.numeric' => 'Mục này phải là số',
             'price.required' => 'Giá sản phẩm không được để trống',
             'sale_price.numeric' => 'Giá khuyễn mãi phải là số',
             'category_id.required' => 'Tên danh mục không được để trống',
