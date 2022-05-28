@@ -11,7 +11,7 @@
     <meta name="keywords" content="">
     <!-- Page Title -->
     <title>@yield('title')</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/options.css">
 
     <!--Fevicon-->
@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/style.css">
     <!-- responsive css -->
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/responsive.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <!-- Modernizer JS -->
     <script src="{{ url('home') }}/assets/js/vendor/modernizr-3.5.0.min.js"></script>
 </head>
@@ -551,18 +551,6 @@
         <!-- footer bottom area end -->
     </footer>
     <!-- footer area end -->
-    @if (session()->has('ok'))
-        <div class="modal fade" id="overlay">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="background-color: rgb(255, 255, 255)">
-                        {{-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> --}}
-                        <h3 class="modal-title" style="color: green">{{session()->get('ok') }}</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
     @if (session()->has('no'))
         <div class="modal fade" id="overlay">
             <div class="modal-dialog">
@@ -586,6 +574,17 @@
     <script src = "{{ url('home') }}/assets/js/main.js"></script>
     <script src = "{{ url('home') }}/assets/js/addcart.js"></script>
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @if(Session::has('ok'))
+        <script type="text/javascript">
+            toastr.success("{!! session::get('ok')!!}");
+        </script>
+    @endif
+    @if(Session::has('no'))
+        <script type="text/javascript">
+            toastr.warning("{!! session::get('no')!!}");
+        </script>
+    @endif
 </body>
 
 <!-- Mirrored from template.hasthemes.com/sinrato/sinrato/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 22 Feb 2022 12:52:23 GMT -->

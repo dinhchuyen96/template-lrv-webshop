@@ -24,15 +24,15 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'first_name' => 'bail|required',
+            'last_name' => 'bail|required',
             // 'sex' => 'required',
-            'email' => 'required|unique:accounts',
-            'phone' => 'required|unique:accounts',
-            'password' => 'required',
-            'conf_password' => 'required|same:password',
-            'address'=>'required',
-            'birth_day' => 'required'
+            'email' => 'bail|required|unique:accounts',
+            'phone' => 'bail|required|unique:accounts',
+            'password' => 'bail|required|digits_between:5,8',
+            'conf_password' => 'bail|required|same:password',
+            'address'=>'bail|required',
+            'birth_day' => 'bail|required'
         ];
     }
     public function messages(){
@@ -45,6 +45,7 @@ class RegisterRequest extends FormRequest
             'phone.required' => 'Vui lòng nhập số điện thoại',
             'phone.unique' => 'Số điện thoại đã được sử dụng',
             'password.required' => 'Vui lòng nhập mật khẩu',
+            'password.digits_between' => 'Mật khẩu từ 5-8 ký tự',
             'conf_password.same' => 'Mật khẩu chưa khớp, vui lòng nhập lại',
             'conf_password.required' => 'Vui lòng nhập lại mật khẩu',
             'address.required' => 'Vui lòng nhập địa chỉ của bạn',

@@ -12,6 +12,13 @@
     use Carbon\Carbon;
     use DB;
     class HomeController extends Controller{
+        public function __construct() {
+            header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+            header("Pragma: no-cache"); // HTTP 1.0.
+            header("Expires: 0"); // Proxies.
+            header('Access-Control-Allow-Origin: *');      
+        }
+    
         public function home(Request $request,Product $product){
             $category = Category::paginate(2);
             $product_sale = Product::product_sale(5);

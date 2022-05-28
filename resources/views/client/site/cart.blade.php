@@ -39,9 +39,10 @@
                                             <table class="table table-bordered">
                                                 <thead>
                                                     <tr>
+                                                        <td>#</td>
                                                         <td>Image</td>
                                                         <td>Product Name</td>
-                                                        <td>Model</td>
+                                                        <td>Brand</td>
                                                         <td>Quantity</td>
                                                         <td>Unit Price</td>
                                                         <td>Total</td>
@@ -50,6 +51,7 @@
                                                 <tbody>
                                                     @foreach($carts as $product)
                                                     <tr>
+                                                        <td>{{$loop->index+1}}</td>
                                                         <td>
                                                             <a href="{{route('home.product',['product'=>$product->id,'category' => $product->category_id,'slug'=>Str::slug($product->name)])}}"><img src="{{url('uploads')}}/products/{{$product->image}}" alt="Cart Product Image" title="Compete Track Tote" class="img-thumbnail"></a>
                                                         </td>

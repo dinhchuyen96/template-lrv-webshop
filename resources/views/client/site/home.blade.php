@@ -125,8 +125,7 @@
                                             </div>
                                         </div>
                                         <div class="action-links">
-                                            <a href="{{ route('home.add-wishlist', $psn->id) }}" title="Wishlist"><i
-                                                    class="lnr lnr-heart"></i></a>
+                                            <a href="{{ route('home.add-wishlist', $psn->id) }}" title="Wishlist"><i class="fa-thin fa-heart"></i></a>
                                             <a href="{{ route('home.add-compare', $psn->id) }}" title="Compare"><i
                                                     class="lnr lnr-sync"></i></a>
                                             <a href="#" title="Quick view" data-target="#quickk_view{{ $psn->id }}"
@@ -632,7 +631,7 @@
                                                             action="{{ route('home.cart-add', $psn->id) }}">
                                                             @csrf
                                                             <label>qty :</label>
-                                                            <input type="number" name="quantity" placeholder="0" min="1"
+                                                            <input type="number" name="quantity" placeholder="0" value="1" min="1"
                                                                 max="69">
                                                             <button type="submit" class="btn btn-cart lg-btn">add to
                                                                 cart</button>

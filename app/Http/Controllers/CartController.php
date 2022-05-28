@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Http\Requests\CartRequest;
 
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    public function __construct() {
+        header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        header("Pragma: no-cache"); // HTTP 1.0.
+        header("Expires: 0"); // Proxies.
+        header('Access-Control-Allow-Origin: *');      
+    }
+
     public function view(){
         // session(['cart'=> null]);
         $carts = session('cart')? session('cart') : [];
@@ -14,9 +22,10 @@ class CartController extends Controller
         return view('client.site\cart',compact('carts'));
     }
     
-    public function add(Product $product){
-
+    public function add(Product $product,CartRequest $req){
         $carts = session('cart')?session('cart'):[];
+        $quantity = $req->input('quantity')?:1;
+        // dd($quantity);
         $quantity = request('quantity',1);
         if(isset($carts[$product->id])){
             $carts[$product->id]->quantity +=$quantity;

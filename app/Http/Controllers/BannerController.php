@@ -42,6 +42,7 @@ class BannerController extends Controller
      */
     public function store(BannerRequest $request)
     {
+        dd($request->all());
         $data_banner = $request->all('name','title','product_id','image_slide','status');
         // dd($data_banner);
         $file_name = $request->upload->getClientOriginalName();
