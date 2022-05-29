@@ -26,6 +26,7 @@ class Account extends Authenticatable
         'phone',
         'password',
         'address',
+        'avatar',
         'birth_day',
         'status'
     ];

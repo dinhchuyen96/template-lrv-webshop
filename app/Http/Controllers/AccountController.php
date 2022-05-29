@@ -11,6 +11,7 @@ use App\Http\Requests\Account\EditAccountRequest;
 use App\Http\Requests\Account\LoginRequest;
 use Auth;
 use Hash;
+use Str;
 
 class AccountController extends Controller
 {
@@ -52,6 +53,21 @@ class AccountController extends Controller
     public function post_register(RegisterRequest $req){
         $data= $req->all();
         $data['password'] = bcrypt($req->password);
+        //upload avatar
+        $file_name = $req->upload->getClientOriginalName();
+        $partInfo = pathinfo($file_name);
+        $ext = $partInfo['extension'];
+
+        $base_name = $partInfo['filename']; 
+
+        $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
+
+        $check_upload = $req->upload->move(public_path('uploads/avatars'), $final_name);
+
+        if($check_upload){
+            $data['avatar'] = $final_name;
+        };
+        // dd($data);
         Account::create($data);
         return redirect()->route('home.login')->with('ok','Đăng ký thành công');
        

@@ -110,7 +110,7 @@
                                                     <tr>
                                                         <td class="product-title">Summary</td>
                                                         @foreach ($procompare as $key => $value)
-                                                            <td class="description">{{ $value->sort_description }}</td>
+                                                            <td class="description">{!! $value->sort_description !!}</td>
                                                         @endforeach
                                                     </tr>
 

@@ -39,7 +39,7 @@
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
                                     <div class="registration-form login-form">
-                                        <form role="form" action="{{route('home.register')}}" method="POST">
+                                        <form role="form" action="{{route('home.register')}}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="login-info mb-20">  
                                                 <p>Already have an account? <a href="login.html">Log in instead!</a></p>
@@ -51,7 +51,7 @@
                                                         <div class="col-6 col-sm-3">
                                                             <div class="custom-radio">
                                                                 <input type="hidden" name="id" value="">
-                                                                <input class="form-check-input" value="anh" type="radio" name="sex" id="male">
+                                                                <input class="form-check-input" value="anh" type="radio" name="sex" id="male" required>
                                                                 <span class="checkmark"></span>
                                                                 <label class="form-check-label" for="male">Mr.</label>
                                                             </div>
@@ -123,6 +123,16 @@
                                                     @error('birth_day'){{$message}} @enderror
                                                 </div>
                                             </div>
+                                            <div class="form-group row">
+                                                <label class="col-12 col-sm-12 col-md-4 col-form-label" for="">Upload avatar</label>
+                                                <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                                                <input type="file" class="form-control" name="upload" placeholder="Input field"
+                                                    accept=".png,.gif,.jpg,.jpeg,.svg">
+                                                @error('upload')
+                                                    {{ $message }}
+                                                @enderror
+                                                </div>
+                                            </div>
                                             <div class="form-check row p-0 mt-5">
                                                 <div class="col-12 col-sm-12 col-md-8 offset-md-4 col-lg-6 offset-lg-4">
                                                     <div class="custom-checkbox">
@@ -141,6 +151,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            
                                             <div class="register-box d-flex justify-content-end mt-20">
                                                 <button type="submit" class="btn btn-secondary">Register</button>
                                             </div>

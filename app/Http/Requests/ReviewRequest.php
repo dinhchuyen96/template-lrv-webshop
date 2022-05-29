@@ -26,19 +26,13 @@ class ReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_id' => 'required',
-            'name_reviewer' => 'required|max:50|min:4',
-            'content_review' => 'required|string|max:500|min:10'
+            'content_review' => 'required|string|max:300|min:2'
         ];
     }
     public function messages()
     {
         return [
-            'product_id.required' => 'Có lỗi xảy ra, vui lòng thử lại sau',
-            'content_review.required' => 'Mời bạn nhập!',
-            'name_review.max' => 'Tên quá dài, mời bạn nhập lại',
-            'name_review.min' => 'Mời bạn nhập đầy đủ họ-tên',
-            'content_review.max' => 'Bài viết quá dài, tối đa 500 ký tự',
+            'content_review.max' => 'Bài viết quá dài, tối đa 300 ký tự',
             'content_review.min' => 'Review quá ngắn, mời bạn nhập lại'
         ];
     }

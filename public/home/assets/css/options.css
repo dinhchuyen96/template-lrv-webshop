@@ -7,9 +7,20 @@
     padding: 0;
 
 }
-
+.form-repcomment{
+    display:none;    
+    }
+.reply-comment{
+    cursor: pointer;
+    color: #4263f7!important;
+}
+.content-comment{
+    text-align: left; 
+    font-size: 14px;
+    line-height: 14px;
+}
 #review {
-    width: 250px;
+    width: 550px;
 }
 
 #review:hover #btn-delete {

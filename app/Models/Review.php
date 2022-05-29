@@ -16,6 +16,10 @@ class Review extends Model
         // dd($product_id);
         return $query;
     }
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id', 'id');
+    }
     
     
 }

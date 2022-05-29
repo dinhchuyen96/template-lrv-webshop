@@ -80,7 +80,7 @@
                                                         <table class="table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>Order</th>
+                                                                    <th>#</th>
                                                                     <th>Date</th>
                                                                     <th>Status</th>
                                                                     <th>Total</th>
@@ -90,6 +90,7 @@
                                                             <tbody>
                                                                 @foreach($orders as $order)
                                                                     <tr>
+
                                                                         <td>{{$i-=1}}</td>
                                                                         <td>{{$order->created_at->format('d-m-Y')}}</td>
                                                                         <td>

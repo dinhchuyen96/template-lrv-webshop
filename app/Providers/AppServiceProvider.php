@@ -38,9 +38,10 @@ class AppServiceProvider extends ServiceProvider
             
             if($acc == null){
                 $acc = [
-                    'id' => 0,
+                    'id' => -12,
                     'first_name' => "Guest",
-                    'last_name' => ""
+                    'last_name' => "",
+                    'avatar' => 'man.jpg'
                 ];
                 $acc =(object)$acc; // tạo đối tượng
                 // dd($acc);

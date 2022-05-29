@@ -51,12 +51,23 @@
                         <div class="box box-right">
                             <ul>
                                 <li class="settings">
-                                    @if (auth()->guard('account')->check())
-                                        <a class="ha-toggle" style="color:#fedc19" href="#">Hello
-                                            {{ $acc->last_name }}<span class="lnr lnr-chevron-down"></span></a>
+                                    @if(auth()->guard('account')->check())
+                                        <img class="rounded-circle" src="@if($acc->avatar == null)
+                                                        @if($acc->sex == 'anh')
+                                                            {{url('uploads')}}/avatars/man.jpg
+                                                        @else
+                                                            {{url('uploads')}}/avatars/woman.jpg
+                                                        @endif
+                                                    @else
+                                                        {{ url('uploads')}}/avatars/{{$acc->avatar}}
+                                                    @endif
+                                                    " style="width: 50px"
+                                                        alt="">
+                                            <a class="ha-toggle" style="color:#fedc19" href="#">Hello
+                                                {{ $acc->last_name }}<span class="lnr lnr-chevron-down"></span></a>
                                     @else
-                                        <a class="ha-toggle" href="#"><i class="fa fa-user" style="font-size:25px" aria-hidden="true"></i><span
-                                                class="lnr lnr-chevron-down"></span></a>
+                                            <a class="ha-toggle" href="#"><i class="fa fa-user" style="font-size:25px" aria-hidden="true"></i><span
+                                                    class="lnr lnr-chevron-down"></span></a>
                                     @endif
                                     <ul class="box-dropdown ha-dropdown">
                                         @if (auth()->guard('account')->check())
@@ -551,18 +562,7 @@
         <!-- footer bottom area end -->
     </footer>
     <!-- footer area end -->
-    @if (session()->has('no'))
-        <div class="modal fade" id="overlay">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="background-color: rgb(255, 255, 255)">
-                        {{-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> --}}
-                        <h3 class="modal-title" style="color: red">{{session()->get('no') }}</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
+   
 
     <!-- all js include here -->
     <script src = "{{ url('home') }}/assets/js/vendor/jquery-1.12.4.min.js">

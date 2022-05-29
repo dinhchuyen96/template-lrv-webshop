@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use App\Models\Review;
 use App\Models\Category;
 use App\Models\Product;
@@ -36,12 +36,18 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ReviewRequest $request)
+    public function store(ReviewRequest $request,Product $product)
     {
-        $data= $request->all();
+        $data = $request->only('product_id','account_id','content_review');
+        $acc = Auth::guard('account')->user();
+        $acc =(object)$acc;
+        $data['name_reviewer'] = $acc->first_name.' '.$acc->last_name;
+        $data['account_id'] = $acc->id;
+        $data['product_id'] = $product->id;
+        // dd($data['name_reviewer']);
         // dd($data);
         Review::create($data);
-        return redirect()->back(); 
+        return redirect()->back()->with('ok','Đăng review thành công'); 
     }
 
     /**
@@ -89,7 +95,7 @@ class ReviewController extends Controller
     {
         // dd($review);
         $review->delete();
-        return redirect()->back();
+        return redirect()->back()->with('ok','Xóa review thành công');
 
     }
 }

@@ -3,6 +3,8 @@
 @section('main')
 
 
+    @if ($check === true)
+    @endif
 
     <body>
         <div class="breadcrumb-area mb-30">
@@ -109,7 +111,8 @@
                                 <div class="price-box mb-15">
                                     <span class="regular-price">
                                         @if ($product->sale_price < $product->price && $product->sale_price != 0)
-                                            <span class="special-price">{{ number_format($product->sale_price, 0) }}$</span>
+                                            <span
+                                                class="special-price">{{ number_format($product->sale_price, 0) }}$</span>
                                     </span>
                                     <span class="old-price"><del>{{ $product->price }}$</del></span>
                                 @else
@@ -129,7 +132,8 @@
                                     <div class="pro-quantity-box mb-30">
                                         <div class="qty-boxx">
                                             <label>qty :</label>
-                                            <input type="number" name="quantity" placeholder="1" value="1" min="1" max="69" required>
+                                            <input type="number" name="quantity" placeholder="1" value="1" min="1" max="69"
+                                                required>
                                             <button class="btn-cart lg-btn">Buy Now</button>
                                         </div>
                                         @error('quantity')
@@ -137,9 +141,9 @@
                                         @enderror
                                     </div>
                                 </form>
-                                    
+
                             </div>
-                        </div>                   
+                        </div>
 
                         <div class="pro-social-sharing">
                             <label>share :</label>
@@ -201,19 +205,48 @@
 
                                             <table class="table table-striped table-bordered">
                                                 @foreach ($reviews as $reviews)
-                                                    <form method="POST"
-                                                        action="{{ route('review.destroy', ['product' => $product->id, 'category' => $product->category_id, 'slug' => Str::slug($product->name), 'review' => $reviews->id]) }}">
-                                                        @csrf @method('DELETE')
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="text-align: left">
-                                                                    <strong>{{ $reviews->name_reviewer }} </strong></td>
-                                                                <td class="text-right">
-                                                                    {{ $reviews->created_at->format('d-m-Y') }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td colspan="2">
-                                                                    <p style="text-align: left" id="review">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="row"
+                                                                style="text-align: left; border:none;">
+                                                                <div class="col-md-8 mt-1">
+                                                                    <strong>{{ $reviews->name_reviewer }} </strong>
+                                                                </div>
+                                                                <div class="product-ratings col-md-4 mb-3">
+                                                                    <ul class="ratting d-flex mt-2">
+                                                                        <li><span style="color: #fedc19"><i
+                                                                                    {{ $reviews->rating <= '4' ? 'hidden' : '' }}
+                                                                                    class="fa fa-star"></i></span>
+                                                                        </li>
+                                                                        <li><span style="color: #fedc19"><i
+                                                                                    {{ $reviews->rating <= '3' ? 'hidden' : '' }}
+                                                                                    class="fa fa-star"></i></span>
+                                                                        </li>
+                                                                        <li><span style="color: #fedc19"><i
+                                                                                    {{ $reviews->rating <= '2' ? 'hidden' : '' }}
+                                                                                    class="fa fa-star"></i></span>
+                                                                        </li>
+                                                                        <li><span style="color: #fedc19"><i
+                                                                                    {{ $reviews->rating <= '1' ? 'hidden' : '' }}
+                                                                                    class="fa fa-star"></i></span>
+                                                                        </li>
+                                                                        <li><span style="color: #fedc19"><i
+                                                                                    class="fa fa-star"></i></span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+
+                                                            <td class="text-right">
+                                                                {{ $reviews->created_at->format('d-m-Y') }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                <form method="POST"
+                                                                    action="{{ route('review.destroy', ['product' => $product->id, 'category' => $product->category_id, 'slug' => Str::slug($product->name), 'review' => $reviews->id]) }}">
+                                                                    @csrf @method('DELETE')
+                                                                    <p class="content-comment mx-1" style=" line-he"
+                                                                        id="review">
                                                                         {{ $reviews->content_review }}-
                                                                         @if ($reviews->account_id == $acc->id || $acc->id == '-1')
                                                                             <button id="btn-delete"
@@ -224,94 +257,121 @@
                                                                                     aria-hidden="true"></i>
                                                                             </button>
                                                                         @endif
+
                                                                     </p>
-                                                                    <div class="product-ratings">
-                                                                        <ul class="ratting d-flex mt-2">
-                                                                            <li><span style="color:yellow"><i
-                                                                                        {{ $reviews->rating <= '4' ? 'hidden' : '' }}
-                                                                                        class="fa fa-star"></i></span>
-                                                                            </li>
-                                                                            <li><span style="color:yellow"><i
-                                                                                        {{ $reviews->rating <= '3' ? 'hidden' : '' }}
-                                                                                        class="fa fa-star"></i></span>
-                                                                            </li>
-                                                                            <li><span style="color:yellow"><i
-                                                                                        {{ $reviews->rating <= '2' ? 'hidden' : '' }}
-                                                                                        class="fa fa-star"></i></span>
-                                                                            </li>
-                                                                            <li><span style="color:yellow"><i
-                                                                                        {{ $reviews->rating <= '1' ? 'hidden' : '' }}
-                                                                                        class="fa fa-star"></i></span>
-                                                                            </li>
-                                                                            <li><span style="color:yellow"><i
-                                                                                        class="fa fa-star"></i></span>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </form>
+                                                                </form>
+                                                                <div class="row mx-1 mt-1">
+                                                                    <p style="text-align: left"><a
+                                                                            class="reply-comment">Thích</a></p>
+                                                                    <p class="mx-2" style="text-align: left">
+                                                                        <a id="reply-comment-{{ $reviews->id }}"
+                                                                            class="reply-comment"
+                                                                            onclick="showForm(this.id)">
+                                                                            Phản hồi</a>
+                                                                    </p>
+                                                                </div>
+                                                                @if ($check === true)
+                                                                    <form id="form-reply-comment-{{ $reviews->id }}"
+                                                                        class="form-repcomment" method="POST"
+                                                                        action="{{ route('review.store', ['product' => $product->id, 'category' => $product->category_id, 'slug' => Str::slug($product->name)]) }}"
+                                                                        class="review-form">
+                                                                        @csrf
+                                                                        <div class="form-group row">
+                                                                            <div class="col-md-2 col-lg-1 mt-1"
+                                                                                style="margin-right: -1.5rem">
+                                                                                <img src="{{ url('uploads') }}/avatars/{{ $acc->avatar }}"
+                                                                                    class="rounded-circle" width="84"
+                                                                                    height="50" alt="">
+                                                                            </div>
+                                                                            <div class="col-lg-11 col-md-10">
+                                                                                <input type="hidden" name="parent_id" value="{{ $reviews->id}}">
+                                                                                <textarea class="form-control" name="content_review" required></textarea>
+                                                                                <div style="color: red;">
+                                                                                    @error('content_review')
+                                                                                        {{ $message }}
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="buttons d-flex justify-content-end">
+                                                                            <button class="btn-cart rev-btn"
+                                                                                type="submit"></button>
+                                                                        </div>
+                                                                    </form>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
                                                 @endforeach
                                             </table>
                                         </div> <!-- end of customer-review -->
-                                        <form id="form_get_review" method="POST"
-                                            action="{{ route('review.store', ['product' => $product->id, 'category' => $product->category_id, 'slug' => Str::slug($product->name)]) }}"
-                                            class="review-form">
-                                            @csrf
-                                            <h2>Write a review</h2>
-                                            <div class="form-group row">
-                                                <div class="col">
-                                                    <label class="col-form-label"><span class="text-danger">*</span>
-                                                        Your Name</label>
-                                                    <input type="hidden" name="product_id" value="{{ $product->id }}"
-                                                        required>
-                                                    <input type="hidden" name="account_id" value="{{ $acc->id }}">
-                                                    <input type="text"
-                                                        value="{{ $acc->first_name }} {{ $acc->last_name }}"
-                                                        name="name_reviewer" class="form-control" required>
-                                                    @if ($acc->first_name == 'Guest')
-                                                        <h5>You have an account? <a
-                                                                href="{{ route('home.login') }}">Login!</a></h5>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col">
-                                                    <label class="col-form-label"><span class="text-danger">*</span>
-                                                        Your Review</label>
-                                                    <textarea class="form-control" name="content_review" required></textarea>
-                                                    <div class="help-block pt-10"><span
-                                                            class="text-danger">Note:</span> HTML is not translated!
+
+                                        @if ($check === true)
+                                            <form id="form_get_review" name="form_get_review" method="POST"
+                                                action="{{ route('review.store', ['product' => $product->id, 'category' => $product->category_id, 'slug' => Str::slug($product->name)]) }}"
+                                                class="review-form">
+                                                @csrf
+                                                <h2>Write a review</h2>
+                                                <div class="form-group row">
+                                                    <div class="col-md-1">
+                                                        <h4 style="width: 200px">{{ $acc->first_name }} {{ $acc->last_name }}</h4>
+                                                        <img src="@if ($acc->avatar == null) 
+                                                            @if ($acc->sex == 'anh')
+                                                                {{ url('uploads') }}/avatars/man.jpg
+                                                            @else
+                                                                {{ url('uploads') }}/avatars/woman.jpg
+                                                             @endif
+                                                        @else
+                                                            {{ url('uploads') }}/avatars/{{ $acc->avatar }}
+                                                         @endif"
+                                                        class="rounded-circle mt-1" width="59" height="35" alt="">
                                                     </div>
-                                                    <div style="color: red;">
-                                                        @error('content_review')
-                                                            {{ $message }}
-                                                        @enderror
+                                                    <div class="col-md-10 mt-4" style="padding:0">
+                                                        <textarea class="form-control" minlength="2" maxlength="300" name="content_review" id="content_review"
+                                                            required></textarea>
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col">
+
+                                                        <div style="color: red;">
+                                                            <h6 id="err"></h6>
+                                                        </div>
+                                                        <div class="help-block pt-10"><span
+                                                                class="text-danger">Note:</span> HTML is not translated!
+                                                        </div>
+                                                        <div style="color: red;">
+                                                            @error('content_review')
+                                                                {{ $message }}
+                                                            @enderror
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col">
-                                                    <label class="col-form-label"><span class="text-danger">*</span>
-                                                        Rating</label>
-                                                    &nbsp;&nbsp;&nbsp; Bad&nbsp;
-                                                    <input type="radio" value="1" name="rating">
-                                                    &nbsp;
-                                                    <input type="radio" value="2" name="rating">
-                                                    &nbsp;
-                                                    <input type="radio" value="3" name="rating">
-                                                    &nbsp;
-                                                    <input type="radio" value="4" name="rating">
-                                                    &nbsp;
-                                                    <input type="radio" value="5" name="rating" checked>
-                                                    &nbsp;Good
+                                                <div class="form-group row">
+                                                    <div class="col">
+                                                        <label class="col-form-label"><span
+                                                                class="text-danger">*</span>
+                                                            Rating</label>
+                                                        &nbsp;&nbsp;&nbsp; Bad&nbsp;
+                                                        <input type="radio" value="1" name="rating">
+                                                        &nbsp;
+                                                        <input type="radio" value="2" name="rating">
+                                                        &nbsp;
+                                                        <input type="radio" value="3" name="rating">
+                                                        &nbsp;
+                                                        <input type="radio" value="4" name="rating">
+                                                        &nbsp;
+                                                        <input type="radio" value="5" name="rating" checked>
+                                                        &nbsp;Good
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="buttons d-flex justify-content-end">
-                                                <button class="btn-cart rev-btn" type="submit">Continue</button>
-                                            </div>
-                                        </form> <!-- end of review-form -->
+                                                <div class="buttons d-flex justify-content-end">
+                                                    <button class="btn-cart rev-btn" id="btn_send"
+                                                        type="submit">Continue</button>
+                                                </div>
+                                            </form> <!-- end of review-form -->
+                                        @endif
                                     </div> <!-- end of product-review -->
                                 </div>
                             </div>
@@ -446,22 +506,28 @@
                                         </div>
                                         <div class="pro-nav">
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $product_rl->image }}" alt="" />
+                                                    src="{{ url('uploads') }}/products/{{ $product_rl->image }}"
+                                                    alt="" />
                                             </div>
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $product_rl->image }}" alt="" />
+                                                    src="{{ url('uploads') }}/products/{{ $product_rl->image }}"
+                                                    alt="" />
                                             </div>
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $product_rl->image }}" alt="" />
+                                                    src="{{ url('uploads') }}/products/{{ $product_rl->image }}"
+                                                    alt="" />
                                             </div>
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $product_rl->image }}" alt="" />
+                                                    src="{{ url('uploads') }}/products/{{ $product_rl->image }}"
+                                                    alt="" />
                                             </div>
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $product_rl->image }}" alt="" />
+                                                    src="{{ url('uploads') }}/products/{{ $product_rl->image }}"
+                                                    alt="" />
                                             </div>
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $product_rl->image }}" alt="" />
+                                                    src="{{ url('uploads') }}/products/{{ $product_rl->image }}"
+                                                    alt="" />
                                             </div>
                                         </div>
                                     </div>

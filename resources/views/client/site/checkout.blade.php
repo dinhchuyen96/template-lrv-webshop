@@ -200,13 +200,7 @@
                                                         </tr>
                                                         @if($coupon)
                                                             <tr class="cart-coupon">
-                                                                <th>Coupon
-                                                                    <form method="GET">
-                                                                        @csrf
-                                                                         <a href="{{route('home.del_coupon')}}" onclick="return confirm('Are you sure?')" type="submit" style="color:black;position:absolute;top:494px; left:421px;" class="btn"><i style="font-size:25px" class="fa fa-times-circle"></i></a>
-                                                                    </form>
-                                                                   
-                                                                </th>
+                                                                <th>Coupon</th>
                                                                 <td>
                                                                     @if($coupon->discount_ab)
                                                                         <h3>-{{$coupon->discount_ab}}$</h3>
@@ -221,7 +215,8 @@
                                                         <tr class="order-total">
                                                             <th>Total</th>
                                                             <td class="text-center">
-                                                                <strong>{{number_format($totalPrice)}}$ - {{$totalQuantity}} items</strong></td>
+                                                                <strong>{{number_format($totalPrice)}}$ - {{$totalQuantity}} items</strong>
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -237,29 +232,6 @@
         </div> <!-- end of container -->
     </div>
     <!-- End of Checkout Wrapper -->
-    @if(session()->has('ok'))
-    <div class="modal fade" id="overlay">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: rgb(255, 255, 255)">
-                    {{-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> --}}
-                    <h3 class="modal-title" style="color: green">{{session()->get('ok') }}</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
-@if(session()->has('no'))
-    <div class="modal fade" id="overlay">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: rgb(255, 255, 255)">
-                    {{-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> --}}
-                    <h3 class="modal-title" style="color: red">{{session()->get('no') }}</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
+   
     <!-- scroll to top -->
 @stop()

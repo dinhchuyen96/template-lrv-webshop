@@ -1,18 +1,22 @@
+// function validateCart() {
+// 	let x = document.getElementById("quantity").value;
+// 	let text;
+// 	if (isNaN(x) || x < 1 || x > 69) {
+// 	  text = "Mời bạn nhập lại";
+// 	} 
+// 	document.getElementById("err").innerHTML = text;
+//   }
+
+function showForm(id){
+	// alert('#form-'+id);
+	$('#form-'+id).toggle();
+};
 (function ($) {
 	"use strict";
 	$(window).on('load', function() {
         $('#exampleModalLong').modal('show');
-    });
-		//Modal homepage 
-		$('#overlay').modal('show');
-
-		setTimeout(function() { // tu an thong bao ngoai home
-			$('#overlay').modal('hide');
-		}, 1800);
+    });		
 		
-		// 
-		
-
 		var $window = $(window);
 		$window.on('scroll', function() {    
 			var scroll = $window.scrollTop();

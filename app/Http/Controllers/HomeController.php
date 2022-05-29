@@ -6,10 +6,13 @@
     use App\Models\Contact;
     use App\Models\Product;
     use App\Models\Review;
+    use App\Models\Order;
+    use App\Models\OrderDetail;
     use App\Models\Banner;
     use App\Models\Brand_sale;
     use Illuminate\Http\Request;
     use Carbon\Carbon;
+    use Auth;
     use DB;
     class HomeController extends Controller{
         public function __construct() {
@@ -46,8 +49,25 @@
 
         public function product(Product $product,Category $category){
             $products_related = $category->products_byCat()->paginate(6);
+            $acc = Auth::guard('account')->user();
+            if($acc){
+                $acc_id = $acc->id;
+            }else{
+                $acc_id = -122;
+            }
+            $check = false;
+            $now = Carbon::now();
+            $order_detail = OrderDetail::where('product_id', $product->id)->get();
+            foreach ($order_detail as $order_detail){
+                $updated_at = Carbon::parse($order_detail->order->updated_at);
+                $diff = $updated_at->diffInDays($now);                
+                if($order_detail->order->account_id == $acc_id && $order_detail->order->status == 3 && $diff <= 7 ){
+                    $check = true;                   
+                }   
+            }
+            $check = true; // test bên review
             $reviews = Review::reviews($product->id); //take Product_id to scopereviews in Model Review
-            return view('client.site.product',compact('product','category','reviews','products_related'));
+            return view('client.site.product',compact('check','order_detail','product','category','reviews','products_related'));
         }
 
         public function blog(Blog_cat $blog)

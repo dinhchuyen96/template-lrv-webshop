@@ -633,7 +633,7 @@
                                                             <label>qty :</label>
                                                             <input type="number" name="quantity" placeholder="0" value="1" min="1"
                                                                 max="69">
-                                                            <button type="submit" class="btn btn-cart lg-btn">add to
+                                                            <button type="submit"  class="btn btn-cart lg-btn">add to
                                                                 cart</button>
                                                         </form>
                                                     </div>
