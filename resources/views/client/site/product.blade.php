@@ -39,41 +39,6 @@
                                             class="fa fa-search"></i></a>
                                 </div>
                             </div>
-                            <div class="pro-large-img">
-                                <img src="assets/img/product/product-5.jpg" alt="" />
-                                <div class="img-view">
-                                    <a class="img-popup" href="assets/img/product/product-5.jpg"><i
-                                            class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="pro-large-img">
-                                <img src="assets/img/product/product-6.jpg" alt="" />
-                                <div class="img-view">
-                                    <a class="img-popup" href="assets/img/product/product-6.jpg"><i
-                                            class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="pro-large-img">
-                                <img src="assets/img/product/product-7.jpg" alt="" />
-                                <div class="img-view">
-                                    <a class="img-popup" href="assets/img/product/product-7.jpg"><i
-                                            class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="pro-large-img">
-                                <img src="assets/img/product/product-8.jpg" alt="" />
-                                <div class="img-view">
-                                    <a class="img-popup" href="assets/img/product/product-8.jpg"><i
-                                            class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="pro-large-img">
-                                <img src="assets/img/product/product-9.jpg" alt="" />
-                                <div class="img-view">
-                                    <a class="img-popup" href="assets/img/product/product-9.jpg"><i
-                                            class="fa fa-search"></i></a>
-                                </div>
-                            </div>
                         </div>
                         <div class="pro-nav">
                             <div class="pro-nav-thumb"><img src="assets/img/product/product-4.jpg" alt="" /></div>
@@ -204,30 +169,34 @@
                                         <div class="customer-review">
 
                                             <table class="table table-striped table-bordered">
-                                                @foreach ($reviews as $reviews)
+                                                @foreach ($reviews as $reviews1)
+                                                    @if($reviews1->parent_id == 0)
                                                     <tbody>
                                                         <tr>
                                                             <td class="row"
                                                                 style="text-align: left; border:none;">
-                                                                <div class="col-md-8 mt-1">
-                                                                    <strong>{{ $reviews->name_reviewer }} </strong>
+                                                                <div class="col-md-9 mt-1">
+                                                                    <img class="rounded-circle"
+                                                                        src="{{ url('uploads') }}/avatars/{{ $reviews1->avatar }}"
+                                                                        style="width: 50px" alt="">
+                                                                    <strong> {{ $reviews1->name_reviewer }} </strong>
                                                                 </div>
-                                                                <div class="product-ratings col-md-4 mb-3">
+                                                                <div class="product-ratings col-md-3 mb-3">
                                                                     <ul class="ratting d-flex mt-2">
                                                                         <li><span style="color: #fedc19"><i
-                                                                                    {{ $reviews->rating <= '4' ? 'hidden' : '' }}
+                                                                                    {{ $reviews1->rating <= '4' ? 'hidden' : '' }}
                                                                                     class="fa fa-star"></i></span>
                                                                         </li>
                                                                         <li><span style="color: #fedc19"><i
-                                                                                    {{ $reviews->rating <= '3' ? 'hidden' : '' }}
+                                                                                    {{ $reviews1->rating <= '3' ? 'hidden' : '' }}
                                                                                     class="fa fa-star"></i></span>
                                                                         </li>
                                                                         <li><span style="color: #fedc19"><i
-                                                                                    {{ $reviews->rating <= '2' ? 'hidden' : '' }}
+                                                                                    {{ $reviews1->rating <= '2' ? 'hidden' : '' }}
                                                                                     class="fa fa-star"></i></span>
                                                                         </li>
                                                                         <li><span style="color: #fedc19"><i
-                                                                                    {{ $reviews->rating <= '1' ? 'hidden' : '' }}
+                                                                                    {{ $reviews1->rating <= '1' ? 'hidden' : '' }}
                                                                                     class="fa fa-star"></i></span>
                                                                         </li>
                                                                         <li><span style="color: #fedc19"><i
@@ -236,108 +205,149 @@
                                                                     </ul>
                                                                 </div>
                                                             </td>
-
                                                             <td class="text-right">
-                                                                {{ $reviews->created_at->format('d-m-Y') }}</td>
+                                                                {{ $reviews1->created_at->format('d-m-Y') }}
+                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="2">
-                                                                <form method="POST"
-                                                                    action="{{ route('review.destroy', ['product' => $product->id, 'category' => $product->category_id, 'slug' => Str::slug($product->name), 'review' => $reviews->id]) }}">
-                                                                    @csrf @method('DELETE')
-                                                                    <p class="content-comment mx-1" style=" line-he"
-                                                                        id="review">
-                                                                        {{ $reviews->content_review }}-
-                                                                        @if ($reviews->account_id == $acc->id || $acc->id == '-1')
+
+                                                            {{-- Begin show content_review s1 --}}
+                                                            <form method="POST"
+                                                                action="{{ route('review.destroy', ['product' => $product->id, 'category' => $product->category_id, 'slug' => Str::slug($product->name), 'review' => $reviews1->id]) }}">
+                                                                @csrf @method('DELETE')
+                                                                <td colspan="2">
+                                                                    <p style="text-align: left" id="review">
+                                                                        {{ $reviews1->content_review }}&nbsp;
+                                                                        @if ($reviews1->account_id == $acc->id || $acc->id == '-1')
                                                                             <button id="btn-delete"
                                                                                 onclick="return confirm('are you sure?')"
-                                                                                class="btn">
+                                                                                class="btn" type="submit">
                                                                                 <i style="color:rgb(240, 29, 29)"
                                                                                     class="fa fa-window-close"
                                                                                     aria-hidden="true"></i>
                                                                             </button>
                                                                         @endif
-
-                                                                    </p>
-                                                                </form>
-                                                                <div class="row mx-1 mt-1">
-                                                                    <p style="text-align: left"><a
-                                                                            class="reply-comment">Thích</a></p>
-                                                                    <p class="mx-2" style="text-align: left">
-                                                                        <a id="reply-comment-{{ $reviews->id }}"
-                                                                            class="reply-comment"
-                                                                            onclick="showForm(this.id)">
-                                                                            Phản hồi</a>
-                                                                    </p>
-                                                                </div>
-                                                                @if ($check === true)
-                                                                    <form id="form-reply-comment-{{ $reviews->id }}"
-                                                                        class="form-repcomment" method="POST"
+                                                            </form>
+                                                            <div class="feedback">
+                                                                <p>{{ $reviews1->created_at->format('d-m') }}</p>
+                                                                <p>Thích </p>
+                                                                <p id="{{ $reviews1->id }}" onclick="showForm(this.id)">
+                                                                    Phản hồi</p>
+                                                            </div>
+                                                            {{-- End show content_review s1 --}}
+                                                            @if ($check === true)
+                                                            {{-- Begin form input S2 --}}
+                                                            <div class="row mx-5">
+                                                                <div class="col-md-6">
+                                                                    <form class="form-repcomment"
                                                                         action="{{ route('review.store', ['product' => $product->id, 'category' => $product->category_id, 'slug' => Str::slug($product->name)]) }}"
-                                                                        class="review-form">
+                                                                        class="form-repcomment" method="POST" method="POST"
+                                                                        id="form-reply-{{ $reviews1->id }}"
+                                                                        name="form-reply">
                                                                         @csrf
-                                                                        <div class="form-group row">
-                                                                            <div class="col-md-2 col-lg-1 mt-1"
-                                                                                style="margin-right: -1.5rem">
-                                                                                <img src="{{ url('uploads') }}/avatars/{{ $acc->avatar }}"
-                                                                                    class="rounded-circle" width="84"
-                                                                                    height="50" alt="">
-                                                                            </div>
-                                                                            <div class="col-lg-11 col-md-10">
-                                                                                <input type="hidden" name="parent_id" value="{{ $reviews->id}}">
-                                                                                <textarea class="form-control" name="content_review" required></textarea>
-                                                                                <div style="color: red;">
-                                                                                    @error('content_review')
-                                                                                        {{ $message }}
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="buttons d-flex justify-content-end">
-                                                                            <button class="btn-cart rev-btn"
-                                                                                type="submit"></button>
+                                                                        <p class="is_reply row">Đang trả lời
+                                                                            &nbsp;<strong>{{ $reviews1->name_reviewer }}</strong>
+                                                                        </p>
+                                                                        <div class="row">
+                                                                            <img class="rounded-circle mt-2" src="@if ($acc->avatar == null) @if ($acc->sex == 'anh')
+                                                                                    {{ url('uploads') }}/avatars/man.jpg
+                                                                                @else
+                                                                                    {{ url('uploads') }}/avatars/woman.jpg @endif
+                                                                                @else
+                                                                                    {{ url('uploads') }}/avatars/{{ $acc->avatar }}
+                                                                                  @endif
+                                                                            " style="width: 50px; height:37px"
+                                                                            alt="">
+                                                                            <input class="form-control mt-2 col-md-6"
+                                                                                type="text" required style="width:80%"
+                                                                                name="content_review"
+                                                                                placeholder="Input field"
+                                                                                value="{{ $reviews1->last_name }}">
+
+                                                                            <input type="hidden" name="parent_id" required
+                                                                                value="{{ $reviews1->id }}">
+                                                                            <button
+                                                                                style="height:37px; width: 88px; text-align: center"
+                                                                                class="btn-cart btn rev-btn" type="submit"
+                                                                                form="form-reply-{{ $reviews1->id }}">Send</button>
                                                                         </div>
                                                                     </form>
+                                                                </div>
+                                                            </div>
+                                                            @endif
+                                                            {{-- End form input S2 --}}
+
+                                                            @foreach ($reviews1->children as $reviews2)
+                                                                @if ($reviews1->children->isNotEmpty())
+                                                                    {{-- Begin Show content S2 --}}
+                                                                    <div class="mx-5">
+                                                                        <form method="POST"
+                                                                            action="{{ route('review.destroy', ['product' => $product->id, 'category' => $product->category_id, 'slug' => Str::slug($product->name), 'review' => $reviews1->id]) }}"
+                                                                            id="">
+                                                                            @csrf @method('DELETE')
+                                                                            <div class="row">
+                                                                                <img class="mb-2 rounded-circle mt-2" src="
+                                                                                @if ($reviews2->avatar == null) 
+                                                                                    {{ url('uploads') }}/avatars/man.jpg
+                                                                                @else
+                                                                                    {{ url('uploads') }}/avatars/{{ $reviews2->avatar }}
+                                                                                @endif
+                                                                                " style="width: 37px; height:30px"
+                                                                                alt=""> &nbsp;
+                                                                                <div class="mt-2">
+                                                                                    <p style="text-align: left" id="review">
+                                                                                        <strong>{{ $reviews2->name_reviewer }}</strong>
+                                                                                        - {{ $reviews2->content_review }}
+                                                                                        &nbsp;
+                                                                                        @if ($reviews2->account_id == $acc->id || $acc->id == '-1')
+                                                                                            <button id="btn-delete"
+                                                                                                onclick="return confirm('are you sure?')"
+                                                                                                class="btn"
+                                                                                                type="submit">
+                                                                                                <i style="color:rgb(240, 29, 29)"
+                                                                                                    class="fa fa-window-close"
+                                                                                                    aria-hidden="true"></i>
+                                                                                            </button>
+                                                                                        @endif
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                        <div class="feedback1">
+                                                                            <p>{{ $reviews2->created_at->format('d-m') }}
+                                                                            </p>
+                                                                            <p>Thích
+                                                                            <p>
+                                                                            <p id="{{ $reviews2->id }}"
+                                                                                onclick="showForm2(this.id)">
+                                                                                Phản hồi
+                                                                            <p>
+                                                                        </div>
+                                                                    </div>
+                                                                    {{-- End Show comment S2 --}}
                                                                 @endif
+                                                            @endforeach                                                         
+
                                                             </td>
                                                         </tr>
                                                     </tbody>
+                                                    @endif
                                                 @endforeach
                                             </table>
                                         </div> <!-- end of customer-review -->
 
                                         @if ($check === true)
-                                            <form id="form_get_review" name="form_get_review" method="POST"
+                                            <form id="form_get_review" method="POST"
                                                 action="{{ route('review.store', ['product' => $product->id, 'category' => $product->category_id, 'slug' => Str::slug($product->name)]) }}"
                                                 class="review-form">
                                                 @csrf
                                                 <h2>Write a review</h2>
                                                 <div class="form-group row">
-                                                    <div class="col-md-1">
-                                                        <h4 style="width: 200px">{{ $acc->first_name }} {{ $acc->last_name }}</h4>
-                                                        <img src="@if ($acc->avatar == null) 
-                                                            @if ($acc->sex == 'anh')
-                                                                {{ url('uploads') }}/avatars/man.jpg
-                                                            @else
-                                                                {{ url('uploads') }}/avatars/woman.jpg
-                                                             @endif
-                                                        @else
-                                                            {{ url('uploads') }}/avatars/{{ $acc->avatar }}
-                                                         @endif"
-                                                        class="rounded-circle mt-1" width="59" height="35" alt="">
-                                                    </div>
-                                                    <div class="col-md-10 mt-4" style="padding:0">
-                                                        <textarea class="form-control" minlength="2" maxlength="300" name="content_review" id="content_review"
-                                                            required></textarea>
-                                                    </div>
-
-                                                </div>
-                                                <div class="form-group row">
                                                     <div class="col">
-
-                                                        <div style="color: red;">
-                                                            <h6 id="err"></h6>
-                                                        </div>
+                                                        <label class="col-form-label"><span
+                                                                class="text-danger">*</span>
+                                                            Your Review</label>
+                                                        <textarea class="form-control" name="content_review" required></textarea>
                                                         <div class="help-block pt-10"><span
                                                                 class="text-danger">Note:</span> HTML is not translated!
                                                         </div>
@@ -348,7 +358,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
+                                                {{-- Review Rating --}} <div class="form-group row">
                                                     <div class="col">
                                                         <label class="col-form-label"><span
                                                                 class="text-danger">*</span>
@@ -367,8 +377,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="buttons d-flex justify-content-end">
-                                                    <button class="btn-cart rev-btn" id="btn_send"
-                                                        type="submit">Continue</button>
+                                                    <button class="btn-cart rev-btn" type="submit">Continue</button>
                                                 </div>
                                             </form> <!-- end of review-form -->
                                         @endif

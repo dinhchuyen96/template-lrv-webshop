@@ -9,7 +9,7 @@ class Brand_sale extends Model
 {
     use HasFactory;
     protected $table = 'brand_sales';
-    protected $fillable = ['name','logo','status','category_id'];
+    protected $fillable = ['id','name','logo','status','category_id'];
 
     public function cat()
     {

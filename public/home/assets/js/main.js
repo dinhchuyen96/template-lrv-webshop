@@ -8,8 +8,12 @@
 //   }
 
 function showForm(id){
-	// alert('#form-'+id);
-	$('#form-'+id).toggle();
+	// alert('form-reply-'+id);
+	$('#form-reply-'+id).toggle();
+};
+function showForm2(id){
+	// alert('form-reply-'+id);
+	$('#form-reply2-'+id).toggle();
 };
 (function ($) {
 	"use strict";

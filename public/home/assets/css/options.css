@@ -9,10 +9,23 @@
 }
 .form-repcomment{
     display:none;    
-    }
-.reply-comment{
-    cursor: pointer;
+}
+.feedback1{
+    display: flex;
+}
+.feedback{
+    display: flex;
+}
+.feedback p, .feedback1 p{
+    text-align: left;
+    padding-right: 0.85rem;cursor: pointer;
     color: #4263f7!important;
+}
+.is_reply{
+    /* height: 5px; */
+}
+.reply-comment{
+    
 }
 .content-comment{
     text-align: left; 

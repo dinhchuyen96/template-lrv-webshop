@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/bootstrap.min.css">
     <!-- linear-icon -->
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url('home') }}/assets/css/font-awesome.css">
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/linear-icon.css">
     <!-- all css plugins css -->
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/plugins.css">
@@ -29,7 +30,7 @@
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/style.css">
     <!-- responsive css -->
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/responsive.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Modernizer JS -->
     <script src="{{ url('home') }}/assets/js/vendor/modernizr-3.5.0.min.js"></script>
 </head>

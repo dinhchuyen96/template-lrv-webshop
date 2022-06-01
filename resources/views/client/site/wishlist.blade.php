@@ -39,8 +39,6 @@
                                                     <tr>
                                                         <td>Image</td>
                                                         <td>Product Name</td>
-                                                        <td>Model</td>
-                                                        <td>Stock</td>
                                                         <td>Unit Price</td>
                                                         <td>Action</td>
                                                     </tr>
@@ -54,8 +52,6 @@
                                                             <td>
                                                                 <a href="{{route('home.product',['product'=>$wishlist->id,'category'=>$wishlist->category_id,'slug'=>Str::slug($wishlist->name)])}}">{{$wishlist->name}}</a>
                                                             </td>
-                                                            <td>3</td>
-                                                            <td>In Stock</td>
                                                             <td>@if($wishlist->sale_price > 0)
                                                                 <span class="regular-price"><span class="special-price">${{$wishlist->sale_price}}</span></span>
                                                                     <span class="old-price"><del>{{ $wishlist->price }}$</del></span>

@@ -38,9 +38,11 @@ class ReviewController extends Controller
      */
     public function store(ReviewRequest $request,Product $product)
     {
-        $data = $request->only('product_id','account_id','content_review');
+        // dd(1);
+        $data = $request->only('product_id','account_id','parent_id','content_review','rating');
         $acc = Auth::guard('account')->user();
         $acc =(object)$acc;
+        $data['avatar'] = $acc->avatar;
         $data['name_reviewer'] = $acc->first_name.' '.$acc->last_name;
         $data['account_id'] = $acc->id;
         $data['product_id'] = $product->id;

@@ -27,9 +27,19 @@ class AccountController extends Controller
         // dd($req->all());
         $data= $req->all();
         $user = Auth::guard('account')->user();
+        if($req->has('upload')){
+            $file_name = $req->upload->getClientOriginalName();
+            $partInfo = pathinfo($file_name);
+            $ext = $partInfo['extension'];
+            $base_name = $partInfo['filename']; 
+            $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
+            $check_upload = $req->upload->move(public_path('uploads/avatars'), $final_name);
+            if($check_upload){
+                $data['avatar'] = $final_name;
+            }
+        }
         $user->update($data);
         return redirect()->route('home')->with('ok','Cập nhật thành công');
-        // 
     }
 
 

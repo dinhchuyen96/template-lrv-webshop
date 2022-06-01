@@ -1,5 +1,5 @@
 @extends('client.layouts.site')
-@section('title','cart')
+@section('title','My Account')
 @section('main')
     <!-- header area end -->
 
@@ -38,12 +38,12 @@
                                    </div>
                                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                        <div class="single-info">
-                                           <p>Need Assistance? Customer service at <a href="#">admin@example.com</a></p>
+                                           <p>Need Assistance? Customer service at <a href="#">{{$hotline->email_1}}</a></p>
                                        </div>
                                    </div>
                                    <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
                                        <div class="single-info">
-                                           <p>E-mail them at <a href="#">support@example.com</a></p>
+                                           <p>E-mail them at <a href="#">{{$hotline->email_2}}</a></p>
                                        </div>
                                    </div>
                                    <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-3">
@@ -116,13 +116,14 @@
                                                     <h3>You dont have a order!</h3>
                                                 @endif
                                             </div> <!-- end of tab-pane -->
-                                            <div id="account-details" class="tab-pane fade">
+                                            <div id="account-details" class="tab-pane fade row">
                                                 <h3>Account details </h3>
+                                                <img src="{{url('uploads')}}/avatars/{{$acc->avatar}}" alt="" width="400" class="mx-auto d-block mb-2">
                                                 <div class="login-form">
-                                                    <form action="{{route('home.account_edit')}}" method="POST">
+                                                    <form action="{{route('home.account_edit')}}" method="POST"  enctype="multipart/form-data">
                                                         @csrf
                                                         <div class="form-group row align-items-center">
-                                                            <label class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Title</label>
+                                                            <label class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Gender</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
                                                                 <div class="form-row">
                                                                     <div class="col-6 col-sm-3">
@@ -182,6 +183,16 @@
                                                             <label for="birth" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Birthdate (Optional)</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
                                                                 <input type="date" class="form-control" name="birth_day"id="birth" max="2016-01-01" min="1945-12-31"  value="{{$acc->birth_day}}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label" for="">Upload avatar</label>
+                                                            <div class="col-12 col-sm-12 col-md-8 col-lg-6">
+                                                            <input type="file" class="form-control" name="upload" placeholder="Input field"
+                                                                accept=".png,.gif,.jpg,.jpeg,.svg">
+                                                            @error('upload')
+                                                                {{ $message }}
+                                                            @enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-check row p-0 mt-5">

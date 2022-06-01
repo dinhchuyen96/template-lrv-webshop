@@ -20,6 +20,7 @@
             header("Pragma: no-cache"); // HTTP 1.0.
             header("Expires: 0"); // Proxies.
             header('Access-Control-Allow-Origin: *');      
+            // Quay lại trang, xóa session
         }
     
         public function home(Request $request,Product $product){
@@ -53,7 +54,7 @@
             if($acc){
                 $acc_id = $acc->id;
             }else{
-                $acc_id = -122;
+                $acc_id = -12;
             }
             $check = false;
             $now = Carbon::now();
@@ -62,12 +63,19 @@
                 $updated_at = Carbon::parse($order_detail->order->updated_at);
                 $diff = $updated_at->diffInDays($now);                
                 if($order_detail->order->account_id == $acc_id && $order_detail->order->status == 3 && $diff <= 7 ){
-                    $check = true;                   
+                    $check = true;              //Chỉ cho phép tài khoản người dùng review sản phẩm trong vòng 7 ngày sau khi cập nhật trạng thái đơn hàng là thành công      
                 }   
             }
-            $check = true; // test bên review
-            $reviews = Review::reviews($product->id); //take Product_id to scopereviews in Model Review
-            return view('client.site.product',compact('check','order_detail','product','category','reviews','products_related'));
+            
+            $reviews = Review::reviews_byProId($product->id); //take Product_id to scopereviews in Model Review
+            $review_all = Review::orderBy('id','ASC')->where('parent_id', 0)->reviews_byProId($product->id); 
+            
+            $now = Carbon::now();
+            $time_comments = Carbon::create(2022,06,01,13,30,05);
+            $timestring = $time_comments->diffForHumans($now);
+            
+            // dd($timestring);
+            return view('client.site.product',compact('check','now','order_detail','product','category','reviews','review_all','products_related'));
         }
 
         public function blog(Blog_cat $blog)

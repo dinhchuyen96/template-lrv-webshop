@@ -125,7 +125,7 @@
                                             </div>
                                         </div>
                                         <div class="action-links">
-                                            <a href="{{ route('home.add-wishlist', $psn->id) }}" title="Wishlist"><i class="fa-thin fa-heart"></i></a>
+                                            <a href="{{ route('home.add-wishlist', $psn->id) }}" title="Wishlist"><i class="fa fa-heart-o" style="font-size:24px; "></i></a>
                                             <a href="{{ route('home.add-compare', $psn->id) }}" title="Compare"><i
                                                     class="lnr lnr-sync"></i></a>
                                             <a href="#" title="Quick view" data-target="#quickk_view{{ $psn->id }}"

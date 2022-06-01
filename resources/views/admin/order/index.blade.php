@@ -19,8 +19,8 @@
                 <tr>
                     <th>Serial</th>
                     <th>purchase date</th>
-                    <th class="text-center">Name</th>
-                    <th class="text-center">Status <br> (waiting confirm: )</th>
+                    <th class="text-center">Account order</th>
+                    <th class="text-center">Status</th>
                     <th>Phone</th>
                     <th>Quantity</th>
                     <th>Unit Price</th>
