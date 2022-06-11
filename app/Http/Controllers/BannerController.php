@@ -42,8 +42,8 @@ class BannerController extends Controller
      */
     public function store(BannerRequest $request)
     {
-        dd($request->all());
-        $data_banner = $request->all('name','title','product_id','image_slide','status');
+        // dd($request->all());
+        $data_banner = $request->all('name','product_id','title','upload','status');
         // dd($data_banner);
         $file_name = $request->upload->getClientOriginalName();
 
@@ -59,7 +59,6 @@ class BannerController extends Controller
         if($check_upload){
             $data_banner['image_slide'] = $final_name;
         };
-
         Banner::create($data_banner);
         return redirect()->route('banner.index')->with('yes', "thêm mới Banner thành công");
     }

@@ -4,14 +4,14 @@
     <form action="{{ route('coupon.store') }}" method="POST" role="form">
         @csrf
         <div class="form-group">
-            <label for="">Tên Coupon</label>
+            <label for="">Coupon name</label>
             <input type="text" class="form-control" name="name" placeholder="Input field" required>
             @error('name')
                 {{ $message }}
             @enderror
         </div>
         <div class="form-group row">
-            <div class="col-md-4"><label for="">Mã coupon</label>
+            <div class="col-md-4"><label for="">Code coupon</label>
                 <input type="text" class="form-control" name="code" placeholder="Input field" required> 
                 @error('code')
                     {{ $message }}
@@ -31,13 +31,13 @@
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-md-6"><label for="">Thời gian bắt đầu áp dụng</label>
+            <div class="col-md-6"><label for="">Begin</label>
                 <input type="date" class="form-control" name="begin" placeholder="Input field">
                 @error('begin')
                     {{ $message }}
                 @enderror
             </div>
-            <div class="col-md-6"> <label for="">Hết hạn:</label>
+            <div class="col-md-6"> <label for="">Date:</label>
                 <input type="date" class="form-control" name="end" placeholder="Input field">
                 @error('end')
                     {{ $message }}

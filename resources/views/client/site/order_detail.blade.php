@@ -71,7 +71,7 @@
                             </tr>
                             <tr>
                                 <td>Địa chỉ</td>
-                                <td>{{ $item->address }}</td>
+                                <td>{{$item->address}} - {{$item->wardd->name}} <br> {{$item->dist->name}} - {{ $item->provin->name }}</td>
                             </tr>
                         </tbody>
                     </table>

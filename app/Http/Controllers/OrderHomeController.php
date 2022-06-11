@@ -8,14 +8,19 @@ use App\Models\Order;
 use App\Models\Coupon;
 use App\Models\OrderDetail;
 use App\Models\Product;
+use App\Models\Province;
+use App\Models\District;
+use App\Models\Ward;
 use Carbon\Carbon;
 class OrderHomeController extends Controller
 {
     public function thank(){
         return view('client.site.thank');
     }
-    public function checkout(){        
-        return view('client.site\checkout');        
+    public function checkout(){      
+        $province = Province::all();
+        // $district = District::districts();
+        return view('client.site\checkout',compact('province'));        
     }
     public function check_coupon(Request $req)
     {
@@ -53,12 +58,38 @@ class OrderHomeController extends Controller
             return redirect()->back()->with('ok','Xóa coupon thành công');;
     }
 
+    
+    public function getTbl_Districts(Request $request){
+        $query = $request->input('query');
+        $district = District::where('city_id', $query)->get();
+       
+        $html = "<option value=''>Quận / Huyện</option>";
+
+        foreach ($district as $district){
+            $html.="<option value='$district->ditrict_id'>$district->name</option>";
+        }
+        return response()->json(['html' => $html]);
+    }
+
+    public function getTbl_Wards(Request $request){
+        $query = $request->input('query');
+        $ward = Ward::where('ditrict_id', $query)->get();
+       
+        $html = "<option value=''>Phường / Xã </option>";
+
+        foreach ($ward as $ward){
+            $html.="<option value='$ward->ward_id'>$ward->name</option>";
+        }
+
+        return response()->json(['html' => $html]);
+    }
+
     public function post_checkout(Request $req){
         $carts = session('cart') ? session('cart'):[];
         // dd($req);
         // dd($carts);
         if($carts){
-            $data = $req->all('first_name','discount_ab','discount_rl','category_id','last_name','email','phone','address','shipping_method','payment_method','status','order_note','fee','total_price');
+            $data = $req->all();
             $data['account_id'] = Auth::guard('account')->user()->id;
             // dd($data);
 
@@ -107,4 +138,5 @@ class OrderHomeController extends Controller
         $i=0;
         return view('client.site.order_detail',compact('item','i'));
     }
+
 }

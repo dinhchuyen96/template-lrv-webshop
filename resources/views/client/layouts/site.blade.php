@@ -13,14 +13,13 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/options.css">
-
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>  --}}
     <!--Fevicon-->
     <link rel="icon" href="{{ url('home') }}/assets/img/icon/favicon.ico" type="image/x-icon" />
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/bootstrap.min.css">
     <!-- linear-icon -->
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ url('home') }}/assets/css/font-awesome.css">
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/linear-icon.css">
     <!-- all css plugins css -->
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/plugins.css">
@@ -30,6 +29,7 @@
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/style.css">
     <!-- responsive css -->
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/responsive.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Modernizer JS -->
     <script src="{{ url('home') }}/assets/js/vendor/modernizr-3.5.0.min.js"></script>
@@ -41,14 +41,14 @@
         <div class="header-top black-bg">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-8 col-12">
+                    <div class="col-lg-7 col-12">
                         <div class="header-top-left">
                             <ul>
                                 <li><span>Email: </span>{{$hotline->email_1}}</li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-12">
+                    <div class="col-lg-5 col-12">
                         <div class="box box-right">
                             <ul>
                                 <li class="settings">
@@ -119,7 +119,7 @@
                             <form method="get"  >
                                 <div class="top-cat hm1">
                                     <div class="search-form">
-                                        <select class="form-control" name="search" id="">
+                                        <select class="form-control" name="search" id="select1">
                                             <option value="">Select</option>
                                             @foreach ($cats as $cat)
                                                 <option value="{{ $cat->name }}">{{ $cat->name }}</option>
@@ -563,10 +563,8 @@
         <!-- footer bottom area end -->
     </footer>
     <!-- footer area end -->
-   
-
     <!-- all js include here -->
-    <script src = "{{ url('home') }}/assets/js/vendor/jquery-1.12.4.min.js">
+    <script src = "{{ url('home') }}/assets/js/vendor/jquery-1.12.4.min.js"></script>
     <script src = "{{ url('home') }}/assets/js/popper.min.js"></script>
     <script src = "{{ url('home') }}/assets/js/bootstrap.min.js"></script>
     <script src = "{{ url('home') }}/assets/js/bootstrap.min.js"></script>
@@ -574,7 +572,6 @@
     <script src = "{{ url('home') }}/assets/js/ajax-mail.js"></script>
     <script src = "{{ url('home') }}/assets/js/main.js"></script>
     <script src = "{{ url('home') }}/assets/js/addcart.js"></script>
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @if(Session::has('ok'))
         <script type="text/javascript">

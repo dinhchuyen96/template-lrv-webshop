@@ -28,6 +28,9 @@ class Order extends Authenticatable
         'sex',
         'email',
         'phone',
+        'province_id',
+        'district_id',
+        'ward_id',
         'address',
         'quantity',
         'shipping_method',
@@ -42,7 +45,19 @@ class Order extends Authenticatable
     }
     public function products()
     {
-        return $this -> belongsToMany(Product::class, 'order_details');
+        return $this->belongsToMany(Product::class, 'order_details');
+    }
+    public function provin()
+    {
+        return $this->belongsTo(Province::class, 'province_id', 'city_id');
+    }
+    public function wardd()
+    {
+        return $this->belongsTo(Ward::class, 'ward_id', 'ward_id');
+    }
+    public function dist()
+    {
+        return $this->belongsTo(District::class, 'district_id', 'district_id');
     }
     public function details()
     {

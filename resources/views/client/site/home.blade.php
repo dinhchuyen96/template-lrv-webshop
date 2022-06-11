@@ -125,7 +125,7 @@
                                             </div>
                                         </div>
                                         <div class="action-links">
-                                            <a href="{{ route('home.add-wishlist', $psn->id) }}" title="Wishlist"><i class="fa fa-heart-o" style="font-size:24px; "></i></a>
+                                            <a href="{{ route('home.add-wishlist', $psn->id) }}" title="Wishlist"><i class="fa fa-heart-o" style="font-size:23px;"></i></a>
                                             <a href="{{ route('home.add-compare', $psn->id) }}" title="Compare"><i
                                                     class="lnr lnr-sync"></i></a>
                                             <a href="#" title="Quick view" data-target="#quickk_view{{ $psn->id }}"
@@ -295,7 +295,7 @@
                                             <a href="{{ route('home.product', ['product' => $top_sale->id,'category' => $top_sale->cat->id,'slug' => Str::slug($top_sale->name)]) }}">
                                                 <img src="{{ url('uploads') }}/products/{{ $top_sale->image }}"
                                                     class="pri-img" alt="">
-                                                <img src="assets/img/product/product-3.jpg" class="sec-img" alt="">
+                                                <img src="" class="sec-img" alt="">
                                             </a>
                                             <div class="box-label">
                                                 <div class="label-product label_sale">
@@ -363,7 +363,7 @@
                                             <a href="{{ route('home.product', ['product' => $product_sale_hot->id,'category' => $product_sale_hot->cat->id,'slug' => Str::slug($product_sale_hot->name)]) }}">
                                                 <img src="{{ url('uploads') }}/products/{{ $product_sale_hot->image }}"
                                                     class="pri-img" alt="">
-                                                <img src="assets/img/product/product-1.jpg" class="sec-img" alt="">
+                                                <img src="" class="sec-img" alt="">
                                             </a>
                                             <div class="box-label">
                                                 <div class="label-product label_sale">
@@ -485,9 +485,9 @@
                                         <div class="product-item">
                                             <div class="product-thumb">
                                                 <a href="product-details.html">
-                                                    <img src="{{ url('uploads') }}/assets/img/product/product-1.jpg"
+                                                    <img src=""
                                                         class="pri-img" alt="">
-                                                    <img src="{{ url('uploads') }}/assets/img/product/product-2.jpg"
+                                                    <img src=""
                                                         class="sec-img" alt="">
                                                 </a>
                                                 <div class="box-label">

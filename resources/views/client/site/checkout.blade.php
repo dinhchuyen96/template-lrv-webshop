@@ -28,42 +28,43 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <main id="primary" class="site-main">
-                        @if($coupon)
+                        @if ($coupon)
                         @else
-                        <div class="user-actions-area">
-                            <div class="row">
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="user-actions user-coupon">
-                                        <h3>Have A Coupon? <span id="show_coupon">Click Here To Enter Your Code.</span></h3>
-                                        <div id="checkout_coupon" class="display-content">
-                                            <div class="coupon-info">
-                                                <form action="{{route('home.checkout_coupon')}}" method="POST">
-                                                    @csrf
-                                                    <div class="row">
-                                                        <div class="col-12 col-sm-12 col-md-6">
-                                                            <div class="input-group">
-                                                                <input type="text" name="code" value=""
-                                                                    placeholder="Coupon Code" id="input-coupon"
-                                                                    class="form-control mr-3" required>
-                                                                <input type="submit" value="Apply Coupon" id="button-coupon"
-                                                                    class="btn btn-secondary">
+                            <div class="user-actions-area">
+                                <div class="row">
+                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="user-actions user-coupon">
+                                            <h3>Have A Coupon? <span id="show_coupon">Click Here To Enter Your Code.</span>
+                                            </h3>
+                                            <div id="checkout_coupon" class="display-content">
+                                                <div class="coupon-info">
+                                                    <form action="{{ route('home.checkout_coupon') }}" method="POST">
+                                                        @csrf
+                                                        <div class="row">
+                                                            <div class="col-12 col-sm-12 col-md-6">
+                                                                <div class="input-group">
+                                                                    <input type="text" name="code" value=""
+                                                                        placeholder="Coupon Code" id="input-coupon"
+                                                                        class="form-control mr-3" required>
+                                                                    <input type="submit" value="Apply Coupon"
+                                                                        id="button-coupon" class="btn btn-secondary">
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </form>
+                                                    </form>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div> <!-- end of user-actions -->
-                                </div>
-                            </div> <!-- end of row -->
-                        </div> <!-- end of user-actions -->
+                                        </div> <!-- end of user-actions -->
+                                    </div>
+                                </div> <!-- end of row -->
+                            </div> <!-- end of user-actions -->
                         @endif
                         <div class="checkout-area">
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-7">
                                     <div class="checkout-form">
                                         <div class="section-title left-aligned">
-                                            <h3>Billing Details</h3>                                            
+                                            <h3>Billing Details</h3>
                                         </div>
 
                                         <form role="form" method="POST" id="checkout_form">
@@ -72,42 +73,70 @@
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
                                                     <label for="first_name">First Name <span
                                                             class="text-danger">*</span></label>
-                                                    <input name="first_name" value="{{ $acc->first_name }}" type="text" class="form-control"
-                                                        id="first_name" required>
+                                                    <input name="first_name" value="{{ $acc->first_name }}" type="text"
+                                                        class="form-control" id="first_name" required>
                                                 </div>
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
                                                     <label for="last_name">Last Name <span
                                                             class="text-danger">*</span></label>
-                                                    <input name="last_name" type="text" value="{{$acc->last_name}}" class="form-control"
-                                                        id="last_name" required>
+                                                    <input name="last_name" type="text" value="{{ $acc->last_name }}"
+                                                        class="form-control" id="last_name" required>
                                                 </div>
                                             </div>
                                             <div class="form-row mb-3">
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
                                                     <label for="company_name">Company</label>
-                                                    <input name="company_name" type="text" class="form-control" id="company_name">
+                                                    <input name="company_name" type="text" class="form-control"
+                                                        id="company_name">
                                                 </div>
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
                                                     <label for="email_address">Email Address <span
                                                             class="text-danger">*</span></label>
-                                                    <input name="email" value="{{ $acc->email }}" type="email" class="form-control" maxlength="40"
-                                                        id="email_address" required>
+                                                    <input name="email" value="{{ $acc->email }}" type="email"
+                                                        class="form-control" maxlength="40" id="email_address" required>
                                                 </div>
                                             </div>
                                             <div class="form-row mb-3">
-                                                <div class="form-group col-12 col-sm-12 col-md-12">
-                                                    <label for="p_address">Address <span
+                                                <div class="col-12 col-sm-12 col-md-6">
+                                                    <label>City \ Province <span class="text-danger">*</span></label>
+                                                    <select id="selectProvince" name="province" class="form-control" required="">
+                                                        @if($province )
+                                                            <option value="">Tỉnh / Thành phố</option>
+                                                            @foreach($province as $province)
+                                                                <option value="{{ $province->city_id}}">{{ $province->name }}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                      
+                                                </div>
+                                                <div class="col-12 col-sm-12 col-md-6">
+                                                    <label>District <span class="text-danger">*</span></label>
+                                                    <select class="form-control display-select" name="district" id="selectDistrict" required>
+                                                        <option value="">Quận / Huyện</option>
+                                                    </select>
+                                                </div>
+                                            </div> 
+                                            <div class="form-row mb-3">
+                                                 <div class="form-group col-12 col-sm-12 col-md-6">
+                                                    <label>Ward <span class="text-danger">*</span></label>
+                                                    <select class="form-control display-select" name="ward" id="selectWard"required>
+                                                        <option value="">Phường / Xã </option>
+                                                    </select>
+                                                </div> 
+                                                <div class="form-group col-12 col-sm-12 col-md-6">
+                                                    <label for="p_address">Address<span
                                                             class="text-danger">*</span></label>
-                                                    <input name="address" type="text" value="{{ $acc->address }}" class="form-control"
-                                                        id="p_address" required>
+                                                    <input name="address" type="text" value="{{ $acc->address }}"
+                                                        class="form-control" id="p_address" required>
                                                 </div>
                                             </div>
-                                            
+
+
                                             <div class="form-row mb-3">
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
                                                     <label for="tel_number">telephone</label>
-                                                    <input name="phone" type="tel" value="0{{ $acc->phone }}" class="form-control"
-                                                        id="tel_number" pattern="[0-9]{10}">
+                                                    <input name="phone" type="tel" value="0{{ $acc->phone }}"
+                                                        class="form-control" id="tel_number" pattern="[0-9]{10}">
                                                 </div>
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
                                                     <label for="fax_num">Fax</label>
@@ -126,7 +155,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
-                                                    <label for="shipping_method" class="d-block">Shipping method <span class="text-danger">*</span></label>
+                                                    <label for="shipping_method" class="d-block">Shipping method
+                                                        <span class="text-danger">*</span></label>
                                                     <select name="shipping_method" id="country_name"
                                                         class="form-control nice-select" required="">
                                                         <option value="Giao trong 4h">Shipping for 4h</option>
@@ -140,18 +170,21 @@
                                                     <label for="email_address">Order note</label>
                                                     <input name="order_note" value="" type="text" class="form-control"
                                                         id="email_address">
-                                                    <input name="total_price" type="hidden" value="{{$totalPrice}}" class="">
-                                                    <input name="fee" type="hidden" value="{{$fee}}" class="">
+                                                    <input name="total_price" type="hidden" value="{{ $totalPrice }}"
+                                                        class="">
+                                                    <input name="fee" type="hidden" value="{{ $fee }}"
+                                                        class="">
                                                 </div>
-                                                
+
                                             </div>
-                                            
+
                                             <div class="form-row">
                                                 <div class="col-md-12 text-center">
-                                                    <button style="width: 50%;" type="submit" class=" btn btn-secondary" >Order</button>
+                                                    <button style="width: 50%;" type="submit"
+                                                        class=" btn btn-secondary">Order</button>
                                                 </div>
                                             </div>
-                                        
+
                                             <input type="hidden" name="status" value="0" />
                                         </form>
                                     </div> <!-- end of checkout-form -->
@@ -163,7 +196,8 @@
                                         </div>
                                         <div class="product-container">
                                             @foreach ($carts as $carts)
-                                            <input type="hidden" name="category_id" form="checkout_form" value="{{$carts->category_id}}" />
+                                                <input type="hidden" name="category_id" form="checkout_form"
+                                                    value="{{ $carts->category_id }}" />
                                                 <div class="product-list">
                                                     <div class="product-inner media align-items-center">
                                                         <div class="product-image mr-4 mr-sm-5 mr-md-4 mr-lg-5">
@@ -188,34 +222,41 @@
                                                     <tbody>
                                                         <tr class="cart-subtotal">
                                                             <th>Subtotal</th>
-                                                            <td class="text-center">{{number_format( $subPrice) }}$</td>
-                                                            
-                                                        </tr> <tr>
+                                                            <td class="text-center">{{ number_format($subPrice) }}$
+                                                            </td>
+
+                                                        </tr>
+                                                        <tr>
                                                             <th class="text-center">Eco Tax (-2%): </th>
-                                                            <td class="text-center">{{number_format($tax)}}$</td>
+                                                            <td class="text-center">{{ number_format($tax) }}$</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="text-center">Vat (10%): </th>
                                                             <td class="text-center">{{ number_format($vat) }}$</td>
                                                         </tr>
-                                                        @if($coupon)
+                                                        @if ($coupon)
                                                             <tr class="cart-coupon">
                                                                 <th>Coupon</th>
                                                                 <td>
-                                                                    @if($coupon->discount_ab)
-                                                                        <h3>-{{$coupon->discount_ab}}$</h3>
-                                                                        <input type="hidden" name="discount_ab" value="{{$coupon->discount_ab}}" form="checkout_form">
+                                                                    @if ($coupon->discount_ab)
+                                                                        <h3>-{{ $coupon->discount_ab }}$</h3>
+                                                                        <input type="hidden" name="discount_ab"
+                                                                            value="{{ $coupon->discount_ab }}"
+                                                                            form="checkout_form">
                                                                     @else
-                                                                        <h3>-{{$coupon->discount_rl}}%</h3>
-                                                                        <input type="hidden" name="discount_rl" value="{{$coupon->discount_rl}}" form="checkout_form">
-                                                                    @endif                                                                   
+                                                                        <h3>-{{ $coupon->discount_rl }}%</h3>
+                                                                        <input type="hidden" name="discount_rl"
+                                                                            value="{{ $coupon->discount_rl }}"
+                                                                            form="checkout_form">
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                         @endif
                                                         <tr class="order-total">
                                                             <th>Total</th>
                                                             <td class="text-center">
-                                                                <strong>{{number_format($totalPrice)}}$ - {{$totalQuantity}} items</strong>
+                                                                <strong>{{ number_format($totalPrice) }}$ -
+                                                                    {{ $totalQuantity }} items</strong>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -233,5 +274,8 @@
     </div>
     <!-- End of Checkout Wrapper -->
    
-    <!-- scroll to top -->
+
+@section('script')
+    <script type="text/javascript"></script>
+@endsection
 @stop()

@@ -30,7 +30,7 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label for="">SLIDE Title</label><br>
-                <textarea id="tinymce1" type="text" name="title" placeholder="Nhập title hiển thị trên slide" required></textarea >
+                <textarea id="tinymce1" type="text" name="title" placeholder="Nhập title hiển thị trên slide"></textarea >
                 <div style="color: red;">
                     @error('title')
                         {{ $message }}
@@ -64,7 +64,7 @@
         </div>
         </div>
         <div class="row">
-            <div class="col-md-12 text-center"><button style="width: 50%" type="submit" class="btn btn-primary">Lưu
+            <div class="col-md-12 text-center"><button style="width: 50%" type="submit"  class="btn btn-primary">Lưu
                     lại</button></div>
         </div>
 

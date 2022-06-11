@@ -114,7 +114,7 @@
                             <td>{{ $order->email }}</td>
                         </tr>
                         <tr>
-                            <td>{{ $order->address }}</td>
+                            <td>{{ $order->address }}-{{$order->wardd->name}}-{{$order->dist->name}}-{{$order->provin->name}}</td>
                         </tr>
                     </tbody>
                 </table>

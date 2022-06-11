@@ -216,14 +216,16 @@
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-thumbs-o-down:before {
+.fa.fa-thumbs-o-down:before { 
   content: "\f165"; }
 
 .fa.fa-heart-o {
+  color: red;
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
 .fa.fa-heart-o:before {
+  
   content: "\f004"; }
 
 .fa.fa-sign-out:before {

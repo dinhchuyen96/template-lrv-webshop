@@ -90,6 +90,8 @@ Route::group(['prefix'=>'my-account','middleware' => 'acc'], function(){
 Route::group(['prefix'=>'order','middleware' => 'acc'], function(){
     Route::get('/',[OrderHomeController::class, 'order_list'])->name('home.order');
     Route::get('/checkout',[OrderHomeController::class, 'checkout'])->name('home.order_checkout');
+    Route::get('/get-districts',[OrderHomeController::class, 'getTbl_Districts'])->name('home.getTbl_Districts');
+    Route::get('/get-wards',[OrderHomeController::class, 'getTbl_Wards'])->name('home.getTbl_Wards');
     Route::post('/checkout',[OrderHomeController::class, 'post_checkout'])->name('home.order_checkout');
     Route::post('/checkout/coupon',[OrderHomeController::class, 'check_coupon'])->name('home.checkout_coupon');
     Route::get('/checkout/coupon/_del',[OrderHomeController::class, 'del_coupon'])->name('home.del_coupon');
