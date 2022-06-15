@@ -16,6 +16,7 @@
     use Illuminate\Support\Facades\App;
     use DB;
     use Session;
+    use Mail;
     class HomeController extends Controller{
         public function __construct() {
             header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
@@ -30,10 +31,13 @@
         
             return redirect()->back();
         }
-        public function test(){
-            $ss = Session::get('website_language');
-            $locale = App::currentLocale();
-            return view('client.site.testlang',compact('ss','locale'));
+        public function test_mail(){
+            $name = 'Nguyễn Đình ABC';
+            Mail::send('emails.test', compact('name'),function ($email)use ($name) {
+                $email->subject('Email kích hoạt tài khoản Sinrato webside');
+                $email->to('php2103lm@gmail.com',$name);
+            });
+
         }
         
         public function home(Request $request,Product $product){

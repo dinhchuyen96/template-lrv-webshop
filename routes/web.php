@@ -43,7 +43,7 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('change-language/{language}', 'HomeController@changeLanguage')
         ->name('user.change-language');
 });
- Route::get('test','HomeController@test')->name('test');
+ Route::get('testemail','HomeController@test_mail')->name('test');
 
 
 Route::group(['prefix'=>'blog'], function(){
@@ -80,12 +80,19 @@ Route::group(['prefix'=>'cart','middleware' => 'acc'], function(){
 
                                 // ACCOUNT Route
 Route::group(['prefix'=>'account'], function(){
+    Route::get('/active/{customer}/{token}', [AccountController:: class, 'active_account'])->name('account.active_account');
     Route::get('/login',[AccountController::class, 'login'])->name('home.login');
     Route::post('/login',[AccountController::class, 'post_login'])->name('home.post_login');
     Route::get('/profile',[AccountController::class, 'profile'])->name('home.profile');
     Route::get('/logout',[AccountController::class, 'logout'])->name('home.logout');
     Route::get('/register',[AccountController::class, 'register'])->name('home.register');
     Route::post('/register',[AccountController::class, 'post_register'])->name('home.register');
+
+    Route::get('/reset-password/{customer}/{token}',[AccountController::class, 'reset_Password'])->name('account.reset_password');
+    Route::post('/reset-password/{customer}/{token}',[AccountController::class, 'post_reset_Password'])->name('account.post_reset_password');
+    
+    Route::get('/forget-password',[AccountController::class, 'forget_Password'])->name('account.forget_password');
+    Route::post('/forget-password',[AccountController::class, 'post_Forget_Password']);
 
 });       
 

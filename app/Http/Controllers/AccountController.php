@@ -12,6 +12,7 @@ use App\Http\Requests\Account\LoginRequest;
 use Auth;
 use Hash;
 use Str;
+use Mail;
 
 class AccountController extends Controller
 {
@@ -51,9 +52,13 @@ class AccountController extends Controller
     public function post_login(LoginRequest $req){
        $data = $req->only('email','password');
        if(Auth::guard('account')->attempt($data)){
+         if(Auth::guard('account')->user()->status == 0){
+            Auth::guard('account')->logout();
+            return redirect()->route('home.login')->with('wrong','Tài khoản của bạn chưa kích hoạt');
+         }
            return redirect()->route('home')->with('ok','Đăng nhập thành công');
        }else{
-        return redirect()->route('home.login')->with('wrong','Mời bạn đăng nhập lại');
+            return redirect()->route('home.login')->with('wrong','Mời bạn đăng nhập lại');
        }
     }
     public function register(){
@@ -61,27 +66,81 @@ class AccountController extends Controller
         
     }
     public function post_register(RegisterRequest $req){
+        $token = strtoupper(Str::random(10));
         $data= $req->all();
+        $data['token'] = $token;
         $data['password'] = bcrypt($req->password);
         //upload avatar
-        $file_name = $req->upload->getClientOriginalName();
-        $partInfo = pathinfo($file_name);
-        $ext = $partInfo['extension'];
+        if($req->upload !=null){
+            $file_name = $req->upload->getClientOriginalName();
+            $partInfo = pathinfo($file_name);
+            $ext = $partInfo['extension'];
 
-        $base_name = $partInfo['filename']; 
+            $base_name = $partInfo['filename']; 
 
-        $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
+            $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
 
-        $check_upload = $req->upload->move(public_path('uploads/avatars'), $final_name);
-
-        if($check_upload){
-            $data['avatar'] = $final_name;
-        };
+            $check_upload = $req->upload->move(public_path('uploads/avatars'), $final_name);
+            if($check_upload){
+                $data['avatar'] = $final_name;
+            };
+        }
+        
         // dd($data);
-        Account::create($data);
-        return redirect()->route('home.login')->with('ok','Đăng ký thành công');
+        if($customer = Account::create($data)){
+            Mail::send('emails.active_account', compact('customer'), function($email) use($customer){
+                $email->subject('Sinrato - Xác nhận tài khoản');
+                $email->to($customer->email, $customer->last_name);
+            });
+                return redirect()->route('home.login')->with('ok','Đăng ký thành công, vui lòng xác nhận tài khoản qua email');
+        }
+
+     
        
     }
+
+    public function active_account(Account $customer, $token) {
+        if($customer-> token == $token){
+            $customer->update(['status' => 1]);
+            return redirect()->route('home.login')->with('ok', 'Xác nhận thành công mời bạn đăng nhập');
+        }else{
+            return redirect()->route('home.register')->with('no', 'mã xác nhận không hợp lệ');
+        }
+    }
+
+    public function forget_Password(){
+        return view('client.site.account.forgetpassword');
+    }
+    public function post_Forget_Password(Request $req){
+        $token = strtoupper(Str::random(10));
+        $customer = Account::where('email', $req->email)->first();
+        $customer->update(['token' =>$token]);
+        Mail::send('emails.mail_forget_password', compact('customer'), function($email) use($customer){
+            $email->subject('Sinrato - Lấy lại mật khẩu');
+            $email->to($customer->email, $customer->last_name);
+        });
+            return redirect()->route('home.login')->with('ok', 'Vui lòng kiểm tra email để thay đổi mật khẩu');
+        
+    }
+     public function reset_Password(Account $customer, $token) {
+        // dd($customer);
+        if($customer->token === $token){
+           return view('client.site.account.reset_pw');
+        }else{
+           return abort(404); 
+        };
+        
+    }
+    public function post_reset_Password(Request $req, Account $customer){
+        // dd($req);
+        $password_h = bcrypt($req->password);
+        $customer->update(['password' => $password_h, 'token' => null]);
+        return redirect()->route('home.login')->with('ok', 'Đổi mật khẩu thành công, vui lòng đăng nhập');
+    }
+
+
+
+
     public function logout(){
         Auth::guard('account')->logout();
         return redirect()->route('home')->with('ok','Đăng xuất thành công');

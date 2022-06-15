@@ -13,7 +13,7 @@
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Changer Password</li>
+                                <li class="breadcrumb-item active" aria-current="page">Reset Password</li>
                             </ul>
                         </nav>
                     </div>
@@ -45,29 +45,21 @@
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12">
                                     <div class="section-title text-center">
-                                        <h3>Changer your password</h3>
+                                        <h3>Reset your password</h3>
                                     </div>
                                 </div>
                             </div> <!-- end of row -->
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 offset-lg-2 offset-xl-3">
                                     <div class="login-form">
-                                        <form action="{{route('home.changer_password')}}" method="POST">
+                                        <form action="" method="POST">
                                             @csrf
-                                            <div class="form-group row align-items-center mb-4">
-                                                <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">Old Password</label>
-                                                <div class="col-12 col-sm-12 col-md-8">
-                                                    @error('old_password') {{$message}} @enderror
-                                                    <input type="password" name="old_password" class="form-control" id="old_password" maxlength="10"  minlength="5"  placeholder="Old Password" required>
-                                                    <button id="showpass1" class="pass-show-btn" type="button">Show</button>
-                                                </div>
-                                            </div>
                                             <div class="form-group row align-items-center mb-4">
                                                 <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">New Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
-                                                    <input type="password" name="new_password" class="form-control" id="new_password" placeholder="New Password"  maxlength="10"  minlength="5"   required>
+                                                    <input type="password" name="password" class="form-control" id="new_password" placeholder="New Password"  maxlength="10"  minlength="5"   required>
                                                     <button class="pass-show-btn" type="button" id="showpass2">Show</button>
-                                                    @error('new_password') {{$message}} @enderror
+                                                    @error('password') {{$message}} @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row align-items-center mb-4">
@@ -79,7 +71,6 @@
                                                 </div>
                                             </div>
                                             <div class="login-box mt-5 text-center">
-                                                <p>Forgot your password? <br>Click<a href="#">Here</a></p>
                                                 <button type="submit" class="btn btn-secondary mb-4 mt-4">Save changes</button>
                                             </div>
                                         </form>

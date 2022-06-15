@@ -92,7 +92,7 @@
                                                 </div>
                                             </div>
                                             <div class="login-box mt-5 text-center">
-                                                <p><a href="">{{__('login.fg')}}</a></p>
+                                                <p>{{__('login.fg')}}<a style="color:blue" href="{{route('account.forget_password')}}">&nbsp;Here</a></p>
                                                 <button type="submit" class="btn btn-secondary mb-4 mt-4">{{__('login.si')}}</button>
                                             </div>
                                             <div class="text-center pt-20 top-bordered">

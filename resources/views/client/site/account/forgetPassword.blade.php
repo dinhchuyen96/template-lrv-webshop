@@ -33,7 +33,7 @@
                                                 </div>
                                             </div>
                                             <div class="login-box mt-5 text-center">
-                                                <button type="submit" class="btn btn-secondary mb-4 mt-4">Send Password Reset Link</button>
+                                                <button type="submit" class="btn btn-secondary mb-4 mt-4">Send mail</button>
                                             </div>
                                         </form>
                                     </div>

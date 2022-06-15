@@ -6,6 +6,7 @@
             'show' => 'Hiện',
             'hd' => 'Ẩn',
             'fg' => 'Quên mật khẩu?',
+            'here' => 'Vào đây',
             'si' => 'Đăng Nhập',
             'na' => 'Chưa có tài khoản?',
             'co' => 'bấm vào đây',
