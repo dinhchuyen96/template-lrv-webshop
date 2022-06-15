@@ -12,8 +12,8 @@
                     <div class="breadcrumb-wrap">
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Login</li>
+                                <li class="breadcrumb-item"><a href="index.html">{{__('main.home')}}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{__('login.si')}}</li>
                             </ul>
                         </nav>
                     </div>
@@ -56,7 +56,7 @@
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12">
                                     <div class="section-title text-center">
-                                        <h3>Log in to your account</h3>
+                                        <h3>{{__('login.hlogin')}}</h3>
                                     </div>
                                 </div>
                             </div> <!-- end of row -->
@@ -66,8 +66,7 @@
                                         <form action="" method="post">
                                             @csrf
                                             <div class="form-group row align-items-center mb-4">
-                                                <label for="email" class="col-12 col-sm-12 col-md-4 col-form-label">Email
-                                                    address</label>
+                                                <label for="email" class="col-12 col-sm-12 col-md-4 col-form-label">{{__('login.ed')}}</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
                                                     <input type="text" name="email" class="form-control" id="email"
                                                         placeholder="Email" required>
@@ -78,13 +77,13 @@
                                             </div>
                                             <div class="form-group row align-items-center mb-4">
                                                 <label for="c-password"
-                                                    class="col-12 col-sm-12 col-md-4 col-form-label">Password</label>
+                                                    class="col-12 col-sm-12 col-md-4 col-form-label">{{__('login.pw')}}</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
 
                                                     <input type="password" name="password" class="form-control"  minlength="5"  maxlength="10" 
                                                         placeholder="Password" required>
                                                     <button class="pass-show-btn" id="showpass1"
-                                                        type="button">Show</button>
+                                                        type="button">{{__('login.show')}}</button>
                                                     <div style="color: red;">
                                                         @error('password')
                                                             {{ $message }}
@@ -93,11 +92,11 @@
                                                 </div>
                                             </div>
                                             <div class="login-box mt-5 text-center">
-                                                <p><a href="">Forgot your password?</a></p>
-                                                <button type="submit" class="btn btn-secondary mb-4 mt-4">Sign In</button>
+                                                <p><a href="">{{__('login.fg')}}</a></p>
+                                                <button type="submit" class="btn btn-secondary mb-4 mt-4">{{__('login.si')}}</button>
                                             </div>
                                             <div class="text-center pt-20 top-bordered">
-                                                <p>No account? <a href="{{ route('home.register') }}">Create one here</a>.
+                                                <p>{{__('login.na')}}? <a href="{{ route('home.register') }}">{{__('login.co')}}</a>.
                                                 </p>
                                             </div>
                                         </form>

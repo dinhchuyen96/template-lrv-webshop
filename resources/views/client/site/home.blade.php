@@ -13,8 +13,7 @@
                             <div class="col-sm-6 col-sm-8">
                                 <div class="slider-text">
                                     <a>{!! $banner->title !!}></a>
-                                    <a class="btn-1 home-btn" href="{{ route('home.cart-add', $banner->product_id) }}">shop
-                                        now</a>
+                                    <a class="btn-1 home-btn" href="{{ route('home.cart-add', $banner->product_id) }}">{{__('home.sn')}}</a>
                                 </div>
                             </div>
                         </div>
@@ -94,11 +93,11 @@
     </div>
     <!-- feature area end -->
 
-    <!-- product wrapper area start -->
+    <!-- product wrapper area start  New product -->
     <div class="product-wrapper fix pb-70">
         <div class="container-fluid">
             <div class="section-title product-spacing hm-11">
-                <h3><span>New</span> product</h3>
+                <h3><span>{{__('home.prne')}}</span> {{__('home.pren')}}{{__('home.prnv')}}</h3>
             </div>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="one">
@@ -116,19 +115,19 @@
                                         </a>
                                         <div class="box-label">
                                             <div class="label-product label_new">
-                                                <span>new</span>
+                                                <span>{{__('home.np')}}</span>
                                             </div>
                                             <div class="label-product label_sale">
                                                 @if ($psn->percent_sale > 0)
-                                                    <span>sale {{ $psn->percent_sale }}%</span>
+                                                    <span>{{__('home.sale')}} {{ $psn->percent_sale }}%</span>
                                                 @endif
                                             </div>
                                         </div>
                                         <div class="action-links">
-                                            <a href="{{ route('home.add-wishlist', $psn->id) }}" title="Wishlist"><i class="fa fa-heart-o" style="font-size:23px;"></i></a>
-                                            <a href="{{ route('home.add-compare', $psn->id) }}" title="Compare"><i
+                                            <a href="{{ route('home.add-wishlist', $psn->id) }}" title="{{__('home.wishlist')}}"><i class="fa fa-heart-o" style="font-size:23px;"></i></a>
+                                            <a href="{{ route('home.add-compare', $psn->id) }}" title="{{__('home.compare')}}"><i
                                                     class="lnr lnr-sync"></i></a>
-                                            <a href="#" title="Quick view" data-target="#quickk_view{{ $psn->id }}"
+                                            <a href="#" title="{{__('home.qw')}}" data-target="#quickk_view{{ $psn->id }}"
                                                 data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                         </div>
                                     </div>
@@ -166,8 +165,7 @@
                                                         class="special-price">{{ $psn->price }}$</span></span>
                                             @endif
                                         </div>
-                                        <a class="btn-cart" href="{{ route('home.cart-add', $psn->id) }}">add to
-                                            cart</a>
+                                        <a class="btn-cart" href="{{ route('home.cart-add', $psn->id) }}">{{__('home.atc')}}</a>
                                     </div>
                                 </div><!-- </div> end single item -->
                             @endforeach
@@ -175,7 +173,7 @@
                     </div>
                 </div>
                 <div class="section-title product-spacing hm-11">
-                    <h3><span>Our</span> product</h3>
+                    <h3><span>{{__('home.our')}}<span>{{__('home.ourvi')}}</span> <span>{{__('home.pren')}}</h3>
                     <div class="boxx-tab">
                         <ul class="nav my-tab">
                             @foreach ($cats as $key => $cat)
@@ -208,7 +206,7 @@
                                                     </div>
                                                     <div class="label-product label_sale">
                                                         @if ($psl->percent_sale > 0)
-                                                            <span>sale {{ $psl->percent_sale }}%</span>
+                                                            <span>{{__('home.sale')}} {{ $psl->percent_sale }}%</span>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -257,7 +255,7 @@
                                                     @endif
                                                 </div>
                                                 <a class="btn-cart" href="{{ route('home.cart-add', $psl->id) }}"
-                                                    type="button">add to cart</a>
+                                                    type="button">{{__('home.atc')}}</a>
                                             </div>
                                         </div><!-- </div> end single item -->
                                     @endforeach
@@ -277,10 +275,10 @@
                     <div class="boxx-tab">
                         <ul class="nav my-tab">
                             <li>
-                                <a class="active" data-toggle="tab" href="#module-one">Best sellers Products</a>
+                                <a class="active" data-toggle="tab" href="#module-one">{{__('home.bs')}}</a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#module-two">On sale Products</a>
+                                <a data-toggle="tab" href="#module-two">{{__('home.os')}}</a>
                             </li>
                         </ul>
                     </div>
@@ -300,15 +298,15 @@
                                             <div class="box-label">
                                                 <div class="label-product label_sale">
                                                     @if ($top_sale->percent_sale > 0)
-                                                        <span>Sale - {{ $top_sale->percent_sale }}%</span>                                                        
+                                                        <span>{{__('home.sale')}} - {{ $top_sale->percent_sale }}%</span>                                                        
                                                     @endif
                                                 </div>
                                             </div>
                                             <div class="action-links">
                                                 <a href="{{ route('home.add-wishlist', $top_sale->id) }}"
-                                                    title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                    title="{{__('home.wishlist')}}"><i class="lnr lnr-heart"></i></a>
                                                 <a href="{{ route('home.add-compare', $top_sale->id) }}"
-                                                    title="Compare"><i class="lnr lnr-sync"></i></a>
+                                                    title="{{__('home.compare')}}"><i class="lnr lnr-sync"></i></a>
                                                 <a href="#" title="Quick view"
                                                     data-target="#quickk_view{{ $top_sale->id }}"
                                                     data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
@@ -347,7 +345,7 @@
                                                 @endif
                                             </div>
                                             <a href="{{ route('home.cart-add', $top_sale->id) }}" class="btn-cart"
-                                                type="button">add to cart</a>
+                                                type="button">{{__('home.atc')}}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -416,7 +414,7 @@
                                                 @endif
                                             </div>
                                             <a href="{{ route('home.cart-add', $product_sale_hot->id) }}"
-                                                class="btn-cart" type="button">add to cart</a>
+                                                class="btn-cart" type="button">{{__('home.atc')}}</a>
                                         </div>
                                     </div>
                                 </div> <!-- single item end -->
@@ -460,7 +458,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title">
-                            <h3><span>Brand</span></h3>
+                            <h3><span>{{__('home.br')}}</span></h3>
                         </div>
                     </div>
                     <div class="col-12">
@@ -520,7 +518,7 @@
                                                 <div class="price-box">
                                                     <span class="regular-price">£30.31</span>
                                                 </div>
-                                                <button class="btn-cart" type="button">add to cart</button>
+                                                <button class="btn-cart" type="button">{{__('home.atc')}}</button>
                                             </div>
                                         </div> <!-- </div> end single item -->
                                     </div>
@@ -633,8 +631,7 @@
                                                             <label>qty :</label>
                                                             <input type="number" name="quantity" placeholder="0" value="1" min="1"
                                                                 max="69">
-                                                            <button type="submit"  class="btn btn-cart lg-btn">add to
-                                                                cart</button>
+                                                            <button type="submit"  class="btn btn-cart lg-btn">{{__('home.atc')}}</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -770,8 +767,7 @@
                                                             <label>qty :</label>
                                                             <input type="number" name="quantity" placeholder="0" min="1"
                                                                 max="69">
-                                                            <button type="submit" class="btn btn-cart lg-btn">add to
-                                                                cart</button>
+                                                            <button type="submit" class="btn btn-cart lg-btn">{{__('home.atc')}}</button>
                                                         </form>
                                                     </div>
                                                 </div>

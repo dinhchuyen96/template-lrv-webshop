@@ -64,7 +64,7 @@
                                                     @endif
                                                     " style="width: 50px"
                                                         alt="">
-                                            <a class="ha-toggle" style="color:#fedc19" href="#">Hello
+                                            <a class="ha-toggle" style="color:#fedc19" href="#">{{ __('main.hello') }}
                                                 {{ $acc->last_name }}<span class="lnr lnr-chevron-down"></span></a>
                                     @else
                                             <a class="ha-toggle" href="#"><i class="fa fa-user" style="font-size:25px" aria-hidden="true"></i><span
@@ -81,18 +81,16 @@
                                         @endif
                                     </ul>
                                 </li>
-                                <li class="settings">
-                                    <a class="ha-toggle" href="#">Language<span
-                                            class="lnr lnr-chevron-down"></span></a>
-                                    <ul class="box-dropdown ha-dropdown">
-                                        <li><a href="login.html"><img src="{{ url('home') }}/assets/img/icon/en.png"
-                                                    alt=""> English</a></li>
-                                        <li><a href="login.html"><img src="{{ url('home') }}/assets/img/icon/ge.png"
-                                                    alt=""> Germany</a></li>
-                                    </ul>
+                                    @if($locale == 'vi')<a href="/locale/en" title="Đổi sang Tiếng Việt"><img src="{{ url('home') }}/assets/img/icon/vi2.png"
+                                                    alt=""></a>
+                                    @else
+                                            <a href="/locale/vi" title="Changer to English"><img src="{{ url('home') }}/assets/img/icon/en.png"
+                                                    alt=""></a>
+                                    @endif
+                                    
                                 </li>
                                 <li class="currency">
-                                    <a class="ha-toggle" href="#">Currency<span
+                                    <a class="ha-toggle" href="#">{{ __('main.currency') }}<span
                                             class="lnr lnr-chevron-down"></span></a>
                                     <ul class="box-dropdown ha-dropdown">
                                         <li><a href="login.html">€ Euro</a></li>
@@ -120,7 +118,7 @@
                                 <div class="top-cat hm1">
                                     <div class="search-form">
                                         <select class="form-control" name="search" id="select1">
-                                            <option value="">Select</option>
+                                            <option value="">{{ __('main.select') }}</option>
                                             @foreach ($cats as $cat)
                                                 <option value="{{ $cat->name }}">{{ $cat->name }}</option>
                                             @endforeach
@@ -128,8 +126,8 @@
                                     </div>
                                 </div>
                                 <input type="text" type="search" name="search" class="top-cat-field"
-                                    placeholder="Search entire store here" required>
-                                <input type="submit" class="top-search-btn" value="Search">
+                                    placeholder="{{ __('main.searchph') }}" required>
+                                <input type="submit" class="top-search-btn" value="{{ __('main.search') }}">
                             </form>
                             @if (isset($search_value))
                                 <!-- Modal -->
@@ -226,17 +224,16 @@
                                 <ul>
                                     <li class="compare">
                                         <a class="ha-toggle" href="/compare"><span class="lnr lnr-sync"><span
-                                                    class="count ml-1-compare">{{ $totalCompare }}</span></span>Product
-                                            compare</a>
+                                                    class="count ml-1-compare">{{ $totalCompare }}</span></span>{{ __('main.compare') }}</a>
                                     </li>
                                     <li class="wishlist">
                                         <a class="ha-toggle" href="{{ route('home.wishlist') }}"><span
                                                 class="lnr lnr-heart"></span><span
-                                                class="count">{{ $totalWishlist }}</span>wishlist</a>
+                                                class="count">{{ $totalWishlist }}</span>{{ __('main.wishlist') }}</a>
                                     </li>
                                     <li class="my-cart">
                                         <a class="ha-toggle"><span class="lnr lnr-cart"></span><span
-                                                class="count">{{ $totalQuantity }}</span>My cart</a>
+                                                class="count">{{ $totalQuantity }}</span>{{ __('main.cart') }}</a>
                                         @if ($carts)
                                             <ul class="mini-cart-drop-down ha-dropdown">
                                                 @foreach ($carts as $carts)
@@ -314,7 +311,7 @@
                                 <div class="categories-menu-btn ha-toggle">
                                     <div class="left">
                                         <i class="lnr lnr-text-align-left"></i>
-                                        <span>Browse categories</span>
+                                        <span>{{ __('main.categories') }}</span>
                                     </div>
                                     <div class="right">
                                         <i class="lnr lnr-chevron-down"></i>
@@ -347,7 +344,7 @@
                             <div class="main-menu">
                                 <nav id="mobile-menu">
                                     <ul>
-                                        <li><a href="{{ route('home') }}">HOME</a>
+                                        <li><a href="{{ route('home') }}">{{ __('main.home') }}</a>
                                         </li>
                                         <li>
                                             <a href="#">SHOP<span class="lnr lnr-chevron-down"></span></a>
@@ -394,7 +391,7 @@
                                                 @endforeach
                                             </ul>
                                         </li>
-                                        <li><a href="/contactus">CONTACT US</a></li>
+                                        <li><a href="/contactus">{{ __('main.contact') }}</a></li>
                                     </ul>
                                 </nav>
                             </div> <!-- </div> end main menu -->
@@ -420,7 +417,6 @@
     <div class="scroll-top not-visible">
         <i class="fa fa-angle-up"></i>
     </div> <!-- /End Scroll to Top -->
-
     <!-- footer area start -->
     <footer>
         <!-- news-letter area start -->
@@ -431,14 +427,14 @@
                         <div class="newsletter-box">
                             <div class="newsletter-inner">
                                 <div class="newsletter-title">
-                                    <h3>Sign Up For Newsletters</h3>
-                                    <p>Be the First to Know. Sign up for newsletter today</p>
+                                    <h3>{{ __('footer.signup') }}</h3>
+                                    <p>{{ __('footer.befisrt') }}</p>
                                 </div>
                                 <div class="newsletter-box">
                                     <form id="mc-form">
                                         <input type="email" id="mc-email" autocomplete="off" class="email-box"
-                                            placeholder="enter your email">
-                                        <button class="newsletter-btn" type="submit" id="mc-submit">subscribe
+                                            placeholder="{{ __('footer.enterpl') }}">
+                                        <button class="newsletter-btn" type="submit" id="mc-submit">{{ __('footer.sub') }}
                                             !</button>
                                     </form>
                                 </div>
@@ -478,7 +474,7 @@
                                 <p>We are a team of designers and developers that create high quality Magento,
                                     Prestashop, Opencart.</p>
                                 <div class="payment-method">
-                                    <h4>payment</h4>
+                                    <h4>{{ __('footer.pay') }}</h4>
                                     <img src="{{ url('home') }}/assets/img/payment/payment.png" alt="">
                                 </div>
                             </div>
@@ -492,13 +488,13 @@
                             <div class="widget-body">
                                 <div class="footer-useful-link">
                                     <ul>
-                                        <li><a href="about.html">about us</a></li>
-                                        <li><a href="#">Delivery Information</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
-                                        <li><a href="#">Terms & Conditions</a></li>
-                                        <li><a href="/contactus">Contact Us</a></li>
-                                        <li><a href="#">Returns</a></li>
-                                        <li><a href="#">Site Map</a></li>
+                                        <li><a href="about.html">{{ __('footer.abu') }}</a></li>
+                                        <li><a href="#">{{ __('footer.di') }}</a></li>
+                                        <li><a href="#">{{ __('footer.pp') }}</a></li>
+                                        <li><a href="#">{{ __('footer.tc') }}</a></li>
+                                        <li><a href="/contactus">{{ __('footer.cu') }}</a></li>
+                                        <li><a href="#">{{ __('footer.rt') }}</a></li>
+                                        <li><a href="#">{{ __('footer.sm') }}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -507,14 +503,14 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="footer-single-widget">
                             <div class="widget-title">
-                                <h4>contact us</h4>
+                                <h4>{{ __('footer.cu') }}</h4>
                             </div>
                             <div class="widget-body">
                                 <div class="footer-useful-link">
                                     <ul>
-                                        <li><span>Address:</span> {{$hotline->address_1}}<br>{{$hotline->address_2}}</li>
+                                        <li><span>{{ __('footer.adr') }}</span> {{$hotline->address_1}}<br>{{$hotline->address_2}}</li>
                                         <li><span>email:</span>{{$hotline->email_1}}</li>
-                                        <li><span>Call us:</span> <strong>{{$hotline->phone_1}}</strong></li>
+                                        <li><span>{{ __('footer.cus') }}</span> <strong>{{$hotline->phone_1}}</strong></li>
                                     </ul>
                                 </div>
                             </div>
@@ -571,6 +567,7 @@
     <script src = "{{ url('home') }}/assets/js/plugins.js"></script>
     <script src = "{{ url('home') }}/assets/js/ajax-mail.js"></script>
     <script src = "{{ url('home') }}/assets/js/main.js"></script>
+    <script src = "{{ url('home') }}/assets/js/address.js"></script>
     <script src = "{{ url('home') }}/assets/js/addcart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @if(Session::has('ok'))

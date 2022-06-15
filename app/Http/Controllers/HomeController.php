@@ -13,7 +13,9 @@
     use Illuminate\Http\Request;
     use Carbon\Carbon;
     use Auth;
+    use Illuminate\Support\Facades\App;
     use DB;
+    use Session;
     class HomeController extends Controller{
         public function __construct() {
             header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
@@ -22,7 +24,18 @@
             header('Access-Control-Allow-Origin: *');      
             // Quay lại trang, xóa session
         }
-    
+        public function changeLanguage($language)
+        {
+            \Session::put('website_language', $language);
+        
+            return redirect()->back();
+        }
+        public function test(){
+            $ss = Session::get('website_language');
+            $locale = App::currentLocale();
+            return view('client.site.testlang',compact('ss','locale'));
+        }
+        
         public function home(Request $request,Product $product){
             $category = Category::paginate(2);
             $product_sale = Product::product_sale(5);

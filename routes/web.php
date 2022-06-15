@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\OrderHomeController;
 use App\Http\Controllers\OrderAdminController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CompareController;
+use App\Http\Controllers\LocaleController;
 
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
     ->name('ckfinder_connector');
@@ -34,6 +36,14 @@ Route::get('/contactus', [HomeController::class, 'contactus'])->name('contactus'
 Route::get('/compare', [HomeController::class, 'compare'])->name('compare');
 
 
+Route::get('locale/{lange}', [LocaleController::class, 'setLang']);
+
+ 
+Route::group(['middleware' => 'locale'], function() {
+    Route::get('change-language/{language}', 'HomeController@changeLanguage')
+        ->name('user.change-language');
+});
+ Route::get('test','HomeController@test')->name('test');
 
 
 Route::group(['prefix'=>'blog'], function(){

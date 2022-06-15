@@ -17,7 +17,12 @@ class AccountMiddleware
     public function handle(Request $request, Closure $next)
     {   
         if(auth()->guard('account')->check()){
-            return $next($request);
+            if(guard('account')->user()->status == 0){
+                return redirect()->route('home.login')->with('no','Tài khoản chưa xác nhận!');
+            }else{
+                return $next($request);
+            }
+            
         }else{
             return redirect()->route('home.login');//->with('ok','Mời bạn đăng nhập');
         }

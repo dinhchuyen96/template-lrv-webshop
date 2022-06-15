@@ -28,6 +28,7 @@ class Account extends Authenticatable
         'address',
         'avatar',
         'birth_day',
+        'token',
         'status'
     ];
 }

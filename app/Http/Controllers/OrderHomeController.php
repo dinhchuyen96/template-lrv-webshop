@@ -73,10 +73,11 @@ class OrderHomeController extends Controller
 
     public function getTbl_Wards(Request $request){
         $query = $request->input('query');
-        $ward = Ward::where('ditrict_id', $query)->get();
-       
-        $html = "<option value=''>Phường / Xã </option>";
 
+        $ward = Ward::where('ditrict_id', $query)->get();   
+
+        $html = "<option value=''>Phường / Xã </option>";
+        
         foreach ($ward as $ward){
             $html.="<option value='$ward->ward_id'>$ward->name</option>";
         }

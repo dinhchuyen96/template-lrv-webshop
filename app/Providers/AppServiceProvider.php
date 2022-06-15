@@ -3,6 +3,7 @@
 namespace App\Providers;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\App;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Product;
@@ -66,7 +67,7 @@ class AppServiceProvider extends ServiceProvider
             $blog_cats = Blog_cat::orderBy('id', 'ASC')->where('status','>',0)->get();
             $carts = session('cart') ? session('cart'):[];  // lấy giỏ hàng trong session('cart')
             // dd($carts);
-
+            $locale = App::currentLocale();
             // session()->flush();
             
 
@@ -107,7 +108,7 @@ class AppServiceProvider extends ServiceProvider
             // dd($products_search);
            
 
-            $view->with(compact('coupon','search_value','search_value_cat','products_search','blog_cats','cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','fee','totalWishlist','acc','totalCompare','hotline'));
+            $view->with(compact('locale','coupon','search_value','search_value_cat','products_search','blog_cats','cats','carts','totalQuantity','tax','subPrice','totalPrice','vat','fee','totalWishlist','acc','totalCompare','hotline'));
         });
     }
 }
