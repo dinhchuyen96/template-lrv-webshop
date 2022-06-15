@@ -88,6 +88,7 @@ Route::group(['prefix'=>'account'], function(){
     Route::get('/register',[AccountController::class, 'register'])->name('home.register');
     Route::post('/register',[AccountController::class, 'post_register'])->name('home.register');
 
+    Route::get('/get-actived', [AccountController::class, 'get_actived'])->name('account.get_actived');
     Route::get('/reset-password/{customer}/{token}',[AccountController::class, 'reset_Password'])->name('account.reset_password');
     Route::post('/reset-password/{customer}/{token}',[AccountController::class, 'post_reset_Password'])->name('account.post_reset_password');
     

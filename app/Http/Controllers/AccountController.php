@@ -13,6 +13,7 @@ use Auth;
 use Hash;
 use Str;
 use Mail;
+use Session;
 
 class AccountController extends Controller
 {
@@ -53,8 +54,11 @@ class AccountController extends Controller
        $data = $req->only('email','password');
        if(Auth::guard('account')->attempt($data)){
          if(Auth::guard('account')->user()->status == 0){
+            $customer = Auth::guard('account')->user();
+            Session::put('customer_active', $customer);
             Auth::guard('account')->logout();
-            return redirect()->route('home.login')->with('wrong','Tài khoản của bạn chưa kích hoạt');
+            return redirect()->route('home.login')->with('no','Tài khoản của bạn chưa kích hoạt <br> vui lòng click vào 
+            <a href="'.route('account.get_actived').'">đây để tiến hành kích hoạt</a>');
          }
            return redirect()->route('home')->with('ok','Đăng nhập thành công');
        }else{
@@ -86,7 +90,6 @@ class AccountController extends Controller
             };
         }
         
-        // dd($data);
         if($customer = Account::create($data)){
             Mail::send('emails.active_account', compact('customer'), function($email) use($customer){
                 $email->subject('Sinrato - Xác nhận tài khoản');
@@ -106,6 +109,16 @@ class AccountController extends Controller
         }else{
             return redirect()->route('home.register')->with('no', 'mã xác nhận không hợp lệ');
         }
+    }
+    public function get_actived(){
+        $token = strtoupper(Str::random(10));
+        $customer = Session::get('customer_active');
+        $customer->update(['token' =>$token]);
+        Mail::send('emails.active_account', compact('customer'), function($email) use($customer){
+            $email->subject('Sinrato - Xác nhận tài khoản');
+            $email->to($customer->email, $customer->last_name);
+        });
+        return redirect->back()->with('ok', 'Vui lòng kiểm tra Email để kích hoạt tài khoản');
     }
 
     public function forget_Password(){

@@ -33,7 +33,7 @@
     @if (session()->has('no'))
         <div class="card-body">
             <div class="alert text-center alert-danger" role="alert">
-                <h2>{{ session()->get('no') }}</h2>
+                <h2>{!! session()->get('no') !!}</h2>
             </div>
         </div>
     @endif
