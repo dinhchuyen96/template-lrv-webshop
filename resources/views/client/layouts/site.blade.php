@@ -81,10 +81,10 @@
                                         @endif
                                     </ul>
                                 </li>
-                                    @if($locale == 'vi')<a href="/locale/en" title="Đổi sang Tiếng Việt"><img src="{{ url('home') }}/assets/img/icon/vi2.png"
+                                    @if($locale == 'vi')<a href="/locale/en" title="Đổi sang Tiếng Việt"><img src="{{ url('home') }}/assets/img/icon/en.png"
                                                     alt=""></a>
                                     @else
-                                            <a href="/locale/vi" title="Changer to English"><img src="{{ url('home') }}/assets/img/icon/en.png"
+                                            <a href="/locale/vi" title="Changer to English"><img src="{{ url('home') }}/assets/img/icon/vi2.png"
                                                     alt=""></a>
                                     @endif
                                     

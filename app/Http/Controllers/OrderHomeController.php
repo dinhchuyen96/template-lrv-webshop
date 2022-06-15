@@ -66,15 +66,14 @@ class OrderHomeController extends Controller
         $html = "<option value=''>Quận / Huyện</option>";
 
         foreach ($district as $district){
-            $html.="<option value='$district->ditrict_id'>$district->name</option>";
+            $html.="<option value='$district->district_id'>$district->name</option>";
         }
         return response()->json(['html' => $html]);
     }
 
     public function getTbl_Wards(Request $request){
         $query = $request->input('query');
-
-        $ward = Ward::where('ditrict_id', $query)->get();   
+        $ward = Ward::where('district_id', $query)->get();   
 
         $html = "<option value=''>Phường / Xã </option>";
         

@@ -9,5 +9,5 @@ class District extends Model
 {
     use HasFactory;
     protected $table = 'tbl_districts';
-    protected $fillable = ['ditrict_id','name','type','city_id'];
+    protected $fillable = ['district_id','name','type','city_id'];
 }
