@@ -11,8 +11,8 @@
                     <div class="breadcrumb-wrap">
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">My Account</li>
+                                <li class="breadcrumb-item"><a href="index.html">{{__('main.home')}}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ __('profile.ma') }}</li>
                             </ul>
                         </nav>
                     </div>
@@ -33,22 +33,22 @@
                                 <div class="row align-items-center no-gutters">
                                    <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
                                        <div class="single-info">
-                                           <p class="user-name">Hello <span>{{$acc->first_name}} {{$acc->last_name}}</span> <br>not {{$acc->last_name}}? <a class="log-out" href="{{route('home.logout')}}">Log Out</a></p>
+                                           <p class="user-name">{{ __('main.hello') }} <span>{{$acc->first_name}} {{$acc->last_name}}</span> <br>not {{$acc->last_name}}? <a class="log-out" href="{{route('home.logout')}}">Log Out</a></p>
                                        </div>
                                    </div>
                                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                        <div class="single-info">
-                                           <p>Need Assistance? Customer service at <a href="#">{{$hotline->email_1}}</a></p>
+                                           <p>{{ __('profile.na') }} <a href="#">{{$hotline->email_1}}</a></p>
                                        </div>
                                    </div>
                                    <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
                                        <div class="single-info">
-                                           <p>E-mail them at <a href="#">{{$hotline->email_2}}</a></p>
+                                           <p>{{ __('profile.et') }}<a href="#">{{$hotline->email_2}}</a></p>
                                        </div>
                                    </div>
                                    <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-3">
                                        <div class="single-info justify-content-lg-center">
-                                           <a class="btn btn-secondary" href="{{route('home.cart')}}">View Cart</a>
+                                           <a class="btn btn-secondary" href="{{route('home.cart')}}">{{ __('profile.vc') }}</a>
                                        </div>
                                    </div>
                                </div> <!-- end of row -->
@@ -58,10 +58,10 @@
                                 <div class="row">
                                     <div class="col-12 col-sm-12 col-md-12 col-lg-2">
                                         <ul class="nav flex-column dashboard-list" role="tablist">
-                                            <li><a class="nav-link active" data-toggle="tab" href="#dashboard">Dashboard</a></li>
-                                            <li> <a class="nav-link" data-toggle="tab" href="#orders">Orders</a></li>
-                                            <li><a class="nav-link" data-toggle="tab" href="#account-details">Account details</a></li>
-                                            <li><a class="nav-link" href="{{route('home.changer_password')}}">Changer Password</a></li>
+                                            <li><a class="nav-link active" data-toggle="tab" href="#dashboard">{{ __('profile.db') }}</a></li>
+                                            <li> <a class="nav-link" data-toggle="tab" href="#orders">{{ __('profile.od') }}</a></li>
+                                            <li><a class="nav-link" data-toggle="tab" href="#account-details">{{ __('profile.ad') }}</a></li>
+                                            <li><a class="nav-link" href="{{route('home.changer_password')}}">{{ __('profile.cp') }}</a></li>
                                         </ul> <!-- end of dashboard-list -->
                                     </div>
 
@@ -69,22 +69,22 @@
                                         <!-- Tab panes -->
                                         <div class="tab-content dashboard-content">
                                             <div id="dashboard" class="tab-pane fade show active">
-                                                <h3>Dashboard </h3>
-                                                <p>From your account dashboard. you can easily check &amp; view your <a href="#">recent orders</a>, manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit your password and account details.</a></p>
+                                                <h3>{{ __('profile.db') }} </h3>
+                                                <p>{{ __('profile.dbdt') }}</p>
                                             </div> <!-- end of tab-pane -->
 
                                             <div id="orders" class="tab-pane fade">
-                                                <h3>Orders</h3>
-                                                @if(isset($orders))
+                                                <h3>{{ __('profile.od') }}</h3>
+                                                @if($orders!= null)
                                                     <div class="table-responsive">
                                                         <table class="table">
                                                             <thead>
                                                                 <tr>
                                                                     <th>#</th>
-                                                                    <th>Date</th>
-                                                                    <th>Status</th>
-                                                                    <th>Total</th>
-                                                                    <th>Actions</th>                
+                                                                    <th>{{ __('profile.td') }}</th>
+                                                                    <th>{{ __('profile.ts') }}</th>
+                                                                    <th>{{ __('profile.tt') }}</th>
+                                                                    <th>{{ __('profile.ta') }}</th>                
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -117,13 +117,13 @@
                                                 @endif
                                             </div> <!-- end of tab-pane -->
                                             <div id="account-details" class="tab-pane fade row">
-                                                <h3>Account details </h3>
+                                                <h3>{{ __('profile.ad') }} </h3>
                                                 <img src="{{url('uploads')}}/avatars/{{$acc->avatar}}" alt="" width="400" class="mx-auto d-block mb-2">
                                                 <div class="login-form">
                                                     <form action="{{route('home.account_edit')}}" method="POST"  enctype="multipart/form-data">
                                                         @csrf
                                                         <div class="form-group row align-items-center">
-                                                            <label class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Gender</label>
+                                                            <label class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">{{ __('profile.gd') }}</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
                                                                 <div class="form-row">
                                                                     <div class="col-6 col-sm-3">
@@ -145,48 +145,48 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="f-name" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">First Name</label>
+                                                            <label for="f-name" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">{{ __('profile.fn') }}</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
                                                                 <input type="text" class="form-control" value="{{$acc->first_name}}" name="first_name" id="first_name" required>
                                                                 @error('first_name'){{$message}} @enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="l-name" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Last Name</label>
+                                                            <label for="l-name" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">{{ __('profile.ln') }}</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
                                                                 <input type="text" class="form-control" value="{{$acc->last_name}}" id="last_name" name="last_name" required>
                                                                 @error('last_name'){{$message}} @enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="email" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Email Address</label>
+                                                            <label for="email" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">{{ __('profile.ed') }}</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
                                                                 <input type="text" class="form-control" name="email" value="{{$acc->email}}" id="email" readonly required>
                                                                 @error('email'){{$message}} @enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="f-name" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Phone</label>
+                                                            <label for="f-name" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">{{ __('profile.phone') }}</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
                                                                 <input type="number" pattern="[0-9]{10}" class="form-control" value="0{{$acc->phone}}" name="phone" id="" required>
                                                                 @error('phone'){{$message}} @enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="inputaddress" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Address</label>
+                                                            <label for="inputaddress" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">{{ __('profile.add') }}</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
                                                                 <input type="text" class="form-control" value="{{$acc->address}}" name="address" id="address" required>
                                                                 @error('address'){{$message}} @enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="birth" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Birthdate (Optional)</label>
+                                                            <label for="birth" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">{{ __('profile.bd') }}</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
                                                                 <input type="date" class="form-control" name="birth_day"id="birth" max="2016-01-01" min="1945-12-31"  value="{{$acc->birth_day}}" required>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label" for="">Upload avatar</label>
+                                                            <label class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label" for="">{{ __('profile.ua') }}</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
                                                             <input type="file" class="form-control" name="upload" placeholder="Input field"
                                                                 accept=".png,.gif,.jpg,.jpeg,.svg">
@@ -195,26 +195,8 @@
                                                             @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="form-check row p-0 mt-5">
-                                                            <div class="col-12 col-sm-12 col-md-8 offset-md-4 col-lg-6 offset-lg-3">
-                                                                <div class="custom-checkbox">
-                                                                    <input class="form-check-input" type="checkbox" id="offer">
-                                                                    <span class="checkmark"></span>
-                                                                    <label class="form-check-label" for="offer">Receive offers from our partners</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-check row p-0 mt-4">
-                                                            <div class="col-12 col-sm-12 col-md-8 offset-md-4 col-lg-6 offset-lg-3">
-                                                                <div class="custom-checkbox">
-                                                                    <input class="form-check-input" type="checkbox" id="subscribe" required>
-                                                                    <span class="checkmark"></span>
-                                                                    <label class="form-check-label" for="subscribe">Sign up for our newsletter<br>Subscribe to our newsletters now and stay up-to-date with new collections, the latest lookbooks and exclusive offers..</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                         <div class="register-box d-flex justify-content-end mt-half">
-                                                            <button type="submit" class="btn btn-secondary">Save</button>
+                                                            <button type="submit" class="btn btn-secondary">{{ __('profile.save') }}</button>
                                                         </div>
                                                     </form>
                                                 </div>

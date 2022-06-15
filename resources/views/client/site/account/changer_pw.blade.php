@@ -12,8 +12,8 @@
                     <div class="breadcrumb-wrap">
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Changer Password</li>
+                                <li class="breadcrumb-item"><a href="index.html">{{ __('main.home') }}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ __('profile.cp') }}</li>
                             </ul>
                         </nav>
                     </div>
@@ -45,7 +45,7 @@
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12">
                                     <div class="section-title text-center">
-                                        <h3>Changer your password</h3>
+                                        <h3>{{ __('changerPassword.cyp') }}</h3>
                                     </div>
                                 </div>
                             </div> <!-- end of row -->
@@ -55,32 +55,32 @@
                                         <form action="{{route('home.changer_password')}}" method="POST">
                                             @csrf
                                             <div class="form-group row align-items-center mb-4">
-                                                <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">Old Password</label>
+                                                <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">{{ __('changerPassword.op') }}</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
                                                     @error('old_password') {{$message}} @enderror
-                                                    <input type="password" name="old_password" class="form-control" id="old_password" maxlength="10"  minlength="5"  placeholder="Old Password" required>
-                                                    <button id="showpass1" class="pass-show-btn" type="button">Show</button>
+                                                    <input type="password" name="old_password" class="form-control" id="old_password" maxlength="10"  minlength="5"  placeholder="{{ __('changerPassword.op') }}" required>
+                                                    <button id="showpass1" class="pass-show-btn" type="button">{{ __('changerPassword.show') }}</button>
                                                 </div>
                                             </div>
                                             <div class="form-group row align-items-center mb-4">
-                                                <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">New Password</label>
+                                                <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">{{ __('changerPassword.np') }}</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
-                                                    <input type="password" name="new_password" class="form-control" id="new_password" placeholder="New Password"  maxlength="10"  minlength="5"   required>
-                                                    <button class="pass-show-btn" type="button" id="showpass2">Show</button>
+                                                    <input type="password" name="new_password" class="form-control" id="new_password" placeholder="{{ __('changerPassword.np') }}"  maxlength="10"  minlength="5"   required>
+                                                    <button class="pass-show-btn" type="button" id="showpass2">{{ __('changerPassword.show') }}</button>
                                                     @error('new_password') {{$message}} @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row align-items-center mb-4">
-                                                <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">Confirm new Password</label>
+                                                <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">{{ __('changerPassword.cp') }}</label>
                                                 <div class="col-12 col-sm-12 col-md-8">                                                    
-                                                    <input type="password" name="conf_password" class="form-control" id="conf_password"  maxlength="10" minlength="5" placeholder="Confirm new Password" required>
-                                                    <button class="pass-show-btn" type="button" id="showpass3">Show</button>
+                                                    <input type="password" name="conf_password" class="form-control" id="conf_password"  maxlength="10" minlength="5" placeholder="{{ __('changerPassword.cp') }}" required>
+                                                    <button class="pass-show-btn" type="button" id="showpass3">{{ __('changerPassword.show') }}</button>
                                                     @error('conf_password') {{$message}} @enderror
                                                 </div>
                                             </div>
                                             <div class="login-box mt-5 text-center">
-                                                <p>Forgot your password? <br>Click<a href="#">Here</a></p>
-                                                <button type="submit" class="btn btn-secondary mb-4 mt-4">Save changes</button>
+                                                <p>{{ __('changerPassword.fg') }} <br><a style="color:blue" href="{{route('account.forget_password')}}">{{ __('changerPassword.ch') }}</a></p>
+                                                <button type="submit" class="btn btn-secondary mb-4 mt-4">{{ __('changerPassword.save') }}</button>
                                             </div>
                                         </form>
                                     </div>
