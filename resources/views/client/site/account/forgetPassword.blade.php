@@ -25,8 +25,8 @@
                                                 <label for="email" class="col-12 col-sm-12 col-md-4 col-form-label">Email
                                                     address</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
-                                                    <input type="text" name="email" class="form-control" id="email"
-                                                        placeholder="Email" maxlength="40" required>
+                                                    <input type="email" name="email" class="form-control" id="email"
+                                                        placeholder="Email" maxlength="50" required>
                                                     @error('email')
                                                         {{ $message }}
                                                     @enderror

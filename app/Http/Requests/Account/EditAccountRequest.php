@@ -27,7 +27,7 @@ class EditAccountRequest extends FormRequest
             'first_name' => 'required',
             'last_name' => 'required',
             'sex' => 'required',
-            'email' => 'required',
+            'email' => 'required|email|exists',
             'phone' => 'required',
             'address'=>'required|max:265',
             'birth_day' => 'required'
@@ -37,6 +37,9 @@ class EditAccountRequest extends FormRequest
         return [
             'first_name.required' => 'Vui lòng nhập họ của bạn',
             'name.required' => 'Vui lòng nhập tên của bạn',
+            'email.required' => 'Vui lòng nhập email của bạn',
+            'email.email' => 'Vui lòng nhập đúng định dạng email',
+            'email.exists' => 'Có vẻ như bạn đang nhập sai email đã đăng ký',
             'sex.required' => 'Vui lòng chọn giới tính',
             'address.required' => 'Vui lòng nhập địa chỉ của bạn',
             'address.max' => 'Địa chỉ quá dài, vui lòng nhập lại địa chỉ của bạn',

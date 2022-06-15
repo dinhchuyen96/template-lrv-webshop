@@ -4,7 +4,7 @@ namespace App\Http\Requests\Account;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class ForgetPasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class LoginRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,18 +24,15 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|exists:accounts|max:60',
-            'password' => 'required|max:10|min:5',
+            'email' => 'required|email|exists:accounts',
         ];
     }
     public function messages()
     {
         return [
+            'email.email' => 'Bạn chưa nhập đúng định dạng email',
             'email.required' => 'Email không được để trống',
-            'email.exists, email.email, email.max' => 'Email không hợp lệ',
-            'password.required' => 'Mời bạn nhập mật khẩu',
-            'password.min' => 'Mật khẩu phải từ 5-10 ký tự',
-            'password.max' => 'Mật khẩu phải từ 5-10 ký tự'
+            'email.exists' => 'Có vẻ bạn chưa đăng ký',
         ];
     }
 }

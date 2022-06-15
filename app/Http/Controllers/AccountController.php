@@ -9,6 +9,8 @@ use App\Http\Requests\Account\RegisterRequest;
 use App\Http\Requests\Account\ChangerPasswordRequest;
 use App\Http\Requests\Account\EditAccountRequest;
 use App\Http\Requests\Account\LoginRequest;
+use App\Http\Requests\Account\ResetPasswordRequest;
+use App\Http\Requests\Account\ForgetPasswordRequest;
 use Auth;
 use Hash;
 use Str;
@@ -27,7 +29,7 @@ class AccountController extends Controller
 
     public function post_edit_account(EditAccountRequest $req){
         // dd($req->all());
-        $data= $req->all();
+        $data= $req->only('sex','first_name','last_name','email','phone','birth_day','address');
         $user = Auth::guard('account')->user();
         if($req->has('upload')){
             $file_name = $req->upload->getClientOriginalName();
@@ -71,7 +73,7 @@ class AccountController extends Controller
     }
     public function post_register(RegisterRequest $req){
         $token = strtoupper(Str::random(10));
-        $data= $req->all();
+        $data= $req->only('sex','first_name','last_name','email','phone','birth_day','address');
         $data['token'] = $token;
         $data['password'] = bcrypt($req->password);
         //upload avatar
@@ -105,9 +107,10 @@ class AccountController extends Controller
     public function active_account(Account $customer, $token) {
         if($customer-> token == $token){
             $customer->update(['status' => 1]);
+            $customer->update(['token' => null]);
             return redirect()->route('home.login')->with('ok', 'Xác nhận thành công mời bạn đăng nhập');
         }else{
-            return redirect()->route('home.register')->with('no', 'mã xác nhận không hợp lệ');
+            return abort(404); 
         }
     }
     public function get_actived(){
@@ -118,13 +121,13 @@ class AccountController extends Controller
             $email->subject('Sinrato - Xác nhận tài khoản');
             $email->to($customer->email, $customer->last_name);
         });
-        return redirect->back()->with('ok', 'Vui lòng kiểm tra Email để kích hoạt tài khoản');
+        return redirect()->back()->with('ok', 'Vui lòng kiểm tra Email để kích hoạt tài khoản');
     }
 
     public function forget_Password(){
         return view('client.site.account.forgetpassword');
     }
-    public function post_Forget_Password(Request $req){
+    public function post_Forget_Password(ForgetPasswordRequest $req){
         $token = strtoupper(Str::random(10));
         $customer = Account::where('email', $req->email)->first();
         $customer->update(['token' =>$token]);
@@ -144,7 +147,7 @@ class AccountController extends Controller
         };
         
     }
-    public function post_reset_Password(Request $req, Account $customer){
+    public function post_reset_Password(ResetPasswordRequest $req, Account $customer){
         // dd($req);
         $password_h = bcrypt($req->password);
         $customer->update(['password' => $password_h, 'token' => null]);
