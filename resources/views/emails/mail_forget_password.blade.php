@@ -7,6 +7,15 @@ color:red">
     <h3>Nếu không phải bạn đã gửi yêu cầu lấy lại mật khẩu, hãy bỏ qua email này</h3>
     <h4>Lưu ý: Link có tác dụng trong vòng 1 giờ!</h4>
     <a href="{{ route('account.reset_password', ['customer' => $customer->id, 'token' => $customer->token]) }}"
-        style="display: inline-block; background: green; color: #fff, padding: 7px 25px; font-weight: bold; font-size: 25px">Đặt
+        style="    background: green;
+        border: medium none;
+        border-radius: 25px;
+        color: #111;
+        cursor: pointer;
+        font-size: 14px;    cursor: pointer;
+        line-height: 36px;
+        margin-top: 10px;
+        padding: 0 25px;
+        text-transform: capitalize;">Đặt
         lại mật khẩu</a>
 </div>

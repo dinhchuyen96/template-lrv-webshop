@@ -16,6 +16,7 @@
             'ts' => 'Trạng thái',
             'tt' => 'Số lượng',
             'ta' => 'Hành động',
+            'view' => 'Chi tiết',
             'gd' => 'Giới tính',
             'fn' => 'Họ đệm',
             'ln' => 'Tên',

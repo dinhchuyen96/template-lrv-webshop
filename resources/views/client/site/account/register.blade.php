@@ -80,17 +80,19 @@
                                                     @error('last_name'){{$message}} @enderror
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
+                                            <div class="form-group row mt-4">
                                                 <label for="email" class="col-12 col-sm-12 col-md-4 col-form-label">{{__('register.ed')}}</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                                                    <p style="color:red; margin-top: -25px; position:absolute" id="checkmail"></p>
                                                     <input type="text" class="form-control" value="{{old('email')}}" maxlength="40" name="email" id="email" required="">
                                                     @error('email'){{$message}} @enderror
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
+                                            <div class="form-group row mt-4">
                                                 <label for="f-name" class="col-12 col-sm-12 col-md-4 col-form-label">{{__('register.phone')}}</label>
                                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                                    <input type="text" class="form-control" value="{{old('phone')}}" name="phone" id="f-name" required>
+                                                    <p style="color:red; margin-top: -25px; position:absolute" id="checkphone"></p>
+                                                    <input type="text" class="form-control" value="{{old('phone')}}" name="phone" id="phone" required>
                                                     @error('phone'){{$message}} @enderror
                                                 </div>
                                             </div>

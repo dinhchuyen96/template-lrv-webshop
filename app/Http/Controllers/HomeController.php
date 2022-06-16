@@ -31,14 +31,6 @@
         
             return redirect()->back();
         }
-        public function test_mail(){
-            $name = 'Nguyễn Đình ABC';
-            Mail::send('emails.test', compact('name'),function ($email)use ($name) {
-                $email->subject('Email kích hoạt tài khoản Sinrato webside');
-                $email->to('php2103lm@gmail.com',$name);
-            });
-
-        }
         
         public function home(Request $request,Product $product){
             $category = Category::paginate(2);
@@ -57,6 +49,10 @@
 
         public function myaccount(){
             return view('client.site\myaccount');
+        }
+         
+        public function live_Search(){
+            
         }
 
         public function category(Category $category){

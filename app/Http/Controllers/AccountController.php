@@ -51,6 +51,7 @@ class AccountController extends Controller
         return view('client.site.account.login');
     }
 
+    
 
     public function post_login(LoginRequest $req){
        $data = $req->only('email','password');
@@ -71,6 +72,27 @@ class AccountController extends Controller
         return view('client.site.account.register');
         
     }
+    public function check_email(Request $request){ 
+        $query = $request->input('query');
+        $user = Account::where('email', $query)->get(); 
+        if($user->isNotEmpty()){
+            $html = "Email đã tồn tại, vui lòng chọn email khác";
+        }else{
+            $html ="";
+        }
+        return response()->json(['html' => $html]);
+    }
+    public function check_phone(Request $request){ 
+        $query = $request->input('queryphone');
+        $phone = Account::where('phone', $query)->get(); 
+        if($phone->isNotEmpty()){
+            $errorphone = "Số điện thoại đã tồn tại, vui lòng chọn số khác";
+        }else{
+            $errorphone ="";
+        }
+        return response()->json(['errorphone' => $errorphone]);
+    }
+
     public function post_register(RegisterRequest $req){
         $token = strtoupper(Str::random(10));
         $data= $req->only('sex','first_name','last_name','email','phone','birth_day','address');

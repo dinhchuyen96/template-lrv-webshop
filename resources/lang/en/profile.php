@@ -16,6 +16,7 @@
             'ts' => 'Status',
             'tt' => 'Total',
             'ta' => 'Actions',
+            'view' => 'Detail',
             'gd' => 'Gender',
             'fn' => 'First Name',
             'ln' => 'Last Name',

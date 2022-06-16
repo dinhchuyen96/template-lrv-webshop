@@ -62,7 +62,7 @@ class OrderHomeController extends Controller
     public function getTbl_Districts(Request $request){
         $query = $request->input('query');
         $district = District::where('city_id', $query)->get();
-       
+    //    dd($query);
         $html = "<option value=''>Quận / Huyện</option>";
 
         foreach ($district as $district){

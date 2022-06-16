@@ -35,16 +35,10 @@ Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::get('/contactus', [HomeController::class, 'contactus'])->name('contactus');
 Route::get('/compare', [HomeController::class, 'compare'])->name('compare');
 
+Route::get('/search', [HomeController::class, 'live_Search'])->name('live_Search');
 
-Route::get('locale/{lange}', [LocaleController::class, 'setLang']);
 
- 
-Route::group(['middleware' => 'locale'], function() {
-    Route::get('change-language/{language}', 'HomeController@changeLanguage')
-        ->name('user.change-language');
-});
- Route::get('testemail','HomeController@test_mail')->name('test');
-
+Route::get('locale/{lange}', [LocaleController::class, 'setLang']); // Đổi ngôn ngữ
 
 Route::group(['prefix'=>'blog'], function(){
     Route::get('/', [HomeController::class, 'blog'])->name('blog');
@@ -86,6 +80,8 @@ Route::group(['prefix'=>'account'], function(){
     Route::get('/profile',[AccountController::class, 'profile'])->name('home.profile');
     Route::get('/logout',[AccountController::class, 'logout'])->name('home.logout');
     Route::get('/register',[AccountController::class, 'register'])->name('home.register');
+    Route::get('/check-email',[AccountController::class, 'check_email'])->name('home.check_email');
+    Route::get('/check-phone',[AccountController::class, 'check_phone'])->name('home.check_phone');
     Route::post('/register',[AccountController::class, 'post_register'])->name('home.register');
 
     Route::get('/get-actived', [AccountController::class, 'get_actived'])->name('account.get_actived');

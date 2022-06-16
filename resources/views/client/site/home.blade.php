@@ -37,8 +37,8 @@
                                     <img src="{{ url('home') }}/assets/img/icon/wrapper1.png" alt="">
                                 </div>
                                 <div class="feature-content">
-                                    <h4>free shipping</h4>
-                                    <p>free shipping on all us order</p>
+                                    <h4>{{ __('home.promotion1') }}</h4>
+                                    <p>{{ __('home.promotion1d') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -48,8 +48,8 @@
                                     <img src="{{ url('home') }}/assets/img/icon/wrapper2.png" alt="">
                                 </div>
                                 <div class="feature-content">
-                                    <h4>Support 24/7</h4>
-                                    <p>Contact us 24 hours a day</p>
+                                    <h4>{{ __('home.promotion2') }}</h4>
+                                    <p>{{ __('home.promotion2d') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -59,8 +59,8 @@
                                     <img src="{{ url('home') }}/assets/img/icon/wrapper3.png" alt="">
                                 </div>
                                 <div class="feature-content">
-                                    <h4>100% Money Back</h4>
-                                    <p>You have 30 days to Return</p>
+                                    <h4>{{ __('home.promotion3') }}</h4>
+                                    <p>{{ __('home.promotion3d') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -70,8 +70,8 @@
                                     <img src="{{ url('home') }}/assets/img/icon/wrapper4.png" alt="">
                                 </div>
                                 <div class="feature-content">
-                                    <h4>90 Days Return</h4>
-                                    <p>If goods have problems</p>
+                                    <h4>{{ __('home.promotion4') }}</h4>
+                                    <p>{{ __('home.promotion4d') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -81,8 +81,8 @@
                                     <img src="{{ url('home') }}/assets/img/icon/wrapper5.png" alt="">
                                 </div>
                                 <div class="feature-content">
-                                    <h4>Payment Secure</h4>
-                                    <p>We ensure secure payment</p>
+                                    <h4>{{ __('home.promotion5') }}</h4>
+                                    <p>{{ __('home.promotion5d') }}</p>
                                 </div>
                             </div>
                         </div>

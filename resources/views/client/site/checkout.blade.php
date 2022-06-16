@@ -99,7 +99,7 @@
                                             <div class="form-row mb-3">
                                                 <div class="col-12 col-sm-12 col-md-6">
                                                     <label>City \ Province <span class="text-danger">*</span></label>
-                                                    <select id="selectProvince" name="province" class="form-control" required="">
+                                                    <select id="selectProvince" name="province_id" class="form-control" required="">
                                                         @if($province )
                                                             <option value="">Tỉnh / Thành phố</option>
                                                             @foreach($province as $province)
@@ -111,7 +111,7 @@
                                                 </div>
                                                 <div class="col-12 col-sm-12 col-md-6">
                                                     <label>District <span class="text-danger">*</span></label>
-                                                    <select class="form-control display-select" name="district" id="selectDistrict" required>
+                                                    <select class="form-control display-select" name="district_id" id="selectDistrict" required>
                                                         <option value="">Quận / Huyện</option>
                                                     </select>
                                                 </div>
@@ -119,7 +119,7 @@
                                             <div class="form-row mb-3">
                                                  <div class="form-group col-12 col-sm-12 col-md-6">
                                                     <label>Ward <span class="text-danger">*</span></label>
-                                                    <select class="form-control display-select" name="ward" id="selectWard"required>
+                                                    <select class="form-control display-select" name="ward_id" id="selectWard"required>
                                                         <option value="">Phường / Xã </option>
                                                     </select>
                                                 </div> 

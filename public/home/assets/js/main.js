@@ -6,7 +6,31 @@
 // 	} 
 // 	document.getElementById("err").innerHTML = text;
 //   }
-
+//
+$("#email").on('change', function(){
+	$.ajax({
+			url: "/account/check-email",
+			method: "GET",
+			data:{query: $(this).val()},			
+			success:function(data){
+				$('#checkmail').html('');
+				$("#checkmail").html(data.html);
+			}
+		});
+});
+    
+$("#phone").on('change', function(){
+	$.ajax({
+			url: "/account/check-phone",
+			method: "GET",
+			data:{queryphone: $(this).val()},			
+			success:function(data){
+				$('#checkphone').html('');
+				$("#checkphone").html(data.errorphone);
+			}
+		});
+});
+    
 $("#selectProvince").on('change', function(){
 	$.ajax({
 		url:"/order/get-districts", // đường dẫn khi gửi dữ liệu đi 'search' là tên route mình đặt bạn mở route lên xem là hiểu nó là cái j.

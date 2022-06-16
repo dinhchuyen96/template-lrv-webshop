@@ -106,7 +106,7 @@
                                                                                 <span style="width: 7rem" class="btn btn-danger">Hoàn / hủy</span>
                                                                             @endif</td>
                                                                             <td>${{number_format($order->total_price)}} for {{$order->totalQuantity()}} item </td>
-                                                                            <td><a href="{{route('home.order_detail',$order->id)}}" type="button" class="btn btn-info">View</a></td>
+                                                                            <td><a href="{{route('home.order_detail',$order->id)}}" type="button" class="btn btn-info">{{ __('profile.view') }}</a></td>
                                                                     </tr>
                                                                 @endforeach
                                                             </tbody>

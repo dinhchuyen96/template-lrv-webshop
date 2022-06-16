@@ -18,13 +18,16 @@
             'compare' => 'So sánh',   
             'qw' => 'Xem nhanh',
             'br' => 'Thương hiệu',
-            '' => '',
-            '' => '',
-            '' => '',
-            '' => '',
-            '' => '',
-            '' => '',
-            '' => '',
+            'promotion1' => 'Miễn phí giao hàng',
+            'promotion1d' => 'Miễn toàn bộ phí giao nhận các đơn hàng của chúng tôi',
+            'promotion2' => 'Hỗ trợ 24/7',
+            'promotion2d' => 'Liên hệ chúng tôi 24h/ngày',
+            'promotion3' => '100% hoàn tiền',
+            'promotion3d' => 'Bạn có 30 ngày để trả lại hàng',
+            'promotion4' => '90 ngày đổi trả',
+            'promotion4d' => 'Nếu hàng hóa có vấn đề',
+            'promotion5' => 'Thanh toán an toàn',
+            'promotion5d' => 'Chúng tôi đảm bảo thanh toán an toàn',
         ]
 
 
