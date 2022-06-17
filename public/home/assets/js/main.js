@@ -7,7 +7,27 @@
 // 	document.getElementById("err").innerHTML = text;
 //   }
 //
-$("#email").on('change', function(){
+
+$("#inputsearch").on('keyup', function(){
+	$('#live_search').show();
+	$.ajax({		
+			url: "/search",
+			method: "GET",
+			data:{query: $(this).val()},			
+			success:function(data){
+				$('#live_search').html('');
+				$('#live_search').html(data.html);
+			}
+	});
+});
+$("#inputsearch").blur(function(){
+    $('#live_search').hide();
+});
+
+
+
+
+$("#email").on('keyup', function(){
 	$.ajax({
 			url: "/account/check-email",
 			method: "GET",
@@ -19,7 +39,7 @@ $("#email").on('change', function(){
 		});
 });
     
-$("#phone").on('change', function(){
+$("#phone").on('keyup', function(){
 	$.ajax({
 			url: "/account/check-phone",
 			method: "GET",
@@ -38,9 +58,9 @@ $("#selectProvince").on('change', function(){
 		data:{query: $(this).val()},
 		success:function(data){ //dữ liệu nhận về
 			// console.log(data);
-		$('#selectDistrict').html('');
-		$('#selectDistrict').html(data.html);
-	   }
+			$('#selectDistrict').html('');
+			$('#selectDistrict').html(data.html);
+	    }
 	})
 });
 
@@ -51,9 +71,9 @@ $("#selectDistrict").on('change', function(){
 		data:{query: $(this).val()},
 		success:function(data){ //dữ liệu nhận về
 			// console.log(data);
-		$('#selectWard').html('');
-		$('#selectWard').html(data.html);
-	   }
+			$('#selectWard').html('');
+			$('#selectWard').html(data.html);
+	    }
 	})
 });
 

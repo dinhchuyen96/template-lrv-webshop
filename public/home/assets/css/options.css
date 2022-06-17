@@ -87,3 +87,46 @@ tr {
     height: auto;
     border-radius: 4px;
 }
+#live_search{
+    display: none;
+}
+.box_livesearch{
+    position: absolute; 
+    z-index: 100; 
+    width: 421px;
+    background-color: #f5f5f5;;
+    border: 1px solid #eee;
+    box-shadow: 2px 2px 5px black;
+}
+#inside_ls li div{
+    margin: 0 1rem;
+}
+#inside_ls li div img{
+    width: 121px;
+}
+.viewed{
+    background: #f5f5f5;
+    font-size: 13px;
+    color: #666;
+    font-weight: 400;
+    padding: 10px;
+}
+.name_ls .row del{    
+    margin: 1px 0;
+}
+.price_ls{
+ font-size: 14px;
+ margin: 0 15px;
+    color: #222;
+    float: none;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+}
+.psale{
+    margin: -1px 8px;
+}
+#inside_ls li{
+    display: flex;
+    margin-top: 0.5rem;
+}

@@ -11,9 +11,11 @@
     <meta name="keywords" content="">
     <!-- Page Title -->
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ url('home') }}/assets/css/options.css">
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>  --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> --}}
     <!--Fevicon-->
     <link rel="icon" href="{{ url('home') }}/assets/img/icon/favicon.ico" type="image/x-icon" />
     <!-- Bootstrap css -->
@@ -44,7 +46,7 @@
                     <div class="col-lg-7 col-12">
                         <div class="header-top-left">
                             <ul>
-                                <li><span>Email: </span>{{$hotline->email_1}}</li>
+                                <li><span>Email: </span>{{ $hotline->email_1 }}</li>
                             </ul>
                         </div>
                     </div>
@@ -52,51 +54,52 @@
                         <div class="box box-right">
                             <ul>
                                 <li class="settings">
-                                    @if(auth()->guard('account')->check())
-                                        <img class="rounded-circle" src="@if($acc->avatar == null)
-                                                        @if($acc->sex == 'anh')
-                                                            {{url('uploads')}}/avatars/man.jpg
+                                    @if (auth()->guard('account')->check())
+                                        <img class="rounded-circle" src="@if ($acc->avatar == null) @if ($acc->sex == 'anh')
+                                                            {{ url('uploads') }}/avatars/man.jpg
                                                         @else
-                                                            {{url('uploads')}}/avatars/woman.jpg
-                                                        @endif
-                                                    @else
-                                                        {{ url('uploads')}}/avatars/{{$acc->avatar}}
-                                                    @endif
-                                                    " style="width: 50px"
-                                                        alt="">
-                                            <a class="ha-toggle" style="color:#fedc19" href="#">{{ __('main.hello') }}
-                                                {{ $acc->last_name }}<span class="lnr lnr-chevron-down"></span></a>
+                                                            {{ url('uploads') }}/avatars/woman.jpg @endif
+@else
+{{ url('uploads') }}/avatars/{{ $acc->avatar }}
+                                                       @endif
+                                        " style="width: 50px"
+                                        alt="">
+                                        <a class="ha-toggle" style="color:#fedc19"
+                                            href="#">{{ __('main.hello') }}
+                                            {{ $acc->last_name }}<span class="lnr lnr-chevron-down"></span></a>
                                     @else
-                                            <a class="ha-toggle" href="#"><i class="fa fa-user" style="font-size:25px" aria-hidden="true"></i><span
-                                                    class="lnr lnr-chevron-down"></span></a>
+                                        <a class="ha-toggle" href="#"><i class="fa fa-user"
+                                                style="font-size:25px" aria-hidden="true"></i><span
+                                                class="lnr lnr-chevron-down"></span></a>
                                     @endif
                                     <ul class="box-dropdown ha-dropdown">
                                         @if (auth()->guard('account')->check())
                                             <li><a href="{{ route('my_account') }}">My-Account</a></li>
                                             <li><a href="{{ route('home.logout') }}">Logout</a></li>
-                                            </li>
-                                        @else
-                                            <li><a href="{{ route('home.login') }}">Login</a></li>
-                                            <li><a href="{{ route('home.register') }}">Register</a></li>
-                                        @endif
-                                    </ul>
                                 </li>
-                                    @if($locale == 'vi')<a href="/locale/en" title="Đổi sang Tiếng Việt"><img src="{{ url('home') }}/assets/img/icon/en.png"
-                                                    alt=""></a>
-                                    @else
-                                            <a href="/locale/vi" title="Changer to English"><img src="{{ url('home') }}/assets/img/icon/vi2.png"
-                                                    alt=""></a>
-                                    @endif
-                                    
-                                </li>
-                                <li class="currency">
-                                    <a class="ha-toggle" href="#">{{ __('main.currency') }}<span
-                                            class="lnr lnr-chevron-down"></span></a>
-                                    <ul class="box-dropdown ha-dropdown">
-                                        <li><a href="login.html">€ Euro</a></li>
-                                        <li><a href="login.html">$ US Doller</a></li>
-                                    </ul>
-                                </li>
+                            @else
+                                <li><a href="{{ route('home.login') }}">Login</a></li>
+                                <li><a href="{{ route('home.register') }}">Register</a></li>
+                                @endif
+                            </ul>
+                            </li>
+                            @if ($locale == 'vi')<a href="/locale/en"
+                                    title="Đổi sang Tiếng Việt"><img src="{{ url('home') }}/assets/img/icon/en.png"
+                                        alt=""></a>
+                            @else
+                                <a href="/locale/vi" title="Changer to English"><img
+                                        src="{{ url('home') }}/assets/img/icon/vi2.png" alt=""></a>
+                            @endif
+
+                            </li>
+                            <li class="currency">
+                                <a class="ha-toggle" href="#">{{ __('main.currency') }}<span
+                                        class="lnr lnr-chevron-down"></span></a>
+                                <ul class="box-dropdown ha-dropdown">
+                                    <li><a href="login.html">€ Euro</a></li>
+                                    <li><a href="login.html">$ US Doller</a></li>
+                                </ul>
+                            </li>
                             </ul>
                         </div>
                     </div>
@@ -114,7 +117,7 @@
                     </div>
                     <div class="col-lg-6 col-md-12 col-12 order-sm-last">
                         <div class="header-middle-inner">
-                            <form method="get"  >
+                            <form method="get">
                                 <div class="top-cat hm1">
                                     <div class="search-form">
                                         <select class="form-control" name="search" id="select1">
@@ -126,9 +129,13 @@
                                     </div>
                                 </div>
                                 <input type="text" type="search" name="search" class="top-cat-field"
-                                    placeholder="{{ __('main.searchph') }}" required>
+                                    placeholder="{{ __('main.searchph') }}" id="inputsearch" required>
                                 <input type="submit" class="top-search-btn" value="{{ __('main.search') }}">
                             </form>
+                            <div id="live_search" class="box_livesearch" style="">
+                                <li class="viewed">Sản phẩm gợi ý</li>
+                               
+                            </div>
                             @if (isset($search_value))
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
@@ -148,7 +155,7 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a
-                                                                href="{{ route('home.product', ['product' => $value->id,'category' => $value->category_id,'slug' => Str::slug($value->name)]) }}">
+                                                                href="{{ route('home.product', ['product' => $value->id, 'category' => $value->category_id, 'slug' => Str::slug($value->name)]) }}">
                                                                 <img src="{{ url('uploads') }}/products/{{ $value->image }}"
                                                                     width="250px" class="pri-img" alt="">
                                                                 <img src="{{ url('uploads') }}/products/{{ $value->image }}"
@@ -173,7 +180,7 @@
                                                             </div>
                                                             <div class="product-name">
                                                                 <h4><a
-                                                                        href="{{ route('home.product', ['product' => $value->id,'category' => $value->category_id,'slug' => Str::slug($value->name)]) }}">{{ $value->name }}</a>
+                                                                        href="{{ route('home.product', ['product' => $value->id, 'category' => $value->category_id, 'slug' => Str::slug($value->name)]) }}">{{ $value->name }}</a>
                                                                 </h4>
                                                             </div>
                                                             <div class="ratings">
@@ -244,7 +251,7 @@
                                                         </div>
                                                         <div class="cart-info">
                                                             <h4><a
-                                                                    href="{{ route('home.product', ['product' => $carts->id,'category' => $carts->category_id,'slug' => Str::slug($carts->name)]) }}">{{ $carts->name }}</a>
+                                                                    href="{{ route('home.product', ['product' => $carts->id, 'category' => $carts->category_id, 'slug' => Str::slug($carts->name)]) }}">{{ $carts->name }}</a>
                                                             </h4>
                                                             <span> <span>{{ $carts->quantity }}</span>x
                                                             </span>${{ $carts->price }}</span>
@@ -265,21 +272,25 @@
                                                 </li>
                                                 <li>
                                                     <div class="subtotal-text">Vat (10%): </div>
-                                                    <div class="subtotal-price">{{number_format($vat)}}$</div>
+                                                    <div class="subtotal-price">{{ number_format($vat) }}$</div>
                                                 </li>
                                                 @if ($coupon)
-                                                <li>
+                                                    <li>
                                                         <div class="subtotal-text">Coupon</div>
-                                                    @if($coupon->discount_ab)
-                                                        <div class="subtotal-price">-{{$coupon->discount_ab}}$</div>
-                                                    @else
-                                                        <div class="subtotal-price">-{{$coupon->discount_rl}}%</div>
-                                                    @endif
-                                                </li>
+                                                        @if ($coupon->discount_ab)
+                                                            <div class="subtotal-price">-{{ $coupon->discount_ab }}$
+                                                            </div>
+                                                        @else
+                                                            <div class="subtotal-price">-{{ $coupon->discount_rl }}%
+                                                            </div>
+                                                        @endif
+                                                    </li>
                                                 @endif
                                                 <li>
                                                     <div class="subtotal-text">Total: </div>
-                                                    <div class="subtotal-price"><span>{{number_format($totalPrice)}}$</span></div>
+                                                    <div class="subtotal-price">
+                                                        <span>{{ number_format($totalPrice) }}$</span>
+                                                    </div>
                                                 </li>
                                                 <li class="mt-30">
                                                     <a class="cart-button" href="/cart">view cart</a>
@@ -290,9 +301,9 @@
                                                 </li>
                                             </ul>
                                         @else
-                                        <ul class="mini-cart-drop-down ha-dropdown">
-                                            <h3>Cart is empty</h3>
-                                        </ul>
+                                            <ul class="mini-cart-drop-down ha-dropdown">
+                                                <h3>Cart is empty</h3>
+                                            </ul>
                                         @endif
                                     </li>
                                 </ul>
@@ -328,17 +339,18 @@
                                                 <ul class="cat-submenu">
                                                     @foreach ($cat->children as $ccat)
                                                         <li><a href="{{ route('home.category', $ccat->id) }}">{{ $ccat->name }}
-                                                            @if ($ccat->children->isNotEmpty())
-                                                                <span class="lnr lnr-chevron-right"></span>
-                                                                <ul class="cat-submenu"></ul>
-                                                            @endif
+                                                                @if ($ccat->children->isNotEmpty())
+                                                                    <span class="lnr lnr-chevron-right"></span>
+                                                                    <ul class="cat-submenu"></ul>
+                                                                @endif
                                                         </li>
                                                     @endforeach
                                                 </ul>
                                             </li>
                                         </ul>
                                     @endforeach
-                                <ul hidden class="category-item-parent"><a class="more-btn" href="#">More Categories</a></ul>
+                                    <ul hidden class="category-item-parent"><a class="more-btn" href="#">More
+                                            Categories</a></ul>
                                 </nav>
                             </div>
                             <div class="main-menu">
@@ -362,7 +374,8 @@
                                                                     <li><a
                                                                             href="{{ route('home.category', $ccat->id) }}">{{ $ccat->name }}
                                                                             @if ($ccat->children->isNotEmpty())
-                                                                                <span class="lnr lnr-chevron-right"></span>
+                                                                                <span
+                                                                                    class="lnr lnr-chevron-right"></span>
                                                                                 <ul class="dropdown">
                                                                                     @foreach ($ccat->children as $cccat)
                                                                                         <li><a
@@ -384,10 +397,13 @@
                                                     class="lnr lnr-chevron-down"></span></a>
 
                                         </li>
-                                        <li><a href="{{route('blog')}}">BLOG<span class="lnr lnr-chevron-down"></span></a>
+                                        <li><a href="{{ route('blog') }}">BLOG<span
+                                                    class="lnr lnr-chevron-down"></span></a>
                                             <ul class="dropdown">
                                                 @foreach ($blog_cats as $blog_cat)
-                                                    <li><a href="{{ route('blog_cat_id',['blog_cat_id' => $blog_cat->id, 'slug' => Str::slug($blog_cat->name)]) }}">{{$blog_cat->name}}</a></li>
+                                                    <li><a
+                                                            href="{{ route('blog_cat_id', ['blog_cat_id' => $blog_cat->id, 'slug' => Str::slug($blog_cat->name)]) }}">{{ $blog_cat->name }}</a>
+                                                    </li>
                                                 @endforeach
                                             </ul>
                                         </li>
@@ -396,7 +412,9 @@
                                 </nav>
                             </div> <!-- </div> end main menu -->
                             <div class="header-call-action">
-                                <p><span class="lnr lnr-phone"></span>Hotline : <strong>{{$hotline->phone_1}}</strong></p>
+                                <p><span class="lnr lnr-phone"></span>Hotline :
+                                    <strong>{{ $hotline->phone_1 }}</strong>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -434,7 +452,8 @@
                                     <form id="mc-form">
                                         <input type="email" id="mc-email" autocomplete="off" class="email-box"
                                             placeholder="{{ __('footer.enterpl') }}">
-                                        <button class="newsletter-btn" type="submit" id="mc-submit">{{ __('footer.sub') }}
+                                        <button class="newsletter-btn" type="submit"
+                                            id="mc-submit">{{ __('footer.sub') }}
                                             !</button>
                                     </form>
                                 </div>
@@ -508,9 +527,12 @@
                             <div class="widget-body">
                                 <div class="footer-useful-link">
                                     <ul>
-                                        <li><span>{{ __('footer.adr') }}</span> {{$hotline->address_1}}<br>{{$hotline->address_2}}</li>
-                                        <li><span>email:</span>{{$hotline->email_1}}</li>
-                                        <li><span>{{ __('footer.cus') }}</span> <strong>{{$hotline->phone_1}}</strong></li>
+                                        <li><span>{{ __('footer.adr') }}</span>
+                                            {{ $hotline->address_1 }}<br>{{ $hotline->address_2 }}</li>
+                                        <li><span>email:</span>{{ $hotline->email_1 }}</li>
+                                        <li><span>{{ __('footer.cus') }}</span>
+                                            <strong>{{ $hotline->phone_1 }}</strong>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -544,7 +566,8 @@
                     <div class="col-12">
                         <div class="footer-bottom-content">
                             <div class="footer-copyright">
-                                <p>&copy; 20/5/2022 <b>Đình Chuyên</b> Made with <i class="fa fa-heart text-danger"></i> by <a
+                                <p>&copy; 20/5/2022 <b>Đình Chuyên</b> Made with <i
+                                        class="fa fa-heart text-danger"></i> by <a
                                         href="https://hasthemes.com/"><b>HasThemes</b></a></p>
                             </div>
                             <div class="footer-custom-link">
@@ -560,24 +583,25 @@
     </footer>
     <!-- footer area end -->
     <!-- all js include here -->
-    <script src = "{{ url('home') }}/assets/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src = "{{ url('home') }}/assets/js/popper.min.js"></script>
-    <script src = "{{ url('home') }}/assets/js/bootstrap.min.js"></script>
-    <script src = "{{ url('home') }}/assets/js/bootstrap.min.js"></script>
-    <script src = "{{ url('home') }}/assets/js/plugins.js"></script>
-    <script src = "{{ url('home') }}/assets/js/ajax-mail.js"></script>
-    <script src = "{{ url('home') }}/assets/js/main.js"></script>
-    <script src = "{{ url('home') }}/assets/js/address.js"></script>
-    <script src = "{{ url('home') }}/assets/js/addcart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    @if(Session::has('ok'))
+    <script src="{{ url('home') }}/assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="{{ url('home') }}/assets/js/popper.min.js"></script>
+    <script src="{{ url('home') }}/assets/js/bootstrap.min.js"></script>
+    <script src="{{ url('home') }}/assets/js/bootstrap.min.js"></script>
+    <script src="{{ url('home') }}/assets/js/plugins.js"></script>
+    <script src="{{ url('home') }}/assets/js/ajax-mail.js"></script>
+    <script src="{{ url('home') }}/assets/js/main.js"></script>
+    <script src="{{ url('home') }}/assets/js/addcart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @if (Session::has('ok'))
         <script type="text/javascript">
-            toastr.success("{!! session::get('ok')!!}");
+            toastr.success("{!! session::get('ok') !!}");
         </script>
     @endif
-    @if(Session::has('no'))
+    @if (Session::has('no'))
         <script type="text/javascript">
-            toastr.warning("{!! session::get('no')!!}");
+            toastr.warning("{!! session::get('no') !!}");
         </script>
     @endif
 </body>

@@ -21,7 +21,6 @@ class Product extends Model
         if($search_value){
             $query = $query->where('name','LIKE','%'.$search_value.'%');
         }
-
         if($cat_id){
             $query = $query->where('category_id', $cat_id);
         }

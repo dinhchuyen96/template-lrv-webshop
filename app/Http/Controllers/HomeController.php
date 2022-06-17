@@ -17,6 +17,7 @@
     use DB;
     use Session;
     use Mail;
+    use Str;
     class HomeController extends Controller{
         public function __construct() {
             header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
@@ -51,8 +52,36 @@
             return view('client.site\myaccount');
         }
          
-        public function live_Search(){
+        public function live_Search(Request $request){
+            $query = $request->input('query');
+            $slug = Str::slug($query);
+            $product_live_search = Product::where('name','LIKE','%'.$query.'%')->take(5)->get();   
             
+            if($product_live_search->isNotEmpty()){
+                $html = "<li class='viewed'>Sản phẩm gợi ý</li>
+                        <ul id='inside_ls'>";
+                foreach ($product_live_search as $value){
+                $slug = Str::slug($value->name);
+                $html.= "
+                    <li>
+                        <div class='img_ls'>
+                            <a href='http://localhost:8000/$value->id-$value->category_id-$slug'>
+                                <img src='http://localhost:8000/uploads/products/$value->image'>
+                            </a>
+                        </div>
+                        <div class='name_ls'>
+                            <h5><a href='http://localhost:8000/$value->id-$value->category_id-$slug' id='name_search'>$value->name</a></h5>
+                        <div class='row'>
+                                <p class='price_ls'>$value->price$</p> <del>$value->sale_price$</del> <p class='psale'>$value->percent_sale%</p>
+                        </div>
+                    </li>";
+            }
+            $html .= "</ul>";
+            }else{
+                $html = '';
+            }
+            
+            return response()->json(['html' => $html]);
         }
 
         public function category(Category $category){
