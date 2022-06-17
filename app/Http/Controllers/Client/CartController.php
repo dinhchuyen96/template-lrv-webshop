@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
+
 use App\Models\Product;
 use App\Http\Requests\CartRequest;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -44,6 +45,7 @@ class CartController extends Controller
           session(['cart'=> $carts]);
           return redirect()->back()->with('ok', 'Thêm sản phẩm vào giỏ hàng thành công');
     }
+    
     public function remove(Product $product){
         $carts = session('cart') ? session('cart'):[];
         if(isset($carts[$product->id])){

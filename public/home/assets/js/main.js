@@ -9,7 +9,7 @@
 //
 
 $("#inputsearch").on('keyup', function(){
-	$('#live_search').show();
+	
 	$.ajax({		
 			url: "/search",
 			method: "GET",
@@ -17,6 +17,7 @@ $("#inputsearch").on('keyup', function(){
 			success:function(data){
 				$('#live_search').html('');
 				$('#live_search').html(data.html);
+				$('#live_search').show();
 			}
 	});
 });

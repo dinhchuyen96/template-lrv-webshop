@@ -1,5 +1,7 @@
 <?php
-    namespace App\Http\Controllers;
+    namespace App\Http\Controllers\Client;
+    
+    use App\Http\Controllers\Controller;
     use App\Models\Blog;
     use App\Models\Blog_cat;
     use App\Models\Category;
@@ -28,7 +30,7 @@
         }
         public function changeLanguage($language)
         {
-            \Session::put('website_language', $language);
+            Session::put('website_language', $language);
         
             return redirect()->back();
         }

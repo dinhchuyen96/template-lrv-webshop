@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
+use App\Http\Controllers\Controller;
 use App\Models\Comment_Blog;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentBlogRequest;

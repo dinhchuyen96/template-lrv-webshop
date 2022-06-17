@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
+use App\Http\Controllers\Controller;
 use App\Models\Brand_sale;
 use Illuminate\Http\Request;
 use App\Http\Requests\Brand_saleRequest;
