@@ -1,5 +1,9 @@
 <?php
         return[
+            'my_account' => 'Thông tin tài khoản',
+            'register' => 'Đăng ký',
+            'logout' => 'Đăng xuất',
+            'login' => 'Đăng nhập',
             'language' =>'Ngôn Ngữ',
             'select' => 'Chọn',
             'currency' => 'Tiền tệ',
@@ -11,14 +15,20 @@
             'contact' => 'LIÊN HỆ',   
             'search' => 'Tìm kiếm',
             'wishlist' => 'Yêu thích',        
-            'compare' => 'So sánh sản phẩm',        
+            'compare' => 'So sánh sản phẩm',       
+            'checkout' =>'Thanh toán',
+            'subtt' => 'Tạm tính:',
+            'coupon' => 'Phiếu giảm giá:',
+            'ecotax' => 'Thuế môi trường(-2%):',
+            'total' => 'Tổng:',
+            'viewcart' =>'Xem giỏ hàng',
             'cart' => 'Giỏ hàng',    
             'searchph' => 'Tìm kiếm toàn bộ sản phẩm',
             'welcome' => 'Chào mừng',
             'contact' => 'Liên hệ',
             'about' => 'về chúng tôi',
             'list' => 'danh sách',
-            'Listeners' => 'Chịu chết',
+            'cartempty' => 'Giỏ hàng trống',
         ]
 
 

@@ -10,6 +10,8 @@
             'si' => 'Đăng Nhập',
             'na' => 'Chưa có tài khoản?',
             'co' => 'bấm vào đây',
+            'clh' => 'bấm vào đây',
+
         ]
 
 

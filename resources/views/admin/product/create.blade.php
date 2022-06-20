@@ -47,7 +47,7 @@
         </div>
         <div class="form-group">
             <label for="">Tóm tắt sản phẩm</label>
-            <textarea id="tinymce_sort" class="form-control" name="sort_description" required
+            <textarea id="tinymce_sort" class="form-control" name="sort_description" 
                 placeholder="Tóm tắt ngắn nội dung sản phẩm">{{ old('sort_description') }}</textarea>
             @error('sort_description')
                 {{ $message }}
@@ -56,7 +56,7 @@
         <div class="form-group">
             <label for="">Mô tả sản phẩm</label>
             <textarea type="text" id="tinymce_detail" class="form-control" value="{{ old('description') }}" name="description"
-                required placeholder="Mô tả chi tiết sản phẩm"></textarea>
+                 placeholder="Mô tả chi tiết sản phẩm"></textarea>
             @error('description')
                 {{ $message }}
             @enderror

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Client;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -91,14 +91,19 @@ class OrderHomeController extends Controller
         // dd($carts);
         if($carts){
             $data = $req->all();
-            $data['account_id'] = Auth::guard('account')->user()->id;
-            // dd($data);
+            $acc_id = Auth::guard('account')->user()->id;
+            $data['account_id'] =  $acc_id;
+            $order_code = "Bill-".$acc_id.date("smhdmy");
+            $data['order_code'] = $order_code;
 
             $order = Order::create($data);
             if($order){
                 foreach($carts as $key => $item){
-                    // dd($item);
+            // dd($acc_id+1);
+            $acc_id = Auth::guard('account')->user()->id;
                     OrderDetail::create([
+                        'account_id' => $acc_id,
+                        'order_code' => $order->order_code,
                         'product_id' =>$item->id,
                         'category_id' =>$item->category_id,
                         'order_id' =>$order->id,
@@ -107,6 +112,7 @@ class OrderHomeController extends Controller
                     ]);
                 }
             }
+            // Coupon::where('code',$request->code)->update(['amout' => $coupon->amount -1]);
             session()->forget(['cart', 'coupon']);
             return redirect()->route('thank');
             

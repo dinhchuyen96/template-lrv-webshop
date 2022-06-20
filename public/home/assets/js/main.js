@@ -7,9 +7,35 @@
 // 	document.getElementById("err").innerHTML = text;
 //   }
 //
+// function updateCart(){
+// 	console.log("ahuhu")
+// 	$.ajax({
+// 			url: "/order/status",
+// 			method: "GET",
+// 			data:{quantity: $(this).val()},			
+// 			success:function(data){
+// 				$('#checkmail').html('');
+// 				$("#checkmail").html(data.html);
+// 			}
+// 		});
+// };
+
+ function quickView(id){
+	$.ajax({
+        url: '/quick-view',
+        type: 'GET',
+        data: {
+            'id': id,
+        },
+        success: function(response) {
+            console.log(response);
+        }
+    });
+ }
+
+
 
 $("#inputsearch").on('keyup', function(){
-	
 	$.ajax({		
 			url: "/search",
 			method: "GET",

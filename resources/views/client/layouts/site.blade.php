@@ -46,7 +46,7 @@
                     <div class="col-lg-7 col-12">
                         <div class="header-top-left">
                             <ul>
-                                <li><span>Email: </span>{{ $hotline->email_1 }}</li>
+                                <li><span>Email: </span></li> </span>{{ $hotline->email_1 }}</li>
                             </ul>
                         </div>
                     </div>
@@ -59,8 +59,8 @@
                                                             {{ url('uploads') }}/avatars/man.jpg
                                                         @else
                                                             {{ url('uploads') }}/avatars/woman.jpg @endif
-@else
-{{ url('uploads') }}/avatars/{{ $acc->avatar }}
+                                                        @else
+                                                        {{ url('uploads') }}/avatars/{{ $acc->avatar }}
                                                        @endif
                                         " style="width: 50px"
                                         alt="">
@@ -74,12 +74,12 @@
                                     @endif
                                     <ul class="box-dropdown ha-dropdown">
                                         @if (auth()->guard('account')->check())
-                                            <li><a href="{{ route('my_account') }}">My-Account</a></li>
-                                            <li><a href="{{ route('home.logout') }}">Logout</a></li>
+                                            <li><a href="{{ route('my_account') }}" title="Quản lý tài khoản">{{__('main.my_account')}}</a></li>
+                                            <li><a href="{{ route('home.logout') }}"  title="Đăng xuất" >{{__('main.logout')}}</a></li>
                                 </li>
                             @else
-                                <li><a href="{{ route('home.login') }}">Login</a></li>
-                                <li><a href="{{ route('home.register') }}">Register</a></li>
+                                <li><a href="{{ route('home.login') }}"  title="Trang đăng nhập" >{{__('main.login')}}</a></li>
+                                <li><a href="{{ route('home.register') }}"  title="Trang đăng ký" >{{__('main.register')}}</a></li>
                                 @endif
                             </ul>
                             </li>
@@ -130,98 +130,15 @@
                                 </div>
                                 <input type="text" type="search" name="search" class="top-cat-field"
                                     placeholder="{{ __('main.searchph') }}" id="inputsearch" required>
-                                <input type="submit" class="top-search-btn" value="{{ __('main.search') }}">
+                                <input type="submit" class="top-search-btn" title="Tìm kiếm sản phẩm"  value="{{ __('main.search') }}">
                             </form>
                             <div id="live_search" class="box_livesearch" style="">
                                 <li class="viewed">Sản phẩm gợi ý</li>
                                
                             </div>
                             @if (isset($search_value))
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                    <div class="modal-dialog" style="max-width: 850px" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h2 class="modal-title" id="exampleModalLongTitle">Related Product
-                                                </h2>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body row d-flex justify-content-center">
-                                                @foreach ($products_search as $key => $value)
-                                                    <div class="product-item mb-30">
-                                                        <div class="product-thumb">
-                                                            <a
-                                                                href="{{ route('home.product', ['product' => $value->id, 'category' => $value->category_id, 'slug' => Str::slug($value->name)]) }}">
-                                                                <img src="{{ url('uploads') }}/products/{{ $value->image }}"
-                                                                    width="250px" class="pri-img" alt="">
-                                                                <img src="{{ url('uploads') }}/products/{{ $value->image }}"
-                                                                    width="250px" class="sec-img" alt="">
-                                                            </a>
-                                                            <div class="box-label">
-                                                                <div class="label-product label_new">
-                                                                    <span>new</span>
-                                                                </div>
-                                                                <div class="label-product label_sale">
-                                                                    @if ($value->percent_sale > 0)
-                                                                        <span>sale {{ $value->percent_sale }}%</span>
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-caption">
-                                                            <div class="manufacture-product">
-                                                                <p><a
-                                                                        href="{{ route('home.category', $value->category_id) }}">{{ $value->cat->name }}</a>
-                                                                </p>
-                                                            </div>
-                                                            <div class="product-name">
-                                                                <h4><a
-                                                                        href="{{ route('home.product', ['product' => $value->id, 'category' => $value->category_id, 'slug' => Str::slug($value->name)]) }}">{{ $value->name }}</a>
-                                                                </h4>
-                                                            </div>
-                                                            <div class="ratings">
-                                                                @if ($value->review_rt->avg('rating') == 0)
-                                                                    <span class="yellow"><i
-                                                                            class="lnr lnr-star"></i></span>
-                                                                    <span class="yellow"><i
-                                                                            class="lnr lnr-star"></i></span>
-                                                                    <span class="yellow"><i
-                                                                            class="lnr lnr-star"></i></span>
-                                                                    <span class="yellow"><i
-                                                                            class="lnr lnr-star"></i></span>
-                                                                    <span class="yellow"><i
-                                                                            class="lnr lnr-star"></i></span>
-                                                                @else
-                                                                    @for ($i = 0; $i < $value->review_rt->avg('rating'); $i++)
-                                                                        <span class="yellow"><i
-                                                                                class="lnr lnr-star"></i></span>
-                                                                    @endfor
-                                                                @endif
-                                                            </div>
-                                                            <div class="price-box">
-                                                                @if ($value->sale_price < $value->price && $value->sale_price != 0)
-                                                                    <span class="regular-price"><span
-                                                                            class="special-price">{{ number_format($value->sale_price, 0) }}$</span></span>
-                                                                    <span
-                                                                        class="old-price"><del>{{ $value->price }}$</del></span>
-                                                                @else
-                                                                    <span class="regular-price"><span
-                                                                            class="special-price">{{ $value->price }}$</span></span>
-                                                                @endif
-                                                            </div>
-                                                            <a href="{{ route('home.cart-add', $value->id) }}"
-                                                                class="btn-cart btn " type="button">add to cart</a>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- Modal Search-->
+                                @include('client.layouts.modal_search')                               
                             @endif
                         </div>
                     </div>
@@ -230,16 +147,16 @@
                             <div class="mini-cart-option">
                                 <ul>
                                     <li class="compare">
-                                        <a class="ha-toggle" href="/compare"><span class="lnr lnr-sync"><span
+                                        <a class="ha-toggle" href="/compare"  title="So sánh sản phẩm" ><span class="lnr lnr-sync"><span
                                                     class="count ml-1-compare">{{ $totalCompare }}</span></span>{{ __('main.compare') }}</a>
                                     </li>
                                     <li class="wishlist">
-                                        <a class="ha-toggle" href="{{ route('home.wishlist') }}"><span
+                                        <a class="ha-toggle" href="{{ route('home.wishlist') }}"  title="Danh sách sản phẩm yêu thích" ><span
                                                 class="lnr lnr-heart"></span><span
                                                 class="count">{{ $totalWishlist }}</span>{{ __('main.wishlist') }}</a>
                                     </li>
                                     <li class="my-cart">
-                                        <a class="ha-toggle"><span class="lnr lnr-cart"></span><span
+                                        <a class="ha-toggle"  title="Kiểm tra giỏ hàng" ><span class="lnr lnr-cart"></span><span
                                                 class="count">{{ $totalQuantity }}</span>{{ __('main.cart') }}</a>
                                         @if ($carts)
                                             <ul class="mini-cart-drop-down ha-dropdown">
@@ -263,11 +180,11 @@
                                                     </li>
                                                 @endforeach
                                                 <li>
-                                                    <div class="subtotal-text">Sub-total: </div>
+                                                    <div class="subtotal-text">{{__('main.subtt')}} </div>
                                                     <div class="subtotal-price">{{ $subPrice }}$</div>
                                                 </li>
                                                 <li>
-                                                    <div class="subtotal-text">Eco Tax (-2.00): </div>
+                                                    <div class="subtotal-text">{{__('main.ecotax')}}</div>
                                                     <div class="subtotal-price">{{ $tax }}$</div>
                                                 </li>
                                                 <li>
@@ -287,22 +204,22 @@
                                                     </li>
                                                 @endif
                                                 <li>
-                                                    <div class="subtotal-text">Total: </div>
+                                                    <div class="subtotal-text">{{__('main.total')}}</div>
                                                     <div class="subtotal-price">
                                                         <span>{{ number_format($totalPrice) }}$</span>
                                                     </div>
                                                 </li>
                                                 <li class="mt-30">
-                                                    <a class="cart-button" href="/cart">view cart</a>
+                                                    <a class="cart-button" href="/cart">{{__('main.viewcart')}}</a>
                                                 </li>
                                                 <li>
                                                     <a class="cart-button"
-                                                        href="{{ route('home.order_checkout') }}">checkout</a>
+                                                        href="{{ route('home.order_checkout') }}">{{__('main.checkout')}}</a>
                                                 </li>
                                             </ul>
                                         @else
                                             <ul class="mini-cart-drop-down ha-dropdown">
-                                                <h3>Cart is empty</h3>
+                                                <h3>{{__('main.cartempty')}}</h3>
                                             </ul>
                                         @endif
                                     </li>
@@ -594,6 +511,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @if (Session::has('ok'))
         <script type="text/javascript">
             toastr.success("{!! session::get('ok') !!}");

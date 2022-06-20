@@ -12,6 +12,7 @@
             'od' => 'Lịch sử đơn hàng',
             'ad' => 'Thông tin tài khoản',
             'cp' => 'Đổi mật khẩu',
+            'code' => 'Mã đơn hàng',
             'td' => 'Ngày đặt hàng',
             'ts' => 'Trạng thái',
             'tt' => 'Số lượng',

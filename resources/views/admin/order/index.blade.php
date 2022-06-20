@@ -17,26 +17,28 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Serial</th>
-                    <th>purchase date</th>
-                    <th class="text-center">Account order</th>
-                    <th class="text-center">Status</th>
-                    <th>Phone</th>
-                    <th>Quantity</th>
-                    <th>Unit Price</th>
+                    <th>Mã đơn hàng</th>
+                    <th>Tài khoản đặt hàng</th>
+                    <th>Ngày đặt hàng</th>
+                    <th class="text-center">Người nhận</th>
+                    <th class="text-center">Trạng thái</th>
+                    <th>Số điện thoại</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($orders as $order)
                     <tr>
-                        <td>{{ $order->id }}</td>
+                        <td>{{ $order->order_code }}</td>
+                        <td><a href="{{ route('admin.account_detail', $order->account_id) }}">{{$order->account->first_name }} {{ $order->account->last_name }}</a></td>
                         <td>
                             <a
                                 href="{{ route('home.product', ['product' => $order->id, 'category' => $order->category_id, 'slug' => Str::slug($order->name)]) }}">{{ $order->name }}</a>
                             <span>{{ $order->created_at->format('d-m-Y') }}</span>
                         </td>
-                        <td>{{ $order->account->first_name }} {{ $order->account->last_name }}</td>
+                        <td>{{ $order->first_name }} {{ $order->last_name }}</td>
                         <td>
                             <form action="{{ route('order_status', $order->id) }}" method="post">
                                 @csrf
@@ -63,7 +65,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <button href=""
+                                        <button href="" title="Cập nhật trạng thái đơn hàng"
                                             @if ($order->status == 0) class="btn btn-dark" 
                                             @elseif ($order->status == 1) class="btn btn-primary"  
                                             @elseif ($order->status == 2) class="btn btn-warning"  
@@ -81,10 +83,10 @@
                                 </div>
                             </form>
                         </td>
-                        <td>0{{ $order->account->phone }}</td>
+                        <td>0{{ $order->phone }}</td>
                         <td>{{ $order->totalQuantity() }}</td>
                         <td>${{ number_format($order->total_price) }}</td>
-                        <td><a href="{{ route('order.detail', $order->id) }}" type="button" class="btn btn-info"><i
+                        <td><a href="{{ route('order.detail', $order->id) }}" title="Xem chi tiết đơn hàng" type="button" class="btn btn-info"><i
                                     class="fas fa-info-circle"></i></a></td>
                     </tr>
                 @endforeach

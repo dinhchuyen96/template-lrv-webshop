@@ -41,12 +41,12 @@
                             </div>
                         </div>
                         <div class="pro-nav">
-                            <div class="pro-nav-thumb"><img src="assets/img/product/product-4.jpg" alt="" /></div>
-                            <div class="pro-nav-thumb"><img src="assets/img/product/product-5.jpg" alt="" /></div>
-                            <div class="pro-nav-thumb"><img src="assets/img/product/product-6.jpg" alt="" /></div>
-                            <div class="pro-nav-thumb"><img src="assets/img/product/product-7.jpg" alt="" /></div>
-                            <div class="pro-nav-thumb"><img src="assets/img/product/product-8.jpg" alt="" /></div>
-                            <div class="pro-nav-thumb"><img src="assets/img/product/product-9.jpg" alt="" /></div>
+                            <div class="pro-nav-thumb"><img src="" alt="" /></div>
+                            <div class="pro-nav-thumb"><img src="" alt="" /></div>
+                            <div class="pro-nav-thumb"><img src="" alt="" /></div>
+                            <div class="pro-nav-thumb"><img src="" alt="" /></div>
+                            <div class="pro-nav-thumb"><img src="" alt="" /></div>
+                            <div class="pro-nav-thumb"><img src="" alt="" /></div>
                         </div>
                     </div>
                     <div class="col-lg-7">
@@ -92,20 +92,18 @@
                                         <li><span>Availability :</span>200 In Stock</li>
                                     </ul>
                                 </div>
-                                <form action="{{ route('home.cart-add', $product->id) }}" method="get">
-                                    @csrf
+                              
                                     <div class="pro-quantity-box mb-30">
                                         <div class="qty-boxx">
                                             <label>qty :</label>
-                                            <input type="number" name="quantity" placeholder="1" value="1" min="1" max="69"
+                                            <input type="number" name="quantity" class="cartquantity" placeholder="1" value="1" min="1" max="69"
                                                 required>
-                                            <button class="btn-cart lg-btn">Buy Now</button>
+                                            <button class="btn-cart lg-btn" onclick="addToCart({{ $product->id }});">Buy Now</button>
                                         </div>
                                         @error('quantity')
                                             <span class="btn btn-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                </form>
 
                             </div>
                         </div>
@@ -608,7 +606,7 @@
                                                 <div class="pro-quantity-box mb-30">
                                                     <div class="qty-boxx">
                                                         <label>qty :</label>
-                                                        <input type="number" placeholder="0" min="1" max="69">
+                                                        <input type="number" placeholder="0" min="1"  name="quantity" max="69">
                                                         <a href="{{ route('home.cart-add', $product_rl->id) }}"
                                                             class="btn-cart lg-btn">add to cart</a>
                                                     </div>

@@ -1,5 +1,5 @@
 <?php
-    namespace App\Http\Controllers\Client;
+    namespace App\Http\Controllers;
     
     use App\Http\Controllers\Controller;
     use App\Models\Blog;
@@ -104,11 +104,16 @@
             $now = Carbon::now();
             $order_detail = OrderDetail::where('product_id', $product->id)->get();
             foreach ($order_detail as $order_detail){
-                $updated_at = Carbon::parse($order_detail->order->updated_at);
-                $diff = $updated_at->diffInDays($now);                
-                if($order_detail->order->account_id == $acc_id && $order_detail->order->status == 3 && $diff <= 7 ){
-                    $check = true;              //Chỉ cho phép tài khoản người dùng review sản phẩm trong vòng 7 ngày sau khi cập nhật trạng thái đơn hàng là thành công      
-                }   
+                if(isset($order_detail->order->updated_at)){
+                    $updated_at = Carbon::parse($order_detail->order->updated_at);
+                    $diff = $updated_at->diffInDays($now);                
+                    if($order_detail->order->account_id == $acc_id && $order_detail->order->status == 3 && $diff <= 7 ){
+                        $check = true;              //Chỉ cho phép tài khoản người dùng review sản phẩm trong vòng 7 ngày sau khi cập nhật trạng thái đơn hàng là thành công      
+                    }   
+                }else{
+                    $check = false;
+                }
+               
             }
             
             $reviews = Review::reviews_byProId($product->id); //take Product_id to scopereviews in Model Review
@@ -121,6 +126,7 @@
             // dd($timestring);
             return view('client.site.product',compact('check','now','order_detail','product','category','reviews','review_all','products_related'));
         }
+       
 
         public function blog(Blog_cat $blog)
         {   

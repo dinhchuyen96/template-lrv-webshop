@@ -39,10 +39,10 @@
                                             <table class="table table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <td>Serial</td>
-                                                        <td>purchase date</td>
-                                                        <td>Status</td>
-                                                        <td>Quantity</td>
+                                                        <td>Mã đơn hàng</td>
+                                                        <td>Ngày đặt hàng</td>
+                                                        <td>Trạng thái</td>
+                                                        <td>Số lượng</td>
                                                         <td>Total Pay</td>
                                                         <td></td>
                                                     </tr>

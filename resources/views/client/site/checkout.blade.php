@@ -11,8 +11,8 @@
                     <div class="breadcrumb-wrap">
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                                <li class="breadcrumb-item"><a href="index.html">{{__('main.home')}}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{__('checkout.checkout')}}</li>
                             </ul>
                         </nav>
                     </div>
@@ -34,7 +34,7 @@
                                 <div class="row">
                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                                         <div class="user-actions user-coupon">
-                                            <h3>Have A Coupon? <span id="show_coupon">Click Here To Enter Your Code.</span>
+                                            <h3>{{__('checkout.havecoupon')}} <span id="show_coupon">{{__('checkout.clhere')}}</span>
                                             </h3>
                                             <div id="checkout_coupon" class="display-content">
                                                 <div class="coupon-info">
@@ -64,20 +64,20 @@
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-7">
                                     <div class="checkout-form">
                                         <div class="section-title left-aligned">
-                                            <h3>Billing Details</h3>
+                                            <h3>{{__('checkout.billing')}}</h3>
                                         </div>
 
                                         <form role="form" method="POST" id="checkout_form">
                                             @csrf
                                             <div class="form-row mb-3">
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
-                                                    <label for="first_name">First Name <span
+                                                    <label for="first_name">{{__('checkout.fname')}}<span
                                                             class="text-danger">*</span></label>
                                                     <input name="first_name" value="{{ $acc->first_name }}" type="text"
                                                         class="form-control" id="first_name" required>
                                                 </div>
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
-                                                    <label for="last_name">Last Name <span
+                                                    <label for="last_name">{{__('checkout.lname')}}<span
                                                             class="text-danger">*</span></label>
                                                     <input name="last_name" type="text" value="{{ $acc->last_name }}"
                                                         class="form-control" id="last_name" required>
@@ -85,12 +85,12 @@
                                             </div>
                                             <div class="form-row mb-3">
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
-                                                    <label for="company_name">Company</label>
+                                                    <label for="company_name">{{__('checkout.company')}}</label>
                                                     <input name="company_name" type="text" class="form-control"
                                                         id="company_name">
                                                 </div>
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
-                                                    <label for="email_address">Email Address <span
+                                                    <label for="email_address">{{__('checkout.email')}} <span
                                                             class="text-danger">*</span></label>
                                                     <input name="email" value="{{ $acc->email }}" type="email"
                                                         class="form-control" maxlength="40" id="email_address" required>
@@ -98,10 +98,10 @@
                                             </div>
                                             <div class="form-row mb-3">
                                                 <div class="col-12 col-sm-12 col-md-6">
-                                                    <label>City \ Province <span class="text-danger">*</span></label>
+                                                    <label>{{__('checkout.city')}}<span class="text-danger">*</span></label>
                                                     <select id="selectProvince" name="province_id" class="form-control" required="">
                                                         @if($province )
-                                                            <option value="">Tỉnh / Thành phố</option>
+                                                            <option value="">{{__('checkout.city')}}</option>
                                                             @foreach($province as $province)
                                                                 <option value="{{ $province->city_id}}">{{ $province->name }}</option>
                                                             @endforeach
@@ -110,21 +110,21 @@
                                                       
                                                 </div>
                                                 <div class="col-12 col-sm-12 col-md-6">
-                                                    <label>District <span class="text-danger">*</span></label>
+                                                    <label>{{__('checkout.district')}} <span class="text-danger">*</span></label>
                                                     <select class="form-control display-select" name="district_id" id="selectDistrict" required>
-                                                        <option value="">Quận / Huyện</option>
+                                                        <option value="">{{__('checkout.district')}}</option>
                                                     </select>
                                                 </div>
                                             </div> 
                                             <div class="form-row mb-3">
                                                  <div class="form-group col-12 col-sm-12 col-md-6">
-                                                    <label>Ward <span class="text-danger">*</span></label>
+                                                    <label>{{__('checkout.ward')}} <span class="text-danger">*</span></label>
                                                     <select class="form-control display-select" name="ward_id" id="selectWard"required>
-                                                        <option value="">Phường / Xã </option>
+                                                        <option value="">{{__('checkout.ward')}}</option>
                                                     </select>
                                                 </div> 
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
-                                                    <label for="p_address">Address<span
+                                                    <label for="p_address">{{__('checkout.add')}}<span
                                                             class="text-danger">*</span></label>
                                                     <input name="address" type="text" value="{{ $acc->address }}"
                                                         class="form-control" id="p_address" required>
@@ -134,18 +134,18 @@
 
                                             <div class="form-row mb-3">
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
-                                                    <label for="tel_number">telephone</label>
+                                                    <label for="tel_number">{{__('checkout.phone')}}</label>
                                                     <input name="phone" type="tel" value="0{{ $acc->phone }}"
                                                         class="form-control" id="tel_number" pattern="[0-9]{10}">
                                                 </div>
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
-                                                    <label for="fax_num">Fax</label>
+                                                    <label for="fax_num">{{__('checkout.fax')}}</label>
                                                     <input name="fax" type="text" class="form-control" id="fax_num">
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
-                                                    <label for="country_name" class="d-block">Payment method <span
+                                                    <label for="country_name" class="d-block">{{__('checkout.pmethod')}} <span
                                                             class="text-danger">*</span></label>
                                                     <select name="payment_method" id="country_name"
                                                         class="form-control nice-select" required="">
@@ -155,7 +155,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-12 col-sm-12 col-md-6">
-                                                    <label for="shipping_method" class="d-block">Shipping method
+                                                    <label for="shipping_method" class="d-block">{{__('checkout.smethod')}}
                                                         <span class="text-danger">*</span></label>
                                                     <select name="shipping_method" id="country_name"
                                                         class="form-control nice-select" required="">
@@ -167,7 +167,7 @@
                                             </div>
                                             <div class="form-row mb-3">
                                                 <div class="form-group col-12 col-sm-12 col-md-12">
-                                                    <label for="email_address">Order note</label>
+                                                    <label for="email_address">{{__('checkout.onote')}}</label>
                                                     <input name="order_note" value="" type="text" class="form-control"
                                                         id="email_address">
                                                     <input name="total_price" type="hidden" value="{{ $totalPrice }}"
@@ -181,7 +181,7 @@
                                             <div class="form-row">
                                                 <div class="col-md-12 text-center">
                                                     <button style="width: 50%;" type="submit"
-                                                        class=" btn btn-secondary">Order</button>
+                                                        class=" btn btn-secondary">{{__('checkout.order')}}</button>
                                                 </div>
                                             </div>
 
@@ -192,7 +192,7 @@
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-5">
                                     <div class="order-summary">
                                         <div class="section-title left-aligned">
-                                            <h3>Your Order</h3>
+                                            <h3>{{__('checkout.yorder')}}</h3>
                                         </div>
                                         <div class="product-container">
                                             @foreach ($carts as $carts)
@@ -208,7 +208,7 @@
                                                         </div>
                                                         <div class="media-body">
                                                             <h5>{{ $carts->name }}</h5>
-                                                            <p class="product-quantity">Quantity: {{ $carts->quantity }}
+                                                            <p class="product-quantity">{{__('cart.qty')}}: {{ $carts->quantity }}
                                                             </p>
                                                             <p class="product-final-price">${{ $carts->price }}</p>
                                                         </div>
@@ -221,13 +221,13 @@
                                                 <table class="table table-bordered">
                                                     <tbody>
                                                         <tr class="cart-subtotal">
-                                                            <th>Subtotal</th>
+                                                            <th>{{__('main.subtt')}}</th>
                                                             <td class="text-center">{{ number_format($subPrice) }}$
                                                             </td>
 
                                                         </tr>
                                                         <tr>
-                                                            <th class="text-center">Eco Tax (-2%): </th>
+                                                            <th class="text-center">{{__('main.ecotax')}} </th>
                                                             <td class="text-center">{{ number_format($tax) }}$</td>
                                                         </tr>
                                                         <tr>
@@ -236,7 +236,7 @@
                                                         </tr>
                                                         @if ($coupon)
                                                             <tr class="cart-coupon">
-                                                                <th>Coupon</th>
+                                                                <th>{{__('main.coupon')}}</th>
                                                                 <td>
                                                                     @if ($coupon->discount_ab)
                                                                         <h3>-{{ $coupon->discount_ab }}$</h3>
@@ -253,10 +253,10 @@
                                                             </tr>
                                                         @endif
                                                         <tr class="order-total">
-                                                            <th>Total</th>
+                                                            <th>{{__('cart.total')}}</th>
                                                             <td class="text-center">
                                                                 <strong>{{ number_format($totalPrice) }}$ -
-                                                                    {{ $totalQuantity }} items</strong>
+                                                                    {{ $totalQuantity }} {{__('checkout.item')}}</strong>
                                                             </td>
                                                         </tr>
                                                     </tbody>

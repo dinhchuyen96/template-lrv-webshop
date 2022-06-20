@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Banner;
+use App\Models\Brand_sale;
 use Illuminate\Http\Request;
-use App\Http\Requests\BannerRequest;
+use App\Http\Requests\Brand_saleRequest;
+use App\Http\Requests\Brand_saleEditRequest;
 
-use App\Models\Category;
-use App\Models\Product;
 use Str;
 
-class BannerController extends Controller
+
+class Brand_saleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +20,8 @@ class BannerController extends Controller
      */
     public function index()
     {
-        $data_banner = Banner::orderBy('id','DESC')->paginate(10);
-        return view('admin.banner.index', compact('data_banner'));
+        $data = Brand_sale::orderBy('id','DESC')->paginate(10);
+        return view('admin.brand_sale.index', compact('data'));
     }
 
     /**
@@ -31,8 +31,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        $pros =Product::orderBy('name','ASC')->get();
-        return view('admin.banner.create', compact('pros'));
+        return view('admin.brand_sale.create');
     }
 
     /**
@@ -41,10 +40,9 @@ class BannerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BannerRequest $request)
+    public function store(Brand_saleRequest $request)
     {
-        // dd($request->all());
-        $data_banner = $request->all('name','product_id','title','upload','status');
+        $data = $request->all('name','status','category_id');
         // dd($data_banner);
         $file_name = $request->upload->getClientOriginalName();
 
@@ -55,22 +53,23 @@ class BannerController extends Controller
 
         $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
 
-        $check_upload = $request->upload->move(public_path('uploads/banner'), $final_name);
+        $check_upload = $request->upload->move(public_path('uploads/logo'), $final_name);
 
         if($check_upload){
-            $data_banner['image_slide'] = $final_name;
+            $data['logo'] = $final_name;
         };
-        Banner::create($data_banner);
-        return redirect()->route('banner.index')->with('yes', "thêm mới Banner thành công");
+
+        Brand_sale::create($data);
+        return redirect()->route('brand_sale.index')->with('yes', "thêm mới brand sale thành công");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\banner  $banner
+     * @param  \App\Models\brand_sale  $brand_sale
      * @return \Illuminate\Http\Response
      */
-    public function show(banner $banner)
+    public function show(brand_sale $brand_sale)
     {
         //
     }
@@ -78,51 +77,49 @@ class BannerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\banner  $banner
+     * @param  \App\Models\brand_sale  $brand_sale
      * @return \Illuminate\Http\Response
      */
-    public function edit(banner $banner)
+    public function edit(brand_sale $brand_sale)
     {
-        $pros =Product::orderBy('name','ASC')->get();
-
-        return view('admin.banner.edit', compact('banner','pros'));
+        return view('admin.brand_sale.edit', compact('brand_sale'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\banner  $banner
+     * @param  \App\Models\brand_sale  $brand_sale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, banner $banner)
+    public function update(Brand_saleEditRequest $request, brand_sale $brand_sale)
     {
-        $data_banner = $request->all('name','product_id','status','title','created_at');
+        $data = $request->all('name','status','category_id');
         if($request->has('upload')){
             $file_name = $request->upload->getClientOriginalName();
             $partInfo = pathinfo($file_name);
             $ext = $partInfo['extension'];
             $base_name = $partInfo['filename']; 
             $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
-            $check_upload = $request->upload->move(public_path('uploads/banner'), $final_name);
+            $check_upload = $request->upload->move(public_path('uploads/logo'), $final_name);
             if($check_upload){
-                $data_banner['image_slide'] = $final_name;
+                $data['logo'] = $final_name;
             }
         }
         // dd($data_banner);
-        $banner->update($data_banner);
-        return redirect()->route('banner.index')->with('yes','Cập nhật thành công');
+        $brand_sale->update($data);
+        return redirect()->route('brand_sale.index')->with('yes','Cập nhật thành công');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\banner  $banner
+     * @param  \App\Models\brand_sale  $brand_sale
      * @return \Illuminate\Http\Response
      */
-    public function destroy(banner $banner)
+    public function destroy(brand_sale $brand_sale)
     {
-        $banner->delete();
-        return redirect()->route('banner.index')->with('yes', "Xóa thành công");
+        $brand_sale->delete();
+        return redirect()->route('brand_sale.index')->with('yes', "Xóa thành công");
     }
 }

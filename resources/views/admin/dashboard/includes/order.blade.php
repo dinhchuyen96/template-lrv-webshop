@@ -5,8 +5,8 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Serial</th>
-                        <th>purchase date</th>
+                        <th>Mã đơn hàng</th>
+                        <th>Ngày đặt hàng</th>
                         <th class="text-center">Name</th>
                         <th class="text-center">Status </th>
                         <th>Phone</th>
@@ -17,8 +17,8 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Serial</th>
-                        <th>purchase date</th>
+                        <th>Mã đơn hàng</th>
+                        <th>Ngày đặt hàng</th>
                         <th class="text-center">Name</th>
                         <th class="text-center">Status </th>
                         <th>Phone</th>

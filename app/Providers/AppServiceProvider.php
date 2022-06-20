@@ -34,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
         
         Paginator::useBootstrap();
         view()->composer('*',function($view){
+            $locale = App::currentLocale();
             $acc = Auth::guard('account')->user(); // lấy thông tin account đang đăng nhập
             // dd($acc->id);
             
@@ -67,7 +68,7 @@ class AppServiceProvider extends ServiceProvider
             $blog_cats = Blog_cat::orderBy('id', 'ASC')->where('status','>',0)->get();
             $carts = session('cart') ? session('cart'):[];  // lấy giỏ hàng trong session('cart')
             // dd($carts);
-            $locale = App::currentLocale();
+          
             // session()->flush();
             
 

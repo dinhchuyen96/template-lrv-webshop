@@ -51,14 +51,14 @@
                                                         <div class="col-6 col-sm-3">
                                                             <div class="custom-radio">
                                                                 <input type="hidden" name="id" value="">
-                                                                <input class="form-check-input" value="anh" type="radio" name="sex" id="male" required>
+                                                                <input class="form-check-input" value="Anh" type="radio" name="sex" id="male" required>
                                                                 <span class="checkmark"></span>
                                                                 <label class="form-check-label" for="male">Mr.</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-6 col-sm-3">
                                                             <div class="custom-radio">
-                                                                <input class="form-check-input" value="chị" type="radio" name="sex" id="female">
+                                                                <input class="form-check-input" value="Chị" type="radio" name="sex" id="female">
                                                                 <span class="checkmark"></span>
                                                                 <label class="form-check-label" for="female">Mrs.</label>
                                                             </div>

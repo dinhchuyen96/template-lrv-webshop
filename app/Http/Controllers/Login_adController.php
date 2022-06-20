@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class Login_adController extends Controller
         $data = $req->only('email','password');
         $check_login = Auth::attempt($data);
         if($check_login){
-            return redirect()->route('order.index')->with('yes','WellCome Back');
+            return redirect()->route('admin.dashboard')->with('yes','WellCome Back');
         }else{
             return redirect()->back()->with('wrong','Tài khoản hoặc mật khẩu không chính xác');
         };

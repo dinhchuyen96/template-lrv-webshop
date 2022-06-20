@@ -13,6 +13,7 @@
             'ad' => 'Account details',
             'cp' => 'Changer Password',
             'td' => 'Date',
+            'code' => 'Order code',
             'ts' => 'Status',
             'tt' => 'Total',
             'ta' => 'Actions',

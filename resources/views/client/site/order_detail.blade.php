@@ -77,7 +77,7 @@
                     </table>
                 </div>
             </div>
-            <h3>Thông tin sản phẩm</h3>
+            <h3>Mã đơn hàng: <span class="text-info">{{$item->order_code}}</span></h3>
             <table class="table">
                 <thead>
                     <tr>

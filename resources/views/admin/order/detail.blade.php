@@ -71,7 +71,7 @@
                     <thead>
                         <tr>
                             <th>Họ tên</th>
-                            <th>{{ $order->account->first_name }} {{ $order->account->last_name }} </th>
+                            <th><a href="{{ route('admin.account_detail', $order->account->id) }}">{{ $order->account->first_name }} {{ $order->account->last_name }} </a></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -132,6 +132,7 @@
             <thead>
                 <tr>
                     <th>STT</th>
+                    <th>Mã đơn hàng</th>
                     <th>Ảnh</th>
                     <th>Tên Sản Phẩm</th>
                     <th>Số lượng</th>
@@ -143,6 +144,7 @@
                 @foreach ($order->details as $detail)
                     <tr>
                         <td>{{ $i += 1 }}</td>
+                        <td>{{ $detail->order_code}}</td>
                         <td><img src="{{ url('uploads') }}/products/{{ $detail->product->image }}" width="100px"></td>
                         <td>{{ $detail->product->name }}</td>
                         <td>{{ $detail->quantity }}</td>
@@ -153,6 +155,7 @@
                 <tr class="table-info">
                     <td></td>
                     <td></td>
+                    <td></td>
                     <th>Thuế + Phí</th>
                     <th></th>
                     <td></td>
@@ -160,6 +163,7 @@
 
                 </tr>
                 <tr class="table-info">
+                    <td></td>
                     <td></td>
                     <td></td>
                     <th>Coupon</th>
@@ -180,6 +184,7 @@
                 </tr>
                 <tr class="table-info">
                     <th></th>
+                    <td></td>
                     <td></td>
                     <th>Tổng thanh toán:</th>
                     <th>{{ $order->totalQuantity() }}</th>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Client;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -63,6 +63,9 @@ class AccountController extends Controller
             Auth::guard('account')->logout();
             return redirect()->route('home.login')->with('no','Tài khoản của bạn chưa kích hoạt <br> vui lòng click vào 
             <a href="'.route('account.get_actived').'">đây để tiến hành kích hoạt</a>');
+         }elseif (Auth::guard('account')->user()->status == 2){
+            Auth::guard('account')->logout();
+            return redirect()->route('home.login')->with('no','Tài khoản của bạn bị khóa <br> vui lòng liên hệ nhân viên cửa hàng');
          }
            return redirect()->route('home')->with('ok','Đăng nhập thành công');
        }else{
@@ -200,5 +203,13 @@ class AccountController extends Controller
              return redirect()->back()->with('no','Mời bạn nhập lại mật khẩu');
         }
        
+    }
+    public function account_lock(Account $account){
+        $account->update(['status' => 2]);
+        return redirect()->back()->with('yes','Khóa tài khoản thành công');
+    }
+    public function account_unlock(Account $account){
+        $account->update(['status' => 1]);
+        return redirect()->back()->with('yes','Mở khóa tài khoản thành công');
     }
 }

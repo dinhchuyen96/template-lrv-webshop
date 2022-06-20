@@ -10,6 +10,7 @@
             'si' => 'Sign In',
             'na' => 'No account',
             'co' => 'Creat one here',
+            'clh' => 'Click here',
         ]
 
 

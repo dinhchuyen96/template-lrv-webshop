@@ -1,15 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Client;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Comment_Blog;
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Requests\CommentBlogRequest;
+use Auth;
 
-
-class CommentBlogController extends Controller
+class AdminController extends Controller
 {
+    public function dashboard(){
+        // User::create([
+        //     'name' => 'Admin Manerger',
+        //     'email' => 'admin@gmail.com',
+        //     'password' => bcrypt(123456)
+        // ]);
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,9 +25,7 @@ class CommentBlogController extends Controller
      */
     public function index()
     {
-        $comments = Comment_Blog::orderBy('id', 'DESC')->paginate(15);
-        // dd($comments);
-        return view('admin.comment_blog.index',compact('comments'));
+        return view('admin.login');
     }
 
     /**
@@ -38,21 +44,18 @@ class CommentBlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CommentBlogRequest $request)
+    public function store(Request $request)
     {
-        $data= $request->all();
-        // dd($data);
-        Comment_Blog::create($data);
-        return redirect()->back()->with('ok','Gửi comment thành công'); 
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Comment_Blog  $comment_Blog
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment_Blog $comment_Blog)
+    public function show(Category $category)
     {
         //
     }
@@ -60,10 +63,10 @@ class CommentBlogController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Comment_Blog  $comment_Blog
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment_Blog $comment_Blog)
+    public function edit(Category $category)
     {
         //
     }
@@ -72,24 +75,24 @@ class CommentBlogController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Comment_Blog  $comment_Blog
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment_Blog $comment_Blog)
+    public function update(Request $request, Category $category)
     {
-        //
+        
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Comment_Blog  $comment_Blog
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment_Blog $comment)
+    public function destroy(Category $category)
     {
-        // dd($comment);
-        $comment->delete();
-        return redirect()->back()->with('yes','Xóa thành công');
+        //
     }
+    
+    
 }

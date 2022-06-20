@@ -127,8 +127,7 @@
                                             <a href="{{ route('home.add-wishlist', $psn->id) }}" title="{{__('home.wishlist')}}"><i class="fa fa-heart-o" style="font-size:23px;"></i></a>
                                             <a href="{{ route('home.add-compare', $psn->id) }}" title="{{__('home.compare')}}"><i
                                                     class="lnr lnr-sync"></i></a>
-                                            <a href="#" title="{{__('home.qw')}}" data-target="#quickk_view{{ $psn->id }}"
-                                                data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                            <a href="#" title="{{__('home.qw')}}" onclick="quickView({{$psn->id}})"><i class="lnr lnr-magnifier"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-caption">

@@ -2,7 +2,7 @@
 @section('title', 'Thống kê')
 @section('main')
     <!-- Page Heading -->
-    {{-- <div class="row">
+     {{-- <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
@@ -53,7 +53,54 @@
 
         </div>
 
-    </div> --}}
+    </div>  --}}
+    <div class="row">
+        <div class="col-lg-4 col-6">    
+            <div class="small-box bg-info">
+                <div class="inner text-center">
+                    <h3>{{$product_count}}</h3>
+                    <p>Sản Phẩm </p>
+                    <div class="row ">
+                        <h4 class=" col-lg-6">Ẩn: {{$product_hide}}</h4>
+                        <h4 class=" col-lg-6">Hiện: {{$product_show}}</h4>
+                    </div>
+                    
+                </div>
+                <a href="{{ route('product.index')}}" class="small-box-footer"> <i class="fas fa-arrow-circle-right"></i>Chi tiết</a>
+    
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+            </div>
+        </div>    
+        <div class="col-lg-4 col-6">
+    
+            <div class="small-box bg-success">
+                <div class="inner text-center">
+                    <h3>{{$order_count}}</h3>
+                    <p>Đơn Hàng mới</p>
+                </div>
+                <a href="{{ route('order.index')}}" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i>Chi tiết </a>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-lg-4 col-6">
+    
+            <div class="small-box bg-warning">
+                <div class="inner text-center">
+                    <h3>{{$cus_count}}</h3>
+                    <p>Tài Khản người dùng</p>
+                </div>
+                <a href="" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i>Chi tiết </a>    
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+            </div>
+        </div>
+    </div>
     <form action="{{ route('filter.order') }}" method="GET" enctype="multipart/form-data">
         <div class="col-md-12">
             <div class="form-group">

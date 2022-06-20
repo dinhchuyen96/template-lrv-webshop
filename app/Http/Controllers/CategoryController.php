@@ -1,23 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Auth;
+use App\Http\Requests\Category\CategoryCreateRequest;
+use App\Http\Requests\Category\CategoryEditRequest;
 
-class AdminController extends Controller
+
+class CategoryController extends Controller
 {
-    public function dashboard(){
-        // User::create([
-        //     'name' => 'Admin Manerger',
-        //     'email' => 'admin@gmail.com',
-        //     'password' => bcrypt(123456)
-        // ]);
-        
-    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +19,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.login');
+        $data = Category::orderBy('name','ASC')->search()->paginate(10);
+        // dd($data);
+        return view('admin.category.index',compact('data'));
+        
     }
 
     /**
@@ -35,7 +32,9 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        $category = Category::orderBy('id', 'desc')->get();
+        // dd($category); lấy danh mục cha
+        return view('admin.category.create', compact('category'));
     }
 
     /**
@@ -44,9 +43,11 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryCreateRequest $request)
     {
-        //
+        // dd($request->only('name','status') );
+        category::create($request->only('name','status','parent_id'));
+        return redirect()->route('category.index')->with('yes','Thêm mới thành công');
     }
 
     /**
@@ -57,7 +58,7 @@ class AdminController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        // dd($category->products);
     }
 
     /**
@@ -68,7 +69,8 @@ class AdminController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $categories = Category::orderBy('id', 'desc')->get();        
+        return view('admin.category.edit', compact('category','categories'));
     }
 
     /**
@@ -78,8 +80,10 @@ class AdminController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryEditRequest $request, Category $category)
     {
+        $category->update($request->only('name', 'status','parent_id'));
+        return redirect()->route('category.index')->with('yes','Cập nhật thành công');
         
     }
 
@@ -91,8 +95,8 @@ class AdminController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        // dd($category);
+        return redirect()->route('category.index')->with('yes','Xóa thành công');;
     }
-    
-    
 }

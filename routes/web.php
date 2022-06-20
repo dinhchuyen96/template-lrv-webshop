@@ -2,17 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
-use App\Http\Controllers\Client\HomeController;
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\Login_adController;
-use App\Http\Controllers\Client\CartController;
-use App\Http\Controllers\Client\AccountController;
-use App\Http\Controllers\Client\OrderHomeController;
-use App\Http\Controllers\Admin\OrderAdminController;
-use App\Http\Controllers\Client\WishlistController;
-use App\Http\Controllers\Client\CompareController;
-use App\Http\Controllers\Admin\LocaleController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Login_adController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\OrderHomeController;
+use App\Http\Controllers\OrderAdminController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\CompareController;
+use App\Http\Controllers\CartAjaxController;
+use App\Http\Controllers\LocaleController;
 
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
     ->name('ckfinder_connector');
@@ -68,6 +69,7 @@ Route::group(['prefix'=>'cart','middleware' => 'acc'], function(){
     Route::get('/',[CartController::class, 'view'])->name('home.cart');
     Route::get('/clear',[CartController::class, 'clear'])->name('home.cart-clear');
     Route::get('/add/{product}',[CartController::class, 'add'])->name('home.cart-add');
+    // Route::get('/add-to-cart',[CartAjaxController::class, 'add'])->name('home.cart-add');
     Route::get('/remove/{product}',[CartController::class, 'remove'])->name('home.cart-remove');
     Route::get('/update/{product}',[CartController::class, 'update'])->name('home.cart-update');
 });
@@ -136,6 +138,10 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('filter-order', [DashboardController::class, 'fillterOrder'])->name('filter.order');
     Route::get('filter-money', [DashboardController::class, 'filterMoney'])->name('filter.money');     
+    Route::get('customer-account', [DashboardController::class, 'list_account'])->name('admin.account');     
+    Route::get('account-detail/{account}', [DashboardController::class, 'account_detail'])->name('admin.account_detail');     
+    Route::get('account-lock/{account}', [AccountController::class, 'account_lock'])->name('admin.account_lock');     
+    Route::get('account-unlock/{account}', [AccountController::class, 'account_unlock'])->name('admin.account_unlock');     
     Route::get('/logout', [Login_adController::class, 'logout_admin'])->name('ad_logout');
     Route::get('/', [AdminController::class, 'index'])->name('admin.category.index');
     Route::resources([
