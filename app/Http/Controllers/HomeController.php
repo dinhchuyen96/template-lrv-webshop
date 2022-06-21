@@ -39,10 +39,17 @@
             $category = Category::paginate(2);
             $product_sale = Product::product_sale(5);
             $product_new = Product::product_new(4);
-            $product_top_sale = Product::product_top_sale(5);
+            $topfive = OrderDetail::select('product_id',DB::raw('COUNT(product_id) as count'))->groupBy('product_id')->orderBy('count','desc')->limit(5)->get();
+            $product_ids = [];
+            foreach($topfive as $item) {
+                array_push($product_ids,$item->product_id);
+            }
+            // dd($topfive);
+            $top_collection = Product::WhereIn('id',$product_ids)->get(); 
+            // dd($top_collection);  
             $banners = Banner::banner(3);
             $logo = Brand_sale::where('status','>',0)->get();
-            return view('client.site\home',compact('product_sale','product_new','product_top_sale','banners','logo'));
+            return view('client.site\home',compact('product_sale','product_new','top_collection','banners','logo'));
         }
 
         public function contactus(){

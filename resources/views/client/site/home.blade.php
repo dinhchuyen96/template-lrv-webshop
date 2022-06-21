@@ -285,7 +285,7 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="module-one">
                         <div class="module-four-wrapper custom-seven-column">
-                            @foreach ($product_top_sale as $top_sale)
+                            @foreach ($top_collection as $top_sale)
                                 <div class="col mb-30">
                                     <div class="product-item">
                                         <div class="product-thumb">
@@ -668,7 +668,7 @@
             </div>
         @endforeach
         <!-- Quick view modal start -->
-        @foreach ($product_top_sale as $product_sale_top)
+        @foreach ($top_collection as $product_sale_top)
             <div class="modal fade" id="quickk_view{{ $product_sale_top->id }}">
                 <div class="container">
                     <div class="modal-dialog modal-lg modal-dialog-centered">

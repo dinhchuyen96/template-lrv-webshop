@@ -1,7 +1,21 @@
 @extends('admin.layouts.admin')
 @section('title', 'Tài khoản người dùng')
 @section('main')
-
+<form class="form-inline ml-3 mb-4" method="get">
+    <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" style="margin-left: -1rem;width:329px; height: 34px" placeholder="Tìm kiếm tài khoản" name="search">
+    </div>
+    <div class="input-group input-group-sm ml-2">
+        <div class="input-group-append">
+            <button class="btn btn-warning" style="height: 33px; width:203px;margin-top: 2px;" type="submit">
+                <p>Search</p>
+            </button>           
+        </div>         
+    </div>
+    <div class="sort">
+        
+    </div>
+</form>
     <table class="table table">
         <tr>
             <th>#</th>

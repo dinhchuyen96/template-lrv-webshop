@@ -40,14 +40,13 @@ class Product extends Model
     {
         return $this->hasMany(Review::class, 'product_id', 'id');
     }
-
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_details');
+    }
+   
     public function scopeProduct_sale($query, $limit = 4){
         $query = $query->where('sale_price','>',0)->where('status','>',0)->orderBy('percent_sale','DESC')->limit($limit)->get();
-        return $query;
-    }
-    
-    public function scopeProduct_top_sale($query, $limit = 6){
-        $query = $query->where('number_sale','>',0)->where('status','>',0)->orderBy('number_sale','DESC')->limit($limit)->get();
         return $query;
     }
     public function scopeProduct_new($query, $limit = 4){

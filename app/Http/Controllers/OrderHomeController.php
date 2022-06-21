@@ -100,7 +100,7 @@ class OrderHomeController extends Controller
             if($order){
                 foreach($carts as $key => $item){
             // dd($acc_id+1);
-            $acc_id = Auth::guard('account')->user()->id;
+                    $acc_id = Auth::guard('account')->user()->id;
                     OrderDetail::create([
                         'account_id' => $acc_id,
                         'order_code' => $order->order_code,

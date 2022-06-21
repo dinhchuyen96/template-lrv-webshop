@@ -44,7 +44,7 @@
               </li>
               <li class="nav-item">
                 <a href="{{route('admin.account')}}" class="nav-link">
-                  <i class="nav-icon fas fa-chart-bar"></i>
+                  <i class="nav-icon fas fa-user"></i>
                   <p>
                     Tài khoản người dùng
                   </p>

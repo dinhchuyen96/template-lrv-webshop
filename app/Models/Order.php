@@ -44,9 +44,9 @@ class Order extends Authenticatable
     {
         return $this->hasOne(Account::class,'id','account_id');
     }
-    public function products()
+    public function product()
     {
-        return $this->belongsToMany(Product::class, 'order_details');
+        return $this->belongsToMany('App\Product');
     }
     public function provin()
     {

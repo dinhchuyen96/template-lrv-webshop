@@ -7,6 +7,7 @@ use App\Models\OrderDetail;
 use App\Models\Review;
 use App\Models\Product;
 use App\Models\Account;
+use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -19,10 +20,20 @@ class DashboardController extends Controller
         $product_hide = Product::where('status',0)->count();
         $order_count =Order::where('status',0)->count();
         $cus_count =Account::count();
-        return view('admin.dashboard.index',compact('product_count','product_show','product_hide','order_count','cus_count'));
+        $check = true;
+        $topfive = OrderDetail::select('product_id',DB::raw('COUNT(product_id) as count'))->groupBy('product_id')->orderBy('count','desc')->limit(5)->get();
+        // $quantity = OrderDetail::select('quantity',DB::raw('COUNT(quantity) as count'))->groupBy('product_id')->orderBy('count','desc')->limit(5)->get();
+        $product_ids = [];
+        foreach($topfive as $item) {
+            array_push($product_ids,$item->product_id);
+        }
+        $topcus = Order::select('account_id',DB::raw('COUNT(account_id) as count'))->groupBy('account_id')->orderBy('count','desc')->limit(5)->get();
+        // dd($topcus);
+        return view('admin.dashboard.index',compact('check','product_count','product_show','product_hide','order_count','cus_count','topfive','topcus'));
     }
+
     public function list_account(){
-        $account = Account::orderBy('id','DESC')->get();
+        $account = Account::orderBy('id','DESC')->search()->get();
         // dd($acc);
         return view('admin.list_account', compact('account'));
     }
@@ -44,6 +55,7 @@ class DashboardController extends Controller
 
     public function fillterOrder(Request $request)
     {
+       $check = false;
        $startDate = $request->start_date;
        $endDate = $request->end_date;
        $status = $request->status;
@@ -54,10 +66,11 @@ class DashboardController extends Controller
             ->where('status', $status)
             ->get();
        }
-       return view('admin.dashboard.index', compact('orders'));
+       return view('admin.dashboard.index', compact('orders','check'));
     }
     public function filterMoney(Request $request)
     {
+       $check = false;
        $startDate = $request->start_date;
        $endDate = $request->end_date;
        $status = $request->status;
@@ -68,7 +81,7 @@ class DashboardController extends Controller
             $number = Order::where('status',$status)->whereBetween('created_at', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])->count();  
             $totalMoney = Order::where('status',$status)->whereBetween('created_at', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])->sum('total_price');       
         }
-       return view('admin.dashboard.index', compact('totalMoney','number'));
+       return view('admin.dashboard.index', compact('totalMoney','number','check'));
       
     }
 }

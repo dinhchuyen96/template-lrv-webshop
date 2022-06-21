@@ -31,6 +31,16 @@ class Account extends Authenticatable
         'token',
         'status'
     ];
+    public function scopeSearch($query)
+    {
+        $search_value = request()->search;
+
+        if($search_value){
+            $query = $query->where('last_name','LIKE','%'.$search_value.'%')->orWhere('phone','LIKE','%'.$search_value.'%')->orWhere('email','LIKE','%'.$search_value.'%');
+        }
+        return $query;
+        // dd($query);
+    }
 }
     
     

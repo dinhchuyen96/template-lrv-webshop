@@ -1,6 +1,20 @@
 $(document).ready(function(){
     
     // console.log('ahihi');
+    $("#sortOptions").on("change", function(){
+        var val = $(this).val();
+        switch(val){
+            case 'order':  $("#sortOrder").show(); $("#sortKpi").hide();$("#sortTopOrder").hide();$('#sortTopCus').hide();
+                break;
+            case 'kpi':  $("#sortTopOrder").hide(); $("#sortKpi").show();$("#sortTopSale").hide(); $("#sortOrder").hide()
+                break;
+            case 'toporder':  $("#sortTopOrder").hide(); $("#sortKpi").hide();$("#sortTopSale").show();
+                break;
+            case 'topcus': $("#sortTopOrder").hide(); $("#sortKpi").hide();$("#sortTopSale").hide();$('#sortTopCus').show();
+                break;
+        }
+        // console.log(val);
+    })
    
     $("#percent_sale").keyup(function(){
         // alert( "Handler for .keyup() called." );

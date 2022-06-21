@@ -213,21 +213,21 @@ function showForm2(id){
 		
     
     
-	$(document).ready(function () {
-		// print_country("country");
-		// setTimeout2(function() {
-		// 	$("#alert_cat").fadeOut('fast');
-		// 	console.log('ahihi')
-		// }, 5000)
+	// $(document).ready(function () {
+	// 	print_country("country");
+	// 	setTimeout2(function() {
+	// 		$("#alert_cat").fadeOut('fast');
+	// 		console.log('ahihi')
+	// 	}, 5000)
 		
-		if (localStorage.getItem("my_app_name_here-quote-scroll") != null) {
-			$(window).scrollTop(localStorage.getItem("my_app_name_here-quote-scroll"));
-		}
-		$(window).on("scroll", function() {
-			localStorage.setItem("my_app_name_here-quote-scroll", $(window).scrollTop());
-		});
+	// 	if (localStorage.getItem("my_app_name_here-quote-scroll") != null) {
+	// 		$(window).scrollTop(localStorage.getItem("my_app_name_here-quote-scroll"));
+	// 	}
+	// 	$(window).on("scroll", function() {
+	// 		localStorage.setItem("my_app_name_here-quote-scroll", $(window).scrollTop());
+	// 	});
 	
-	  });
+	//   });
 	$('#mobile-menu').each(function() {
 		var $this = $(this);
 		var $screenWidth = $this.attr('data-screen') ? parseInt($this.attr('data-screen'), 10) : 991;

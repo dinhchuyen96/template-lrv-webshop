@@ -8,10 +8,10 @@
                         <th>Mã đơn hàng</th>
                         <th>Ngày đặt hàng</th>
                         <th class="text-center">Name</th>
-                        <th class="text-center">Status </th>
-                        <th>Phone</th>
-                        <th>Quantity</th>
-                        <th>Unit Price</th>
+                        <th class="text-center">Trạng thái </th>
+                        <th>SDT người nhận</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -19,18 +19,18 @@
                     <tr>
                         <th>Mã đơn hàng</th>
                         <th>Ngày đặt hàng</th>
-                        <th class="text-center">Name</th>
-                        <th class="text-center">Status </th>
-                        <th>Phone</th>
-                        <th>Quantity</th>
-                        <th>Unit Price</th>
+                        <th class="text-center">Tên khách hàng</th>
+                        <th class="text-center">Trạng thái </th>
+                        <th>SDT người nhận</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
                         <th></th>
                     </tr>
                 </tfoot>
                 <tbody>
                     @foreach ($orders as $order)
                         <tr>
-                            <td>{{ $order->id }}</td>
+                            <td>{{ $order->order_code }}</td>
                             <td>
                                 <a
                                     href="{{ route('home.product', ['product' => $order->id, 'category' => $order->category_id, 'slug' => Str::slug($order->name)]) }}">{{ $order->name }}</a>
