@@ -37,9 +37,9 @@
                 @enderror
             </div>
             <div class="col-md-6">
-                <label for="">Doanh số</label>
-                <input type="number" name="number_sale" class="form-control" value='0' id=""> 
-                @error('number_sale')
+                <label for="">Tồn kho</label>
+                <input type="number" name="amout" class="form-control" min="0" value='{{old('amout')}}'  id=""> 
+                @error('amout')
                     {{ $message }}
                 @enderror
             </div>
@@ -54,9 +54,9 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="">Mô tả sản phẩm</label>
-            <textarea type="text" id="tinymce_detail" class="form-control" value="{{ old('description') }}" name="description"
-                 placeholder="Mô tả chi tiết sản phẩm"></textarea>
+            <label for="">Mô tả chi tiết</label>
+            <textarea id="tinymce" type="text" class="form-control" name="description" 
+                    placeholder="Input field"></textarea>
             @error('description')
                 {{ $message }}
             @enderror
@@ -64,7 +64,7 @@
         <script></script>
         <div class="row form-group">
             <div class="col-md-5"><label for="">Giá</label>
-                <input type="text" value="{{ old('price') }}" id="price" class="form-control set_price_product" required
+                <input type="text" value="{{ old('price') }}" id="price" class="form-control set_price_product" 
                     name="price" placeholder="Nhập giá sản phẩm">
                 @error('price')
                     {{ $message }}

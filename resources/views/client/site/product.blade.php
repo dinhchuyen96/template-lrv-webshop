@@ -92,19 +92,20 @@
                                         <li><span>Availability :</span>200 In Stock</li>
                                     </ul>
                                 </div>
-                              
+                                <form action="{{route('home.cart-add',$product->id)}}" method="GET">
+                                @csrf
                                     <div class="pro-quantity-box mb-30">
                                         <div class="qty-boxx">
                                             <label>qty :</label>
                                             <input type="number" name="quantity" class="cartquantity" placeholder="1" value="1" min="1" max="69"
                                                 required>
-                                            <button class="btn-cart lg-btn" onclick="addToCart({{ $product->id }});">Buy Now</button>
+                                            <button type="submit" class="btn-cart lg-btn">Buy Now</button>
                                         </div>
                                         @error('quantity')
                                             <span class="btn btn-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
-
+                                </form>
                             </div>
                         </div>
 

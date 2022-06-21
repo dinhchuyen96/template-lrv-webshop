@@ -23,15 +23,16 @@
     </div>
 </form>
 <hr>
-<table class="table table-bordered">
+<table class="table table-hover table-borded">
     <thead>
         <tr>
             <th style="width:10px">#</th>
-            <th style="width:200px">Tên sản phẩm</th>
+            <th style="width:200px">Tên sản phẩm<hr>
+            Tồn kho</th>
             <th style="width:50px">Danh mục</th>
             <th>Giá <hr> Sale</th>
             <th>Mô tả</th>
-            <th class="text-center">Ảnh</th>
+            <th class="text-center">Ảnh minh họa</th>
             <th>Trạng thái
                 <hr>
                 Doanh số
@@ -42,9 +43,9 @@
     </thead>
     <tbody>
         @foreach($data_product as $key => $value)
-        <tr>
+        <tr >
             <td>{{$key +1}}</td>
-            <td width="5px">{{$value->name}}</td>
+            <td width="5px">{{$value->name}} <hr> {{$value->amout}} sp</td>
             <td>{{$value->p_cat->name}}<hr>{{$value->cat->name}}</td>
             <td>{{number_format($value->price)}} / {{$value->sale_price}}<hr>-{{$value->percent_sale}}%</td>
             <td><button class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ $value->id }}"><i class="fas fa-info-circle"></i></button></td>
@@ -55,7 +56,7 @@
                 <form action="{{ route('product.destroy', $value->id) }}" method="post">
                     @csrf @method('DELETE')
                     <a href="{{ route('product.edit', $value->id) }}" class="btn btn-primary"><i class="far fa-edit"></i></a>
-                    <button class="btn btn-danger" onclick="return confirm('are you sure?')"><i class="fas fa-backspace"></i></button>
+                    <button class="btn btn-danger" onclick="return confirm('bạn muốn xóa sản phẩm {{ $value->name}}? ')"><i class="fas fa-backspace"></i></button>
                 </form>
             </td>
         </tr>

@@ -22,7 +22,6 @@ class DashboardController extends Controller
         $cus_count =Account::count();
         $check = true;
         $topfive = OrderDetail::select('product_id',DB::raw('COUNT(product_id) as count'))->groupBy('product_id')->orderBy('count','desc')->limit(5)->get();
-        // $quantity = OrderDetail::select('quantity',DB::raw('COUNT(quantity) as count'))->groupBy('product_id')->orderBy('count','desc')->limit(5)->get();
         $product_ids = [];
         foreach($topfive as $item) {
             array_push($product_ids,$item->product_id);

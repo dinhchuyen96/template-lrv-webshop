@@ -49,7 +49,7 @@ class ProductAdminController extends Controller
      */
     public function store(ProductCreateRequest $req)
     {
-        $data_product = $req->all('name','number_sale','sort_description','description','price','percent_sale','sale_price','parent_cat','category_id','status',);
+        $data_product = $req->all('name','amout','number_sale','sort_description','description','price','percent_sale','sale_price','parent_cat','category_id','status',);
         // upload ảnh
         // dd($data_product);
         $file_name = $req->upload->getClientOriginalName();
