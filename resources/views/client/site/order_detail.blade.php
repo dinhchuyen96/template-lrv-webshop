@@ -10,18 +10,23 @@
     @else
         <div class="container">
             <hr class="mt-5">
-            <div class="row mt-5 mx-1">
+            <div class="row mt-5">
                 <h3 class="">Thông tin chi tiết đơn hàng</h3>
                 @if ($item->status == 0)
-                    <span class="btn btn-primary mx-5" style="width:40%">Chờ xác nhận</span>
+                    <span class="btn btn-primary mx-3" style="width:40%">Chờ xác nhận</span>
                 @elseif($item->status == 1)
-                    <span class="btn btn-info mx-5" style="width:40%">Đã xác nhận</span>
+                    <span class="btn btn-info mx-3" style="width:40%">Đã xác nhận</span>
                 @elseif($item->status == 2)
-                    <span class="btn btn-warning mx-5" style="width:40%">Đang giao hàng</span>
+                    <span class="btn btn-warning mx-3" style="width:40%">Đang giao hàng</span>
                 @elseif($item->status == 3)
-                    <span class="btn btn-success mx-5" style="width:40%">Đã giao thành công</span>
+                    <span class="btn btn-success mx-3" style="width:40%">Đã giao thành công</span>
                 @elseif($item->status == 4)
-                    <span class="btn btn-danger mx-5" style="width:40%">Hoàn / hủy</span>
+                    <span class="btn btn-danger mx-3" style="width:40%">Hoàn / hủy</span>
+                @endif
+                @if($item->status <= 2 )
+                <button type="button"   class="btn btn-danger col-lg-3" style="margin-left: 6rem;" data-bs-toggle="modal" data-bs-target="#huydonhang">
+                   Hủy đơn hàng
+                  </button>
                 @endif
             </div>
 
@@ -77,7 +82,9 @@
                     </table>
                 </div>
             </div>
-            <h3>Mã đơn hàng: <span class="text-info">{{$item->order_code}}</span></h3>
+            <div class="row ml-1">
+            <h3>Mã đơn hàng: <span class="text-info mr-4">{{$item->order_code}}</span></h3>            
+            </div>
             <table class="table">
                 <thead>
                     <tr>
@@ -149,4 +156,27 @@
             </table>
         </div>
     @endif
+    <!-- Button trigger modal -->
+
+  <!-- Modal -->
+  <form method="post" action>
+    @csrf
+    <div class="modal fade" id="huydonhang" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Lý do hủy đơn hàng</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="lydohuydon"  placeholder="Nhập lý do hủy đơn hàng" required>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" >Đóng</button>
+            <button type="submit" id="{{$item->id}}" data-bs-dismiss="modal" class="btn btn-primary" onclick="huydonhang(this.id)">Gửi lý do</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</form>
 @stop()

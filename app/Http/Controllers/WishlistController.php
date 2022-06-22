@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Wishlist;
+use App\Models\WishlistDetails;
 use Illuminate\Http\Request;
+use Auth;
 
 class WishlistController extends Controller
 {
+    
     public function view(){
-        $wishlists = session('wishlist')? session('wishlist') : [];
+        $acc_id = Auth::guard('account')->user()->id;
+        $wishlists = Wishlist::where('account_id', $acc_id)->get();
         // dd($wishlists);
         if($wishlists == null){
             return redirect()->route('home')->with('ok', 'Wishlist rỗng, mời bạn chọn lại');;
@@ -18,34 +23,27 @@ class WishlistController extends Controller
     }
     public function add(Product $product)
     {
-        $wishlists = session('wishlist')? session('wishlist') : [];
-        // dd($wishlists);
-        $item = [
-            'id' => $product->id,
-            'category_id' =>$product->category_id,
-            'name' => $product->name,
-            'image' => $product->image,
-            'price' => $product->price,
-            'sale_price' => $product->sale_price,
-            'category_id' => $product->category_id
-        ];
-        $item =(object)$item;
-        $wishlists[$product->id] = $item;
-        session(['wishlist'=> $wishlists]);
-        
+        $acc_id = Auth::guard('account')->user()->id;
+
+        $data['account_id'] =  $acc_id;
+        $wishlist = Wishlist::create($data);
+        WishlistDetails::create([
+            'wishlist_id' => $wishlist->id,
+            'product_id' =>$product->id,
+        ]);        
         return redirect()->route('home')->with('ok', 'Thêm sản phẩm vào wishlist thành công');
     }
-    public function remove(Product $product){
-        $wishlists = session('wishlist')? session('wishlist') : [];
-        if(isset($wishlists[$product->id])){
-            unset($wishlists[$product->id]); 
-            session(['wishlist'=> $wishlists]);
-        }
-        if($wishlists != null){
-             return redirect()->route('home.wishlist')->with('ok', 'Xóa sản phẩm khỏi wishlist thành công');
-        }       
-        if($wishlists == null){
+    public function remove(Wishlist $product){
+        
+        $product->delete();
+        $acc_id = Auth::guard('account')->user()->id;
+        $wishlists = Wishlist::where('account_id', $acc_id)->get();
+        if($wishlists->isEmpty()){
             return redirect()->route('home')->with('ok', 'Wishlist rỗng, mời bạn chọn lại');;
+        }else{
+            return redirect()->route('home.wishlist')->with('ok', 'Xóa sản phẩm khỏi wishlist thành công');
         }
+              
+       
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Product;
 use App\Models\Review;
+use App\Models\Wishlist;
 use App\Models\Big_category;
 use App\Models\Blog_cat;
 use Auth;
@@ -48,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
                 $acc =(object)$acc; // tạo đối tượng
                 // dd($acc);
             }
-            $wishlists = session('wishlist')? session('wishlist') : []; // lấy sản phẩm trong sesion wishlist
+            $wishlists = Wishlist::where('account_id', $acc->id)->get();            
             $totalWishlist = count($wishlists); // đếm số sản phẩm trong wishlist
             
             $procompare = session('compare')? session('compare') : [];

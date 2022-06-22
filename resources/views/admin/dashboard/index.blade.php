@@ -197,11 +197,11 @@
             @foreach($topfive as $top)
             <tr>
                 <td>{{$loop->index+1}}</td>
-                <td>{{$top->product->name}}</td>
-                <td><img src="{{url('uploads')}}/products/{{$top->product->image}}" width="100px"></td>
-                <td>{{$top->count}}</td>@endforeach
+                <td>{{$top->name}}</td>
+                <td><img src="{{url('uploads')}}/products/{{$top->image}}" width="100px"></td>
+                <td>{{$top->order_number}}</td>
             </tr>
-            
+            @endforeach
         </table>
     </div>
     <div class="mt-5" id="sortTopCus" style="display: none">

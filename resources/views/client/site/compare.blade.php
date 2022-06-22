@@ -54,7 +54,7 @@
                                                     <tr>
                                                         <td class="product-title">Image</td>
                                                         @foreach ($procompare as $key => $value)
-                                                            <td> <img src="{{ url('uploads') }}/{{ $value->image }}"
+                                                            <td> <img src="{{ url('uploads') }}/products/{{ $value->image }}"
                                                                     alt="" width="150" class="img-thumbnail"> </td>
                                                         @endforeach
                                                     </tr>
@@ -75,7 +75,7 @@
                                                         @endforeach
                                                     </tr>
                                                     <tr>
-                                                        <td class="product-title">Model</td>
+                                                        <td class="product-title">Brand</td>
                                                         @foreach ($procompare as $value)
                                                             <td>
                                                                 <a

@@ -8,6 +8,7 @@
     use App\Models\Contact;
     use App\Models\Product;
     use App\Models\Review;
+    use App\Models\Wishlist;
     use App\Models\Order;
     use App\Models\OrderDetail;
     use App\Models\Banner;
@@ -49,7 +50,24 @@
             // dd($top_collection);  
             $banners = Banner::banner(3);
             $logo = Brand_sale::where('status','>',0)->get();
-            return view('client.site\home',compact('product_sale','product_new','top_collection','banners','logo'));
+            $acc = Auth::guard('account')->user();
+            $wishlist_ids = [];
+            if($acc){
+                    $wishlists = Wishlist::where('account_id', $acc->id)->get();            
+                    foreach($wishlists as $wishlist){
+                        foreach($wishlist->details as $wishlistd){
+                            array_push($wishlist_ids,$wishlistd->product_id);
+                        };
+                    }
+            }
+          
+            $procompare = session('compare')? session('compare') : [];
+            $compare_ids = [];
+            foreach($procompare as $procompare){
+                array_push($compare_ids,$procompare->id);
+            }
+            
+            return view('client.site\home',compact('compare_ids','wishlist_ids','product_sale','product_new','top_collection','banners','logo'));
         }
 
         public function contactus(){

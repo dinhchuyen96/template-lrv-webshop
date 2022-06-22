@@ -19,6 +19,25 @@
 // 			}
 // 		});
 // };
+function huydonhang(id){
+		var id = id;
+		var lydo = $('.lydohuydon').val();
+		var _token = $('input[name="_token"]').val();
+		$.ajax({
+			url: '/order/huydonhang',
+			type: 'POST',
+			data: {
+				'id': id,
+				'lydohuydon': lydo,
+				'_token': _token
+			},
+			success: function(data) {
+				location.reload();
+			}
+		});
+}
+
+
 
  function quickView(id){
 	$.ajax({
@@ -47,7 +66,7 @@ $("#inputsearch").on('keyup', function(){
 			}
 	});
 });
-$("#inputsearch").blur(function(){
+$("#live_search").blur(function(){
     $('#live_search').hide();
 });
 

@@ -1,5 +1,5 @@
 @extends('client.layouts.site')
-@section('title', 'checkout')
+@section('title', 'Wishlist')
 @section('main')
     <!-- breadcrumb area start -->
     <div class="breadcrumb-area">
@@ -32,50 +32,65 @@
                                     <div class="section-title">
                                         <h3>Wishlist</h3>
                                     </div>
-                                    <form action="#">
-                                        <div class="table-responsive text-center wishlist-style">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <td>Image</td>
-                                                        <td>Product Name</td>
-                                                        <td>Unit Price</td>
-                                                        <td>Action</td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach($wishlists as $wishlist)
-                                                    <tr>
-                                                        <td>
-                                                            <a href="product-details.html"><img src="{{url('uploads')}}/products/{{$wishlist->image}}" alt="Wishlist Product Image" width="80" title="Compete Track Tote"></a>
+
+                                    <div class="table-responsive text-center wishlist-style">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <td>Image</td>
+                                                    <td>Product Name</td>
+                                                    <td>Unit Price</td>
+                                                    <td>Action</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($wishlists as $wishlist)
+                                                    @foreach ($wishlist->details as $wishlistdetail)
+                                                        <tr>
+                                                            <td>
+                                                                <a href="product-details.html"><img
+                                                                        src="{{ url('uploads') }}/products/{{ $wishlistdetail->products->image }}"
+                                                                        alt="Wishlist Product Image" width="80"
+                                                                        title=""></a>
                                                             </td>
                                                             <td>
-                                                                <a href="{{route('home.product',['product'=>$wishlist->id,'category'=>$wishlist->category_id,'slug'=>Str::slug($wishlist->name)])}}">{{$wishlist->name}}</a>
+                                                                <a
+                                                                    href="{{ route('home.product', ['product' => $wishlistdetail->products->id, 'category' => $wishlistdetail->products->category_id, 'slug' => Str::slug($wishlistdetail->products->name)]) }}">{{ $wishlistdetail->products->name }}</a>
                                                             </td>
-                                                            <td>@if($wishlist->sale_price > 0)
-                                                                <span class="regular-price"><span class="special-price">${{$wishlist->sale_price}}</span></span>
-                                                                    <span class="old-price"><del>{{ $wishlist->price }}$</del></span>
+                                                            <td>
+                                                                @if ($wishlistdetail->products->sale_price > 0)
+                                                                    <span class="regular-price"><span
+                                                                            class="special-price">{{ $wishlistdetail->products->sale_price }}$</span></span>
+                                                                    <span
+                                                                        class="old-price"><del>{{ $wishlistdetail->products->price }}$</del></span>
                                                                 @else
-                                                                    <span class="regular-price"><span class="special-price">${{$wishlist->price}}</span></span>
+                                                                    <span class="regular-price"><span
+                                                                            class="special-price">{{ $wishlistdetail->products->price }}$</span></span>
                                                                 @endif
                                                             </td>
                                                             <td>
-                                                        
-                                                                <a href="{{route('home.cart-add',$wishlist->id)}}" type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i></a>
-                                                                <a href="{{route('home.remove-wishlist',$wishlist->id)}}" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                                                                <form method="DELETE" action="{{ route('home.remove-wishlist', $wishlistdetail->wishlist->id) }}" method="POST">
+                                                                    @csrf @method('DELETE')
+                                                                    <a href="{{ route('home.cart-add', $wishlistdetail->products->id) }}"
+                                                                        type="button" class="btn btn-primary"><i
+                                                                            class="fa fa-shopping-cart"></i></a>
+                                                                    <button   
+                                                                        class="btn btn-danger" style="background-color:red"><i
+                                                                            class="fa fa-times"></i></button>
+                                                                </form>
                                                             </td>
-                                                    </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </form>
+                                                        </tr>
+                                                    @endforeach
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                            </div> <!-- end of wishlist -->
-                        </main> <!-- end of #primary -->
-                    </div>
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div>
-  @stop()
+                            </div>
+                        </div> <!-- end of wishlist -->
+                    </main> <!-- end of #primary -->
+                </div>
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div>
+@stop()

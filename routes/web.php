@@ -56,6 +56,7 @@ Route::group(['prefix'=>'wishlist','middleware' => 'acc'], function(){
     Route::get('/',[WishlistController::class, 'view'])->name('home.wishlist');
     Route::get('/add/{product}', [WishlistController::class, 'add'])->name('home.add-wishlist');  
     Route::get('/remove/{product}',[WishlistController::class, 'remove'])->name('home.remove-wishlist');  
+    // Route::delete('/remove/{product}',[WishlistController::class, 'remove'])->name('home.remove-wishlist');  
 });
 
                                 //Compare Route
@@ -112,6 +113,7 @@ Route::group(['prefix'=>'order','middleware' => 'acc'], function(){
     Route::post('/checkout/coupon',[OrderHomeController::class, 'check_coupon'])->name('home.checkout_coupon');
     Route::get('/checkout/coupon/_del',[OrderHomeController::class, 'del_coupon'])->name('home.del_coupon');
     Route::get('/detail/{order}',[OrderHomeController::class, 'detail'])->name('home.order_detail');  
+    Route::post('/huydonhang',[OrderHomeController::class, 'destroy'])->name('order_destroy');    
     Route::get('/thank',[OrderHomeController::class, 'thank'])->name('thank'); 
 });     
 

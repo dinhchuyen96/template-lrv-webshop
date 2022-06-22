@@ -23,15 +23,15 @@ class OrderAdminController extends Controller
     public function status(Order $order,Request $req)
     {
       if($req->status == 1){
-        foreach($order->details as $orders){
-            $product = Product::find($orders->product_id);
-            Product::where('id',$orders->product_id)->update(['amout' => $product->amout - $orders->quantity,'order_number' => $product->order_number + $orders->quantity]);
-        }       
+          foreach($order->details as $orders){
+              $product = Product::find($orders->product_id);
+              Product::where('id',$orders->product_id)->update(['amout' => $product->amout - $orders->quantity,'order_number' => $product->order_number + $orders->quantity]);
+          }       
       }elseif($req->status == 4){
-        foreach($order->details as $orders){
-            $product = Product::find($orders->product_id);
-            Product::where('id',$orders->product_id)->update(['amout' => $product->amout + $orders->quantity,'order_number' => $product->order_number - $orders->quantity]);
-        }       
+          foreach($order->details as $orders){
+              $product = Product::find($orders->product_id);
+              Product::where('id',$orders->product_id)->update(['amout' => $product->amout + $orders->quantity,'order_number' => $product->order_number - $orders->quantity]);
+          }       
       }
        $order_detail = OrderDetail::where('order_id',$order->id);
        $order->update(['status'=>$req->status]);

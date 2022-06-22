@@ -21,13 +21,10 @@ class DashboardController extends Controller
         $order_count =Order::where('status',0)->count();
         $cus_count =Account::count();
         $check = true;
-        $topfive = OrderDetail::select('product_id',DB::raw('COUNT(product_id) as count'))->groupBy('product_id')->orderBy('count','desc')->limit(5)->get();
-        $product_ids = [];
-        foreach($topfive as $item) {
-            array_push($product_ids,$item->product_id);
-        }
+        // $topfive = OrderDetail::select('product_id',DB::raw('COUNT(product_id) as count'))->groupBy('product_id')->orderBy('count','desc')->limit(5)->get();
+        $topfive = Product::where('status',1)->orderBy('order_number','DESC')->limit(5)->get();
         $topcus = Order::select('account_id',DB::raw('COUNT(account_id) as count'))->groupBy('account_id')->orderBy('count','desc')->limit(5)->get();
-        // dd($topcus);
+        // dd($topfive);
         return view('admin.dashboard.index',compact('check','product_count','product_show','product_hide','order_count','cus_count','topfive','topcus'));
     }
 

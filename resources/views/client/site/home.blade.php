@@ -13,7 +13,8 @@
                             <div class="col-sm-6 col-sm-8">
                                 <div class="slider-text">
                                     <a>{!! $banner->title !!}></a>
-                                    <a class="btn-1 home-btn" href="{{ route('home.cart-add', $banner->product_id) }}">{{__('home.sn')}}</a>
+                                    <a class="btn-1 home-btn"
+                                        href="{{ route('home.cart-add', $banner->product_id) }}">{{ __('home.sn') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +98,7 @@
     <div class="product-wrapper fix pb-70">
         <div class="container-fluid">
             <div class="section-title product-spacing hm-11">
-                <h3><span>{{__('home.prne')}}</span> {{__('home.pren')}}{{__('home.prnv')}}</h3>
+                <h3><span>{{ __('home.prne') }}</span> {{ __('home.pren') }}{{ __('home.prnv') }}</h3>
             </div>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="one">
@@ -108,26 +109,54 @@
                                     <div class="product-thumb">
                                         <a
                                             href="{{ route('home.product', ['product' => $psn->id, 'category' => $psn->category_id, 'slug' => Str::slug($psn->name)]) }}">
-                                            <img src="{{ url('uploads') }}/products/{{ $psn->image }}"
-                                                class="pri-img" style="width:100%; height: 200px" alt="">
-                                            <img src="{{ url('uploads') }}/products/{{ $psn->image }}"
-                                                class="sec-img" alt="">
+                                            <img src="{{ url('uploads') }}/products/{{ $psn->image }}" class="pri-img"
+                                                style="width:100%; height: 200px" alt="">
+                                            <img src="{{ url('uploads') }}/products/{{ $psn->image }}" class="sec-img"
+                                                alt="">
                                         </a>
                                         <div class="box-label">
                                             <div class="label-product label_new">
-                                                <span>{{__('home.np')}}</span>
+                                                <span>{{ __('home.np') }}</span>
                                             </div>
                                             <div class="label-product label_sale">
                                                 @if ($psn->percent_sale > 0)
-                                                    <span>{{__('home.sale')}} {{ $psn->percent_sale }}%</span>
+                                                    <span>{{ __('home.sale') }} {{ $psn->percent_sale }}%</span>
                                                 @endif
                                             </div>
                                         </div>
                                         <div class="action-links">
-                                            <a href="{{ route('home.add-wishlist', $psn->id) }}" title="{{__('home.wishlist')}}"><i class="fa fa-heart-o" style="font-size:23px;"></i></a>
-                                            <a href="{{ route('home.add-compare', $psn->id) }}" title="{{__('home.compare')}}"><i
-                                                    class="lnr lnr-sync"></i></a>
-                                            <a href="#" title="{{__('home.qw')}}" onclick="quickView({{$psn->id}})"><i class="lnr lnr-magnifier"></i></a>
+                                            <?php $flag = false; ?>
+                                            @foreach ($wishlist_ids as $wid)
+                                                @if ($psn->id == $wid)
+                                                    <?php $flag = true; ?>
+                                                    <a title="{{ __('home.wishlist') }}">
+                                                        <img style="z-index: 999" src="{{ url('uploads') }}/dkb.png" alt="">
+                                                    </a>
+                                                @endif
+                                            @endforeach
+                                            @if ($flag == false)
+                                                <a href="{{ route('home.add-wishlist', $psn->id) }}" title="Wishlist">
+                                                    <i class="lnr lnr-heart"></i>
+                                                </a>
+                                            @endif
+
+                                            <?php $flagc = false; ?>
+                                            @foreach ($compare_ids as $cid)
+                                                @if ($psn->id == $cid)
+                                                    <?php $flagc = true; ?>
+                                                    <a href="#" title="{{ __('home.compare') }}">
+                                                        <img style="z-index: 999" src="{{ url('uploads') }}/sync.ico" alt="">
+                                                    </a>
+                                                @endif
+                                            @endforeach
+                                            @if ($flagc == false)
+                                                <a href="{{ route('home.add-compare', $psn->id) }}" title="Compare">
+                                                    <img style="z-index: 999" src="{{ url('uploads') }}/synw.webp"    alt="">
+                                                </a>
+                                            @endif
+                                           <a href="" data-target="#quickk_view{{ $psn->id }}"
+                                                data-toggle="modal" title="{{ __('home.qw') }}"><i
+                                                    class="lnr lnr-magnifier"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-caption">
@@ -164,7 +193,8 @@
                                                         class="special-price">{{ $psn->price }}$</span></span>
                                             @endif
                                         </div>
-                                        <a class="btn-cart" href="{{ route('home.cart-add', $psn->id) }}">{{__('home.atc')}}</a>
+                                        <a class="btn-cart"
+                                            href="{{ route('home.cart-add', $psn->id) }}">{{ __('home.atc') }}</a>
                                     </div>
                                 </div><!-- </div> end single item -->
                             @endforeach
@@ -172,7 +202,7 @@
                     </div>
                 </div>
                 <div class="section-title product-spacing hm-11">
-                    <h3><span>{{__('home.our')}}<span>{{__('home.ourvi')}}</span> <span>{{__('home.pren')}}</h3>
+                    <h3><span>{{ __('home.our') }}<span>{{ __('home.ourvi') }}</span> <span>{{ __('home.pren') }}</h3>
                     <div class="boxx-tab">
                         <ul class="nav my-tab">
                             @foreach ($cats as $key => $cat)
@@ -205,18 +235,43 @@
                                                     </div>
                                                     <div class="label-product label_sale">
                                                         @if ($psl->percent_sale > 0)
-                                                            <span>{{__('home.sale')}} {{ $psl->percent_sale }}%</span>
+                                                            <span>{{ __('home.sale') }} {{ $psl->percent_sale }}%</span>
                                                         @endif
                                                     </div>
                                                 </div>
                                                 <div class="action-links">
-                                                    <a href="{{ route('home.add-wishlist', $psl->id) }}"
-                                                        title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                                    <a href="{{ route('home.add-compare', $psl->id) }}"
-                                                        title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                    <a href="#" title="Quick view"
-                                                        data-target="#quickk_view{{ $psl->id }}"
-                                                        data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                    <?php $flag = false; ?>
+                                                    @foreach ($wishlist_ids as $wid)
+                                                        @if ($psl->id == $wid)
+                                                            <?php $flag = true; ?>
+                                                            <a title="{{ __('home.wishlist') }}">
+                                                                <img style="z-index: 999" src="{{ url('uploads') }}/dkb.png" alt="">
+                                                            </a>
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($flag == false)
+                                                        <a href="{{ route('home.add-wishlist', $psl->id) }}" title="Wishlist">
+                                                            <i class="lnr lnr-heart"></i>
+                                                        </a>
+                                                    @endif
+        
+                                                    <?php $flagc = false; ?>
+                                                    @foreach ($compare_ids as $cid)
+                                                        @if ($psl->id == $cid)
+                                                            <?php $flagc = true; ?>
+                                                            <a href="#" title="{{ __('home.compare') }}">
+                                                                <img style="z-index: 999" src="{{ url('uploads') }}/sync.ico" alt="">
+                                                            </a>
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($flagc == false)
+                                                        <a href="{{ route('home.add-compare', $psl->id) }}" title="Compare">
+                                                            <img style="z-index: 999" src="{{ url('uploads') }}/synw.webp" alt="">
+                                                        </a>
+                                                    @endif
+                                                   <a href="" data-target="#quickk_view{{ $psl->id }}"
+                                                        data-toggle="modal" title="{{ __('home.qw') }}"><i
+                                                            class="lnr lnr-magnifier"></i></a>
                                                 </div>
                                             </div>
                                             <div class="product-caption">
@@ -237,8 +292,7 @@
                                                         <span class="yellow"><i class="lnr lnr-star"></i></span>
                                                     @else
                                                         @for ($i = 0; $i < $psl->review_rt->avg('rating'); $i++)
-                                                            <span class="yellow"><i
-                                                                    class="lnr lnr-star"></i></span>
+                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
                                                         @endfor
                                                     @endif
                                                 </div>
@@ -246,15 +300,14 @@
                                                     @if ($psl->sale_price < $psl->price && $psl->sale_price != 0)
                                                         <span class="regular-price"><span
                                                                 class="special-price">{{ number_format($psl->sale_price, 0) }}$</span></span>
-                                                        <span
-                                                            class="old-price"><del>{{ $psl->price }}$</del></span>
+                                                        <span class="old-price"><del>{{ $psl->price }}$</del></span>
                                                     @else
                                                         <span class="regular-price"><span
                                                                 class="special-price">{{ $psl->price }}$</span></span>
                                                     @endif
                                                 </div>
                                                 <a class="btn-cart" href="{{ route('home.cart-add', $psl->id) }}"
-                                                    type="button">{{__('home.atc')}}</a>
+                                                    type="button">{{ __('home.atc') }}</a>
                                             </div>
                                         </div><!-- </div> end single item -->
                                     @endforeach
@@ -274,10 +327,10 @@
                     <div class="boxx-tab">
                         <ul class="nav my-tab">
                             <li>
-                                <a class="active" data-toggle="tab" href="#module-one">{{__('home.bs')}}</a>
+                                <a class="active" data-toggle="tab" href="#module-one">{{ __('home.bs') }}</a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#module-two">{{__('home.os')}}</a>
+                                <a data-toggle="tab" href="#module-two">{{ __('home.os') }}</a>
                             </li>
                         </ul>
                     </div>
@@ -289,7 +342,8 @@
                                 <div class="col mb-30">
                                     <div class="product-item">
                                         <div class="product-thumb">
-                                            <a href="{{ route('home.product', ['product' => $top_sale->id,'category' => $top_sale->cat->id,'slug' => Str::slug($top_sale->name)]) }}">
+                                            <a
+                                                href="{{ route('home.product', ['product' => $top_sale->id, 'category' => $top_sale->cat->id, 'slug' => Str::slug($top_sale->name)]) }}">
                                                 <img src="{{ url('uploads') }}/products/{{ $top_sale->image }}"
                                                     class="pri-img" alt="">
                                                 <img src="" class="sec-img" alt="">
@@ -297,26 +351,56 @@
                                             <div class="box-label">
                                                 <div class="label-product label_sale">
                                                     @if ($top_sale->percent_sale > 0)
-                                                        <span>{{__('home.sale')}} - {{ $top_sale->percent_sale }}%</span>                                                        
+                                                        <span>{{ __('home.sale') }} -
+                                                            {{ $top_sale->percent_sale }}%</span>
                                                     @endif
                                                 </div>
                                             </div>
                                             <div class="action-links">
-                                                <a href="{{ route('home.add-wishlist', $top_sale->id) }}"
-                                                    title="{{__('home.wishlist')}}"><i class="lnr lnr-heart"></i></a>
-                                                <a href="{{ route('home.add-compare', $top_sale->id) }}"
-                                                    title="{{__('home.compare')}}"><i class="lnr lnr-sync"></i></a>
-                                                <a href="#" title="Quick view"
-                                                    data-target="#quickk_view{{ $top_sale->id }}"
-                                                    data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                <?php $flag = false; ?>
+                                                @foreach ($wishlist_ids as $wid)
+                                                    @if ($top_sale->id == $wid)
+                                                        <?php $flag = true; ?>
+                                                        <a title="{{ __('home.wishlist') }}">
+                                                            <img style="z-index: 999" src="{{ url('uploads') }}/dkb.png" alt="">
+                                                        </a>
+                                                    @endif
+                                                @endforeach
+                                                @if ($flag == false)
+                                                    <a href="{{ route('home.add-wishlist', $top_sale->id) }}" title="Wishlist">
+                                                        <i class="lnr lnr-heart"></i>
+                                                    </a>
+                                                @endif
+    
+                                                <?php $flagc = false; ?>
+                                                @foreach ($compare_ids as $cid)
+                                                    @if ($top_sale->id == $cid)
+                                                        <?php $flagc = true; ?>
+                                                        <a href="#" title="{{ __('home.compare') }}">
+                                                            <img style="z-index: 999" src="{{ url('uploads') }}/sync.ico" alt="">
+                                                        </a>
+                                                    @endif
+                                                @endforeach
+                                                @if ($flagc == false)
+                                                    <a href="{{ route('home.add-compare', $top_sale->id) }}" title="Compare">
+                                                        <img style="z-index: 999" src="{{ url('uploads') }}/synw.webp" alt="">
+                                                    </a>
+                                                @endif
+                                               <a href="" data-target="#quickk_view{{ $top_sale->id }}"
+                                                    data-toggle="modal" title="{{ __('home.qw') }}"><i
+                                                        class="lnr lnr-magnifier"></i></a>
                                             </div>
                                         </div>
                                         <div class="product-caption">
                                             <div class="manufacture-product">
-                                                <p><a href="{{ route('home.category', $top_sale->cat->id) }}">{{ $top_sale->cat->name }}</a></p>
+                                                <p><a
+                                                        href="{{ route('home.category', $top_sale->cat->id) }}">{{ $top_sale->cat->name }}</a>
+                                                </p>
                                             </div>
                                             <div class="product-name">
-                                                <h4><a href="{{ route('home.product', ['product' => $top_sale->id,'category' => $top_sale->cat->id,'slug' => Str::slug($top_sale->name)]) }}">{{ $top_sale->name }}</a></h4>
+                                                <h4><a
+                                                        href="{{ route('home.product', ['product' => $top_sale->id, 'category' => $top_sale->cat->id, 'slug' => Str::slug($top_sale->name)]) }}">{{ $top_sale->name }}</a>
+                                                </h4>
                                             </div>
                                             <div class="ratings">
                                                 @if ($top_sale->review_rt->avg('rating') == 0)
@@ -336,15 +420,14 @@
                                                 @if ($top_sale->sale_price < $top_sale->price && $top_sale->sale_price != 0)
                                                     <span class="regular-price"><span
                                                             class="special-price">${{ number_format($top_sale->sale_price, 0, ',', ',') }}</span></span>
-                                                    <span
-                                                        class="old-price"><del>${{ $top_sale->price }}</del></span>
+                                                    <span class="old-price"><del>${{ $top_sale->price }}</del></span>
                                                 @else
                                                     <span class="regular-price"><span
                                                             class="special-price">${{ $top_sale->price }}</span></span>
                                                 @endif
                                             </div>
                                             <a href="{{ route('home.cart-add', $top_sale->id) }}" class="btn-cart"
-                                                type="button">{{__('home.atc')}}</a>
+                                                type="button">{{ __('home.atc') }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -357,7 +440,8 @@
                                 <div class="col mb-30">
                                     <div class="product-item">
                                         <div class="product-thumb">
-                                            <a href="{{ route('home.product', ['product' => $product_sale_hot->id,'category' => $product_sale_hot->cat->id,'slug' => Str::slug($product_sale_hot->name)]) }}">
+                                            <a
+                                                href="{{ route('home.product', ['product' => $product_sale_hot->id, 'category' => $product_sale_hot->cat->id, 'slug' => Str::slug($product_sale_hot->name)]) }}">
                                                 <img src="{{ url('uploads') }}/products/{{ $product_sale_hot->image }}"
                                                     class="pri-img" alt="">
                                                 <img src="" class="sec-img" alt="">
@@ -365,18 +449,43 @@
                                             <div class="box-label">
                                                 <div class="label-product label_sale">
                                                     @if ($product_sale_hot->percent_sale > 0)
-                                                        <span>Sale - {{ $product_sale_hot->percent_sale }}%</span>                                                        
+                                                        <span>Sale - {{ $product_sale_hot->percent_sale }}%</span>
                                                     @endif
                                                 </div>
                                             </div>
                                             <div class="action-links">
-                                                <a href="{{ route('home.add-wishlist', $product_sale_hot->id) }}"
-                                                    title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                                <a href="{{ route('home.add-compare', $product_sale_hot->id) }}"
-                                                    title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                <a href="#" title="Quick view"
-                                                    data-target="#quickk_view{{$product_sale_hot->id }}"
-                                                    data-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                <?php $flag = false; ?>
+                                                @foreach ($wishlist_ids as $wid)
+                                                    @if ($product_sale_hot->id == $wid)
+                                                        <?php $flag = true; ?>
+                                                        <a title="{{ __('home.wishlist') }}">
+                                                            <img style="z-index: 999" src="{{ url('uploads') }}/dkb.png" alt="">
+                                                        </a>
+                                                    @endif
+                                                @endforeach
+                                                @if ($flag == false)
+                                                    <a href="{{ route('home.add-wishlist', $product_sale_hot->id) }}" title="Wishlist">
+                                                        <i class="lnr lnr-heart"></i>
+                                                    </a>
+                                                @endif
+    
+                                                <?php $flagc = false; ?>
+                                                @foreach ($compare_ids as $cid)
+                                                    @if ($product_sale_hot->id == $cid)
+                                                        <?php $flagc = true; ?>
+                                                        <a href="#" title="{{ __('home.compare') }}">
+                                                            <img style="z-index: 999" src="{{ url('uploads') }}/sync.ico" alt="">
+                                                        </a>
+                                                    @endif
+                                                @endforeach
+                                                @if ($flagc == false)
+                                                    <a href="{{ route('home.add-compare', $product_sale_hot->id) }}" title="Compare"style="margin-top: 20px">
+                                                        <img style="z-index: 999" src="{{ url('uploads') }}/synw.webp" alt="">
+                                                    </a>
+                                                @endif
+                                               <a href="" data-target="#quickk_view{{ $product_sale_hot->id }}"
+                                                    data-toggle="modal" title="{{ __('home.qw') }}"><i
+                                                        class="lnr lnr-magnifier"></i></a>
                                             </div>
                                         </div>
                                         <div class="product-caption">
@@ -386,7 +495,9 @@
                                                 </p>
                                             </div>
                                             <div class="product-name">
-                                                <h4><a href="{{ route('home.product', ['product' => $product_sale_hot->id,'category' => $product_sale_hot->cat->id,'slug' => Str::slug($product_sale_hot->name)]) }}">{{ $product_sale_hot->name }}</a></h4>
+                                                <h4><a
+                                                        href="{{ route('home.product', ['product' => $product_sale_hot->id, 'category' => $product_sale_hot->cat->id, 'slug' => Str::slug($product_sale_hot->name)]) }}">{{ $product_sale_hot->name }}</a>
+                                                </h4>
                                             </div>
                                             <div class="ratings">
                                                 @if ($product_sale_hot->review_rt->avg('rating') == 0)
@@ -413,7 +524,7 @@
                                                 @endif
                                             </div>
                                             <a href="{{ route('home.cart-add', $product_sale_hot->id) }}"
-                                                class="btn-cart" type="button">{{__('home.atc')}}</a>
+                                                class="btn-cart" type="button">{{ __('home.atc') }}</a>
                                         </div>
                                     </div>
                                 </div> <!-- single item end -->
@@ -430,19 +541,22 @@
                     <div class="col-lg-4 col-md-4">
                         <div class="single-banner-statics">
                             <a href="shop-grid-left-sidebar.html"><img
-                                    src="{{ url('home') }}/assets/img/banner/img1-top-sinrato1.jpg" alt=""></a>
+                                    src="{{ url('home') }}/assets/img/banner/img1-top-sinrato1.jpg"
+                                    alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4">
                         <div class="single-banner-statics">
                             <a href="shop-grid-left-sidebar.html"><img
-                                    src="{{ url('home') }}/assets/img/banner/img2-top-sinrato1.jpg" alt=""></a>
+                                    src="{{ url('home') }}/assets/img/banner/img2-top-sinrato1.jpg"
+                                    alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4">
                         <div class="single-banner-statics">
                             <a href="shop-grid-left-sidebar.html"><img
-                                    src="{{ url('home') }}/assets/img/banner/img3-top-sinrato1.jpg" alt=""></a>
+                                    src="{{ url('home') }}/assets/img/banner/img3-top-sinrato1.jpg"
+                                    alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -457,15 +571,15 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title">
-                            <h3><span>{{__('home.br')}}</span></h3>
+                            <h3><span>{{ __('home.br') }}</span></h3>
                         </div>
                     </div>
                     <div class="col-12">
                         <ul class="nav brand-active owl-carousel">
                             @foreach ($logo as $key => $logo)
                                 <li>
-                                    <a class="{{ $key == 0 ? 'active' : '' }}" href="#brand-{{ $logo->category_id }}"
-                                        data-toggle="tab">
+                                    <a class="{{ $key == 0 ? 'active' : '' }}"
+                                        href="#brand-{{ $logo->category_id }}" data-toggle="tab">
                                         <img src="{{ url('uploads') }}/logo/{{ $logo->logo }}" alt="">
                                     </a>
                                 </li>
@@ -482,10 +596,8 @@
                                         <div class="product-item">
                                             <div class="product-thumb">
                                                 <a href="product-details.html">
-                                                    <img src=""
-                                                        class="pri-img" alt="">
-                                                    <img src=""
-                                                        class="sec-img" alt="">
+                                                    <img src="" class="pri-img" alt="">
+                                                    <img src="" class="sec-img" alt="">
                                                 </a>
                                                 <div class="box-label">
                                                     <div class="label-product label_new">
@@ -517,7 +629,7 @@
                                                 <div class="price-box">
                                                     <span class="regular-price">£30.31</span>
                                                 </div>
-                                                <button class="btn-cart" type="button">{{__('home.atc')}}</button>
+                                                <button class="btn-cart" type="button">{{ __('home.atc') }}</button>
                                             </div>
                                         </div> <!-- </div> end single item -->
                                     </div>
@@ -542,14 +654,16 @@
                                     <div class="col-lg-5">
                                         <div class="product-large-slider mb-20">
                                             <div class="pro-large-img">
-                                                <img src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
+                                                <img src="{{ url('uploads') }}/products/{{ $psn->image }}"
+                                                    alt="" />
                                             </div>
                                         </div>
                                         <div class="pro-nav">
                                             <div class="pro-nav-thumb"><img
-                                                    src="{{ url('uploads') }}/products/{{ $psn->image }}" alt="" />
+                                                    src="{{ url('uploads') }}/products/{{ $psn->image }}"
+                                                    alt="" />
                                             </div>
-                                           
+
                                         </div>
                                     </div>
                                     <div class="col-lg-7">
@@ -575,7 +689,8 @@
                                                                 @endfor
                                                             @endif
                                                         </li>
-                                                        <li><a href="#">{{ $psn->review_rt->count() }} Reviews</a></li>
+                                                        <li><a href="#">{{ $psn->review_rt->count() }}
+                                                                Reviews</a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="price-box mb-15">
@@ -584,8 +699,7 @@
                                                     @if ($psn->sale_price > 0)
                                                         <span class="regular-price"><span
                                                                 class="special-price">${{ number_format($psn->sale_price, 0) }}</span></span>
-                                                        <span
-                                                            class="old-price"><del>{{ $psn->price }}$</del></span>
+                                                        <span class="old-price"><del>{{ $psn->price }}$</del></span>
                                                     @else
                                                         <span class="regular-price"><span
                                                                 class="special-price">${{ $psn->price }}</span></span>
@@ -628,9 +742,10 @@
                                                             action="{{ route('home.cart-add', $psn->id) }}">
                                                             @csrf
                                                             <label>qty :</label>
-                                                            <input type="number" name="quantity" placeholder="0" value="1" min="1"
-                                                                max="69">
-                                                            <button type="submit"  class="btn btn-cart lg-btn">{{__('home.atc')}}</button>
+                                                            <input type="number" name="quantity" placeholder="0"
+                                                                value="1" min="1" max="69">
+                                                            <button type="submit"
+                                                                class="btn btn-cart lg-btn">{{ __('home.atc') }}</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -713,7 +828,8 @@
                                                                 @endfor
                                                             @endif
                                                         </li>
-                                                        <li><a href="#">{{ $psn->review_rt->count() }} Reviews</a></li>
+                                                        <li><a href="#">{{ $psn->review_rt->count() }}
+                                                                Reviews</a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="price-box mb-15">
@@ -764,9 +880,10 @@
                                                             action="{{ route('home.cart-add', $product_sale_top->id) }}">
                                                             @csrf
                                                             <label>qty :</label>
-                                                            <input type="number" name="quantity" placeholder="0" min="1"
-                                                                max="69">
-                                                            <button type="submit" class="btn btn-cart lg-btn">{{__('home.atc')}}</button>
+                                                            <input type="number" name="quantity" placeholder="0"
+                                                                min="1" max="69">
+                                                            <button type="submit"
+                                                                class="btn btn-cart lg-btn">{{ __('home.atc') }}</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -802,7 +919,7 @@
                     </div>
                 </div>
             </div>
-        @endforeach 
+        @endforeach
         <!-- Quick view modal end -->
         <!-- Quick view modal start -->
         @foreach ($product_sale as $product_sale)
@@ -850,7 +967,8 @@
                                                                 @endfor
                                                             @endif
                                                         </li>
-                                                        <li><a href="#">{{ $psn->review_rt->count() }} Reviews</a></li>
+                                                        <li><a href="#">{{ $psn->review_rt->count() }}
+                                                                Reviews</a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="price-box mb-15">
@@ -901,8 +1019,8 @@
                                                             action="{{ route('home.cart-add', $product_sale->id) }}">
                                                             @csrf
                                                             <label>qty :</label>
-                                                            <input type="number" name="quantity" placeholder="0" min="1"
-                                                                max="69">
+                                                            <input type="number" name="quantity" placeholder="0"
+                                                                min="1" max="69">
                                                             <button type="submit" class="btn btn-cart lg-btn">add to
                                                                 cart</button>
                                                         </form>
@@ -940,6 +1058,6 @@
                     </div>
                 </div>
             </div>
-        @endforeach 
+        @endforeach
         <!-- Quick view modal end -->
     @stop()

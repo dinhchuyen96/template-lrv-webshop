@@ -46,7 +46,7 @@ class Order extends Authenticatable
     }
     public function product()
     {
-        return $this->belongsToMany('App\Product');
+        return $this->belongsToMany(Product::class,'id','product_id');
     }
     public function provin()
     {
@@ -62,7 +62,7 @@ class Order extends Authenticatable
     }
     public function details()
     {
-        return $this -> hasMany(OrderDetail::class, 'order_id','id');
+        return $this->hasMany(OrderDetail::class, 'order_id','id');
     }
     public function totalQuantity() // đếm số sản phẩm trong đơn hàng
     {

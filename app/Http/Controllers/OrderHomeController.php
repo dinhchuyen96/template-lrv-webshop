@@ -144,5 +144,12 @@ class OrderHomeController extends Controller
         $i=0;
         return view('client.site.order_detail',compact('item','i'));
     }
+     public function destroy(Request $request){
+        $data = $request->all();
+        $order = Order::where('id',$data['id'])->first();
+        $order->destroy_order = $data['lydohuydon'];
+        $order->status = 4;
+        $order->save();
+     }
 
 }

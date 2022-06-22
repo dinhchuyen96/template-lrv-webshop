@@ -36,7 +36,7 @@
                             @if($order->status < 3)
                             <select class="form-control col-md-8" name="status" id="">
                                 @if ($order->status === 0)
-                                    <option value="0" selected>Chờ duyệt</option>
+                                    <option value="0" selected>Đơn hàng mới</option>
                                     <option value="1">Đã duyệt</option>
                                     <option value="4">Hoàn hủy</option>
                                 @elseif ($order->status === 1)
