@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Http\Requests\CommentBlogRequest;
 use App\Models\Comment_Blog;
 use Illuminate\Http\Request;
-use App\Http\Requests\CommentBlogRequest;
-
 
 class CommentBlogController extends Controller
 {
@@ -19,7 +17,7 @@ class CommentBlogController extends Controller
     {
         $comments = Comment_Blog::orderBy('id', 'DESC')->paginate(15);
         // dd($comments);
-        return view('admin.comment_blog.index',compact('comments'));
+        return view('admin.comment_blog.index', compact('comments'));
     }
 
     /**
@@ -40,10 +38,11 @@ class CommentBlogController extends Controller
      */
     public function store(CommentBlogRequest $request)
     {
-        $data= $request->all();
+        $data = $request->all();
         // dd($data);
         Comment_Blog::create($data);
-        return redirect()->back()->with('ok','Gửi comment thành công'); 
+
+        return redirect()->back()->with('ok', 'Gửi comment thành công');
     }
 
     /**
@@ -90,6 +89,7 @@ class CommentBlogController extends Controller
     {
         // dd($comment);
         $comment->delete();
-        return redirect()->back()->with('yes','Xóa thành công');
+
+        return redirect()->back()->with('yes', 'Xóa thành công');
     }
 }

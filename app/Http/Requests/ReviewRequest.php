@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
-
 class ReviewRequest extends FormRequest
 {
     /**
@@ -26,14 +25,15 @@ class ReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            'content_review' => 'required|string|max:300|min:2'
+            'content_review' => 'required|string|max:300|min:2',
         ];
     }
+
     public function messages()
     {
         return [
             'content_review.max' => 'Bài viết quá dài, tối đa 300 ký tự',
-            'content_review.min' => 'Review quá ngắn, mời bạn nhập lại'
+            'content_review.min' => 'Review quá ngắn, mời bạn nhập lại',
         ];
     }
 }

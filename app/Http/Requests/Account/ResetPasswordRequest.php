@@ -28,6 +28,7 @@ class ResetPasswordRequest extends FormRequest
             'conf_password' => 'bail|required|same:password',
         ];
     }
+
     public function messages()
     {
         return [

@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Province extends Model
 {
     use HasFactory;
-    protected $table = 'tbl_provinces';
-    protected $fillable = ['city_id','name','type','slug'];
 
-   
+    protected $table = 'tbl_provinces';
+
+    protected $fillable = ['city_id', 'name', 'type', 'slug'];
 }

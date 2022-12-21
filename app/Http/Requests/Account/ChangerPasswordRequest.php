@@ -29,8 +29,10 @@ class ChangerPasswordRequest extends FormRequest
             'conf_password' => 'required|same:new_password',
         ];
     }
-    public function messages(){
-        return [     
+
+    public function messages()
+    {
+        return [
             'old_password.required' => 'Vui lòng nhập mật khẩu',
             'new_password.required' => 'Vui lòng nhập mật khẩu',
             'new_password.different' => 'Mật khẩu mới cần khác mật khẩu cũ',

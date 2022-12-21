@@ -29,9 +29,10 @@ class ProductCreateRequest extends FormRequest
             'number_sale' => 'numeric',
             'category_id' => 'required|numeric',
             'sale_price' => 'lt:price',
-            'upload' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:5120'
+            'upload' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:5120',
         ];
     }
+
     public function messages()
     {
         return [

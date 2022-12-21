@@ -1,4 +1,5 @@
 <?php
+
         return[
             'ma' => 'My Account',
             'ed' => 'Email address',
@@ -6,7 +7,7 @@
             'logout' => 'Log Out',
             'na' => 'Need Assistance? Customer service at ',
             'et' => 'E-mail them at',
-            'vc' =>'View Cart',
+            'vc' => 'View Cart',
             'db' => 'Dashboard',
             'dbdt' => 'From your account dashboard. you can easily check & view your recent orders, manage your shipping and billing addresses and edit your password and account details.',
             'od' => 'Orders',
@@ -28,7 +29,4 @@
             'ua' => 'Upload avatar',
             'save' => 'Save',
 
-        ]
-
-
-?>
+        ];

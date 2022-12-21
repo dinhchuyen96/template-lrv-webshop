@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\models\blog_cat;
 use Illuminate\Http\Request;
 
@@ -15,9 +14,9 @@ class Blog_catController extends Controller
      */
     public function index()
     {
-        $data = Blog_cat::orderBy('id','DESC')->search()->paginate(10);
+        $data = Blog_cat::orderBy('id', 'DESC')->search()->paginate(10);
         // dd($data);
-        return view('admin.blog_cat.index',compact('data'));
+        return view('admin.blog_cat.index', compact('data'));
     }
 
     /**
@@ -38,8 +37,9 @@ class Blog_catController extends Controller
      */
     public function store(Request $request)
     {
-        blog_cat::create($request->only('name','status'));
-        return redirect()->route('blog_cat.index')->with('yes','Thêm mới thành công');
+        blog_cat::create($request->only('name', 'status'));
+
+        return redirect()->route('blog_cat.index')->with('yes', 'Thêm mới thành công');
     }
 
     /**
@@ -73,9 +73,9 @@ class Blog_catController extends Controller
      */
     public function update(Request $request, blog_cat $blog_cat)
     {
-        $blog_cat->update($request->only('cat_name','status'));
+        $blog_cat->update($request->only('cat_name', 'status'));
         // dd($blog_cat);
-        return redirect()->route('blog_cat.index')->with('yes','Cập nhật thành công');
+        return redirect()->route('blog_cat.index')->with('yes', 'Cập nhật thành công');
     }
 
     /**
@@ -88,6 +88,6 @@ class Blog_catController extends Controller
     {
         $blog_cat->delete();
         // dd($category);
-        return redirect()->route('blog_cat.index')->with('yes','Xóa thành công');
+        return redirect()->route('blog_cat.index')->with('yes', 'Xóa thành công');
     }
 }

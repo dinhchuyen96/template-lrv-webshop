@@ -24,10 +24,12 @@ class CartRequest extends FormRequest
     public function rules()
     {
         return [
-            'quantity' => 'bail|numeric|min:1|max:69'
+            'quantity' => 'bail|numeric|min:1|max:69',
         ];
     }
-    public function messages(){
+
+    public function messages()
+    {
         return [
             'quantity.numeric' => 'Số lượng phải là số',
             'quantity.min' => 'Số lượng phải > hoặc = 1',

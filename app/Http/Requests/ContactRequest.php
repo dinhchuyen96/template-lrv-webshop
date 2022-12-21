@@ -34,6 +34,7 @@ class ContactRequest extends FormRequest
             'fax_2' => 'max:20',
         ];
     }
+
     public function messages()
     {
         return [

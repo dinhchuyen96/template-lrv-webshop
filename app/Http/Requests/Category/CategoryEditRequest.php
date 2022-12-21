@@ -4,7 +4,6 @@ namespace App\Http\Requests\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-
 class CategoryEditRequest extends FormRequest
 {
     /**
@@ -25,14 +24,15 @@ class CategoryEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:categories,name,'.$this->category->id
+            'name' => 'required|unique:categories,name,'.$this->category->id,
         ];
     }
+
     public function messages()
     {
         return [
             'name.required' => 'Tên danh mục không được để trống',
-            'name.unique' => 'Tên danh mục đã được sử dụng'
+            'name.unique' => 'Tên danh mục đã được sử dụng',
         ];
     }
 }

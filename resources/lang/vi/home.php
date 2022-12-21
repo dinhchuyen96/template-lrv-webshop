@@ -1,4 +1,5 @@
 <?php
+
         return[
             'sn' => 'Mua Ngay',
             'np' => 'Mới',
@@ -14,8 +15,8 @@
             'rv' => 'Đánh giá',
             'bs' => 'Sản phẩm bán chạy nhất',
             'os' => 'Sản phẩm đang giảm giá',
-            'wishlist' => 'Yêu thích',        
-            'compare' => 'So sánh',   
+            'wishlist' => 'Yêu thích',
+            'compare' => 'So sánh',
             'qw' => 'Xem nhanh',
             'br' => 'Thương hiệu',
             'promotion1' => 'Miễn phí giao hàng',
@@ -28,7 +29,4 @@
             'promotion4d' => 'Nếu hàng hóa có vấn đề',
             'promotion5' => 'Thanh toán an toàn',
             'promotion5d' => 'Chúng tôi đảm bảo thanh toán an toàn',
-        ]
-
-
-?>
+        ];

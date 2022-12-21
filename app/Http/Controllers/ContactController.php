@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Contact;
-use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
-
+use App\Models\Contact;
 
 class ContactController extends Controller
 {
@@ -19,7 +16,7 @@ class ContactController extends Controller
     {
         $contact = Contact::get();
         // dd($contact);
-        return view('admin.contact.index',compact('contact'));
+        return view('admin.contact.index', compact('contact'));
     }
 
     /**
@@ -40,8 +37,9 @@ class ContactController extends Controller
      */
     public function store(ContactRequest $request)
     {
-        Contact::create($request->only('address_1','address_2','email_1','email_2','phone_1','phone_2','fax_1','fax_2'));
-        return redirect()->route('contact.index')->with('yes','Thêm mới thành công');
+        Contact::create($request->only('address_1', 'address_2', 'email_1', 'email_2', 'phone_1', 'phone_2', 'fax_1', 'fax_2'));
+
+        return redirect()->route('contact.index')->with('yes', 'Thêm mới thành công');
     }
 
     /**
@@ -78,7 +76,8 @@ class ContactController extends Controller
     {
         // dd($request->all());
         $contact->update($request->all());
-        return redirect()->route('contact.index')->with('yes','Cập nhật thành công');
+
+        return redirect()->route('contact.index')->with('yes', 'Cập nhật thành công');
     }
 
     /**
@@ -90,6 +89,7 @@ class ContactController extends Controller
     public function destroy(Contact $contact)
     {
         $contact->delete();
-        return redirect()->route('contact.index')->with('yes', "Xóa thành công");
+
+        return redirect()->route('contact.index')->with('yes', 'Xóa thành công');
     }
 }

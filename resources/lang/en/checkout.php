@@ -1,4 +1,5 @@
 <?php
+
         return[
             'checkout' => 'Checkout',
             'havecoupon' => 'Have A Coupon?',
@@ -20,10 +21,5 @@
             'order' => 'Order',
             'yorder' => 'Your Order',
             'item' => 'items',
-            
-            
-            
-        ]
 
-
-?>
+        ];

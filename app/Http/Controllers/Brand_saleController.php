@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Brand_sale;
-use Illuminate\Http\Request;
-use App\Http\Requests\Brand_saleRequest;
 use App\Http\Requests\Brand_saleEditRequest;
-
+use App\Http\Requests\Brand_saleRequest;
+use App\Models\Brand_sale;
 use Str;
-
 
 class Brand_saleController extends Controller
 {
@@ -20,7 +16,8 @@ class Brand_saleController extends Controller
      */
     public function index()
     {
-        $data = Brand_sale::orderBy('id','DESC')->paginate(10);
+        $data = Brand_sale::orderBy('id', 'DESC')->paginate(10);
+
         return view('admin.brand_sale.index', compact('data'));
     }
 
@@ -42,25 +39,26 @@ class Brand_saleController extends Controller
      */
     public function store(Brand_saleRequest $request)
     {
-        $data = $request->all('name','status','category_id');
+        $data = $request->all('name', 'status', 'category_id');
         // dd($data_banner);
         $file_name = $request->upload->getClientOriginalName();
 
         $partInfo = pathinfo($file_name);
         $ext = $partInfo['extension'];
 
-        $base_name = $partInfo['filename']; 
+        $base_name = $partInfo['filename'];
 
         $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
 
         $check_upload = $request->upload->move(public_path('uploads/logo'), $final_name);
 
-        if($check_upload){
+        if ($check_upload) {
             $data['logo'] = $final_name;
-        };
+        }
 
         Brand_sale::create($data);
-        return redirect()->route('brand_sale.index')->with('yes', "thêm mới brand sale thành công");
+
+        return redirect()->route('brand_sale.index')->with('yes', 'thêm mới brand sale thành công');
     }
 
     /**
@@ -94,21 +92,22 @@ class Brand_saleController extends Controller
      */
     public function update(Brand_saleEditRequest $request, brand_sale $brand_sale)
     {
-        $data = $request->all('name','status','category_id');
-        if($request->has('upload')){
+        $data = $request->all('name', 'status', 'category_id');
+        if ($request->has('upload')) {
             $file_name = $request->upload->getClientOriginalName();
             $partInfo = pathinfo($file_name);
             $ext = $partInfo['extension'];
-            $base_name = $partInfo['filename']; 
+            $base_name = $partInfo['filename'];
             $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
             $check_upload = $request->upload->move(public_path('uploads/logo'), $final_name);
-            if($check_upload){
+            if ($check_upload) {
                 $data['logo'] = $final_name;
             }
         }
         // dd($data_banner);
         $brand_sale->update($data);
-        return redirect()->route('brand_sale.index')->with('yes','Cập nhật thành công');
+
+        return redirect()->route('brand_sale.index')->with('yes', 'Cập nhật thành công');
     }
 
     /**
@@ -120,6 +119,7 @@ class Brand_saleController extends Controller
     public function destroy(brand_sale $brand_sale)
     {
         $brand_sale->delete();
-        return redirect()->route('brand_sale.index')->with('yes', "Xóa thành công");
+
+        return redirect()->route('brand_sale.index')->with('yes', 'Xóa thành công');
     }
 }

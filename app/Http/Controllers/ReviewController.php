@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Auth;
-use App\Models\Review;
+use App\Http\Requests\ReviewRequest;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Http\Request;
-use App\Http\Requests\ReviewRequest;
+use App\Models\Review;
+use Auth;
 
 class ReviewController extends Controller
 {
@@ -29,7 +27,6 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -38,12 +35,12 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ReviewRequest $request,Product $product)
+    public function store(ReviewRequest $request, Product $product)
     {
         // dd(1);
-        $data = $request->only('product_id','account_id','parent_id','content_review','rating');
+        $data = $request->only('product_id', 'account_id', 'parent_id', 'content_review', 'rating');
         $acc = Auth::guard('account')->user();
-        $acc =(object)$acc;
+        $acc = (object) $acc;
         $data['avatar'] = $acc->avatar;
         $data['name_reviewer'] = $acc->first_name.' '.$acc->last_name;
         $data['account_id'] = $acc->id;
@@ -51,7 +48,8 @@ class ReviewController extends Controller
         // dd($data['name_reviewer']);
         // dd($data);
         Review::create($data);
-        return redirect()->back()->with('ok','Đăng review thành công'); 
+
+        return redirect()->back()->with('ok', 'Đăng review thành công');
     }
 
     /**
@@ -73,7 +71,6 @@ class ReviewController extends Controller
      */
     public function edit(Review $review)
     {
-        
     }
 
     /**
@@ -86,6 +83,7 @@ class ReviewController extends Controller
     public function update(Product $product, $slug, Review $review)
     {
         $review->update($review->only('content_review'));
+
         return redirect()->back();
     }
 
@@ -95,11 +93,11 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product,Category $category, $lug ,Review $review)
+    public function destroy(Product $product, Category $category, $lug, Review $review)
     {
         // dd($review);
         $review->delete();
-        return redirect()->back()->with('ok','Xóa review thành công');
 
+        return redirect()->back()->with('ok', 'Xóa review thành công');
     }
 }

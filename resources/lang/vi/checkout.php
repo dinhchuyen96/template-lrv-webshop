@@ -1,4 +1,5 @@
 <?php
+
         return[
             'checkout' => 'Thanh toán',
             'havecoupon' => 'Bạn có phiếu giảm giá?',
@@ -20,9 +21,5 @@
             'order' => 'Đặt hàng',
             'yorder' => 'Đơn hàng của bạn',
             'item' => 'sản phẩm',
-            
-            
-        ]
 
-
-?>
+        ];

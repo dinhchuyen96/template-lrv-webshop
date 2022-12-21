@@ -31,11 +31,13 @@ class RegisterRequest extends FormRequest
             'phone' => 'bail|required|unique:accounts',
             'password' => 'bail|required|digits_between:5,8',
             'conf_password' => 'bail|required|same:password',
-            'address'=>'bail|required',
-            'birth_day' => 'bail|required'
+            'address' => 'bail|required',
+            'birth_day' => 'bail|required',
         ];
     }
-    public function messages(){
+
+    public function messages()
+    {
         return [
             'first_name.required' => 'Vui lòng nhập họ của bạn',
             'name.required' => 'Vui lòng nhập tên của bạn',
@@ -50,8 +52,7 @@ class RegisterRequest extends FormRequest
             'conf_password.same' => 'Mật khẩu chưa khớp, vui lòng nhập lại',
             'conf_password.required' => 'Vui lòng nhập lại mật khẩu',
             'address.required' => 'Vui lòng nhập địa chỉ của bạn',
-            'birth_day.required' => 'Vui lòng nhập sinh nhật của bạn'
+            'birth_day.required' => 'Vui lòng nhập sinh nhật của bạn',
         ];
     }
-
 }

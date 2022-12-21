@@ -29,6 +29,7 @@ class Brand_saleEditRequest extends FormRequest
             'upload' => 'image|mimes:jpg,png,jpeg,gif,svg|max:3056',
         ];
     }
+
     public function messages()
     {
         return [
@@ -37,7 +38,7 @@ class Brand_saleEditRequest extends FormRequest
             'name.max' => 'Tên thương hiệu quá dài',
             // 'upload.required' => 'Logo không được để trống',
             'upload.mimes' => 'Logo phải có định dạng VD jpg, jpeg, gif, png',
-            'upload.max' => 'file quá lớn, vui lòng chọn file nhỏ hơn'
+            'upload.max' => 'file quá lớn, vui lòng chọn file nhỏ hơn',
         ];
     }
 }

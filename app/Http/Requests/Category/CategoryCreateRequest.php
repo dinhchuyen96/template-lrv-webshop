@@ -27,12 +27,12 @@ class CategoryCreateRequest extends FormRequest
             'name' => 'required|unique:categories',
         ];
     }
+
     public function messages()
     {
         return [
             'name.required' => 'Tên danh mục không được để trống',
-            'name.unique' => 'Tên danh mục đã được sử dụng'
+            'name.unique' => 'Tên danh mục đã được sử dụng',
         ];
     }
-    
 }

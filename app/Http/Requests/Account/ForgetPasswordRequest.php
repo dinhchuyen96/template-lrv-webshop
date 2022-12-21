@@ -27,6 +27,7 @@ class ForgetPasswordRequest extends FormRequest
             'email' => 'required|email|exists:accounts',
         ];
     }
+
     public function messages()
     {
         return [

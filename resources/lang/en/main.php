@@ -1,10 +1,11 @@
 <?php
+
         return[
             'my_account' => 'My Account',
             'register' => 'Register',
             'logout' => 'Log out',
             'login' => 'Log in',
-            'language' =>'Language',
+            'language' => 'Language',
             'select' => 'Select',
             'currency' => 'Currency',
             'home' => 'Home',
@@ -15,9 +16,9 @@
             'cart' => 'My cart',
             'search' => 'Search',
             'wishlist' => 'wishlist',
-            'compare' => 'Product compare',        
-            'checkout' =>'Checkout',
-            'viewcart' =>'View cart',
+            'compare' => 'Product compare',
+            'checkout' => 'Checkout',
+            'viewcart' => 'View cart',
             'subtt' => 'Sub-total:',
             'coupon' => 'Coupon:',
             'ecotax' => 'Eco Tax (2%):',
@@ -29,7 +30,4 @@
             'about' => 'about',
             'list' => 'list',
             'cartempty' => 'Cart is empty',
-        ]
-
-
-?>
+        ];

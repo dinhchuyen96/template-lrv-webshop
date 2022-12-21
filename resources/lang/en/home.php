@@ -1,4 +1,5 @@
 <?php
+
         return[
             'sn' => 'Shop Now',
             'np' => 'New',
@@ -15,8 +16,8 @@
             'rv' => 'Reviews',
             'bs' => 'Best sellers Products',
             'os' => 'On sale Products',
-            'wishlist' => 'wishlist',        
-            'compare' => 'Compare',   
+            'wishlist' => 'wishlist',
+            'compare' => 'Compare',
             'qw' => 'Quick view',
             'br' => 'Brand',
             'promotion1' => 'Free Shipping',
@@ -31,7 +32,4 @@
             'promotion5d' => 'We ensure secure payment',
             '' => '',
             '' => '',
-        ]
-
-
-?>
+        ];

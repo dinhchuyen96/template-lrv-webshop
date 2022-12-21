@@ -16,7 +16,7 @@ class CreateFilemanagerTable extends Migration
         Schema::create('filemanager', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('ext',4);
+            $table->string('ext', 4);
             $table->float('file_size');
             $table->bigInteger('user_id')->unsigned();
             $table->string('absolute_url');

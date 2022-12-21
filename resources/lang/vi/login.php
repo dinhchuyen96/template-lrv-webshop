@@ -1,4 +1,5 @@
 <?php
+
         return[
             'hlogin' => 'Đăng nhập vào tài khoản của bạn',
             'ed' => 'Địa chỉ email',
@@ -12,7 +13,4 @@
             'co' => 'bấm vào đây',
             'clh' => 'bấm vào đây',
 
-        ]
-
-
-?>
+        ];

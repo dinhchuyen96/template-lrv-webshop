@@ -30,6 +30,7 @@ class CommentBlogRequest extends FormRequest
             'webside' => 'nullable|max:100|min:5|string',
         ];
     }
+
     public function messages()
     {
         return [

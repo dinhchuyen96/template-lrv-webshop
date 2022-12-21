@@ -1,4 +1,5 @@
 <?php
+
         return[
             'signup' => 'Đăng nhập để nhận thông tin',
             'befisrt' => 'Để là người đầu tiên trải nghiệm, đăng ký để nhận thư mỗi ngày',
@@ -16,7 +17,4 @@
             'sm' => 'Bản đồ',
             'cus' => 'Gọi chúng tôi:',
             'adr' => 'Địa chỉ:',
-        ]
-
-
-?>
+        ];

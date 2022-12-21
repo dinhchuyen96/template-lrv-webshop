@@ -1,4 +1,5 @@
 <?php
+
         return[
             'hlogin' => 'Log In To Your Account',
             'ed' => 'Email address',
@@ -11,7 +12,4 @@
             'na' => 'No account',
             'co' => 'Creat one here',
             'clh' => 'Click here',
-        ]
-
-
-?>
+        ];

@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Auth;
 
 class AdminController extends Controller
 {
-    public function dashboard(){
+    public function dashboard()
+    {
         // User::create([
         //     'name' => 'Admin Manerger',
         //     'email' => 'admin@gmail.com',
         //     'password' => bcrypt(123456)
         // ]);
-        
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -80,7 +79,6 @@ class AdminController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        
     }
 
     /**
@@ -93,6 +91,4 @@ class AdminController extends Controller
     {
         //
     }
-    
-    
 }

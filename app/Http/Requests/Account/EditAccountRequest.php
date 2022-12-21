@@ -29,11 +29,13 @@ class EditAccountRequest extends FormRequest
             'sex' => 'required',
             'email' => 'required|email|exists',
             'phone' => 'required',
-            'address'=>'required|max:265',
-            'birth_day' => 'required'
+            'address' => 'required|max:265',
+            'birth_day' => 'required',
         ];
     }
-    public function messages(){
+
+    public function messages()
+    {
         return [
             'first_name.required' => 'Vui lòng nhập họ của bạn',
             'name.required' => 'Vui lòng nhập tên của bạn',
@@ -43,7 +45,7 @@ class EditAccountRequest extends FormRequest
             'sex.required' => 'Vui lòng chọn giới tính',
             'address.required' => 'Vui lòng nhập địa chỉ của bạn',
             'address.max' => 'Địa chỉ quá dài, vui lòng nhập lại địa chỉ của bạn',
-            'birth_day.required' => 'Vui lòng nhập sinh nhật của bạn'
+            'birth_day.required' => 'Vui lòng nhập sinh nhật của bạn',
         ];
     }
 }

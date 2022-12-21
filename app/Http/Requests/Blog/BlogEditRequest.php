@@ -23,7 +23,6 @@ class BlogEditRequest extends FormRequest
      */
     public function rules()
     {
-        
         return [
             'name' => 'required|unique:blogs,name,'.$this->blog->id,
             'title' => 'required|max:7000|unique:blogs,title,'.$this->blog->id,
@@ -31,6 +30,7 @@ class BlogEditRequest extends FormRequest
             'upload' => 'image|mimes:jpg,png,jpeg,gif,svg|max:5120',
         ];
     }
+
     public function messages()
     {
         return [
@@ -43,7 +43,7 @@ class BlogEditRequest extends FormRequest
             'content.max' => 'Nội dung quá dài, vui lòng thử lại',
             'upload.required' => 'Ảnh blog không được để trống',
             'upload.mimes' => 'Tệp phải có định dạng VD jpg, jpeg, gif, png',
-            'upload.max' => 'file quá lớn, vui lòng chọn file nhỏ hơn'
+            'upload.max' => 'file quá lớn, vui lòng chọn file nhỏ hơn',
         ];
     }
 }

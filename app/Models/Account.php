@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class Account extends Authenticatable
 {
@@ -29,18 +27,18 @@ class Account extends Authenticatable
         'avatar',
         'birth_day',
         'token',
-        'status'
+        'status',
     ];
+
     public function scopeSearch($query)
     {
         $search_value = request()->search;
 
-        if($search_value){
-            $query = $query->where('last_name','LIKE','%'.$search_value.'%')->orWhere('phone','LIKE','%'.$search_value.'%')->orWhere('email','LIKE','%'.$search_value.'%');
+        if ($search_value) {
+            $query = $query->where('last_name', 'LIKE', '%'.$search_value.'%')->orWhere('phone', 'LIKE', '%'.$search_value.'%')->orWhere('email', 'LIKE', '%'.$search_value.'%');
         }
+
         return $query;
         // dd($query);
     }
 }
-    
-    

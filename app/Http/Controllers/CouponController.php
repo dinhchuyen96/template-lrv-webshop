@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use Illuminate\Http\Request;
 
@@ -15,9 +14,9 @@ class CouponController extends Controller
      */
     public function index()
     {
-        $data = Coupon::orderBy('id','DESC')->search()->paginate(10);
+        $data = Coupon::orderBy('id', 'DESC')->search()->paginate(10);
         // dd($data);
-        return view('admin.coupon.index',compact('data'));
+        return view('admin.coupon.index', compact('data'));
     }
 
     /**
@@ -39,8 +38,9 @@ class CouponController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        Coupon::create($request->only('name','code','discount_ab','discount_rl','begin','end','status'));
-        return redirect()->route('coupon.index')->with('yes','Thêm mới thành công');
+        Coupon::create($request->only('name', 'code', 'discount_ab', 'discount_rl', 'begin', 'end', 'status'));
+
+        return redirect()->route('coupon.index')->with('yes', 'Thêm mới thành công');
     }
 
     /**
@@ -64,8 +64,8 @@ class CouponController extends Controller
     {
         // dd($coupon);
         $coupon1 = $coupon;
-        return view('admin.Coupon.edit',compact('coupon1'));
 
+        return view('admin.Coupon.edit', compact('coupon1'));
     }
 
     /**
@@ -77,8 +77,9 @@ class CouponController extends Controller
      */
     public function update(Request $request, Coupon $coupon)
     {
-        $coupon->update($request->only('name','code','discount_rl','discount_ab','begin','end','status',));
-        return redirect()->route('coupon.index')->with('yes','Cập nhật thành công');
+        $coupon->update($request->only('name', 'code', 'discount_rl', 'discount_ab', 'begin', 'end', 'status'));
+
+        return redirect()->route('coupon.index')->with('yes', 'Cập nhật thành công');
     }
 
     /**
@@ -90,6 +91,7 @@ class CouponController extends Controller
     public function destroy(Coupon $coupon)
     {
         $coupon->delete();
-        return redirect()->route('coupon.index')->with('yes', "Xóa coupon thành công");
+
+        return redirect()->route('coupon.index')->with('yes', 'Xóa coupon thành công');
     }
 }

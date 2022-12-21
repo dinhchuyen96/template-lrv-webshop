@@ -1,19 +1,18 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\App;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Login_adController;
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\AccountController;
-use App\Http\Controllers\OrderHomeController;
-use App\Http\Controllers\OrderAdminController;
-use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\CompareController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartAjaxController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CompareController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\Login_adController;
+use App\Http\Controllers\OrderAdminController;
+use App\Http\Controllers\OrderHomeController;
+use App\Http\Controllers\WishlistController;
+use Illuminate\Support\Facades\Route;
 
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
     ->name('ckfinder_connector');
@@ -38,112 +37,107 @@ Route::get('/compare', [HomeController::class, 'compare'])->name('compare');
 
 Route::get('/search', [HomeController::class, 'live_Search'])->name('live_Search');
 
-
 Route::get('locale/{lange}', [LocaleController::class, 'setLang']); // Đổi ngôn ngữ
 
-Route::group(['prefix'=>'blog'], function(){
+Route::group(['prefix' => 'blog'], function () {
     Route::get('/', [HomeController::class, 'blog'])->name('blog');
     Route::get('/{blog_cat_id}-{slug}', [HomeController::class, 'blog_cat_id'])->name('blog_cat_id');
     Route::get('/{blog_cat_id}-{slug}/{slug2}/{blog}', [HomeController::class, 'blog_detail'])->name('blog_detail');
     Route::resources([
-        'comment' => CommentBlogController::class
+        'comment' => CommentBlogController::class,
     ]);
 });
 
-                                //ADD Products ROUTE
+//ADD Products ROUTE
 
-Route::group(['prefix'=>'wishlist','middleware' => 'acc'], function(){
-    Route::get('/',[WishlistController::class, 'view'])->name('home.wishlist');
-    Route::get('/add/{product}', [WishlistController::class, 'add'])->name('home.add-wishlist');  
-    Route::get('/remove/{product}',[WishlistController::class, 'remove'])->name('home.remove-wishlist');  
-    // Route::delete('/remove/{product}',[WishlistController::class, 'remove'])->name('home.remove-wishlist');  
+Route::group(['prefix' => 'wishlist', 'middleware' => 'acc'], function () {
+    Route::get('/', [WishlistController::class, 'view'])->name('home.wishlist');
+    Route::get('/add/{product}', [WishlistController::class, 'add'])->name('home.add-wishlist');
+    Route::get('/remove/{product}', [WishlistController::class, 'remove'])->name('home.remove-wishlist');
+    // Route::delete('/remove/{product}',[WishlistController::class, 'remove'])->name('home.remove-wishlist');
 });
 
-                                //Compare Route
-Route::group(['prefix'=>'compare','middleware' => 'acc'], function(){
-    Route::get('/',[CompareController::class, 'view'])->name('home.compare');
-    Route::get('/add/{product}', [CompareController::class, 'add'])->name('home.add-compare');  
-    Route::get('/remove/{product}',[CompareController::class, 'remove'])->name('home.remove-compare');  
+//Compare Route
+Route::group(['prefix' => 'compare', 'middleware' => 'acc'], function () {
+    Route::get('/', [CompareController::class, 'view'])->name('home.compare');
+    Route::get('/add/{product}', [CompareController::class, 'add'])->name('home.add-compare');
+    Route::get('/remove/{product}', [CompareController::class, 'remove'])->name('home.remove-compare');
 });
-                                    // Cart Route
-Route::group(['prefix'=>'cart','middleware' => 'acc'], function(){
-    Route::get('/',[CartController::class, 'view'])->name('home.cart');
-    Route::get('/clear',[CartController::class, 'clear'])->name('home.cart-clear');
-    Route::get('/add/{product}',[CartController::class, 'add'])->name('home.cart-add');
+// Cart Route
+Route::group(['prefix' => 'cart', 'middleware' => 'acc'], function () {
+    Route::get('/', [CartController::class, 'view'])->name('home.cart');
+    Route::get('/clear', [CartController::class, 'clear'])->name('home.cart-clear');
+    Route::get('/add/{product}', [CartController::class, 'add'])->name('home.cart-add');
     // Route::get('/add-to-cart',[CartAjaxController::class, 'add'])->name('home.cart-add');
-    Route::get('/remove/{product}',[CartController::class, 'remove'])->name('home.cart-remove');
-    Route::get('/update/{product}',[CartController::class, 'update'])->name('home.cart-update');
+    Route::get('/remove/{product}', [CartController::class, 'remove'])->name('home.cart-remove');
+    Route::get('/update/{product}', [CartController::class, 'update'])->name('home.cart-update');
 });
 
-                                // ACCOUNT Route
-Route::group(['prefix'=>'account'], function(){
-    Route::get('/active/{customer}/{token}', [AccountController:: class, 'active_account'])->name('account.active_account');
-    Route::get('/login',[AccountController::class, 'login'])->name('home.login');
-    Route::post('/login',[AccountController::class, 'post_login'])->name('home.post_login');
-    Route::get('/profile',[AccountController::class, 'profile'])->name('home.profile');
-    Route::get('/logout',[AccountController::class, 'logout'])->name('home.logout');
-    Route::get('/register',[AccountController::class, 'register'])->name('home.register');
-    Route::get('/check-email',[AccountController::class, 'check_email'])->name('home.check_email');
-    Route::get('/check-phone',[AccountController::class, 'check_phone'])->name('home.check_phone');
-    Route::post('/register',[AccountController::class, 'post_register'])->name('home.register');
+// ACCOUNT Route
+Route::group(['prefix' => 'account'], function () {
+    Route::get('/active/{customer}/{token}', [AccountController::class, 'active_account'])->name('account.active_account');
+    Route::get('/login', [AccountController::class, 'login'])->name('home.login');
+    Route::post('/login', [AccountController::class, 'post_login'])->name('home.post_login');
+    Route::get('/profile', [AccountController::class, 'profile'])->name('home.profile');
+    Route::get('/logout', [AccountController::class, 'logout'])->name('home.logout');
+    Route::get('/register', [AccountController::class, 'register'])->name('home.register');
+    Route::get('/check-email', [AccountController::class, 'check_email'])->name('home.check_email');
+    Route::get('/check-phone', [AccountController::class, 'check_phone'])->name('home.check_phone');
+    Route::post('/register', [AccountController::class, 'post_register'])->name('home.register');
 
     Route::get('/get-actived', [AccountController::class, 'get_actived'])->name('account.get_actived');
-    Route::get('/reset-password/{customer}/{token}',[AccountController::class, 'reset_Password'])->name('account.reset_password');
-    Route::post('/reset-password/{customer}/{token}',[AccountController::class, 'post_reset_Password'])->name('account.post_reset_password');
-    
-    Route::get('/forget-password',[AccountController::class, 'forget_Password'])->name('account.forget_password');
-    Route::post('/forget-password',[AccountController::class, 'post_Forget_Password']);
+    Route::get('/reset-password/{customer}/{token}', [AccountController::class, 'reset_Password'])->name('account.reset_password');
+    Route::post('/reset-password/{customer}/{token}', [AccountController::class, 'post_reset_Password'])->name('account.post_reset_password');
 
-});       
+    Route::get('/forget-password', [AccountController::class, 'forget_Password'])->name('account.forget_password');
+    Route::post('/forget-password', [AccountController::class, 'post_Forget_Password']);
+});
 
-Route::group(['prefix'=>'my-account','middleware' => 'acc'], function(){
-    Route::get('/profile',[AccountController::class, 'my_account'])->name('my_account');
-    Route::get('/changer-password',[AccountController::class, 'changer_password'])->name('home.changer_password');
-    Route::post('/changer-password',[AccountController::class, 'post_changer_password'])->name('home.changer_password');
-    Route::post('/edit',[AccountController::class, 'post_edit_account'])->name('home.account_edit');
-});   
+Route::group(['prefix' => 'my-account', 'middleware' => 'acc'], function () {
+    Route::get('/profile', [AccountController::class, 'my_account'])->name('my_account');
+    Route::get('/changer-password', [AccountController::class, 'changer_password'])->name('home.changer_password');
+    Route::post('/changer-password', [AccountController::class, 'post_changer_password'])->name('home.changer_password');
+    Route::post('/edit', [AccountController::class, 'post_edit_account'])->name('home.account_edit');
+});
 
-                            // Order route
-Route::group(['prefix'=>'order','middleware' => 'acc'], function(){
-    Route::get('/',[OrderHomeController::class, 'order_list'])->name('home.order');
-    Route::get('/checkout',[OrderHomeController::class, 'checkout'])->name('home.order_checkout');
-    Route::get('/get-districts',[OrderHomeController::class, 'getTbl_Districts'])->name('home.getTbl_Districts');
-    Route::get('/get-wards',[OrderHomeController::class, 'getTbl_Wards'])->name('home.getTbl_Wards');
-    Route::post('/checkout',[OrderHomeController::class, 'post_checkout'])->name('home.order_checkout');
-    Route::post('/checkout/coupon',[OrderHomeController::class, 'check_coupon'])->name('home.checkout_coupon');
-    Route::get('/checkout/coupon/_del',[OrderHomeController::class, 'del_coupon'])->name('home.del_coupon');
-    Route::get('/detail/{order}',[OrderHomeController::class, 'detail'])->name('home.order_detail');  
-    Route::post('/huydonhang',[OrderHomeController::class, 'destroy'])->name('order_destroy');    
-    Route::get('/thank',[OrderHomeController::class, 'thank'])->name('thank'); 
-});     
+// Order route
+Route::group(['prefix' => 'order', 'middleware' => 'acc'], function () {
+    Route::get('/', [OrderHomeController::class, 'order_list'])->name('home.order');
+    Route::get('/checkout', [OrderHomeController::class, 'checkout'])->name('home.order_checkout');
+    Route::get('/get-districts', [OrderHomeController::class, 'getTbl_Districts'])->name('home.getTbl_Districts');
+    Route::get('/get-wards', [OrderHomeController::class, 'getTbl_Wards'])->name('home.getTbl_Wards');
+    Route::post('/checkout', [OrderHomeController::class, 'post_checkout'])->name('home.order_checkout');
+    Route::post('/checkout/coupon', [OrderHomeController::class, 'check_coupon'])->name('home.checkout_coupon');
+    Route::get('/checkout/coupon/_del', [OrderHomeController::class, 'del_coupon'])->name('home.del_coupon');
+    Route::get('/detail/{order}', [OrderHomeController::class, 'detail'])->name('home.order_detail');
+    Route::post('/huydonhang', [OrderHomeController::class, 'destroy'])->name('order_destroy');
+    Route::get('/thank', [OrderHomeController::class, 'thank'])->name('thank');
+});
 
-                                    //Categoru & Product Route
+//Categoru & Product Route
 Route::get('/danh-muc/{category}', [HomeController::class, 'category'])->name('home.category');
 
-Route::group(['prefix'=>'//{product}-{category?}-{slug?}'], function(){
+Route::group(['prefix' => '//{product}-{category?}-{slug?}'], function () {
     Route::get('/', [HomeController::class, 'product'])->name('home.product');
     Route::resources([
         'review' => ReviewController::class,
     ]);
-}); 
+});
 
 Route::get('/myaccount', [HomeController::class, 'myaccount'])->name('myaccount');
 
-
-
-
-                                    // ADMIN Route
+// ADMIN Route
 
 Route::get('/admin/login', [Login_adController::class, 'login'])->name('login');
 Route::post('/admin/login', [Login_adController::class, 'post_login'])->name('login');
-Route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('filter-order', [DashboardController::class, 'fillterOrder'])->name('filter.order');
-    Route::get('filter-money', [DashboardController::class, 'filterMoney'])->name('filter.money');     
-    Route::get('customer-account', [DashboardController::class, 'list_account'])->name('admin.account');     
-    Route::get('account-detail/{account}', [DashboardController::class, 'account_detail'])->name('admin.account_detail');     
-    Route::get('account-lock/{account}', [AccountController::class, 'account_lock'])->name('admin.account_lock');     
-    Route::get('account-unlock/{account}', [AccountController::class, 'account_unlock'])->name('admin.account_unlock');     
+    Route::get('filter-money', [DashboardController::class, 'filterMoney'])->name('filter.money');
+    Route::get('customer-account', [DashboardController::class, 'list_account'])->name('admin.account');
+    Route::get('account-detail/{account}', [DashboardController::class, 'account_detail'])->name('admin.account_detail');
+    Route::get('account-lock/{account}', [AccountController::class, 'account_lock'])->name('admin.account_lock');
+    Route::get('account-unlock/{account}', [AccountController::class, 'account_unlock'])->name('admin.account_unlock');
     Route::get('/logout', [Login_adController::class, 'logout_admin'])->name('ad_logout');
     Route::get('/', [AdminController::class, 'index'])->name('admin.category.index');
     Route::resources([
@@ -154,12 +148,11 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function(){
         'blog_cat' => Blog_catController::class,
         'blog' => Blog_AdminController::class,
         'contact' => ContactController::class,
-        'brand_sale' => Brand_saleController::class
+        'brand_sale' => Brand_saleController::class,
     ]);
-    Route::group(['prefix'=>'order'], function(){
-        Route::get('/',[OrderAdminController::class, 'index'])->name('order.index');
-        Route::get('/detail/{order}',[OrderAdminController::class, 'detail'])->name('order.detail');    
-        Route::post('/status/{order}',[OrderAdminController::class, 'status'])->name('order_status');    
+    Route::group(['prefix' => 'order'], function () {
+        Route::get('/', [OrderAdminController::class, 'index'])->name('order.index');
+        Route::get('/detail/{order}', [OrderAdminController::class, 'detail'])->name('order.detail');
+        Route::post('/status/{order}', [OrderAdminController::class, 'status'])->name('order_status');
     });
 });
-

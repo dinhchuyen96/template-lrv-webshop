@@ -1,4 +1,5 @@
 <?php
+
         return[
             'signup' => 'Sign Up For Newsletters',
             'befisrt' => 'Be the First to Know. Sign up for newsletter today',
@@ -16,7 +17,4 @@
             'sm' => 'Site Map',
             'cus' => 'Call us:',
             'adr' => 'Address',
-        ]
-
-
-?>
+        ];

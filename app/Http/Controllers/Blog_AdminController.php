@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Blog;
-use App\Models\Blog_cat;
-use Illuminate\Http\Request;
 use App\Http\Requests\Blog\BlogCreateRequest;
 use App\Http\Requests\Blog\BlogEditRequest;
-
+use App\Models\Blog;
+use App\Models\Blog_cat;
 use Str;
 
 class Blog_AdminController extends Controller
@@ -20,9 +17,9 @@ class Blog_AdminController extends Controller
      */
     public function index()
     {
-        $data = Blog::orderBy('id','DESC')->search()->paginate(10);
+        $data = Blog::orderBy('id', 'DESC')->search()->paginate(10);
         // dd($data);
-        return view('admin.blog.index',compact('data'));
+        return view('admin.blog.index', compact('data'));
     }
 
     /**
@@ -44,30 +41,31 @@ class Blog_AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(BlogCreateRequest $request)
-    {   
+    {
         // dd("ok");
-        $data_blog = $request->all('name','cat_id','title','content','image_blog','status',);
+        $data_blog = $request->all('name', 'cat_id', 'title', 'content', 'image_blog', 'status');
         // dd($data_blog);
 
-        if($request->upload){
+        if ($request->upload) {
             $file_name = $request->upload->getClientOriginalName();
 
             $partInfo = pathinfo($file_name);
             $ext = $partInfo['extension'];
 
-            $base_name = $partInfo['filename']; 
+            $base_name = $partInfo['filename'];
 
             $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
 
             $check_upload = $request->upload->move(public_path('uploads/blog'), $final_name);
 
-            if($check_upload){
+            if ($check_upload) {
                 $data_blog['image_blog'] = $final_name;
-            };
+            }
         }
         // dd($data_blog);
         Blog::create($data_blog);
-        return redirect()->route('blog.index')->with('yes','Thêm mới thành công');
+
+        return redirect()->route('blog.index')->with('yes', 'Thêm mới thành công');
     }
 
     /**
@@ -88,10 +86,10 @@ class Blog_AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Blog $blog)
-    {   
+    {
         $blog_cat = Blog_cat::orderBy('id', 'ASC')->get();
         // dd($blog);
-        return view('admin.blog.edit', compact('blog','blog_cat'));
+        return view('admin.blog.edit', compact('blog', 'blog_cat'));
     }
 
     /**
@@ -103,20 +101,21 @@ class Blog_AdminController extends Controller
      */
     public function update(BlogEditRequest $request, Blog $blog)
     {
-        $data_blog = $request->all('name','cat_id','title','content','status');
-        if($request->has('upload')){
+        $data_blog = $request->all('name', 'cat_id', 'title', 'content', 'status');
+        if ($request->has('upload')) {
             $file_name = $request->upload->getClientOriginalName();
             $partInfo = pathinfo($file_name);
             $ext = $partInfo['extension'];
-            $base_name = $partInfo['filename']; 
+            $base_name = $partInfo['filename'];
             $final_name = Str::slug($base_name).'-'.time().'.'.$ext;
             $check_upload = $request->upload->move(public_path('uploads/blog'), $final_name);
-            if($check_upload){
+            if ($check_upload) {
                 $data_blog['image_blog'] = $final_name;
             }
         }
         $blog->update($data_blog);
-        return redirect()->route('blog.index')->with('yes','Cập nhật thành công');
+
+        return redirect()->route('blog.index')->with('yes', 'Cập nhật thành công');
     }
 
     /**
@@ -128,6 +127,7 @@ class Blog_AdminController extends Controller
     public function destroy(Blog $blog)
     {
         $blog->delete();
-        return redirect()->route('blog.index')->with('yes', "Xóa thành công");
+
+        return redirect()->route('blog.index')->with('yes', 'Xóa thành công');
     }
 }

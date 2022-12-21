@@ -28,6 +28,7 @@ class LoginRequest extends FormRequest
             'password' => 'required|max:10|min:5',
         ];
     }
+
     public function messages()
     {
         return [
@@ -35,7 +36,7 @@ class LoginRequest extends FormRequest
             'email.exists, email.email, email.max' => 'Email không hợp lệ',
             'password.required' => 'Mời bạn nhập mật khẩu',
             'password.min' => 'Mật khẩu phải từ 5-10 ký tự',
-            'password.max' => 'Mật khẩu phải từ 5-10 ký tự'
+            'password.max' => 'Mật khẩu phải từ 5-10 ký tự',
         ];
     }
 }
